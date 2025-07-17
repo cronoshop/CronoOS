@@ -18,6 +18,12 @@
     --shadow-color: rgba(0, 0, 0, 0.1);
     --overlay-color: rgba(0, 0, 0, 0.5);
     
+    /* Dynamic theme colors */
+    --dynamic-primary: #007AFF;
+    --dynamic-secondary: #5856D6;
+    --dynamic-accent: #FF2D92;
+    --dynamic-primary-rgb: 0, 122, 255;
+    
     /* CronoOS Specific Colors */
     --cronos-blue: #007AFF;
     --cronos-green: #30D158;
@@ -49,9 +55,10 @@
     --radius-xl: 20px;
     
     /* Transitions */
-    --transition-fast: 0.2s ease;
-    --transition-normal: 0.3s ease;
-    --transition-slow: 0.5s ease;
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 /* Dark Theme */
@@ -80,37 +87,14 @@ body {
     transition: background-color var(--transition-normal), color var(--transition-normal);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-}
-
-/* Status Bar */
-.status-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 24px;
-    background: var(--background-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 var(--spacing-md);
-    font-size: var(--font-size-sm);
-    font-weight: 500;
-    z-index: 1000;
-    border-bottom: 1px solid var(--divider-color);
-    backdrop-filter: blur(20px);
-}
-
-.status-left, .status-right {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern" 1;
 }
 
 /* App Container */
 .app-container {
     min-height: 100vh;
-    padding-top: 24px;
+    padding-top: 44px;
     background-color: var(--background-color);
 }
 
@@ -124,7 +108,7 @@ body {
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--divider-color);
     position: sticky;
-    top: 24px;
+    top: 44px;
     z-index: 100;
 }
 
@@ -180,12 +164,13 @@ body {
     font-weight: 500;
     cursor: pointer;
     transition: all var(--transition-fast);
-    box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
+    box-shadow: 0 4px 16px rgba(var(--dynamic-primary-rgb), 0.3);
 }
 
 .btn-primary:hover {
     background-color: var(--primary-dark);
     transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(var(--dynamic-primary-rgb), 0.4);
 }
 
 .btn-secondary {
@@ -244,7 +229,7 @@ select:focus,
 textarea:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+    box-shadow: 0 0 0 3px rgba(var(--dynamic-primary-rgb), 0.1);
 }
 
 /* Toggle Switch */
@@ -287,7 +272,7 @@ textarea:focus {
 }
 
 .toggle-switch input:checked + label {
-    background-color: var(--primary-color);
+    background-color: var(--dynamic-primary);
 }
 
 .toggle-switch input:checked + label:before {
@@ -314,8 +299,8 @@ textarea:focus {
 }
 
 .tab.active {
-    color: var(--primary-color);
-    border-bottom-color: var(--primary-color);
+    color: var(--dynamic-primary);
+    border-bottom-color: var(--dynamic-primary);
 }
 
 .tab:hover {
@@ -591,4 +576,54 @@ button, .clickable, .interactive {
 
 button:active, .clickable:active, .interactive:active {
     transform: scale(0.97);
+}
+
+/* Enhanced focus states */
+.app-icon:focus,
+.dock-item:focus,
+button:focus {
+    outline: 2px solid var(--dynamic-primary);
+    outline-offset: 2px;
+}
+
+/* Improved accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Modern scrollbars */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--divider-color);
+    border-radius: 3px;
+    transition: background var(--transition-fast);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+
+/* Glass morphism effects */
+.glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .glass {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
