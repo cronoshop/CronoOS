@@ -1,28 +1,32 @@
-/* Global Styles - One UI OS */
+/* Global Styles - CronoOS */
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
 :root {
     /* Light Theme Colors */
-    --primary-color: #1976d2;
-    --primary-light: #42a5f5;
-    --primary-dark: #0d47a1;
-    --secondary-color: #03dac6;
+    --primary-color: #007AFF;
+    --primary-light: #5AC8FA;
+    --primary-dark: #0051D5;
+    --secondary-color: #5856D6;
     --background-color: #ffffff;
-    --surface-color: #f5f5f5;
+    --surface-color: #f2f2f7;
     --card-color: #ffffff;
-    --text-primary: #212121;
-    --text-secondary: #757575;
-    --divider-color: #e0e0e0;
+    --text-primary: #000000;
+    --text-secondary: #8e8e93;
+    --divider-color: #c6c6c8;
     --shadow-color: rgba(0, 0, 0, 0.1);
     --overlay-color: rgba(0, 0, 0, 0.5);
     
-    /* One UI Specific Colors */
-    --oneui-blue: #1976d2;
-    --oneui-green: #4caf50;
-    --oneui-orange: #ff9800;
-    --oneui-red: #f44336;
-    --oneui-purple: #9c27b0;
+    /* CronoOS Specific Colors */
+    --cronos-blue: #007AFF;
+    --cronos-green: #30D158;
+    --cronos-orange: #FF9500;
+    --cronos-red: #FF3B30;
+    --cronos-purple: #5856D6;
+    --cronos-pink: #FF2D92;
+    --cronos-yellow: #FFCC00;
+    --cronos-teal: #5AC8FA;
     
     /* Spacing */
     --spacing-xs: 4px;
@@ -31,11 +35,18 @@
     --spacing-lg: 24px;
     --spacing-xl: 32px;
     
+    /* Typography */
+    --font-size-xs: 11px;
+    --font-size-sm: 13px;
+    --font-size-md: 15px;
+    --font-size-lg: 17px;
+    --font-size-xl: 20px;
+    
     /* Border Radius */
     --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 16px;
-    --radius-xl: 24px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 20px;
     
     /* Transitions */
     --transition-fast: 0.2s ease;
@@ -45,12 +56,12 @@
 
 /* Dark Theme */
 [data-theme="dark"] {
-    --background-color: #121212;
-    --surface-color: #1e1e1e;
-    --card-color: #2d2d2d;
+    --background-color: #000000;
+    --surface-color: #1c1c1e;
+    --card-color: #2c2c2e;
     --text-primary: #ffffff;
-    --text-secondary: #b3b3b3;
-    --divider-color: #333333;
+    --text-secondary: #8e8e93;
+    --divider-color: #38383a;
     --shadow-color: rgba(0, 0, 0, 0.3);
 }
 
@@ -64,9 +75,11 @@ body {
     font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     background-color: var(--background-color);
     color: var(--text-primary);
-    line-height: 1.5;
+    line-height: 1.4;
     overflow-x: hidden;
     transition: background-color var(--transition-normal), color var(--transition-normal);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Status Bar */
@@ -81,10 +94,11 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 0 var(--spacing-md);
-    font-size: 14px;
+    font-size: var(--font-size-sm);
     font-weight: 500;
     z-index: 1000;
     border-bottom: 1px solid var(--divider-color);
+    backdrop-filter: blur(20px);
 }
 
 .status-left, .status-right {
@@ -107,6 +121,7 @@ body {
     justify-content: space-between;
     padding: var(--spacing-md);
     background-color: var(--card-color);
+    backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--divider-color);
     position: sticky;
     top: 24px;
@@ -114,7 +129,7 @@ body {
 }
 
 .app-header h1 {
-    font-size: 20px;
+    font-size: var(--font-size-xl);
     font-weight: 500;
     color: var(--text-primary);
 }
@@ -122,7 +137,7 @@ body {
 .back-btn {
     background: none;
     border: none;
-    font-size: 24px;
+    font-size: var(--font-size-lg);
     color: var(--primary-color);
     cursor: pointer;
     padding: var(--spacing-sm);
@@ -142,7 +157,7 @@ body {
 .header-btn {
     background: none;
     border: none;
-    font-size: 18px;
+    font-size: var(--font-size-md);
     color: var(--text-secondary);
     cursor: pointer;
     padding: var(--spacing-sm);
@@ -161,10 +176,11 @@ body {
     border: none;
     padding: var(--spacing-md) var(--spacing-lg);
     border-radius: var(--radius-md);
-    font-size: 16px;
+    font-size: var(--font-size-md);
     font-weight: 500;
     cursor: pointer;
     transition: all var(--transition-fast);
+    box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
 }
 
 .btn-primary:hover {
@@ -178,7 +194,7 @@ body {
     border: 2px solid var(--primary-color);
     padding: var(--spacing-md) var(--spacing-lg);
     border-radius: var(--radius-md);
-    font-size: 16px;
+    font-size: var(--font-size-md);
     font-weight: 500;
     cursor: pointer;
     transition: all var(--transition-fast);
@@ -194,7 +210,8 @@ body {
     background-color: var(--card-color);
     border-radius: var(--radius-md);
     padding: var(--spacing-lg);
-    box-shadow: 0 2px 8px var(--shadow-color);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--divider-color);
     transition: all var(--transition-fast);
 }
 
@@ -214,9 +231,9 @@ select,
 textarea {
     width: 100%;
     padding: var(--spacing-md);
-    border: 2px solid var(--divider-color);
+    border: 1px solid var(--divider-color);
     border-radius: var(--radius-sm);
-    font-size: 16px;
+    font-size: var(--font-size-md);
     background-color: var(--card-color);
     color: var(--text-primary);
     transition: border-color var(--transition-fast);
@@ -227,14 +244,15 @@ select:focus,
 textarea:focus {
     outline: none;
     border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
 }
 
 /* Toggle Switch */
 .toggle-switch {
     position: relative;
     display: inline-block;
-    width: 48px;
-    height: 24px;
+    width: 51px;
+    height: 31px;
 }
 
 .toggle-switch input {
@@ -250,20 +268,21 @@ textarea:focus {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--divider-color);
-    border-radius: 24px;
+    background-color: #e5e5ea;
+    border-radius: 16px;
     transition: var(--transition-fast);
 }
 
 .toggle-switch label:before {
     position: absolute;
     content: "";
-    height: 20px;
-    width: 20px;
+    height: 27px;
+    width: 27px;
     left: 2px;
     bottom: 2px;
     background-color: white;
     border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     transition: var(--transition-fast);
 }
 
@@ -272,7 +291,7 @@ textarea:focus {
 }
 
 .toggle-switch input:checked + label:before {
-    transform: translateX(24px);
+    transform: translateX(20px);
 }
 
 /* Tabs */
@@ -289,8 +308,9 @@ textarea:focus {
     cursor: pointer;
     font-weight: 500;
     color: var(--text-secondary);
-    border-bottom: 2px solid transparent;
+    border-bottom: 1px solid transparent;
     transition: all var(--transition-fast);
+    font-size: var(--font-size-sm);
 }
 
 .tab.active {
@@ -329,6 +349,7 @@ textarea:focus {
     z-index: 2000;
     opacity: 0;
     visibility: hidden;
+    backdrop-filter: blur(20px);
     transition: all var(--transition-normal);
 }
 
@@ -342,6 +363,7 @@ textarea:focus {
     border-radius: var(--radius-lg);
     max-width: 90%;
     max-height: 90%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     overflow: hidden;
     transform: scale(0.9);
     transition: transform var(--transition-normal);
@@ -357,17 +379,18 @@ textarea:focus {
     justify-content: space-between;
     padding: var(--spacing-lg);
     border-bottom: 1px solid var(--divider-color);
+    backdrop-filter: blur(20px);
 }
 
 .modal-header h3 {
-    font-size: 18px;
+    font-size: var(--font-size-lg);
     font-weight: 500;
 }
 
 .close-btn {
     background: none;
     border: none;
-    font-size: 24px;
+    font-size: var(--font-size-lg);
     color: var(--text-secondary);
     cursor: pointer;
     padding: var(--spacing-sm);
@@ -389,6 +412,7 @@ textarea:focus {
     gap: var(--spacing-md);
     padding: var(--spacing-lg);
     border-top: 1px solid var(--divider-color);
+    backdrop-filter: blur(20px);
 }
 
 /* Animations */
@@ -495,6 +519,21 @@ textarea:focus {
     animation: bounce 1s;
 }
 
+/* Icon Styles */
+.icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1em;
+    height: 1em;
+}
+
+.icon svg {
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .app-header {
@@ -513,7 +552,11 @@ textarea:focus {
 
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 4px;
+}
+
+::-webkit-scrollbar:horizontal {
+    height: 4px;
 }
 
 ::-webkit-scrollbar-track {
@@ -521,10 +564,31 @@ textarea:focus {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--divider-color);
-    border-radius: 3px;
+    background: var(--text-secondary);
+    border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--text-secondary);
+    background: var(--text-primary);
+}
+
+/* Blur effects for modern look */
+.blur-background {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+/* Material You inspired theming */
+.material-you-enabled {
+    --primary-color: var(--dynamic-primary, #007AFF);
+    --secondary-color: var(--dynamic-secondary, #5856D6);
+}
+
+/* Smooth transitions for all interactive elements */
+button, .clickable, .interactive {
+    transition: all var(--transition-fast);
+}
+
+button:active, .clickable:active, .interactive:active {
+    transform: scale(0.97);
 }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CronoOS - Advanced Mobile Operating System</title>
+    <link rel="stylesheet" href="styles/phone-mockup.css">
+    <link rel="stylesheet" href="styles/dynamic-island.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Phone Mockup Container -->
+    <div class="phone-mockup">
+        <!-- Dynamic Island -->
+        <div class="dynamic-island" id="dynamicIsland">
+            <div class="island-content">
+                <div class="island-compact">
+                    <div class="island-dot"></div>
+                </div>
+                <div class="island-expanded">
+                    <div class="island-info">
+                        <div class="island-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="island-details">
+                            <span class="island-title">Marco Rossi</span>
+                            <span class="island-subtitle">Chiamata in arrivo</span>
+                        </div>
+                    </div>
+                    <div class="island-actions">
+                        <button class="island-btn decline">
+                            <i class="fas fa-phone" style="transform: rotate(135deg);"></i>
+                        </button>
+                        <button class="island-btn accept">
+                            <i class="fas fa-phone"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phone Frame -->
+        <div class="phone-frame">
+            <!-- Physical Buttons -->
+            <div class="phone-button volume-up"></div>
+            <div class="phone-button volume-down"></div>
+            <div class="phone-button power"></div>
+
+            <!-- Screen Container -->
+            <div class="phone-screen" id="phoneScreen">
+                <!-- OS Content will be loaded here -->
+                <iframe id="osFrame" src="home.html" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/phone-mockup.js"></script>
+    <script src="scripts/dynamic-island.js"></script>
+</body>
+</html>

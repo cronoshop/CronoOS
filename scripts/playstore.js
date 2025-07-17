@@ -1,22 +1,24 @@
-// Play Store App JavaScript - One UI OS
+// App Store JavaScript - CronoOS
 
 let apps = [];
 let installedApps = [];
 let downloadQueue = [];
+let homeApps = []; // Track apps added to home screen
 
 document.addEventListener('DOMContentLoaded', function() {
-    initializePlayStoreApp();
+    initializeAppStoreApp();
     loadApps();
     loadInstalledApps();
+    loadHomeApps();
 });
 
-function initializePlayStoreApp() {
+function initializeAppStoreApp() {
     generateSampleApps();
     updateAppsDisplay();
     updateGamesDisplay();
     updateUpdatesDisplay();
     
-    console.log('Play Store app initialized');
+    console.log('App Store initialized');
 }
 
 function generateSampleApps() {
@@ -29,9 +31,10 @@ function generateSampleApps() {
             rating: 4.1,
             price: 'Gratis',
             size: '45.2 MB',
-            icon: '💬',
+            icon: 'fab fa-whatsapp',
+            iconClass: 'whatsapp-icon',
             description: 'Messaggistica istantanea semplice, sicura e affidabile',
-            screenshots: ['📱', '💬', '📞'],
+            screenshots: ['fas fa-mobile-alt', 'fas fa-comment', 'fas fa-phone'],
             version: '2.24.1.78',
             downloads: '5B+',
             type: 'app'
@@ -44,9 +47,10 @@ function generateSampleApps() {
             rating: 4.3,
             price: 'Gratis',
             size: '67.8 MB',
-            icon: '📷',
+            icon: 'fab fa-instagram',
+            iconClass: 'instagram-icon',
             description: 'Condividi foto e video con i tuoi amici',
-            screenshots: ['📸', '📹', '💝'],
+            screenshots: ['fas fa-camera', 'fas fa-video', 'fas fa-heart'],
             version: '312.0.0.44.113',
             downloads: '1B+',
             type: 'app'
@@ -59,9 +63,10 @@ function generateSampleApps() {
             rating: 4.4,
             price: 'Gratis',
             size: '89.3 MB',
-            icon: '🎵',
+            icon: 'fab fa-spotify',
+            iconClass: 'spotify-icon',
             description: 'Musica e podcast per ogni momento',
-            screenshots: ['🎶', '🎧', '📻'],
+            screenshots: ['fas fa-music', 'fas fa-headphones', 'fas fa-radio'],
             version: '8.8.96.488',
             downloads: '1B+',
             type: 'app'
@@ -74,9 +79,10 @@ function generateSampleApps() {
             rating: 4.2,
             price: 'Gratis',
             size: '124.5 MB',
-            icon: '🎬',
+            icon: 'fab fa-netflix',
+            iconClass: 'netflix-icon',
             description: 'Film, serie TV e molto altro',
-            screenshots: ['🎭', '🍿', '📺'],
+            screenshots: ['fas fa-film', 'fas fa-tv', 'fas fa-play'],
             version: '8.108.0',
             downloads: '1B+',
             type: 'app'
@@ -89,62 +95,104 @@ function generateSampleApps() {
             rating: 4.0,
             price: 'Gratis',
             size: '156.7 MB',
-            icon: '📺',
+            icon: 'fab fa-youtube',
+            iconClass: 'youtube-icon',
             description: 'Guarda i tuoi video preferiti',
-            screenshots: ['▶️', '🎥', '📹'],
+            screenshots: ['fas fa-play', 'fas fa-video', 'fas fa-film'],
             version: '19.01.35',
             downloads: '10B+',
             type: 'app'
         },
-        // Games
         {
             id: 6,
+            name: 'Gallery Plus',
+            developer: 'Photo Editor Inc.',
+            category: 'Foto',
+            rating: 4.6,
+            price: 'Gratis',
+            size: '23.4 MB',
+            icon: 'fas fa-images',
+            iconClass: 'gallery-icon',
+            description: 'Editor di foto avanzato con AI',
+            screenshots: ['fas fa-image', 'fas fa-edit', 'fas fa-palette'],
+            version: '3.2.1',
+            downloads: '100M+',
+            type: 'app'
+        },
+        {
+            id: 7,
+            name: 'AI Notepad',
+            developer: 'Smart Notes Ltd.',
+            category: 'Produttività',
+            rating: 4.8,
+            price: '€2.99',
+            size: '12.1 MB',
+            icon: 'fas fa-edit',
+            iconClass: 'notepad-icon',
+            description: 'Note intelligenti con AI integrata',
+            screenshots: ['fas fa-sticky-note', 'fas fa-brain', 'fas fa-sync'],
+            version: '1.5.2',
+            downloads: '50M+',
+            type: 'app'
+        },
+        // Games
+        {
+            id: 8,
             name: 'Candy Crush Saga',
             developer: 'King',
             category: 'Puzzle',
             rating: 4.5,
             price: 'Gratis',
             size: '78.9 MB',
-            icon: '🍭',
+            icon: 'fas fa-candy-cane',
+            iconClass: 'candy-icon',
             description: 'Il gioco di puzzle più dolce del mondo',
-            screenshots: ['🍬', '🎮', '🏆'],
+            screenshots: ['fas fa-gamepad', 'fas fa-trophy', 'fas fa-star'],
             version: '1.268.1.0',
             downloads: '1B+',
             type: 'game'
         },
         {
-            id: 7,
+            id: 9,
             name: 'PUBG Mobile',
             developer: 'PUBG Corporation',
             category: 'Azione',
             rating: 4.3,
             price: 'Gratis',
             size: '2.1 GB',
-            icon: '🎮',
+            icon: 'fas fa-gamepad',
+            iconClass: 'pubg-icon',
             description: 'Battle royale ufficiale di PUBG',
-            screenshots: ['🔫', '🏃', '🏆'],
+            screenshots: ['fas fa-crosshairs', 'fas fa-running', 'fas fa-trophy'],
             version: '3.0.0',
             downloads: '1B+',
             type: 'game'
         },
         {
-            id: 8,
+            id: 10,
             name: 'Among Us',
             developer: 'InnerSloth LLC',
             category: 'Sociale',
             rating: 4.1,
             price: '€4.99',
             size: '250.3 MB',
-            icon: '👾',
+            icon: 'fas fa-user-astronaut',
+            iconClass: 'among-icon',
             description: 'Gioca online o via WiFi locale',
-            screenshots: ['🚀', '🔍', '👥'],
+            screenshots: ['fas fa-rocket', 'fas fa-search', 'fas fa-users'],
             version: '2023.11.28',
             downloads: '500M+',
             type: 'game'
         }
     ];
     
-    installedApps = [1, 2, 3]; // WhatsApp, Instagram, Spotify are "installed"
+    // Load installed apps from localStorage
+    const saved = localStorage.getItem('cronos_installed_apps');
+    if (saved) {
+        installedApps = JSON.parse(saved);
+    } else {
+        installedApps = []; // Start with no apps installed
+    }
 }
 
 function updateAppsDisplay() {
@@ -187,15 +235,15 @@ function createAppElement(app) {
     element.onclick = () => viewApp(app.name);
     
     const isInstalled = installedApps.includes(app.id);
-    const buttonText = isInstalled ? 'Apri' : (app.price === 'Gratis' ? 'Installa' : app.price);
+    const buttonText = isInstalled ? 'Aperto' : (app.price === 'Gratis' ? 'Installa' : app.price);
     const buttonClass = app.price === 'Gratis' ? 'install-btn' : 'install-btn purchase';
     
     element.innerHTML = `
-        <div class="app-icon">${app.icon}</div>
+        <div class="app-icon ${app.iconClass}"><i class="${app.icon}"></i></div>
         <div class="app-info">
             <div class="app-name">${app.name}</div>
             <div class="app-developer">${app.developer}</div>
-            <div class="app-rating">⭐ ${app.rating} • ${app.price}</div>
+            <div class="app-rating"><i class="fas fa-star"></i> ${app.rating} • ${app.price}</div>
         </div>
         <button class="${buttonClass}" onclick="installApp('${app.name}', event)" 
                 ${isInstalled ? 'disabled' : ''}>${buttonText}</button>
@@ -236,7 +284,7 @@ function createUpdateElement(app) {
     element.className = 'app-item';
     
     element.innerHTML = `
-        <div class="app-icon">${app.icon}</div>
+        <div class="app-icon ${app.iconClass}"><i class="${app.icon}"></i></div>
         <div class="app-info">
             <div class="app-name">${app.name}</div>
             <div class="app-developer">Versione ${app.version}</div>
@@ -271,12 +319,12 @@ function showAppDetails(app) {
             </div>
             
             <div class="app-hero">
-                <div class="app-icon-large">${app.icon}</div>
+                <div class="app-icon-large ${app.iconClass}"><i class="${app.icon}"></i></div>
                 <div class="app-main-info">
                     <h2>${app.name}</h2>
                     <p class="app-developer">${app.developer}</p>
                     <div class="app-stats">
-                        <span>⭐ ${app.rating}</span>
+                        <span><i class="fas fa-star"></i> ${app.rating}</span>
                         <span>${app.downloads} download</span>
                         <span>${app.category}</span>
                     </div>
@@ -288,7 +336,7 @@ function showAppDetails(app) {
             
             <div class="app-screenshots">
                 ${app.screenshots.map(screenshot => `
-                    <div class="screenshot">${screenshot}</div>
+                    <div class="screenshot"><i class="${screenshot}"></i></div>
                 `).join('')}
             </div>
             
@@ -362,6 +410,7 @@ function installApp(appName, event) {
 function startInstallation(app) {
     // Show installation progress
     showInstallProgress(app);
+    addToHomeScreen(app);
     
     // Simulate download progress
     let progress = 0;
@@ -389,7 +438,7 @@ function showInstallProgress(app) {
     const appName = progressContainer.querySelector('.progress-app-name');
     const status = progressContainer.querySelector('.progress-status');
     
-    if (appIcon) appIcon.textContent = app.icon;
+    if (appIcon) appIcon.innerHTML = `<i class="${app.icon}"></i>`;
     if (appName) appName.textContent = app.name;
     if (status) status.textContent = 'Download in corso...';
     
@@ -428,6 +477,7 @@ function updateInstallProgress(progress) {
 function completeInstallation(app) {
     // Add to installed apps
     installedApps.push(app.id);
+    saveInstalledApps();
     
     // Update displays
     updateAppsDisplay();
@@ -456,6 +506,9 @@ function completeInstallation(app) {
             installBtn.onclick = () => openApp(app.name);
         }
     }
+    
+    // Notify home screen of new app
+    notifyHomeScreen(app);
 }
 
 function updateApp(appName) {
@@ -500,6 +553,40 @@ function openApp(appName) {
         // For demo purposes, just show a message
         showToast(`${appName} aperto`);
     }, 500);
+}
+
+function addToHomeScreen(app) {
+    // Add app to home screen apps list
+    const homeApp = {
+        id: app.id,
+        name: app.name,
+        icon: app.icon,
+        iconClass: app.iconClass,
+        installed: true
+    };
+    
+    homeApps.push(homeApp);
+    saveHomeApps();
+}
+
+function removeFromHomeScreen(appId) {
+    homeApps = homeApps.filter(app => app.id !== appId);
+    saveHomeApps();
+}
+
+function notifyHomeScreen(app) {
+    // Send message to home screen to add new app icon
+    if (window.parent && window.parent !== window) {
+        window.parent.postMessage({
+            type: 'app-installed',
+            app: {
+                id: app.id,
+                name: app.name,
+                icon: app.icon,
+                iconClass: app.iconClass
+            }
+        }, '*');
+    }
 }
 
 // Search functionality
@@ -606,7 +693,7 @@ function loadApps() {
 }
 
 function loadInstalledApps() {
-    const saved = localStorage.getItem('playstore_installed_apps');
+    const saved = localStorage.getItem('cronos_installed_apps');
     if (saved) {
         installedApps = JSON.parse(saved);
         updateAppsDisplay();
@@ -616,11 +703,62 @@ function loadInstalledApps() {
 }
 
 function saveInstalledApps() {
-    localStorage.setItem('playstore_installed_apps', JSON.stringify(installedApps));
+    localStorage.setItem('cronos_installed_apps', JSON.stringify(installedApps));
+}
+
+function loadHomeApps() {
+    const saved = localStorage.getItem('cronos_home_apps');
+    if (saved) {
+        homeApps = JSON.parse(saved);
+    }
+}
+
+function saveHomeApps() {
+    localStorage.setItem('cronos_home_apps', JSON.stringify(homeApps));
 }
 
 // Save installed apps whenever they change
 setInterval(saveInstalledApps, 5000);
+
+// Uninstall functionality
+function uninstallApp(appName) {
+    const app = apps.find(a => a.name === appName);
+    if (!app) return;
+    
+    if (!confirm(`Disinstallare ${appName}?`)) {
+        return;
+    }
+    
+    // Remove from installed apps
+    installedApps = installedApps.filter(id => id !== app.id);
+    saveInstalledApps();
+    
+    // Remove from home screen
+    removeFromHomeScreen(app.id);
+    
+    // Update displays
+    updateAppsDisplay();
+    updateGamesDisplay();
+    updateUpdatesDisplay();
+    
+    // Notify home screen
+    if (window.parent && window.parent !== window) {
+        window.parent.postMessage({
+            type: 'app-uninstalled',
+            appId: app.id
+        }, '*');
+    }
+    
+    showToast(`${appName} disinstallato`);
+}
+
+// Export functions for external use
+window.appStore = {
+    getInstalledApps: () => installedApps,
+    getHomeApps: () => homeApps,
+    installApp: installApp,
+    uninstallApp: uninstallApp
+};
 
 // Add CSS for Play Store specific styles
 const playstoreStyles = document.createElement('style');

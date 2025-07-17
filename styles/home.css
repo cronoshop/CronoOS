@@ -13,8 +13,16 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #007AFF 0%, #5856D6 50%, #FF2D92 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
     z-index: -1;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 /* Widget Area */
@@ -24,38 +32,43 @@
 }
 
 .weather-widget {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(20px);
-    border-radius: var(--radius-xl);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 20px;
     padding: var(--spacing-lg);
     color: white;
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     animation: fadeIn 0.8s ease;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .weather-temp {
-    font-size: 48px;
+    font-size: 52px;
     font-weight: 300;
     margin-bottom: var(--spacing-sm);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .weather-desc {
-    font-size: 18px;
+    font-size: var(--font-size-lg);
     margin-bottom: var(--spacing-xs);
     opacity: 0.9;
+    font-weight: 500;
 }
 
 .weather-location {
-    font-size: 14px;
+    font-size: var(--font-size-sm);
     opacity: 0.7;
+    font-weight: 400;
 }
 
 /* App Grid */
 .app-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: var(--spacing-lg);
+    gap: var(--spacing-xl);
     padding: 0 var(--spacing-lg);
     max-width: 400px;
     margin: 0 auto;
@@ -70,6 +83,7 @@
     transition: all var(--transition-normal);
     animation: fadeIn 0.6s ease;
     animation-fill-mode: both;
+    position: relative;
 }
 
 .app-icon:nth-child(1) { animation-delay: 0.1s; }
@@ -84,7 +98,7 @@
 .app-icon:nth-child(10) { animation-delay: 1.0s; }
 
 .app-icon:hover {
-    transform: scale(1.1);
+    transform: scale(1.05) translateY(-2px);
 }
 
 .app-icon:active {
@@ -92,73 +106,86 @@
 }
 
 .icon {
-    width: 60px;
-    height: 60px;
-    background: rgba(255, 255, 255, 0.2);
+    width: 56px;
+    height: 56px;
+    background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
-    border-radius: var(--radius-md);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 28px;
+    font-size: 24px;
     margin-bottom: var(--spacing-sm);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all var(--transition-fast);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .app-icon:hover .icon {
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.25);
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .app-icon span {
     color: white;
-    font-size: 12px;
+    font-size: var(--font-size-xs);
     font-weight: 500;
     text-align: center;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    margin-top: 2px;
 }
 
 /* Specific App Icon Colors */
 .phone-icon {
-    background: linear-gradient(135deg, #4CAF50, #45a049);
+    background: linear-gradient(135deg, #30D158, #28CD41);
+    color: white;
 }
 
 .messages-icon {
-    background: linear-gradient(135deg, #2196F3, #1976D2);
+    background: linear-gradient(135deg, #007AFF, #0051D5);
+    color: white;
 }
 
 .camera-icon {
-    background: linear-gradient(135deg, #FF9800, #F57C00);
+    background: linear-gradient(135deg, #8E8E93, #636366);
+    color: white;
 }
 
 .gallery-icon {
-    background: linear-gradient(135deg, #E91E63, #C2185B);
+    background: linear-gradient(135deg, #FF2D92, #D70065);
+    color: white;
 }
 
 .music-icon {
-    background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+    background: linear-gradient(135deg, #FF2D92, #D70065);
+    color: white;
 }
 
 .calendar-icon {
-    background: linear-gradient(135deg, #F44336, #D32F2F);
+    background: linear-gradient(135deg, #FF3B30, #D70015);
+    color: white;
 }
 
 .clock-icon {
-    background: linear-gradient(135deg, #607D8B, #455A64);
+    background: linear-gradient(135deg, #000000, #1C1C1E);
+    color: white;
 }
 
 .files-icon {
-    background: linear-gradient(135deg, #795548, #5D4037);
+    background: linear-gradient(135deg, #007AFF, #0051D5);
+    color: white;
 }
 
 .playstore-icon {
-    background: linear-gradient(135deg, #4CAF50, #388E3C);
+    background: linear-gradient(135deg, #5AC8FA, #007AFF);
+    color: white;
 }
 
 .settings-icon {
-    background: linear-gradient(135deg, #9E9E9E, #616161);
+    background: linear-gradient(135deg, #8E8E93, #636366);
+    color: white;
 }
 
 /* Dock */
@@ -169,13 +196,15 @@
     transform: translateX(-50%);
     display: flex;
     gap: var(--spacing-md);
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     padding: var(--spacing-md);
-    border-radius: var(--radius-xl);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     z-index: 100;
     animation: slideInUp 0.8s ease;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .dock-item {
@@ -184,24 +213,27 @@
 }
 
 .dock-item:hover {
-    transform: scale(1.2) translateY(-5px);
+    transform: scale(1.15) translateY(-4px);
 }
 
 .dock-item:active {
-    transform: scale(1.1) translateY(-3px);
+    transform: scale(1.05) translateY(-2px);
 }
 
 .dock-icon {
-    width: 50px;
-    height: 50px;
-    background: rgba(255, 255, 255, 0.2);
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
-    border-radius: var(--radius-md);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 /* Quick Panel */
@@ -211,11 +243,18 @@
     right: -400px;
     width: 350px;
     height: calc(100vh - 24px);
-    background: var(--card-color);
-    box-shadow: -4px 0 20px var(--shadow-color);
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: -4px 0 40px rgba(0, 0, 0, 0.1);
     transition: right var(--transition-normal);
     z-index: 1500;
     overflow-y: auto;
+    border-left: 1px solid var(--divider-color);
+}
+
+[data-theme="dark"] .quick-panel {
+    background: rgba(28, 28, 30, 0.9);
 }
 
 .quick-panel.active {
@@ -228,17 +267,18 @@
     align-items: center;
     padding: var(--spacing-lg);
     border-bottom: 1px solid var(--divider-color);
+    backdrop-filter: blur(20px);
 }
 
 .quick-panel-header h3 {
-    font-size: 18px;
+    font-size: var(--font-size-lg);
     font-weight: 500;
 }
 
 .close-panel {
     background: none;
     border: none;
-    font-size: 24px;
+    font-size: var(--font-size-lg);
     color: var(--text-secondary);
     cursor: pointer;
     padding: var(--spacing-sm);
@@ -263,23 +303,26 @@
     align-items: center;
     padding: var(--spacing-lg);
     background: var(--surface-color);
-    border-radius: var(--radius-md);
+    border-radius: 12px;
     cursor: pointer;
     transition: all var(--transition-fast);
+    border: 1px solid var(--divider-color);
 }
 
 .toggle-item:hover {
-    background: var(--divider-color);
+    background: rgba(0, 122, 255, 0.1);
     transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .toggle-item.active {
     background: var(--primary-color);
     color: white;
+    border-color: var(--primary-color);
 }
 
 .toggle-icon {
-    font-size: 24px;
+    font-size: 20px;
     margin-bottom: var(--spacing-sm);
     transition: transform var(--transition-fast);
 }
@@ -289,7 +332,7 @@
 }
 
 .toggle-item span {
-    font-size: 12px;
+    font-size: var(--font-size-xs);
     font-weight: 500;
     text-align: center;
 }
@@ -304,20 +347,21 @@
 
 .brightness-control input[type="range"] {
     flex: 1;
-    height: 4px;
+    height: 3px;
     background: var(--divider-color);
-    border-radius: 2px;
+    border-radius: 1.5px;
     outline: none;
     -webkit-appearance: none;
 }
 
 .brightness-control input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     background: var(--primary-color);
     border-radius: 50%;
     cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
 }
 
 /* Notifications Panel */
@@ -327,11 +371,18 @@
     left: -400px;
     width: 350px;
     height: calc(100vh - 24px);
-    background: var(--card-color);
-    box-shadow: 4px 0 20px var(--shadow-color);
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 4px 0 40px rgba(0, 0, 0, 0.1);
     transition: left var(--transition-normal);
     z-index: 1500;
     overflow-y: auto;
+    border-right: 1px solid var(--divider-color);
+}
+
+[data-theme="dark"] .notifications-panel {
+    background: rgba(28, 28, 30, 0.9);
 }
 
 .notifications-panel.active {
@@ -344,10 +395,11 @@
     align-items: center;
     padding: var(--spacing-lg);
     border-bottom: 1px solid var(--divider-color);
+    backdrop-filter: blur(20px);
 }
 
 .notifications-header h3 {
-    font-size: 18px;
+    font-size: var(--font-size-lg);
     font-weight: 500;
 }
 
@@ -360,28 +412,31 @@
     gap: var(--spacing-md);
     padding: var(--spacing-md);
     background: var(--surface-color);
-    border-radius: var(--radius-md);
+    border-radius: 12px;
     margin-bottom: var(--spacing-md);
     cursor: pointer;
     transition: all var(--transition-fast);
+    border: 1px solid var(--divider-color);
 }
 
 .notification-item:hover {
-    background: var(--divider-color);
+    background: rgba(0, 122, 255, 0.05);
     transform: translateX(4px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .notification-icon {
-    font-size: 20px;
+    font-size: 16px;
     width: 40px;
     height: 40px;
     background: var(--primary-color);
     color: white;
-    border-radius: var(--radius-sm);
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
 }
 
 .notification-content {
@@ -391,16 +446,17 @@
 .notification-title {
     font-weight: 500;
     margin-bottom: var(--spacing-xs);
+    font-size: var(--font-size-md);
 }
 
 .notification-text {
-    font-size: 14px;
+    font-size: var(--font-size-sm);
     color: var(--text-secondary);
     margin-bottom: var(--spacing-xs);
 }
 
 .notification-time {
-    font-size: 12px;
+    font-size: var(--font-size-xs);
     color: var(--text-secondary);
 }
 
@@ -411,7 +467,9 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--overlay-color);
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     z-index: 1000;
     opacity: 0;
     visibility: hidden;
@@ -445,18 +503,18 @@
 @media (max-width: 768px) {
     .app-grid {
         grid-template-columns: repeat(4, 1fr);
-        gap: var(--spacing-md);
+        gap: var(--spacing-lg);
         padding: 0 var(--spacing-md);
     }
     
     .icon {
-        width: 50px;
-        height: 50px;
-        font-size: 24px;
+        width: 52px;
+        height: 52px;
+        font-size: 22px;
     }
     
     .app-icon span {
-        font-size: 11px;
+        font-size: var(--font-size-xs);
     }
     
     .quick-panel,
@@ -478,9 +536,9 @@
     }
     
     .dock-icon {
-        width: 45px;
-        height: 45px;
-        font-size: 20px;
+        width: 44px;
+        height: 44px;
+        font-size: 18px;
     }
 }
 
@@ -490,7 +548,7 @@
     }
     
     .weather-temp {
-        font-size: 36px;
+        font-size: 44px;
     }
     
     .app-grid {
@@ -498,12 +556,12 @@
     }
     
     .icon {
-        width: 45px;
-        height: 45px;
+        width: 48px;
+        height: 48px;
         font-size: 20px;
     }
     
     .app-icon span {
-        font-size: 10px;
+        font-size: var(--font-size-xs);
     }
 }

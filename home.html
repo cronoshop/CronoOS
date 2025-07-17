@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>One UI OS</title>
+    <title>CronoOS</title>
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/home.css">
 </head>
@@ -13,9 +13,9 @@
             <span class="time" id="statusTime">9:41</span>
         </div>
         <div class="status-right">
-            <span class="signal">●●●●</span>
-            <span class="wifi">📶</span>
-            <span class="battery">🔋</span>
+            <span class="signal"><i class="fas fa-signal"></i></span>
+            <span class="wifi"><i class="fas fa-wifi"></i></span>
+            <span class="battery">76<i class="fas fa-battery-three-quarters"></i></span>
         </div>
     </div>
 
@@ -27,26 +27,26 @@
         </div>
         <div class="quick-toggles">
             <div class="toggle-item" onclick="toggleWifi()">
-                <div class="toggle-icon wifi-toggle" id="wifiToggle">📶</div>
+                <div class="toggle-icon wifi-toggle" id="wifiToggle"><i class="fas fa-wifi"></i></div>
                 <span>Wi-Fi</span>
             </div>
             <div class="toggle-item" onclick="toggleBluetooth()">
-                <div class="toggle-icon bluetooth-toggle" id="bluetoothToggle">🔵</div>
+                <div class="toggle-icon bluetooth-toggle" id="bluetoothToggle"><i class="fab fa-bluetooth"></i></div>
                 <span>Bluetooth</span>
             </div>
             <div class="toggle-item" onclick="toggleDarkMode()">
-                <div class="toggle-icon dark-toggle" id="darkToggle">🌙</div>
+                <div class="toggle-icon dark-toggle" id="darkToggle"><i class="fas fa-moon"></i></div>
                 <span>Modalità Notte</span>
             </div>
             <div class="toggle-item" onclick="goToLockScreen()">
-                <div class="toggle-icon">🔒</div>
+                <div class="toggle-icon"><i class="fas fa-lock"></i></div>
                 <span>Blocca</span>
             </div>
         </div>
         <div class="brightness-control">
-            <span>🔅</span>
+            <span><i class="fas fa-sun" style="opacity: 0.5;"></i></span>
             <input type="range" id="brightnessSlider" min="0" max="100" value="50">
-            <span>🔆</span>
+            <span><i class="fas fa-sun"></i></span>
         </div>
     </div>
 
@@ -58,7 +58,7 @@
         </div>
         <div class="notifications-list">
             <div class="notification-item">
-                <div class="notification-icon">📱</div>
+                <div class="notification-icon"><i class="fas fa-comment"></i></div>
                 <div class="notification-content">
                     <div class="notification-title">Messaggi</div>
                     <div class="notification-text">Nuovo messaggio da Marco</div>
@@ -66,7 +66,7 @@
                 </div>
             </div>
             <div class="notification-item">
-                <div class="notification-icon">📧</div>
+                <div class="notification-icon"><i class="fas fa-envelope"></i></div>
                 <div class="notification-content">
                     <div class="notification-title">Email</div>
                     <div class="notification-text">3 nuove email</div>
@@ -93,45 +93,45 @@
         </div>
 
         <!-- App Grid -->
-        <div class="app-grid">
+        <div class="app-grid" id="appGrid">
             <div class="app-icon" onclick="openApp('phone')">
-                <div class="icon phone-icon">📞</div>
+                <div class="icon phone-icon"><i class="fas fa-phone"></i></div>
                 <span>Telefono</span>
             </div>
             <div class="app-icon" onclick="openApp('messages')">
-                <div class="icon messages-icon">💬</div>
+                <div class="icon messages-icon"><i class="fas fa-comment"></i></div>
                 <span>Messaggi</span>
             </div>
             <div class="app-icon" onclick="openApp('camera')">
-                <div class="icon camera-icon">📷</div>
+                <div class="icon camera-icon"><i class="fas fa-camera"></i></div>
                 <span>Fotocamera</span>
             </div>
             <div class="app-icon" onclick="openApp('gallery')">
-                <div class="icon gallery-icon">🖼️</div>
+                <div class="icon gallery-icon"><i class="fas fa-images"></i></div>
                 <span>Galleria</span>
             </div>
             <div class="app-icon" onclick="openApp('music')">
-                <div class="icon music-icon">🎵</div>
+                <div class="icon music-icon"><i class="fas fa-music"></i></div>
                 <span>Musica</span>
             </div>
             <div class="app-icon" onclick="openApp('calendar')">
-                <div class="icon calendar-icon">📅</div>
+                <div class="icon calendar-icon"><i class="fas fa-calendar"></i></div>
                 <span>Calendario</span>
             </div>
             <div class="app-icon" onclick="openApp('clock')">
-                <div class="icon clock-icon">⏰</div>
+                <div class="icon clock-icon"><i class="fas fa-clock"></i></div>
                 <span>Orologio</span>
             </div>
             <div class="app-icon" onclick="openApp('files')">
-                <div class="icon files-icon">📁</div>
+                <div class="icon files-icon"><i class="fas fa-folder"></i></div>
                 <span>File</span>
             </div>
             <div class="app-icon" onclick="openApp('playstore')">
-                <div class="icon playstore-icon">🏪</div>
-                <span>Play Store</span>
+                <div class="icon playstore-icon"><i class="fas fa-download"></i></div>
+                <span>App Store</span>
             </div>
             <div class="app-icon" onclick="openApp('settings')">
-                <div class="icon settings-icon">⚙️</div>
+                <div class="icon settings-icon"><i class="fas fa-cog"></i></div>
                 <span>Impostazioni</span>
             </div>
         </div>
@@ -140,16 +140,16 @@
     <!-- Dock -->
     <div class="dock">
         <div class="dock-item" onclick="openApp('phone')">
-            <div class="dock-icon">📞</div>
+            <div class="dock-icon"><i class="fas fa-phone"></i></div>
         </div>
         <div class="dock-item" onclick="openApp('messages')">
-            <div class="dock-icon">💬</div>
+            <div class="dock-icon"><i class="fas fa-comment"></i></div>
         </div>
         <div class="dock-item" onclick="openApp('camera')">
-            <div class="dock-icon">📷</div>
+            <div class="dock-icon"><i class="fas fa-camera"></i></div>
         </div>
         <div class="dock-item" onclick="openApp('music')">
-            <div class="dock-icon">🎵</div>
+            <div class="dock-icon"><i class="fas fa-music"></i></div>
         </div>
     </div>
 

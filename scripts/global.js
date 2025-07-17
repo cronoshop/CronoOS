@@ -1,4 +1,4 @@
-// Global JavaScript Functions - One UI OS
+// Global JavaScript Functions - CronoOS
 
 // Global state
 let currentTheme = 'light';
@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeSystem();
     updateTime();
     setInterval(updateTime, 1000);
+    setupGestureHandling();
+    initializeThemeSystem();
 });
 
 function initializeSystem() {
@@ -24,7 +26,68 @@ function initializeSystem() {
     // Initialize gesture handlers
     initializeGestures();
     
-    console.log('One UI OS initialized');
+    console.log('CronoOS initialized');
+}
+
+function initializeThemeSystem() {
+    // Apply saved theme immediately
+    const savedTheme = localStorage.getItem('cronos_theme');
+    if (savedTheme === 'dark') {
+        isDarkModeEnabled = true;
+        applyTheme();
+    }
+}
+
+function setupGestureHandling() {
+    let startY = 0;
+    let startX = 0;
+    let isGesturing = false;
+    
+    document.addEventListener('touchstart', function(e) {
+        startY = e.touches[0].clientY;
+        startX = e.touches[0].clientX;
+        isGesturing = true;
+    }, { passive: true });
+    
+    document.addEventListener('touchmove', function(e) {
+        if (!isGesturing) return;
+        
+        const currentY = e.touches[0].clientY;
+        const currentX = e.touches[0].clientX;
+        const diffY = startY - currentY;
+        const diffX = startX - currentX;
+        
+        // Prevent default scrolling for gesture areas
+        if (Math.abs(diffY) > 50 && (startY < 100 || startY > window.innerHeight - 100)) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+    
+    document.addEventListener('touchend', function(e) {
+        if (!isGesturing) return;
+        
+        const endY = e.changedTouches[0].clientY;
+        const endX = e.changedTouches[0].clientX;
+        const diffY = startY - endY;
+        const diffX = startX - endX;
+        
+        // Swipe down from top
+        if (startY < 100 && diffY < -100) {
+            if (endX < window.innerWidth / 2) {
+                toggleNotifications();
+            } else {
+                toggleQuickPanel();
+            }
+        }
+        
+        // Swipe up from bottom
+        if (startY > window.innerHeight - 100 && diffY > 100) {
+            // Could implement app switcher
+            showToast('Gesture riconosciuto');
+        }
+        
+        isGesturing = false;
+    }, { passive: true });
 }
 
 // Time and Date Functions
@@ -233,13 +296,20 @@ function showToast(message, duration = 2000) {
         bottom: 100px;
         left: 50%;
         transform: translateX(-50%);
-        background: rgba(0, 0, 0, 0.8);
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         color: white;
-        padding: 12px 24px;
-        border-radius: 24px;
-        font-size: 14px;
+        padding: 14px 28px;
+        border-radius: 25px;
+        font-size: var(--font-size-sm);
+        font-weight: 500;
         z-index: 10000;
         animation: toastSlideIn 0.3s ease;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        max-width: 80%;
+        text-align: center;
     `;
     
     document.body.appendChild(toast);
@@ -257,22 +327,22 @@ toastStyles.textContent = `
     @keyframes toastSlideIn {
         from {
             opacity: 0;
-            transform: translateX(-50%) translateY(20px);
+            transform: translateX(-50%) translateY(30px) scale(0.9);
         }
         to {
             opacity: 1;
-            transform: translateX(-50%) translateY(0);
+            transform: translateX(-50%) translateY(0) scale(1);
         }
     }
     
     @keyframes toastSlideOut {
         from {
             opacity: 1;
-            transform: translateX(-50%) translateY(0);
+            transform: translateX(-50%) translateY(0) scale(1);
         }
         to {
             opacity: 0;
-            transform: translateX(-50%) translateY(20px);
+            transform: translateX(-50%) translateY(30px) scale(0.9);
         }
     }
 `;
@@ -287,17 +357,23 @@ function saveSettings() {
         brightnessLevel
     };
     
-    localStorage.setItem('oneui_settings', JSON.stringify(settings));
+    localStorage.setItem('cronos_settings', JSON.stringify(settings));
 }
 
 function loadSettings() {
-    const saved = localStorage.getItem('oneui_settings');
+    const saved = localStorage.getItem('cronos_settings');
     if (saved) {
         const settings = JSON.parse(saved);
         isDarkModeEnabled = settings.isDarkModeEnabled || false;
         isWifiEnabled = settings.isWifiEnabled !== false;
         isBluetoothEnabled = settings.isBluetoothEnabled !== false;
         brightnessLevel = settings.brightnessLevel || 50;
+    }
+    
+    // Load theme from separate storage for immediate application
+    const savedTheme = localStorage.getItem('cronos_theme');
+    if (savedTheme === 'dark') {
+        isDarkModeEnabled = true;
     }
 }
 
@@ -322,6 +398,8 @@ function switchTab(tabName) {
     if (clickedTab) {
         clickedTab.classList.add('active');
     }
+    
+    hapticFeedback('light');
 }
 
 // Modal Functions
@@ -330,6 +408,11 @@ function openModal(modalId) {
     if (modal) {
         modal.classList.add('active');
         modal.style.display = 'flex';
+        
+        // Add backdrop blur
+        document.body.style.filter = 'blur(2px)';
+        
+        hapticFeedback('medium');
     }
 }
 
@@ -337,9 +420,15 @@ function closeModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal) {
         modal.classList.remove('active');
+        
+        // Remove backdrop blur
+        document.body.style.filter = '';
+        
         setTimeout(() => {
             modal.style.display = 'none';
         }, 300);
+        
+        hapticFeedback('light');
     }
 }
 
@@ -358,19 +447,51 @@ function hapticFeedback(type = 'light') {
                 break;
         }
     }
+    
+    // Visual feedback for devices without vibration
+    if (!navigator.vibrate) {
+        const feedback = document.createElement('div');
+        feedback.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            pointer-events: none;
+            z-index: 9999;
+            animation: flashFeedback 0.1s ease;
+        `;
+        
+        document.body.appendChild(feedback);
+        setTimeout(() => feedback.remove(), 100);
+    }
 }
 
 // Add click feedback to buttons
 document.addEventListener('click', function(e) {
     if (e.target.matches('button, .btn, .app-icon, .dock-item')) {
         hapticFeedback('light');
+        
+        // Add visual click feedback
+        const element = e.target.closest('button, .btn, .app-icon, .dock-item, .toggle-item');
+        if (element) {
+            element.style.transform = 'scale(0.97)';
+            setTimeout(() => {
+                element.style.transform = '';
+            }, 100);
+        }
     }
 });
 
 // Brightness Control
 function updateBrightness(value) {
     brightnessLevel = value;
-    document.body.style.filter = `brightness(${value}%)`;
+    
+    // Apply brightness filter
+    const brightness = Math.max(30, value); // Minimum 30% brightness
+    document.body.style.filter = `brightness(${brightness}%)`;
+    
     saveSettings();
 }
 
@@ -425,15 +546,57 @@ function smoothScrollTo(element, duration = 300) {
 
 // Error handling
 window.addEventListener('error', function(e) {
-    console.error('One UI OS Error:', e.error);
+    console.error('CronoOS Error:', e.error);
     showToast('Si è verificato un errore', 3000);
 });
+
+// Add CSS for visual feedback
+const globalStyles = document.createElement('style');
+globalStyles.textContent = `
+    @keyframes flashFeedback {
+        0%, 100% { opacity: 0; }
+        50% { opacity: 1; }
+    }
+    
+    /* Smooth transitions for all interactive elements */
+    .app-icon, .dock-item, .toggle-item, button, .btn {
+        transition: transform 0.1s ease, box-shadow 0.2s ease;
+    }
+    
+    /* Enhanced focus states */
+    .app-icon:focus,
+    .dock-item:focus,
+    button:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+    }
+    
+    /* Improved accessibility */
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+`;
+
+document.head.appendChild(globalStyles);
 
 // Service Worker registration (for future PWA features)
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
-        // navigator.serviceWorker.register('/sw.js')
-        //     .then(registration => console.log('SW registered'))
-        //     .catch(error => console.log('SW registration failed'));
+        // Future PWA implementation
+        console.log('CronoOS ready for PWA features');
     });
 }
+
+// Export global functions for cross-frame communication
+window.cronosGlobal = {
+    showToast,
+    hapticFeedback,
+    toggleDarkMode,
+    applyTheme,
+    saveSettings,
+    loadSettings
+};

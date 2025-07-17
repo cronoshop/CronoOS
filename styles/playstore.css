@@ -1,4 +1,4 @@
-/* Play Store App Styles */
+/* App Store Styles - CronoOS */
 
 .store-tabs {
     display: flex;
@@ -13,8 +13,9 @@
     cursor: pointer;
     font-weight: 500;
     color: var(--text-secondary);
-    border-bottom: 2px solid transparent;
+    border-bottom: 1px solid transparent;
     transition: all var(--transition-fast);
+    font-size: var(--font-size-sm);
 }
 
 .store-tabs .tab.active {
@@ -26,6 +27,29 @@
     background-color: var(--surface-color);
 }
 
+/* Search Bar */
+.search-bar {
+    padding: var(--spacing-md);
+    background: var(--card-color);
+    border-bottom: 1px solid var(--divider-color);
+}
+
+.search-bar input {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: 1px solid var(--divider-color);
+    border-radius: 10px;
+    font-size: var(--font-size-md);
+    background: var(--surface-color);
+    color: var(--text-primary);
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+}
+
 /* Featured Section */
 .featured-section {
     padding: var(--spacing-lg);
@@ -34,7 +58,7 @@
 }
 
 .featured-section h3 {
-    font-size: 18px;
+    font-size: var(--font-size-lg);
     font-weight: 500;
     color: var(--text-primary);
     margin-bottom: var(--spacing-md);
@@ -63,19 +87,20 @@
 .app-icon-large {
     width: 80px;
     height: 80px;
-    background: linear-gradient(135deg, var(--oneui-green), var(--oneui-blue));
-    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, var(--cronos-blue), var(--cronos-purple));
+    border-radius: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 32px;
     color: white;
     margin-bottom: var(--spacing-sm);
-    box-shadow: 0 4px 12px var(--shadow-color);
+    box-shadow: 0 4px 20px rgba(0, 122, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .app-title {
-    font-size: 14px;
+    font-size: var(--font-size-sm);
     font-weight: 500;
     color: var(--text-primary);
     text-align: center;
@@ -91,7 +116,7 @@
 .apps-list h3,
 .games-list h3,
 .updates-list h3 {
-    font-size: 18px;
+    font-size: var(--font-size-lg);
     font-weight: 500;
     color: var(--text-primary);
     margin-bottom: var(--spacing-md);
@@ -103,29 +128,72 @@
     gap: var(--spacing-md);
     padding: var(--spacing-md);
     background: var(--card-color);
-    border-radius: var(--radius-md);
+    border-radius: 12px;
     margin-bottom: var(--spacing-md);
     cursor: pointer;
     transition: all var(--transition-fast);
+    border: 1px solid var(--divider-color);
 }
 
 .app-item:hover {
     background: var(--surface-color);
     transform: translateX(4px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .app-icon {
     width: 60px;
     height: 60px;
-    background: linear-gradient(135deg, var(--oneui-green), var(--oneui-blue));
-    border-radius: var(--radius-md);
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 24px;
     color: white;
     flex-shrink: 0;
-    box-shadow: 0 2px 8px var(--shadow-color);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Specific App Icon Styles */
+.whatsapp-icon {
+    background: linear-gradient(135deg, #25D366, #128C7E);
+}
+
+.instagram-icon {
+    background: linear-gradient(135deg, #E4405F, #833AB4, #F77737);
+}
+
+.spotify-icon {
+    background: linear-gradient(135deg, #1DB954, #1ED760);
+}
+
+.netflix-icon {
+    background: linear-gradient(135deg, #E50914, #B20710);
+}
+
+.youtube-icon {
+    background: linear-gradient(135deg, #FF0000, #CC0000);
+}
+
+.gallery-icon {
+    background: linear-gradient(135deg, var(--cronos-pink), var(--cronos-purple));
+}
+
+.notepad-icon {
+    background: linear-gradient(135deg, var(--cronos-orange), var(--cronos-yellow));
+}
+
+.candy-icon {
+    background: linear-gradient(135deg, #FF69B4, #FF1493);
+}
+
+.pubg-icon {
+    background: linear-gradient(135deg, #FF6B35, #F7931E);
+}
+
+.among-icon {
+    background: linear-gradient(135deg, #C51111, #822222);
 }
 
 .app-info {
@@ -134,7 +202,7 @@
 }
 
 .app-name {
-    font-size: 16px;
+    font-size: var(--font-size-md);
     font-weight: 500;
     color: var(--text-primary);
     margin-bottom: var(--spacing-xs);
@@ -144,7 +212,7 @@
 }
 
 .app-developer {
-    font-size: 14px;
+    font-size: var(--font-size-sm);
     color: var(--text-secondary);
     margin-bottom: var(--spacing-xs);
     white-space: nowrap;
@@ -153,31 +221,37 @@
 }
 
 .app-rating {
-    font-size: 12px;
+    font-size: var(--font-size-xs);
     color: var(--text-secondary);
     display: flex;
     align-items: center;
     gap: var(--spacing-xs);
 }
 
+.app-rating i {
+    color: var(--cronos-orange);
+}
+
 .install-btn,
 .update-btn {
-    background: var(--oneui-green);
+    background: var(--cronos-blue);
     color: white;
     border: none;
     padding: var(--spacing-sm) var(--spacing-lg);
-    border-radius: var(--radius-xl);
-    font-size: 14px;
+    border-radius: 20px;
+    font-size: var(--font-size-sm);
     font-weight: 500;
     cursor: pointer;
     transition: all var(--transition-fast);
     min-width: 80px;
+    box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
 }
 
 .install-btn:hover,
 .update-btn:hover {
-    background: #45a049;
+    background: var(--primary-dark);
     transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 122, 255, 0.4);
 }
 
 .install-btn:active,
@@ -185,9 +259,18 @@
     transform: translateY(0);
 }
 
+.install-btn.purchase {
+    background: var(--cronos-orange);
+}
+
+.install-btn.purchase:hover {
+    background: #E6850E;
+}
+
 .install-btn.installing {
     background: var(--text-secondary);
     cursor: not-allowed;
+    box-shadow: none;
 }
 
 .update-all-btn {
@@ -196,17 +279,19 @@
     color: white;
     border: none;
     padding: var(--spacing-md);
-    border-radius: var(--radius-md);
-    font-size: 16px;
+    border-radius: 12px;
+    font-size: var(--font-size-md);
     font-weight: 500;
     cursor: pointer;
     transition: all var(--transition-fast);
     margin-top: var(--spacing-md);
+    box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
 }
 
 .update-all-btn:hover {
     background: var(--primary-dark);
     transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 122, 255, 0.4);
 }
 
 /* Installation Progress */
@@ -216,9 +301,12 @@
     left: var(--spacing-md);
     right: var(--spacing-md);
     background: var(--card-color);
-    border-radius: var(--radius-md);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 12px;
     padding: var(--spacing-md);
-    box-shadow: 0 4px 20px var(--shadow-color);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--divider-color);
     z-index: 1000;
     animation: slideInUp 0.3s ease;
 }
@@ -233,14 +321,15 @@
 .progress-app-icon {
     width: 40px;
     height: 40px;
-    background: linear-gradient(135deg, var(--oneui-green), var(--oneui-blue));
-    border-radius: var(--radius-sm);
+    background: linear-gradient(135deg, var(--cronos-blue), var(--cronos-purple));
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 16px;
     color: white;
     flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
 }
 
 .progress-details {
@@ -248,37 +337,38 @@
 }
 
 .progress-app-name {
-    font-size: 14px;
+    font-size: var(--font-size-sm);
     font-weight: 500;
     color: var(--text-primary);
     margin-bottom: 2px;
 }
 
 .progress-status {
-    font-size: 12px;
+    font-size: var(--font-size-xs);
     color: var(--text-secondary);
 }
 
 .progress-bar {
-    height: 4px;
+    height: 3px;
     background: var(--surface-color);
-    border-radius: 2px;
+    border-radius: 1.5px;
     overflow: hidden;
     margin-bottom: var(--spacing-sm);
 }
 
 .progress-fill {
     height: 100%;
-    background: var(--oneui-green);
-    border-radius: 2px;
+    background: var(--cronos-blue);
+    border-radius: 1.5px;
     transition: width var(--transition-fast);
     width: 0%;
 }
 
 .progress-percentage {
-    font-size: 12px;
+    font-size: var(--font-size-xs);
     color: var(--text-secondary);
     text-align: center;
+    font-weight: 500;
 }
 
 /* App Details (for future expansion) */
@@ -287,19 +377,22 @@
     gap: var(--spacing-sm);
     overflow-x: auto;
     padding: var(--spacing-md);
+    background: var(--surface-color);
 }
 
 .screenshot {
     width: 200px;
     height: 350px;
-    background: var(--surface-color);
-    border-radius: var(--radius-md);
+    background: var(--card-color);
+    border-radius: 12px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 48px;
     color: var(--text-secondary);
+    border: 1px solid var(--divider-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Responsive Design */
@@ -319,7 +412,7 @@
     }
     
     .app-title {
-        font-size: 12px;
+        font-size: var(--font-size-xs);
     }
     
     .app-item {
@@ -333,21 +426,21 @@
     }
     
     .app-name {
-        font-size: 15px;
+        font-size: var(--font-size-sm);
     }
     
     .app-developer {
-        font-size: 13px;
+        font-size: var(--font-size-xs);
     }
     
     .app-rating {
-        font-size: 11px;
+        font-size: var(--font-size-xs);
     }
     
     .install-btn,
     .update-btn {
         padding: var(--spacing-xs) var(--spacing-md);
-        font-size: 12px;
+        font-size: var(--font-size-xs);
         min-width: 70px;
     }
 }
@@ -361,7 +454,7 @@
     .apps-list h3,
     .games-list h3,
     .updates-list h3 {
-        font-size: 16px;
+        font-size: var(--font-size-md);
     }
     
     .featured-app {
@@ -385,11 +478,11 @@
     }
     
     .app-name {
-        font-size: 14px;
+        font-size: var(--font-size-sm);
     }
     
     .app-developer {
-        font-size: 12px;
+        font-size: var(--font-size-xs);
     }
     
     .install-progress {
@@ -405,10 +498,10 @@
     }
     
     .progress-app-name {
-        font-size: 13px;
+        font-size: var(--font-size-xs);
     }
     
     .progress-status {
-        font-size: 11px;
+        font-size: var(--font-size-xs);
     }
 }

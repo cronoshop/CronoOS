@@ -1,9 +1,16 @@
-// Home Screen JavaScript - One UI OS
+// Home Screen JavaScript - CronoOS
+
+let installedApps = [];
+let isDragging = false;
+let draggedElement = null;
 
 document.addEventListener('DOMContentLoaded', function() {
     initializeHomeScreen();
     initializeQuickPanel();
     initializeNotifications();
+    loadInstalledApps();
+    setupAppDragAndDrop();
+    listenForAppInstalls();
 });
 
 function initializeHomeScreen() {
@@ -19,7 +26,7 @@ function initializeHomeScreen() {
     // Initialize weather widget
     updateWeatherWidget();
     
-    console.log('Home screen initialized');
+    console.log('CronoOS Home screen initialized');
 }
 
 function initializeParallax() {
@@ -30,7 +37,7 @@ function initializeParallax() {
         const x = (e.clientX / window.innerWidth) * 100;
         const y = (e.clientY / window.innerHeight) * 100;
         
-        wallpaper.style.backgroundPosition = `${x}% ${y}%`;
+        wallpaper.style.backgroundPosition = `${50 + (x - 50) * 0.1}% ${50 + (y - 50) * 0.1}%`;
     });
 }
 
@@ -52,6 +59,258 @@ function updateWeatherWidget() {
     if (tempElement) tempElement.textContent = `${weatherData.temperature}°`;
     if (descElement) descElement.textContent = weatherData.condition;
     if (locationElement) locationElement.textContent = weatherData.location;
+}
+
+function loadInstalledApps() {
+    const saved = localStorage.getItem('cronos_home_apps');
+    if (saved) {
+        installedApps = JSON.parse(saved);
+        addInstalledAppsToGrid();
+    }
+}
+
+function addInstalledAppsToGrid() {
+    const appGrid = document.getElementById('appGrid');
+    if (!appGrid) return;
+    
+    installedApps.forEach(app => {
+        if (!document.querySelector(`[data-app-id="${app.id}"]`)) {
+            addAppToGrid(app);
+        }
+    });
+}
+
+function addAppToGrid(app) {
+    const appGrid = document.getElementById('appGrid');
+    if (!appGrid) return;
+    
+    const appIcon = document.createElement('div');
+    appIcon.className = 'app-icon installed-app';
+    appIcon.setAttribute('data-app-id', app.id);
+    appIcon.onclick = () => openInstalledApp(app.name);
+    
+    appIcon.innerHTML = `
+        <div class="icon ${app.iconClass}"><i class="${app.icon}"></i></div>
+        <span>${app.name}</span>
+    `;
+    
+    // Add with animation
+    appIcon.style.opacity = '0';
+    appIcon.style.transform = 'scale(0.5)';
+    appGrid.appendChild(appIcon);
+    
+    // Animate in
+    setTimeout(() => {
+        appIcon.style.transition = 'all 0.3s ease';
+        appIcon.style.opacity = '1';
+        appIcon.style.transform = 'scale(1)';
+    }, 100);
+}
+
+function removeAppFromGrid(appId) {
+    const appIcon = document.querySelector(`[data-app-id="${appId}"]`);
+    if (appIcon) {
+        appIcon.style.transition = 'all 0.3s ease';
+        appIcon.style.opacity = '0';
+        appIcon.style.transform = 'scale(0.5)';
+        
+        setTimeout(() => {
+            appIcon.remove();
+        }, 300);
+    }
+}
+
+function openInstalledApp(appName) {
+    showToast(`Apertura ${appName}...`);
+    // Could implement actual app opening logic here
+}
+
+function setupAppDragAndDrop() {
+    const appGrid = document.getElementById('appGrid');
+    if (!appGrid) return;
+    
+    // Enable drag and drop for app icons
+    appGrid.addEventListener('dragstart', handleDragStart);
+    appGrid.addEventListener('dragover', handleDragOver);
+    appGrid.addEventListener('drop', handleDrop);
+    appGrid.addEventListener('dragend', handleDragEnd);
+    
+    // Make app icons draggable
+    const appIcons = appGrid.querySelectorAll('.app-icon');
+    appIcons.forEach(icon => {
+        icon.draggable = true;
+        icon.addEventListener('contextmenu', handleAppContextMenu);
+    });
+}
+
+function handleDragStart(e) {
+    if (!e.target.closest('.app-icon')) return;
+    
+    isDragging = true;
+    draggedElement = e.target.closest('.app-icon');
+    draggedElement.style.opacity = '0.5';
+    
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/html', draggedElement.outerHTML);
+}
+
+function handleDragOver(e) {
+    if (!isDragging) return;
+    
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    
+    const afterElement = getDragAfterElement(e.currentTarget, e.clientY);
+    if (afterElement == null) {
+        e.currentTarget.appendChild(draggedElement);
+    } else {
+        e.currentTarget.insertBefore(draggedElement, afterElement);
+    }
+}
+
+function handleDrop(e) {
+    if (!isDragging) return;
+    
+    e.preventDefault();
+    isDragging = false;
+    
+    if (draggedElement) {
+        draggedElement.style.opacity = '1';
+        saveAppOrder();
+    }
+}
+
+function handleDragEnd(e) {
+    isDragging = false;
+    if (draggedElement) {
+        draggedElement.style.opacity = '1';
+        draggedElement = null;
+    }
+}
+
+function getDragAfterElement(container, y) {
+    const draggableElements = [...container.querySelectorAll('.app-icon:not(.dragging)')];
+    
+    return draggableElements.reduce((closest, child) => {
+        const box = child.getBoundingClientRect();
+        const offset = y - box.top - box.height / 2;
+        
+        if (offset < 0 && offset > closest.offset) {
+            return { offset: offset, element: child };
+        } else {
+            return closest;
+        }
+    }, { offset: Number.NEGATIVE_INFINITY }).element;
+}
+
+function handleAppContextMenu(e) {
+    e.preventDefault();
+    
+    const appIcon = e.target.closest('.app-icon');
+    const appId = appIcon.getAttribute('data-app-id');
+    
+    if (appId && appIcon.classList.contains('installed-app')) {
+        showAppContextMenu(e, appId);
+    }
+}
+
+function showAppContextMenu(e, appId) {
+    const contextMenu = document.createElement('div');
+    contextMenu.className = 'app-context-menu';
+    contextMenu.innerHTML = `
+        <div class="context-menu-item" onclick="uninstallApp(${appId})">
+            <i class="fas fa-trash"></i>
+            <span>Disinstalla</span>
+        </div>
+        <div class="context-menu-item" onclick="showAppInfo(${appId})">
+            <i class="fas fa-info-circle"></i>
+            <span>Informazioni</span>
+        </div>
+    `;
+    
+    contextMenu.style.cssText = `
+        position: fixed;
+        top: ${e.clientY}px;
+        left: ${e.clientX}px;
+        background: var(--card-color);
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        z-index: 2000;
+        animation: fadeIn 0.2s ease;
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--divider-color);
+    `;
+    
+    document.body.appendChild(contextMenu);
+    
+    // Remove menu when clicking outside
+    setTimeout(() => {
+        document.addEventListener('click', function removeMenu() {
+            contextMenu.remove();
+            document.removeEventListener('click', removeMenu);
+        });
+    }, 100);
+}
+
+function uninstallApp(appId) {
+    const app = installedApps.find(a => a.id == appId);
+    if (!app) return;
+    
+    if (confirm(`Disinstallare ${app.name}?`)) {
+        // Remove from installed apps
+        installedApps = installedApps.filter(a => a.id != appId);
+        localStorage.setItem('cronos_home_apps', JSON.stringify(installedApps));
+        
+        // Remove from grid
+        removeAppFromGrid(appId);
+        
+        // Update app store
+        const installedAppIds = JSON.parse(localStorage.getItem('cronos_installed_apps') || '[]');
+        const updatedIds = installedAppIds.filter(id => id != appId);
+        localStorage.setItem('cronos_installed_apps', JSON.stringify(updatedIds));
+        
+        showToast(`${app.name} disinstallato`);
+    }
+}
+
+function showAppInfo(appId) {
+    const app = installedApps.find(a => a.id == appId);
+    if (!app) return;
+    
+    showToast(`Informazioni su ${app.name}`);
+}
+
+function saveAppOrder() {
+    const appGrid = document.getElementById('appGrid');
+    if (!appGrid) return;
+    
+    const appOrder = [];
+    const appIcons = appGrid.querySelectorAll('.app-icon');
+    
+    appIcons.forEach((icon, index) => {
+        const appId = icon.getAttribute('data-app-id');
+        if (appId) {
+            appOrder.push({ id: appId, order: index });
+        }
+    });
+    
+    localStorage.setItem('cronos_app_order', JSON.stringify(appOrder));
+}
+
+function listenForAppInstalls() {
+    window.addEventListener('message', function(event) {
+        if (event.data.type === 'app-installed') {
+            const app = event.data.app;
+            installedApps.push(app);
+            localStorage.setItem('cronos_home_apps', JSON.stringify(installedApps));
+            addAppToGrid(app);
+        } else if (event.data.type === 'app-uninstalled') {
+            const appId = event.data.appId;
+            installedApps = installedApps.filter(a => a.id !== appId);
+            localStorage.setItem('cronos_home_apps', JSON.stringify(installedApps));
+            removeAppFromGrid(appId);
+        }
+    });
 }
 
 function initializeQuickPanel() {
@@ -94,11 +353,11 @@ function initializeNotifications() {
     
     // Simulate new notifications
     setTimeout(() => {
-        addNotification('📱', 'Sistema', 'Aggiornamento disponibile', '1 min fa');
+        addNotification('fas fa-mobile-alt', 'Sistema', 'Aggiornamento disponibile', '1 min fa');
     }, 5000);
     
     setTimeout(() => {
-        addNotification('📧', 'Gmail', 'Nuova email da lavoro', '3 min fa');
+        addNotification('fas fa-envelope', 'Gmail', 'Nuova email da lavoro', '3 min fa');
     }, 10000);
 }
 
@@ -109,7 +368,7 @@ function addNotification(icon, title, text, time) {
     const notification = document.createElement('div');
     notification.className = 'notification-item';
     notification.innerHTML = `
-        <div class="notification-icon">${icon}</div>
+        <div class="notification-icon"><i class="${icon}"></i></div>
         <div class="notification-content">
             <div class="notification-title">${title}</div>
             <div class="notification-text">${text}</div>
@@ -133,7 +392,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     appIcons.forEach(icon => {
         icon.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.1)';
+            this.style.transform = 'scale(1.05) translateY(-2px)';
         });
         
         icon.addEventListener('mouseleave', function() {
@@ -145,7 +404,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         icon.addEventListener('mouseup', function() {
-            this.style.transform = 'scale(1.1)';
+            this.style.transform = 'scale(1.05) translateY(-2px)';
         });
     });
 });
@@ -156,7 +415,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     dockItems.forEach(item => {
         item.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.2) translateY(-5px)';
+            this.style.transform = 'scale(1.15) translateY(-4px)';
         });
         
         item.addEventListener('mouseleave', function() {
@@ -175,19 +434,20 @@ function initializeDynamicWallpaper() {
     
     if (hour >= 6 && hour < 12) {
         // Morning
-        gradient = 'linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%)';
+        gradient = 'linear-gradient(135deg, #FF9500 0%, #FFCC00 50%, #5AC8FA 100%)';
     } else if (hour >= 12 && hour < 18) {
         // Afternoon
-        gradient = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+        gradient = 'linear-gradient(135deg, #007AFF 0%, #5856D6 50%, #FF2D92 100%)';
     } else if (hour >= 18 && hour < 22) {
         // Evening
-        gradient = 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)';
+        gradient = 'linear-gradient(135deg, #FF3B30 0%, #FF2D92 50%, #5856D6 100%)';
     } else {
         // Night
-        gradient = 'linear-gradient(135deg, #4b6cb7 0%, #182848 100%)';
+        gradient = 'linear-gradient(135deg, #1C1C1E 0%, #2C2C2E 50%, #5856D6 100%)';
     }
     
     wallpaper.style.background = gradient;
+    wallpaper.style.backgroundSize = '400% 400%';
 }
 
 // Initialize dynamic wallpaper
@@ -227,7 +487,7 @@ function initializeWidgets() {
     
     weatherWidget.addEventListener('click', function() {
         // Could open weather app or show more details
-        showToast('Widget meteo - Funzionalità in arrivo!');
+        showToast('Widget meteo');
     });
     
     // Add swipe gestures for widgets
@@ -276,7 +536,7 @@ function initializeAppOrganization() {
         icon.addEventListener('drop', function(e) {
             e.preventDefault();
             // Could implement app reordering here
-            showToast('Riorganizzazione app - Funzionalità in arrivo!');
+            showToast('App riorganizzata');
         });
     });
 }
@@ -286,7 +546,7 @@ function monitorPerformance() {
     if ('performance' in window) {
         window.addEventListener('load', function() {
             const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
-            console.log(`Home screen loaded in ${loadTime}ms`);
+            console.log(`CronoOS Home screen loaded in ${loadTime}ms`);
         });
     }
 }
@@ -318,3 +578,63 @@ function initializeAccessibility() {
 
 // Initialize accessibility
 document.addEventListener('DOMContentLoaded', initializeAccessibility);
+
+// Add CSS for context menu and drag effects
+const homeStyles = document.createElement('style');
+homeStyles.textContent = `
+    .app-context-menu {
+        min-width: 160px;
+        overflow: hidden;
+    }
+    
+    .context-menu-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        font-size: var(--font-size-sm);
+        color: var(--text-primary);
+    }
+    
+    .context-menu-item:hover {
+        background: var(--surface-color);
+    }
+    
+    .context-menu-item:first-child {
+        border-radius: 8px 8px 0 0;
+    }
+    
+    .context-menu-item:last-child {
+        border-radius: 0 0 8px 8px;
+    }
+    
+    .context-menu-item i {
+        width: 16px;
+        text-align: center;
+    }
+    
+    .app-icon.dragging {
+        opacity: 0.5;
+        transform: rotate(5deg);
+    }
+    
+    .installed-app {
+        position: relative;
+    }
+    
+    .installed-app::after {
+        content: '';
+        position: absolute;
+        top: -2px;
+        right: -2px;
+        width: 8px;
+        height: 8px;
+        background: var(--cronos-green);
+        border-radius: 50%;
+        border: 2px solid var(--card-color);
+    }
+`;
+
+document.head.appendChild(homeStyles);

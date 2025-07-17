@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Impostazioni - One UI OS</title>
+    <title>Impostazioni - CronoOS</title>
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/settings.css">
 </head>
@@ -13,19 +13,19 @@
             <button class="back-btn" onclick="goHome()">←</button>
             <h1>Impostazioni</h1>
             <div class="header-actions">
-                <button class="header-btn">🔍</button>
+                <button class="header-btn"><i class="fas fa-search"></i></button>
             </div>
         </div>
         
         <div class="settings-content">
             <!-- User Profile -->
             <div class="user-profile">
-                <div class="profile-avatar">👤</div>
+                <div class="profile-avatar"><i class="fas fa-user"></i></div>
                 <div class="profile-info">
                     <div class="profile-name">Mario Rossi</div>
                     <div class="profile-email">mario.rossi@email.com</div>
                 </div>
-                <button class="profile-edit">✏️</button>
+                <button class="profile-edit"><i class="fas fa-edit"></i></button>
             </div>
             
             <!-- Settings Categories -->
@@ -34,7 +34,7 @@
                 <div class="settings-category">
                     <div class="category-header" onclick="toggleCategory('display')">
                         <div class="category-info">
-                            <div class="category-icon">🖥️</div>
+                            <div class="category-icon"><i class="fas fa-desktop"></i></div>
                             <div class="category-title">Display</div>
                         </div>
                         <div class="category-arrow">›</div>
@@ -72,6 +72,30 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="setting-item" onclick="toggleMaterialYou()">
+                            <div class="setting-info">
+                                <div class="setting-title">Icone Tinte a Tema</div>
+                                <div class="setting-description">Colora automaticamente le icone</div>
+                            </div>
+                            <div class="setting-control">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="materialYouToggle">
+                                    <label for="materialYouToggle"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="setting-item" onclick="showWallpaperSettings()">
+                            <div class="setting-info">
+                                <div class="setting-title">Sfondo Dinamico AI</div>
+                                <div class="setting-description">Cambia in base a ora e meteo</div>
+                            </div>
+                            <div class="setting-control">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="dynamicWallpaperToggle">
+                                    <label for="dynamicWallpaperToggle"></label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
@@ -79,7 +103,7 @@
                 <div class="settings-category">
                     <div class="category-header" onclick="toggleCategory('sound')">
                         <div class="category-info">
-                            <div class="category-icon">🔊</div>
+                            <div class="category-icon"><i class="fas fa-volume-up"></i></div>
                             <div class="category-title">Suoni e Vibrazione</div>
                         </div>
                         <div class="category-arrow">›</div>
@@ -120,7 +144,7 @@
                 <div class="settings-category">
                     <div class="category-header" onclick="toggleCategory('connectivity')">
                         <div class="category-info">
-                            <div class="category-icon">📶</div>
+                            <div class="category-icon"><i class="fas fa-wifi"></i></div>
                             <div class="category-title">Connessioni</div>
                         </div>
                         <div class="category-arrow">›</div>
@@ -165,11 +189,111 @@
                     </div>
                 </div>
                 
+                <!-- Interface -->
+                <div class="settings-category">
+                    <div class="category-header" onclick="toggleCategory('interface')">
+                        <div class="category-info">
+                            <div class="category-icon"><i class="fas fa-palette"></i></div>
+                            <div class="category-title">Interfaccia</div>
+                        </div>
+                        <div class="category-arrow">›</div>
+                    </div>
+                    <div class="category-content" id="interface">
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-title">Stile Quick Panel</div>
+                                <div class="setting-description">Layout del pannello rapido</div>
+                            </div>
+                            <div class="setting-control">
+                                <select id="quickPanelStyle">
+                                    <option value="classic">Classico</option>
+                                    <option value="minimal" selected>Minimal</option>
+                                    <option value="expanded">Espanso</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-title">Effetti di Transizione</div>
+                                <div class="setting-description">Animazioni apertura app</div>
+                            </div>
+                            <div class="setting-control">
+                                <select id="transitionEffects">
+                                    <option value="fade">Dissolvenza</option>
+                                    <option value="slide" selected>Scorrimento</option>
+                                    <option value="bounce">Rimbalzo</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="setting-item" onclick="togglePrivacyLock()">
+                            <div class="setting-info">
+                                <div class="setting-title">Privacy Touch Lock</div>
+                                <div class="setting-description">Disabilita touch fino allo sblocco</div>
+                            </div>
+                            <div class="setting-control">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="privacyLockToggle">
+                                    <label for="privacyLockToggle"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Updates -->
+                <div class="settings-category">
+                    <div class="category-header" onclick="toggleCategory('updates')">
+                        <div class="category-info">
+                            <div class="category-icon"><i class="fas fa-download"></i></div>
+                            <div class="category-title">Aggiornamenti</div>
+                        </div>
+                        <div class="category-arrow">›</div>
+                    </div>
+                    <div class="category-content" id="updates">
+                        <div class="updates-list">
+                            <div class="update-item">
+                                <div class="update-info">
+                                    <div class="update-version">CronoOS 1.2</div>
+                                    <div class="update-date">15 Gennaio 2025</div>
+                                    <div class="update-notes">
+                                        • Nuovo App Store integrato<br>
+                                        • Miglioramenti Dark Mode<br>
+                                        • Icone vettoriali professionali<br>
+                                        • Dynamic Island implementata
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="update-item">
+                                <div class="update-info">
+                                    <div class="update-version">CronoOS 1.1</div>
+                                    <div class="update-date">10 Gennaio 2025</div>
+                                    <div class="update-notes">
+                                        • Aggiunta modalità scura<br>
+                                        • Miglioramenti performance<br>
+                                        • Nuove animazioni fluide
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="update-item">
+                                <div class="update-info">
+                                    <div class="update-version">CronoOS 1.0</div>
+                                    <div class="update-date">5 Gennaio 2025</div>
+                                    <div class="update-notes">
+                                        • Rilascio iniziale<br>
+                                        • Sistema operativo completo<br>
+                                        • App integrate di base
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 <!-- About -->
                 <div class="settings-category">
                     <div class="category-header" onclick="openAboutDevice()">
                         <div class="category-info">
-                            <div class="category-icon">ℹ️</div>
+                            <div class="category-icon"><i class="fas fa-info-circle"></i></div>
                             <div class="category-title">Informazioni Dispositivo</div>
                         </div>
                         <div class="category-arrow">›</div>
@@ -188,23 +312,23 @@
                 
                 <div class="modal-body">
                     <div class="device-info">
-                        <div class="device-image">📱</div>
+                        <div class="device-image"><i class="fas fa-mobile-alt"></i></div>
                         <div class="device-details">
                             <div class="info-item">
                                 <div class="info-label">Modello</div>
-                                <div class="info-value">Galaxy S24 Ultra</div>
+                                <div class="info-value">CronoPhone Pro</div>
                             </div>
                             <div class="info-item">
-                                <div class="info-label">Versione Android</div>
-                                <div class="info-value">14</div>
+                                <div class="info-label">Sistema Operativo</div>
+                                <div class="info-value">CronoOS 1.2</div>
                             </div>
                             <div class="info-item">
-                                <div class="info-label">One UI</div>
-                                <div class="info-value">6.1</div>
+                                <div class="info-label">Interfaccia</div>
+                                <div class="info-value">CronoUI 1.2</div>
                             </div>
                             <div class="info-item">
                                 <div class="info-label">Numero Build</div>
-                                <div class="info-value" onclick="handleBuildTap()">UP1A.231005.007</div>
+                                <div class="info-value" onclick="handleBuildTap()">CRN1A.250115.001</div>
                             </div>
                             <div class="info-item">
                                 <div class="info-label">RAM</div>
@@ -216,7 +340,7 @@
                             </div>
                             <div class="info-item">
                                 <div class="info-label">Processore</div>
-                                <div class="info-value">Snapdragon 8 Gen 3</div>
+                                <div class="info-value">CronoChip A1</div>
                             </div>
                         </div>
                     </div>
@@ -228,15 +352,15 @@
         <div class="modal" id="developerModal" style="display: none;">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3>🎉 Opzioni Sviluppatore Attivate!</h3>
+                    <h3><i class="fas fa-rocket"></i> Opzioni Sviluppatore Attivate!</h3>
                     <button class="close-btn" onclick="closeDeveloperModal()">×</button>
                 </div>
                 
                 <div class="modal-body">
                     <div class="easter-egg">
-                        <div class="easter-egg-icon">🐰</div>
+                        <div class="easter-egg-icon"><i class="fas fa-code"></i></div>
                         <p>Congratulazioni! Hai trovato l'easter egg!</p>
-                        <p>Sei ora uno sviluppatore Android! 🚀</p>
+                        <p>Sei ora uno sviluppatore CronoOS!</p>
                         <div class="developer-options">
                             <div class="dev-option">
                                 <span>Debug USB</span>
@@ -259,6 +383,44 @@
                                     <label for="fastAnimations"></label>
                                 </div>
                             </div>
+                            <div class="dev-option">
+                                <span>Easter Egg Game</span>
+                                <button class="btn-primary" onclick="openEasterEggGame()">Apri</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Easter Egg Game Modal -->
+        <div class="modal" id="easterEggModal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-gamepad"></i> CronoOS Easter Egg</h3>
+                    <button class="close-btn" onclick="closeEasterEggModal()">×</button>
+                </div>
+                
+                <div class="modal-body">
+                    <div class="easter-egg-game">
+                        <div class="game-logo">
+                            <div class="logo-animation">
+                                <i class="fas fa-rocket"></i>
+                                <span>CronoOS</span>
+                            </div>
+                        </div>
+                        <div class="game-info">
+                            <p>Benvenuto nel sistema operativo del futuro!</p>
+                            <p>Versione: 1.2 "Stellar"</p>
+                            <p>Sviluppato con ❤️ per l'innovazione</p>
+                        </div>
+                        <div class="game-controls">
+                            <button class="game-btn" onclick="animateLogo()">
+                                <i class="fas fa-play"></i> Anima Logo
+                            </button>
+                            <button class="game-btn" onclick="showCredits()">
+                                <i class="fas fa-users"></i> Crediti
+                            </button>
                         </div>
                     </div>
                 </div>
