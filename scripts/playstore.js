@@ -479,6 +479,20 @@ function completeInstallation(app) {
     installedApps.push(app.id);
     saveInstalledApps();
     
+    // Add to home screen apps
+    const homeApp = {
+        id: app.id,
+        name: app.name,
+        icon: app.icon,
+        iconClass: app.iconClass,
+        installed: true
+    };
+    
+    // Save to home apps
+    let homeApps = JSON.parse(localStorage.getItem('cronos_home_apps') || '[]');
+    homeApps.push(homeApp);
+    localStorage.setItem('cronos_home_apps', JSON.stringify(homeApps));
+    
     // Update displays
     updateAppsDisplay();
     updateGamesDisplay();

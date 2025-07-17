@@ -13,8 +13,81 @@ document.addEventListener('DOMContentLoaded', function() {
     loadSettingsData();
     initializeSettingsControls();
     initializeAdvancedSettings();
+    initializeColorPicker();
 });
 
+function initializeColorPicker() {
+    const colorPicker = document.getElementById('colorPicker');
+    if (!colorPicker) return;
+    
+    const colorOptions = colorPicker.querySelectorAll('.color-option');
+    
+    // Set initial selection
+    const currentTheme = localStorage.getItem('cronos_theme_color') || 'theme-blue';
+    const currentOption = colorPicker.querySelector(`[data-theme="${currentTheme}"]`);
+    if (currentOption) {
+        currentOption.classList.add('selected');
+    }
+    
+    colorOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            // Remove previous selection
+            colorOptions.forEach(opt => opt.classList.remove('selected'));
+            
+            // Add selection to clicked option
+            this.classList.add('selected');
+            
+            // Apply theme
+            const themeName = this.dataset.theme;
+            applyColorTheme(themeName);
+            
+            showToast('Tema colore aggiornato');
+            hapticFeedback('medium');
+        });
+    });
+}
+
+function applyColorTheme(themeName) {
+    // Save theme preference
+    localStorage.setItem('cronos_theme_color', themeName);
+    
+    // Apply to current page
+    document.body.className = '';
+    document.body.classList.add(themeName);
+    
+    // Notify parent frame (phone mockup)
+    if (window.parent && window.parent !== window) {
+        window.parent.postMessage({
+            type: 'theme-change',
+            theme: themeName
+        }, '*');
+    }
+    
+    // Update CSS variables based on theme
+    updateThemeVariables(themeName);
+}
+
+function updateThemeVariables(themeName) {
+    const themes = {
+        'theme-blue': { primary: '#007AFF', secondary: '#5AC8FA', accent: '#0051D5' },
+        'theme-purple': { primary: '#5856D6', secondary: '#AF52DE', accent: '#7B68EE' },
+        'theme-pink': { primary: '#FF2D92', secondary: '#FF69B4', accent: '#C71585' },
+        'theme-green': { primary: '#30D158', secondary: '#32D74B', accent: '#228B22' },
+        'theme-orange': { primary: '#FF9500', secondary: '#FFCC00', accent: '#FF6B35' },
+        'theme-red': { primary: '#FF3B30', secondary: '#FF6B6B', accent: '#DC143C' },
+        'theme-teal': { primary: '#5AC8FA', secondary: '#40E0D0', accent: '#008B8B' },
+        'theme-indigo': { primary: '#5856D6', secondary: '#6366F1', accent: '#4338CA' }
+    };
+    
+    const theme = themes[themeName];
+    if (!theme) return;
+    
+    const root = document.documentElement;
+    root.style.setProperty('--dynamic-primary', theme.primary);
+    root.style.setProperty('--dynamic-secondary', theme.secondary);
+    root.style.setProperty('--dynamic-accent', theme.accent);
+    root.style.setProperty('--primary-color', theme.primary);
+}
 function initializeSettingsApp() {
     updateSettingsUI();
     console.log('CronoOS Settings initialized');

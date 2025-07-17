@@ -273,7 +273,7 @@ function showUnlockSuccess() {
     // Change icon to checkmark
     const unlockIcon = unlockHandle.querySelector('.unlock-icon');
     if (unlockIcon) {
-        unlockIcon.textContent = '✓';
+        unlockIcon.innerHTML = '<i class="ph ph-check"></i>';
         unlockIcon.style.color = '#4CAF50';
     }
     

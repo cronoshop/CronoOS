@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lock Screen - One UI OS</title>
+    <link rel="stylesheet" href="styles/phosphor-icons.css">
+    <link rel="stylesheet" href="styles/dynamic-theming.css">
+    <link rel="stylesheet" href="styles/modern-ui.css">
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/lock.css">
 </head>
@@ -19,24 +22,24 @@
             
             <div class="lock-notifications">
                 <div class="lock-notification">
-                    <div class="notification-icon">💬</div>
+                    <div class="notification-icon"><i class="ph ph-chat-circle"></i></div>
                     <div class="notification-text">2 nuovi messaggi</div>
                 </div>
             </div>
             
             <div class="unlock-area">
                 <div class="unlock-handle" id="unlockHandle">
-                    <div class="unlock-icon">🔓</div>
+                    <div class="unlock-icon"><i class="ph ph-lock-open"></i></div>
                 </div>
                 <div class="unlock-text">Scorri per sbloccare</div>
             </div>
             
             <div class="quick-actions">
                 <div class="quick-action" onclick="openApp('camera')">
-                    <div class="action-icon">📷</div>
+                    <div class="action-icon"><i class="ph ph-camera"></i></div>
                 </div>
                 <div class="quick-action" onclick="openApp('phone')">
-                    <div class="action-icon">📞</div>
+                    <div class="action-icon"><i class="ph ph-phone"></i></div>
                 </div>
             </div>
         </div>
@@ -44,5 +47,6 @@
     
     <script src="scripts/global.js"></script>
     <script src="scripts/lock.js"></script>
+    <script src="scripts/theme-system.js"></script>
 </body>
 </html>

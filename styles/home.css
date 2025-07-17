@@ -1,10 +1,46 @@
 /* Home Screen Styles */
 
+.app-container {
+    padding-top: 44px;
+}
+
 .home-screen {
     min-height: 100vh;
     position: relative;
-    padding: 24px 0 80px 0;
+    padding: 44px 0 120px 0;
     overflow: hidden;
+}
+
+/* Lock Button */
+.lock-button {
+    position: fixed;
+    top: 52px;
+    left: var(--space-4);
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.3);
+    border: none;
+    border-radius: var(--radius-full);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    transition: all var(--transition-normal);
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.lock-button:hover {
+    transform: scale(1.05);
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.lock-button:active {
+    transform: scale(0.95);
 }
 
 .wallpaper {
@@ -13,7 +49,10 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #007AFF 0%, #5856D6 50%, #FF2D92 100%);
+    background: linear-gradient(135deg, 
+        var(--dynamic-primary, #007AFF) 0%, 
+        var(--dynamic-secondary, #5856D6) 50%, 
+        var(--dynamic-accent, #FF2D92) 100%);
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
     z-index: -1;
@@ -68,189 +107,28 @@
 .app-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: var(--spacing-xl);
-    padding: 0 var(--spacing-lg);
+    gap: var(--space-8);
+    padding: 0 var(--space-6);
     max-width: 400px;
     margin: 0 auto;
-}
-
-.app-icon {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all var(--transition-normal);
-    animation: fadeIn 0.6s ease;
-    animation-fill-mode: both;
-    position: relative;
-}
-
-.app-icon:nth-child(1) { animation-delay: 0.1s; }
-.app-icon:nth-child(2) { animation-delay: 0.2s; }
-.app-icon:nth-child(3) { animation-delay: 0.3s; }
-.app-icon:nth-child(4) { animation-delay: 0.4s; }
-.app-icon:nth-child(5) { animation-delay: 0.5s; }
-.app-icon:nth-child(6) { animation-delay: 0.6s; }
-.app-icon:nth-child(7) { animation-delay: 0.7s; }
-.app-icon:nth-child(8) { animation-delay: 0.8s; }
-.app-icon:nth-child(9) { animation-delay: 0.9s; }
-.app-icon:nth-child(10) { animation-delay: 1.0s; }
-
-.app-icon:hover {
-    transform: scale(1.05) translateY(-2px);
-}
-
-.app-icon:active {
-    transform: scale(0.95);
-}
-
-.icon {
-    width: 56px;
-    height: 56px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    margin-bottom: var(--spacing-sm);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: all var(--transition-fast);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-}
-
-.app-icon:hover .icon {
-    background: rgba(255, 255, 255, 0.25);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-}
-
-.app-icon span {
-    color: white;
-    font-size: var(--font-size-xs);
-    font-weight: 500;
-    text-align: center;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    margin-top: 2px;
-}
-
-/* Specific App Icon Colors */
-.phone-icon {
-    background: linear-gradient(135deg, #30D158, #28CD41);
-    color: white;
-}
-
-.messages-icon {
-    background: linear-gradient(135deg, #007AFF, #0051D5);
-    color: white;
-}
-
-.camera-icon {
-    background: linear-gradient(135deg, #8E8E93, #636366);
-    color: white;
-}
-
-.gallery-icon {
-    background: linear-gradient(135deg, #FF2D92, #D70065);
-    color: white;
-}
-
-.music-icon {
-    background: linear-gradient(135deg, #FF2D92, #D70065);
-    color: white;
-}
-
-.calendar-icon {
-    background: linear-gradient(135deg, #FF3B30, #D70015);
-    color: white;
-}
-
-.clock-icon {
-    background: linear-gradient(135deg, #000000, #1C1C1E);
-    color: white;
-}
-
-.files-icon {
-    background: linear-gradient(135deg, #007AFF, #0051D5);
-    color: white;
-}
-
-.playstore-icon {
-    background: linear-gradient(135deg, #5AC8FA, #007AFF);
-    color: white;
-}
-
-.settings-icon {
-    background: linear-gradient(135deg, #8E8E93, #636366);
-    color: white;
-}
-
-/* Dock */
-.dock {
-    position: fixed;
-    bottom: var(--spacing-lg);
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: var(--spacing-md);
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    padding: var(--spacing-md);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    z-index: 100;
-    animation: slideInUp 0.8s ease;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-}
-
-.dock-item {
-    cursor: pointer;
-    transition: all var(--transition-fast);
-}
-
-.dock-item:hover {
-    transform: scale(1.15) translateY(-4px);
-}
-
-.dock-item:active {
-    transform: scale(1.05) translateY(-2px);
-}
-
-.dock-icon {
-    width: 48px;
-    height: 48px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: white;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 /* Quick Panel */
 .quick-panel {
     position: fixed;
-    top: 24px;
+    top: 44px;
     right: -400px;
     width: 350px;
-    height: calc(100vh - 24px);
+    height: calc(100vh - 44px);
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    box-shadow: -4px 0 40px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-2xl);
     transition: right var(--transition-normal);
     z-index: 1500;
     overflow-y: auto;
     border-left: 1px solid var(--divider-color);
+    border-radius: var(--radius-4) 0 0 var(--radius-4);
 }
 
 [data-theme="dark"] .quick-panel {
@@ -292,38 +170,40 @@
 
 .quick-toggles {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-md);
-    padding: var(--spacing-lg);
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+    padding: var(--space-4);
 }
 
 .toggle-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: var(--spacing-lg);
+    padding: var(--space-4);
     background: var(--surface-color);
-    border-radius: 12px;
+    border-radius: var(--radius-3);
     cursor: pointer;
     transition: all var(--transition-fast);
     border: 1px solid var(--divider-color);
+    aspect-ratio: 1;
+    justify-content: center;
 }
 
 .toggle-item:hover {
-    background: rgba(0, 122, 255, 0.1);
+    background: var(--dynamic-primary-alpha);
     transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-md);
 }
 
 .toggle-item.active {
-    background: var(--primary-color);
+    background: var(--dynamic-primary);
     color: white;
-    border-color: var(--primary-color);
+    border-color: var(--dynamic-primary);
 }
 
 .toggle-icon {
-    font-size: 20px;
-    margin-bottom: var(--spacing-sm);
+    font-size: 18px;
+    margin-bottom: var(--space-2);
     transition: transform var(--transition-fast);
 }
 
@@ -332,7 +212,7 @@
 }
 
 .toggle-item span {
-    font-size: var(--font-size-xs);
+    font-size: 10px;
     font-weight: 500;
     text-align: center;
 }
@@ -367,18 +247,19 @@
 /* Notifications Panel */
 .notifications-panel {
     position: fixed;
-    top: 24px;
+    top: 44px;
     left: -400px;
     width: 350px;
-    height: calc(100vh - 24px);
+    height: calc(100vh - 44px);
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    box-shadow: 4px 0 40px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-2xl);
     transition: left var(--transition-normal);
     z-index: 1500;
     overflow-y: auto;
     border-right: 1px solid var(--divider-color);
+    border-radius: 0 var(--radius-4) var(--radius-4) 0;
 }
 
 [data-theme="dark"] .notifications-panel {

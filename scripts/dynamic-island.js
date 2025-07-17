@@ -103,35 +103,35 @@ function updateIslandContent(type, data = {}) {
         case 'call':
             if (titleElement) titleElement.textContent = data.name || 'Marco Rossi';
             if (subtitleElement) subtitleElement.textContent = 'Chiamata in arrivo';
-            if (avatarElement) avatarElement.innerHTML = '<i class="fas fa-user"></i>';
+            if (avatarElement) avatarElement.innerHTML = '<i class="ph ph-user"></i>';
             if (actionsElement) actionsElement.style.display = 'flex';
             break;
             
         case 'music':
             if (titleElement) titleElement.textContent = data.title || 'Bohemian Rhapsody';
             if (subtitleElement) subtitleElement.textContent = data.artist || 'Queen';
-            if (avatarElement) avatarElement.innerHTML = '<i class="fas fa-music"></i>';
+            if (avatarElement) avatarElement.innerHTML = '<i class="ph ph-music-notes"></i>';
             if (actionsElement) actionsElement.style.display = 'none';
             break;
             
         case 'notification':
             if (titleElement) titleElement.textContent = data.app || 'Messaggi';
             if (subtitleElement) subtitleElement.textContent = data.message || 'Nuovo messaggio';
-            if (avatarElement) avatarElement.innerHTML = '<i class="fas fa-bell"></i>';
+            if (avatarElement) avatarElement.innerHTML = '<i class="ph ph-bell"></i>';
             if (actionsElement) actionsElement.style.display = 'none';
             break;
             
         case 'timer':
             if (titleElement) titleElement.textContent = 'Timer';
             if (subtitleElement) subtitleElement.textContent = data.time || '05:00';
-            if (avatarElement) avatarElement.innerHTML = '<i class="fas fa-clock"></i>';
+            if (avatarElement) avatarElement.innerHTML = '<i class="ph ph-clock"></i>';
             if (actionsElement) actionsElement.style.display = 'none';
             break;
             
         default:
             if (titleElement) titleElement.textContent = '';
             if (subtitleElement) subtitleElement.textContent = '';
-            if (avatarElement) avatarElement.innerHTML = '<i class="fas fa-circle"></i>';
+            if (avatarElement) avatarElement.innerHTML = '<i class="ph ph-circle"></i>';
             if (actionsElement) actionsElement.style.display = 'none';
     }
 }

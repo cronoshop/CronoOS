@@ -126,27 +126,40 @@ function updateTime() {
 
 // Navigation Functions
 function goHome() {
+    // Add smooth transition
+    document.body.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+    document.body.style.opacity = '0';
+    document.body.style.transform = 'scale(0.95)';
+    
+    setTimeout(() => {
+        window.location.href = 'home.html';
+    }, 300);
+}
+
+function goHomeInstant() {
     window.location.href = 'home.html';
 }
 
 function openApp(appName) {
     // Add transition animation
-    document.body.style.transform = 'scale(0.95)';
-    document.body.style.opacity = '0.8';
+    document.body.style.transition = 'opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+    document.body.style.opacity = '0';
+    document.body.style.transform = 'scale(1.05)';
     
     setTimeout(() => {
         window.location.href = `${appName}.html`;
-    }, 200);
+    }, 400);
 }
 
 function goToLockScreen() {
     // Add transition animation
-    document.body.style.transform = 'scale(1.1)';
+    document.body.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
     document.body.style.opacity = '0';
+    document.body.style.transform = 'scale(1.1)';
     
     setTimeout(() => {
         window.location.href = 'lock.html';
-    }, 300);
+    }, 500);
 }
 
 // Quick Panel Functions
@@ -188,6 +201,12 @@ function toggleWifi() {
     
     if (wifiToggleItem) {
         wifiToggleItem.classList.toggle('active', isWifiEnabled);
+        
+        // Update icon
+        const icon = wifiToggle.querySelector('i');
+        if (icon) {
+            icon.className = isWifiEnabled ? 'ph ph-wifi-high' : 'ph ph-wifi-slash';
+        }
     }
     
     showToast(isWifiEnabled ? 'Wi-Fi attivato' : 'Wi-Fi disattivato');
@@ -201,6 +220,12 @@ function toggleBluetooth() {
     
     if (bluetoothToggleItem) {
         bluetoothToggleItem.classList.toggle('active', isBluetoothEnabled);
+        
+        // Update icon
+        const icon = bluetoothToggle.querySelector('i');
+        if (icon) {
+            icon.className = isBluetoothEnabled ? 'ph ph-bluetooth' : 'ph ph-bluetooth-slash';
+        }
     }
     
     showToast(isBluetoothEnabled ? 'Bluetooth attivato' : 'Bluetooth disattivato');
@@ -214,6 +239,12 @@ function toggleDarkMode() {
     
     if (darkToggleItem) {
         darkToggleItem.classList.toggle('active', isDarkModeEnabled);
+        
+        // Update icon
+        const icon = darkToggle.querySelector('i');
+        if (icon) {
+            icon.className = isDarkModeEnabled ? 'ph ph-moon' : 'ph ph-sun';
+        }
     }
     
     applyTheme();
@@ -296,20 +327,21 @@ function showToast(message, duration = 2000) {
         bottom: 100px;
         left: 50%;
         transform: translateX(-50%);
-        background: rgba(0, 0, 0, 0.85);
+        background: rgba(0, 0, 0, 0.9);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         color: white;
-        padding: 14px 28px;
-        border-radius: 25px;
-        font-size: var(--font-size-sm);
+        padding: 16px 32px;
+        border-radius: 28px;
+        font-size: 14px;
         font-weight: 500;
         z-index: 10000;
         animation: toastSlideIn 0.3s ease;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
         border: 1px solid rgba(255, 255, 255, 0.1);
         max-width: 80%;
         text-align: center;
+        font-family: 'Inter', sans-serif;
     `;
     
     document.body.appendChild(toast);

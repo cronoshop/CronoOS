@@ -3,6 +3,9 @@
 let installedApps = [];
 let isDragging = false;
 let draggedElement = null;
+let isAirplaneModeEnabled = false;
+let isFlashlightEnabled = false;
+let isDoNotDisturbEnabled = false;
 
 document.addEventListener('DOMContentLoaded', function() {
     initializeHomeScreen();
@@ -11,13 +14,86 @@ document.addEventListener('DOMContentLoaded', function() {
     loadInstalledApps();
     setupAppDragAndDrop();
     listenForAppInstalls();
+    initializeThemeListener();
 });
+
+function initializeThemeListener() {
+    window.addEventListener('message', function(event) {
+        if (event.data.type === 'theme-change') {
+            // Apply theme to current page
+            document.body.className = '';
+            document.body.classList.add(event.data.theme);
+            
+            // Update CSS custom properties
+            const root = document.documentElement;
+            const colors = event.data.colors;
+            root.style.setProperty('--dynamic-primary', colors.primary);
+            root.style.setProperty('--dynamic-secondary', colors.secondary);
+            root.style.setProperty('--dynamic-accent', colors.accent);
+        }
+    });
+}
+
+function toggleAirplaneMode() {
+    isAirplaneModeEnabled = !isAirplaneModeEnabled;
+    const airplaneToggle = document.getElementById('airplaneToggle');
+    const airplaneToggleItem = airplaneToggle?.closest('.toggle-item');
+    
+    if (airplaneToggleItem) {
+        airplaneToggleItem.classList.toggle('active', isAirplaneModeEnabled);
+    }
+    
+    if (isAirplaneModeEnabled) {
+        // Disable other connectivity
+        isWifiEnabled = false;
+        isBluetoothEnabled = false;
+        updateToggleStates();
+    }
+    
+    showToast(isAirplaneModeEnabled ? 'Modalità aereo attivata' : 'Modalità aereo disattivata');
+    saveSettings();
+}
+
+function toggleFlashlight() {
+    isFlashlightEnabled = !isFlashlightEnabled;
+    const flashlightToggle = document.getElementById('flashlightToggle');
+    const flashlightToggleItem = flashlightToggle?.closest('.toggle-item');
+    
+    if (flashlightToggleItem) {
+        flashlightToggleItem.classList.toggle('active', isFlashlightEnabled);
+    }
+    
+    // Visual feedback
+    if (isFlashlightEnabled) {
+        document.body.style.filter = 'brightness(1.2)';
+        setTimeout(() => {
+            document.body.style.filter = '';
+        }, 200);
+    }
+    
+    showToast(isFlashlightEnabled ? 'Torcia accesa' : 'Torcia spenta');
+    saveSettings();
+}
+
+function toggleDoNotDisturb() {
+    isDoNotDisturbEnabled = !isDoNotDisturbEnabled;
+    const dndToggle = document.getElementById('dndToggle');
+    const dndToggleItem = dndToggle?.closest('.toggle-item');
+    
+    if (dndToggleItem) {
+        dndToggleItem.classList.toggle('active', isDoNotDisturbEnabled);
+    }
+    
+    showToast(isDoNotDisturbEnabled ? 'Non disturbare attivato' : 'Non disturbare disattivato');
+    saveSettings();
+}
 
 function initializeHomeScreen() {
     // Add staggered animation to app icons
     const appIcons = document.querySelectorAll('.app-icon');
     appIcons.forEach((icon, index) => {
-        icon.style.animationDelay = `${index * 0.1}s`;
+        icon.style.animationDelay = `${index * 0.05}s`;
+        icon.classList.add('animate-fade-in');
     });
     
     // Add parallax effect to wallpaper
@@ -329,6 +405,9 @@ function updateToggleStates() {
     const wifiToggle = document.getElementById('wifiToggle');
     const bluetoothToggle = document.getElementById('bluetoothToggle');
     const darkToggle = document.getElementById('darkToggle');
+    const airplaneToggle = document.getElementById('airplaneToggle');
+    const flashlightToggle = document.getElementById('flashlightToggle');
+    const dndToggle = document.getElementById('dndToggle');
     
     if (wifiToggle) {
         const wifiItem = wifiToggle.closest('.toggle-item');
@@ -343,6 +422,21 @@ function updateToggleStates() {
     if (darkToggle) {
         const darkItem = darkToggle.closest('.toggle-item');
         darkItem.classList.toggle('active', isDarkModeEnabled);
+    }
+    
+    if (airplaneToggle) {
+        const airplaneItem = airplaneToggle.closest('.toggle-item');
+        airplaneItem.classList.toggle('active', isAirplaneModeEnabled);
+    }
+    
+    if (flashlightToggle) {
+        const flashlightItem = flashlightToggle.closest('.toggle-item');
+        flashlightItem.classList.toggle('active', isFlashlightEnabled);
+    }
+    
+    if (dndToggle) {
+        const dndItem = dndToggle.closest('.toggle-item');
+        dndItem.classList.toggle('active', isDoNotDisturbEnabled);
     }
 }
 

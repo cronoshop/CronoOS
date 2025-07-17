@@ -123,33 +123,49 @@ function setupButtonInteractions() {
 }
 
 function simulatePowerButton() {
+    // Navigate to lock screen
+    const osFrame = document.getElementById('osFrame');
+    if (osFrame) {
+        osFrame.src = 'lock.html';
+    }
+    showVolumeIndicator('🔒');
+}
+
+function simulateVolumeUp() {
+    showVolumeIndicator('🔊');
+    
+    // Send volume up to OS
     const osFrame = document.getElementById('osFrame');
     if (osFrame && osFrame.contentWindow) {
-        // Send power button press to OS
         osFrame.contentWindow.postMessage({
-            type: 'hardware-button',
-            button: 'power'
+            type: 'volume-change',
+            direction: 'up'
         }, '*');
     }
 }
 
-function simulateVolumeUp() {
-    showVolumeIndicator('+');
-}
-
 function simulateVolumeDown() {
-    showVolumeIndicator('-');
+    showVolumeIndicator('🔉');
+    
+    // Send volume down to OS
+    const osFrame = document.getElementById('osFrame');
+    if (osFrame && osFrame.contentWindow) {
+        osFrame.contentWindow.postMessage({
+            type: 'volume-change',
+            direction: 'down'
+        }, '*');
+    }
 }
 
 function showVolumeIndicator(direction) {
     const indicator = document.createElement('div');
     indicator.className = 'volume-indicator';
     indicator.innerHTML = `
-        <div class="volume-icon">${direction === '+' ? '🔊' : '🔉'}</div>
+        <div class="volume-icon">${direction}</div>
         <div class="volume-bars">
             <div class="volume-bar active"></div>
             <div class="volume-bar active"></div>
-            <div class="volume-bar ${direction === '+' ? 'active' : ''}"></div>
+            <div class="volume-bar ${direction === '🔊' ? 'active' : ''}"></div>
         </div>
     `;
     
@@ -158,20 +174,23 @@ function showVolumeIndicator(direction) {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background: rgba(0, 0, 0, 0.8);
+        background: rgba(0, 0, 0, 0.9);
+        backdrop-filter: blur(20px);
         color: white;
-        padding: 20px;
-        border-radius: 12px;
+        padding: 24px;
+        border-radius: 16px;
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 12px;
         z-index: 10001;
-        animation: fadeInOut 1.5s ease;
+        animation: fadeInOut 2s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     `;
     
     document.body.appendChild(indicator);
     
-    setTimeout(() => indicator.remove(), 1500);
+    setTimeout(() => indicator.remove(), 2000);
 }
 
 function setupResponsiveHandling() {
