@@ -230,6 +230,18 @@
                         </div>
                         <div class="setting-item">
                             <div class="setting-info">
+                                <div class="setting-title">Stile Navigazione</div>
+                                <div class="setting-description">Barra gesture o pulsanti classici</div>
+                            </div>
+                            <div class="setting-control">
+                                <select id="navigationStyle" onchange="updateNavigationStyle(this.value)">
+                                    <option value="gestures" selected>Barra Gesture</option>
+                                    <option value="buttons">Pulsanti Classici</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
                                 <div class="setting-title">Effetti di Transizione</div>
                                 <div class="setting-description">Animazioni apertura app</div>
                             </div>
@@ -331,6 +343,17 @@
                         <div class="category-arrow">›</div>
                     </div>
                 </div>
+                
+                <!-- Advanced Settings -->
+                <div class="settings-category">
+                    <div class="category-header" onclick="showAdvancedSettings()">
+                        <div class="category-info">
+                            <div class="category-icon"><i class="fas fa-cogs"></i></div>
+                            <div class="category-title">Impostazioni Avanzate</div>
+                        </div>
+                        <div class="category-arrow">›</div>
+                    </div>
+                </div>
             </div>
         </div>
         
@@ -352,15 +375,15 @@
                             </div>
                             <div class="info-item">
                                 <div class="info-label">Sistema Operativo</div>
-                                <div class="info-value">CronoOS 1.2</div>
+                                <div class="info-value">CronoOS 2.0</div>
                             </div>
                             <div class="info-item">
                                 <div class="info-label">Interfaccia</div>
-                                <div class="info-value">CronoUI 1.2</div>
+                                <div class="info-value">CronoUI 2.0</div>
                             </div>
                             <div class="info-item">
                                 <div class="info-label">Numero Build</div>
-                                <div class="info-value" onclick="handleBuildTap()">CRN1A.250115.001</div>
+                                <div class="info-value" onclick="handleBuildTap()">CRN2A.250116.001</div>
                             </div>
                             <div class="info-item">
                                 <div class="info-label">RAM</div>
@@ -402,6 +425,34 @@
                                 </div>
                             </div>
                             <div class="dev-option">
+                                <span>Mock Locations</span>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="mockLocations">
+                                    <label for="mockLocations"></label>
+                                </div>
+                            </div>
+                            <div class="dev-option">
+                                <span>GPU Debug</span>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="gpuDebug">
+                                    <label for="gpuDebug"></label>
+                                </div>
+                            </div>
+                            <div class="dev-option">
+                                <span>Force GPU Rendering</span>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="forceGpu">
+                                    <label for="forceGpu"></label>
+                                </div>
+                            </div>
+                            <div class="dev-option">
+                                <span>Strict Mode</span>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="strictMode">
+                                    <label for="strictMode"></label>
+                                </div>
+                            </div>
+                            <div class="dev-option">
                                 <span>Mostra tocchi</span>
                                 <div class="toggle-switch">
                                     <input type="checkbox" id="showTouches">
@@ -413,6 +464,13 @@
                                 <div class="toggle-switch">
                                     <input type="checkbox" id="fastAnimations">
                                     <label for="fastAnimations"></label>
+                                </div>
+                            </div>
+                            <div class="dev-option">
+                                <span>Layout Bounds</span>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="layoutBounds">
+                                    <label for="layoutBounds"></label>
                                 </div>
                             </div>
                             <div class="dev-option">
@@ -443,7 +501,7 @@
                         </div>
                         <div class="game-info">
                             <p>Benvenuto nel sistema operativo del futuro!</p>
-                            <p>Versione: 1.2 "Stellar"</p>
+                            <p>Versione: 2.0 "World-Class UI"</p>
                             <p>Sviluppato con ❤️ per l'innovazione</p>
                         </div>
                         <div class="game-controls">

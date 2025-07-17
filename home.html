@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CronoOS</title>
+    <title>CronoOS 2.0</title>
     <link rel="stylesheet" href="styles/phosphor-icons.css">
     <link rel="stylesheet" href="styles/dynamic-theming.css">
     <link rel="stylesheet" href="styles/modern-ui.css">
@@ -11,9 +11,13 @@
     <link rel="stylesheet" href="styles/home.css">
 </head>
 <body>
+    <!-- Status Bar -->
     <div class="status-bar">
         <div class="status-left">
             <span class="time" id="statusTime">9:41</span>
+        </div>
+        <div class="status-center">
+            <div class="notch"></div>
         </div>
         <div class="status-right">
             <span class="signal"><i class="ph ph-cell-signal-high"></i></span>
@@ -25,11 +29,6 @@
     <!-- Quick Panel Button -->
     <button class="quick-panel-button" id="quickPanelButton" onclick="toggleQuickPanel()">
         <i class="ph ph-sliders-horizontal"></i>
-    </button>
-
-    <!-- Lock Button -->
-    <button class="lock-button" id="lockButton" onclick="goToLockScreen()">
-        <i class="ph ph-lock"></i>
     </button>
 
     <!-- Quick Panel -->
@@ -49,11 +48,11 @@
             </div>
             <div class="toggle-item" onclick="toggleAirplaneMode()">
                 <div class="toggle-icon airplane-toggle" id="airplaneToggle"><i class="ph ph-airplane"></i></div>
-                <span>Modalità Aereo</span>
+                <span>Aereo</span>
             </div>
             <div class="toggle-item" onclick="toggleDarkMode()">
                 <div class="toggle-icon dark-toggle" id="darkToggle"><i class="ph ph-moon"></i></div>
-                <span>Modalità Notte</span>
+                <span>Dark Mode</span>
             </div>
             <div class="toggle-item" onclick="toggleFlashlight()">
                 <div class="toggle-icon flashlight-toggle" id="flashlightToggle"><i class="ph ph-flashlight"></i></div>
@@ -63,11 +62,28 @@
                 <div class="toggle-icon dnd-toggle" id="dndToggle"><i class="ph ph-moon-stars"></i></div>
                 <span>Non Disturbare</span>
             </div>
+            <div class="toggle-item" onclick="toggleHotspot()">
+                <div class="toggle-icon hotspot-toggle" id="hotspotToggle"><i class="ph ph-wifi-medium"></i></div>
+                <span>Hotspot</span>
+            </div>
+            <div class="toggle-item" onclick="toggleScreenRecord()">
+                <div class="toggle-icon record-toggle" id="recordToggle"><i class="ph ph-record"></i></div>
+                <span>Registra</span>
+            </div>
+            <div class="toggle-item" onclick="togglePowerSaving()">
+                <div class="toggle-icon power-toggle" id="powerToggle"><i class="ph ph-battery-low"></i></div>
+                <span>Risparmio</span>
+            </div>
         </div>
         <div class="brightness-control">
             <span><i class="ph ph-sun-dim"></i></span>
             <input type="range" id="brightnessSlider" min="0" max="100" value="50">
             <span><i class="ph ph-sun"></i></span>
+        </div>
+        <div class="volume-control">
+            <span><i class="ph ph-speaker-low"></i></span>
+            <input type="range" id="volumeSlider" min="0" max="100" value="70">
+            <span><i class="ph ph-speaker-high"></i></span>
         </div>
     </div>
 
@@ -102,7 +118,7 @@
 
     <!-- Home Screen -->
     <div class="home-screen">
-        <div class="wallpaper"></div>
+        <div class="wallpaper" id="dynamicWallpaper"></div>
         
         <!-- Widget Area -->
         <div class="widget-area">
@@ -178,28 +194,9 @@
         </div>
     </div>
 
-    <!-- Dock -->
-    <div class="dock">
-        <div class="dock-item" onclick="openApp('phone')">
-            <div class="app-icon-container">
-                <i class="ph ph-phone"></i>
-            </div>
-        </div>
-        <div class="dock-item" onclick="openApp('messages')">
-            <div class="app-icon-container">
-                <i class="ph ph-chat-circle"></i>
-            </div>
-        </div>
-        <div class="dock-item" onclick="openApp('camera')">
-            <div class="app-icon-container">
-                <i class="ph ph-camera"></i>
-            </div>
-        </div>
-        <div class="dock-item" onclick="openApp('music')">
-            <div class="app-icon-container">
-                <i class="ph ph-music-notes"></i>
-            </div>
-        </div>
+    <!-- Navigation Bar -->
+    <div class="navigation-bar" id="navigationBar">
+        <div class="nav-indicator"></div>
     </div>
 
     <script src="scripts/global.js"></script>

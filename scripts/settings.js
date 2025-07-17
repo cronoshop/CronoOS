@@ -332,6 +332,20 @@ function updateTransitionEffect(effect) {
     saveSettingsData();
 }
 
+function updateNavigationStyle(style) {
+    localStorage.setItem('cronos_navigation_style', style);
+    
+    // Notify home screen to update navigation
+    if (window.parent && window.parent !== window) {
+        window.parent.postMessage({
+            type: 'navigation-style-change',
+            style: style
+        }, '*');
+    }
+    
+    showToast(`Stile navigazione: ${style === 'gestures' ? 'Gesture' : 'Pulsanti'}`);
+}
+
 function getTransitionCSS(effect) {
     switch (effect) {
         case 'fade':
@@ -609,6 +623,26 @@ function showAdvancedSettings() {
                             <label for="batterySaver"></label>
                         </div>
                     </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <div class="setting-title">Force GPU Rendering</div>
+                            <div class="setting-description">Forza rendering GPU per tutte le app</div>
+                        </div>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="forceGpuRendering">
+                            <label for="forceGpuRendering"></label>
+                        </div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <div class="setting-title">Hardware Acceleration</div>
+                            <div class="setting-description">Accelerazione hardware per UI</div>
+                        </div>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="hwAcceleration" checked>
+                            <label for="hwAcceleration"></label>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="setting-group">
@@ -621,6 +655,26 @@ function showAdvancedSettings() {
                         <div class="toggle-switch">
                             <input type="checkbox" id="locationAccess" checked>
                             <label for="locationAccess"></label>
+                        </div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <div class="setting-title">Tracciamento App</div>
+                            <div class="setting-description">Consenti alle app di tracciare l'attività</div>
+                        </div>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="appTracking">
+                            <label for="appTracking"></label>
+                        </div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <div class="setting-title">Analytics</div>
+                            <div class="setting-description">Condividi dati di utilizzo anonimi</div>
+                        </div>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="analytics">
+                            <label for="analytics"></label>
                         </div>
                     </div>
                     <div class="setting-item">
@@ -658,6 +712,19 @@ function showAdvancedSettings() {
                             <option value="pin">PIN</option>
                             <option value="password">Password</option>
                             <option value="fingerprint" selected>Impronta</option>
+                            <option value="face">Riconoscimento facciale</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <div class="setting-title">Auto-lock</div>
+                            <div class="setting-description">Blocco automatico dopo inattività</div>
+                        </div>
+                        <select id="autoLockTime">
+                            <option value="30">30 secondi</option>
+                            <option value="60" selected>1 minuto</option>
+                            <option value="300">5 minuti</option>
+                            <option value="never">Mai</option>
                         </select>
                     </div>
                     <div class="setting-item">
@@ -669,6 +736,24 @@ function showAdvancedSettings() {
                             <input type="checkbox" id="unknownSources">
                             <label for="unknownSources"></label>
                         </div>
+                    </div>
+                </div>
+                
+                <div class="setting-group">
+                    <h4>Sviluppatore</h4>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <div class="setting-title">Opzioni Sviluppatore</div>
+                            <div class="setting-description">Accesso alle funzioni avanzate</div>
+                        </div>
+                        <button class="btn-secondary" onclick="openDeveloperOptions()">Apri</button>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <div class="setting-title">Reset Impostazioni</div>
+                            <div class="setting-description">Ripristina tutte le impostazioni</div>
+                        </div>
+                        <button class="btn-secondary" onclick="resetAllSettings()">Reset</button>
                     </div>
                 </div>
             </div>
@@ -691,6 +776,11 @@ function showAdvancedSettings() {
     `;
     
     document.body.appendChild(advancedModal);
+}
+
+function openDeveloperOptions() {
+    closeAdvancedSettings();
+    openModal('developerModal');
 }
 
 function closeAdvancedSettings() {

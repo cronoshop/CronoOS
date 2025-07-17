@@ -1,12 +1,12 @@
-// Lock Screen JavaScript - One UI OS
+// Lock Screen JavaScript - CronoOS 2.0
 
-let isUnlocking = false;
-let unlockStartY = 0;
+let isScanning = false;
+let scanTimeout;
 
 document.addEventListener('DOMContentLoaded', function() {
     initializeLockScreen();
-    initializeUnlockGesture();
     updateLockScreenTime();
+    initializeDynamicWallpaper();
 });
 
 function initializeLockScreen() {
@@ -19,7 +19,7 @@ function initializeLockScreen() {
     // Add ambient animations
     initializeAmbientAnimations();
     
-    console.log('Lock screen initialized');
+    console.log('CronoOS 2.0 Lock screen initialized');
 }
 
 function initializeDynamicBackground() {
@@ -34,21 +34,50 @@ function initializeDynamicBackground() {
     setInterval(updateBackgroundByTime, 60000); // Update every minute
 }
 
+function initializeDynamicWallpaper() {
+    const wallpaper = document.getElementById('lockWallpaper');
+    if (!wallpaper) return;
+    
+    // Apply current theme colors
+    const savedTheme = localStorage.getItem('cronos_theme_color') || 'theme-blue';
+    applyWallpaperTheme(savedTheme);
+}
+
+function applyWallpaperTheme(themeName) {
+    const wallpaper = document.getElementById('lockWallpaper');
+    if (!wallpaper) return;
+    
+    const themes = {
+        'theme-blue': ['#007AFF', '#5AC8FA', '#0051D5'],
+        'theme-purple': ['#5856D6', '#AF52DE', '#7B68EE'],
+        'theme-pink': ['#FF2D92', '#FF69B4', '#C71585'],
+        'theme-green': ['#30D158', '#32D74B', '#228B22'],
+        'theme-orange': ['#FF9500', '#FFCC00', '#FF6B35'],
+        'theme-red': ['#FF3B30', '#FF6B6B', '#DC143C'],
+        'theme-teal': ['#5AC8FA', '#40E0D0', '#008B8B'],
+        'theme-indigo': ['#5856D6', '#6366F1', '#4338CA']
+    };
+    
+    const colors = themes[themeName] || themes['theme-blue'];
+    
+    wallpaper.style.background = `linear-gradient(135deg, ${colors[0]} 0%, ${colors[1]} 50%, ${colors[2]} 100%)`;
+}
+
 function createFloatingParticles() {
     const wallpaper = document.querySelector('.wallpaper-lock');
     if (!wallpaper) return;
     
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 15; i++) {
         const particle = document.createElement('div');
         particle.style.cssText = `
             position: absolute;
-            width: ${Math.random() * 4 + 2}px;
-            height: ${Math.random() * 4 + 2}px;
+            width: ${Math.random() * 3 + 1}px;
+            height: ${Math.random() * 3 + 1}px;
             background: rgba(255, 255, 255, ${Math.random() * 0.3 + 0.1});
             border-radius: 50%;
             top: ${Math.random() * 100}%;
             left: ${Math.random() * 100}%;
-            animation: float ${Math.random() * 10 + 10}s infinite linear;
+            animation: float ${Math.random() * 15 + 15}s infinite linear;
             pointer-events: none;
         `;
         wallpaper.appendChild(particle);
@@ -96,55 +125,26 @@ function updateBackgroundByTime() {
         gradient = 'linear-gradient(45deg, #2c3e50, #000428)';
     }
     
-    wallpaper.style.background = gradient;
+    // Only apply time-based gradient if no theme is set
+    const savedTheme = localStorage.getItem('cronos_theme_color');
+    if (!savedTheme) {
+        wallpaper.style.background = gradient;
+    }
 }
 
 function initializeLockNotifications() {
-    const notificationsContainer = document.querySelector('.lock-notifications');
-    if (!notificationsContainer) return;
-    
-    // Simulate incoming notifications
-    setTimeout(() => {
-        addLockNotification('📱', 'Nuovo messaggio da Anna');
-    }, 3000);
-    
-    setTimeout(() => {
-        addLockNotification('📧', '2 nuove email');
-    }, 8000);
-}
-
-function addLockNotification(icon, text) {
-    const notificationsContainer = document.querySelector('.lock-notifications');
-    if (!notificationsContainer) return;
-    
-    const notification = document.createElement('div');
-    notification.className = 'lock-notification';
-    notification.innerHTML = `
-        <div class="notification-icon">${icon}</div>
-        <div class="notification-text">${text}</div>
-    `;
-    
-    notification.style.animation = 'slideInUp 0.5s ease';
-    notificationsContainer.appendChild(notification);
-    
-    // Add click handler
-    notification.addEventListener('click', function() {
-        this.style.animation = 'fadeOut 0.3s ease';
-        setTimeout(() => this.remove(), 300);
+    // Add click handlers for notifications
+    const notifications = document.querySelectorAll('.lock-notification');
+    notifications.forEach(notification => {
+        notification.addEventListener('click', function() {
+            this.style.animation = 'fadeOut 0.3s ease';
+            setTimeout(() => this.remove(), 300);
+        });
     });
-    
-    // Auto remove after 10 seconds
-    setTimeout(() => {
-        if (notification.parentNode) {
-            notification.style.animation = 'fadeOut 0.3s ease';
-            setTimeout(() => notification.remove(), 300);
-        }
-    }, 10000);
 }
 
 function initializeAmbientAnimations() {
     const timeDisplay = document.querySelector('.time-display');
-    const unlockHandle = document.querySelector('.unlock-handle');
     
     // Add breathing animation to time
     if (timeDisplay) {
@@ -155,131 +155,77 @@ function initializeAmbientAnimations() {
             }, 2000);
         }, 10000);
     }
+}
+
+function startFingerprintScan() {
+    if (isScanning) return;
     
-    // Add shimmer effect to unlock handle
-    if (unlockHandle) {
-        setInterval(() => {
-            unlockHandle.style.animation = 'shimmer 3s ease-in-out';
+    isScanning = true;
+    const scanner = document.getElementById('fingerprintScanner');
+    
+    if (scanner) {
+        scanner.classList.add('scanning');
+        
+        // Simulate scanning process
+        scanTimeout = setTimeout(() => {
+            completeFingerprintScan(true);
+        }, 2000);
+        
+        hapticFeedback('medium');
+    }
+}
+
+function completeFingerprintScan(success) {
+    const scanner = document.getElementById('fingerprintScanner');
+    
+    if (scanner) {
+        scanner.classList.remove('scanning');
+        
+        if (success) {
+            scanner.classList.add('success');
+            hapticFeedback('heavy');
+            
+            // Show unlock success feedback
+            showUnlockSuccess();
+            
+            // Navigate to home after animation
             setTimeout(() => {
-                unlockHandle.style.animation = '';
-            }, 3000);
-        }, 15000);
-    }
-}
-
-function initializeUnlockGesture() {
-    const unlockHandle = document.getElementById('unlockHandle');
-    const lockscreen = document.querySelector('.lockscreen');
-    
-    if (!unlockHandle || !lockscreen) return;
-    
-    // Mouse events
-    unlockHandle.addEventListener('mousedown', startUnlock);
-    document.addEventListener('mousemove', handleUnlockMove);
-    document.addEventListener('mouseup', endUnlock);
-    
-    // Touch events
-    unlockHandle.addEventListener('touchstart', startUnlock);
-    document.addEventListener('touchmove', handleUnlockMove);
-    document.addEventListener('touchend', endUnlock);
-    
-    // Click to unlock (simple version)
-    unlockHandle.addEventListener('click', function(e) {
-        if (!isUnlocking) {
-            performUnlock();
-        }
-    });
-}
-
-function startUnlock(e) {
-    e.preventDefault();
-    isUnlocking = true;
-    unlockStartY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
-    
-    const unlockHandle = document.getElementById('unlockHandle');
-    if (unlockHandle) {
-        unlockHandle.classList.add('swiping');
-        unlockHandle.style.transform = 'scale(1.1)';
-    }
-    
-    hapticFeedback('light');
-}
-
-function handleUnlockMove(e) {
-    if (!isUnlocking) return;
-    
-    e.preventDefault();
-    const currentY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
-    const deltaY = unlockStartY - currentY;
-    
-    const unlockHandle = document.getElementById('unlockHandle');
-    if (unlockHandle && deltaY > 0) {
-        const progress = Math.min(deltaY / 100, 1);
-        unlockHandle.style.transform = `scale(${1.1 + progress * 0.2}) translateY(${-deltaY * 0.5}px)`;
-        unlockHandle.style.opacity = 1 - progress * 0.3;
-        
-        // Add glow effect based on progress
-        unlockHandle.style.boxShadow = `0 0 ${progress * 30}px rgba(255, 255, 255, ${progress * 0.8})`;
-        
-        // Trigger unlock if swiped far enough
-        if (deltaY > 80) {
-            performUnlock();
+                performUnlock();
+            }, 800);
+        } else {
+            scanner.classList.add('error');
+            hapticFeedback('heavy');
+            
+            setTimeout(() => {
+                scanner.classList.remove('error');
+                isScanning = false;
+            }, 1000);
         }
     }
 }
 
-function endUnlock(e) {
-    if (!isUnlocking) return;
+function showUnlockSuccess() {
+    const scanner = document.getElementById('fingerprintScanner');
+    if (!scanner) return;
     
-    isUnlocking = false;
-    const unlockHandle = document.getElementById('unlockHandle');
-    
-    if (unlockHandle) {
-        unlockHandle.classList.remove('swiping');
-        unlockHandle.style.transform = 'scale(1)';
-        unlockHandle.style.opacity = '1';
-        unlockHandle.style.boxShadow = '';
-    }
+    // Add success glow
+    scanner.style.background = 'rgba(76, 175, 80, 0.3)';
+    scanner.style.boxShadow = '0 0 30px rgba(76, 175, 80, 0.6)';
+    scanner.style.borderRadius = '50%';
 }
 
 function performUnlock() {
     const lockscreen = document.querySelector('.lockscreen');
-    const unlockHandle = document.getElementById('unlockHandle');
-    
-    if (unlockHandle) {
-        unlockHandle.style.animation = 'bounce 0.5s ease';
-    }
-    
-    hapticFeedback('medium');
     
     // Add unlock animation
     if (lockscreen) {
         lockscreen.classList.add('unlocking');
     }
     
-    // Show unlock success feedback
-    showUnlockSuccess();
-    
     // Navigate to home after animation
     setTimeout(() => {
         window.location.href = 'home.html';
     }, 800);
-}
-
-function showUnlockSuccess() {
-    const unlockHandle = document.getElementById('unlockHandle');
-    if (!unlockHandle) return;
-    
-    // Change icon to checkmark
-    const unlockIcon = unlockHandle.querySelector('.unlock-icon');
-    if (unlockIcon) {
-        unlockIcon.innerHTML = '<i class="ph ph-check"></i>';
-        unlockIcon.style.color = '#4CAF50';
-    }
-    
-    // Add success glow
-    unlockHandle.style.background = 'rgba(76, 175, 80, 0.3)';
-    unlockHandle.style.boxShadow = '0 0 30px rgba(76, 175, 80, 0.6)';
 }
 
 function updateLockScreenTime() {
@@ -291,16 +237,16 @@ function updateLockScreenTime() {
     function update() {
         const now = new Date();
         
-        const timeString = now.toLocaleTimeString('it-IT', {
+        const timeString = now.toLocaleTimeString('en-US', {
             hour: '2-digit',
             minute: '2-digit',
             hour12: false
         });
         
-        const dateString = now.toLocaleDateString('it-IT', {
-            weekday: 'long',
-            day: 'numeric',
-            month: 'long'
+        const dateString = now.toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'long',
+            day: 'numeric'
         });
         
         timeDisplay.textContent = timeString;
@@ -317,8 +263,6 @@ function initializeQuickActions() {
     
     quickActions.forEach(action => {
         action.addEventListener('click', function() {
-            const icon = this.querySelector('.action-icon').textContent;
-            
             // Add ripple effect
             const ripple = document.createElement('div');
             ripple.style.cssText = `
@@ -361,6 +305,34 @@ function initializeQuickActions() {
 
 // Initialize quick actions
 document.addEventListener('DOMContentLoaded', initializeQuickActions);
+
+// Listen for theme changes
+window.addEventListener('message', function(event) {
+    if (event.data.type === 'theme-change') {
+        applyWallpaperTheme(event.data.theme);
+    }
+});
+
+// Accessibility for lock screen
+function initializeLockAccessibility() {
+    const scanner = document.getElementById('fingerprintScanner');
+    
+    if (scanner) {
+        scanner.setAttribute('role', 'button');
+        scanner.setAttribute('aria-label', 'Scan fingerprint to unlock device');
+        scanner.setAttribute('tabindex', '0');
+        
+        scanner.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                startFingerprintScan();
+            }
+        });
+    }
+}
+
+// Initialize accessibility
+document.addEventListener('DOMContentLoaded', initializeLockAccessibility);
 
 // Emergency call functionality
 function initializeEmergencyCall() {
@@ -429,24 +401,3 @@ function closeEmergency() {
 
 // Initialize emergency call
 document.addEventListener('DOMContentLoaded', initializeEmergencyCall);
-
-// Accessibility for lock screen
-function initializeLockAccessibility() {
-    const unlockHandle = document.getElementById('unlockHandle');
-    
-    if (unlockHandle) {
-        unlockHandle.setAttribute('role', 'button');
-        unlockHandle.setAttribute('aria-label', 'Scorri per sbloccare il dispositivo');
-        unlockHandle.setAttribute('tabindex', '0');
-        
-        unlockHandle.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                performUnlock();
-            }
-        });
-    }
-}
-
-// Initialize accessibility
-document.addEventListener('DOMContentLoaded', initializeLockAccessibility);

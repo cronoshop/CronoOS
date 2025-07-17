@@ -1,4 +1,4 @@
-// Home Screen JavaScript - CronoOS
+// Home Screen JavaScript - CronoOS 2.0
 
 let installedApps = [];
 let isDragging = false;
@@ -6,6 +6,9 @@ let draggedElement = null;
 let isAirplaneModeEnabled = false;
 let isFlashlightEnabled = false;
 let isDoNotDisturbEnabled = false;
+let isHotspotEnabled = false;
+let isScreenRecordEnabled = false;
+let isPowerSavingEnabled = false;
 
 document.addEventListener('DOMContentLoaded', function() {
     initializeHomeScreen();
@@ -15,14 +18,113 @@ document.addEventListener('DOMContentLoaded', function() {
     setupAppDragAndDrop();
     listenForAppInstalls();
     initializeThemeListener();
+    initializeDynamicWallpaper();
+    initializeNavigationBar();
 });
+
+function initializeNavigationBar() {
+    const navBar = document.getElementById('navigationBar');
+    if (!navBar) return;
+    
+    // Check navigation style preference
+    const navStyle = localStorage.getItem('cronos_navigation_style') || 'gestures';
+    
+    if (navStyle === 'buttons') {
+        showNavigationButtons();
+    } else {
+        showGestureBar();
+    }
+    
+    // Add click handler for home gesture
+    navBar.addEventListener('click', function() {
+        // Already on home, could implement app switcher
+        hapticFeedback('light');
+    });
+}
+
+function showNavigationButtons() {
+    const navBar = document.getElementById('navigationBar');
+    if (!navBar) return;
+    
+    navBar.innerHTML = `
+        <div class="nav-buttons">
+            <button class="nav-btn back-btn" onclick="goBack()">
+                <i class="ph ph-arrow-left"></i>
+            </button>
+            <button class="nav-btn home-btn" onclick="goHome()">
+                <i class="ph ph-house"></i>
+            </button>
+            <button class="nav-btn recent-btn" onclick="showRecentApps()">
+                <i class="ph ph-squares-four"></i>
+            </button>
+        </div>
+    `;
+    
+    navBar.style.width = '100%';
+    navBar.style.height = '60px';
+    navBar.style.background = 'rgba(0, 0, 0, 0.8)';
+    navBar.style.borderRadius = '0';
+}
+
+function showGestureBar() {
+    const navBar = document.getElementById('navigationBar');
+    if (!navBar) return;
+    
+    navBar.innerHTML = '<div class="nav-indicator"></div>';
+    navBar.style.width = '134px';
+    navBar.style.height = '5px';
+    navBar.style.background = 'rgba(255, 255, 255, 0.8)';
+    navBar.style.borderRadius = '3px';
+}
+
+function initializeDynamicWallpaper() {
+    const wallpaper = document.getElementById('dynamicWallpaper');
+    if (!wallpaper) return;
+    
+    // Apply current theme colors
+    const savedTheme = localStorage.getItem('cronos_theme_color') || 'theme-blue';
+    applyWallpaperTheme(savedTheme);
+}
+
+function applyWallpaperTheme(themeName) {
+    const wallpaper = document.getElementById('dynamicWallpaper');
+    if (!wallpaper) return;
+    
+    const themes = {
+        'theme-blue': ['#007AFF', '#5AC8FA', '#0051D5'],
+        'theme-purple': ['#5856D6', '#AF52DE', '#7B68EE'],
+        'theme-pink': ['#FF2D92', '#FF69B4', '#C71585'],
+        'theme-green': ['#30D158', '#32D74B', '#228B22'],
+        'theme-orange': ['#FF9500', '#FFCC00', '#FF6B35'],
+        'theme-red': ['#FF3B30', '#FF6B6B', '#DC143C'],
+        'theme-teal': ['#5AC8FA', '#40E0D0', '#008B8B'],
+        'theme-indigo': ['#5856D6', '#6366F1', '#4338CA']
+    };
+    
+    const colors = themes[themeName] || themes['theme-blue'];
+    
+    wallpaper.style.background = `linear-gradient(135deg, ${colors[0]} 0%, ${colors[1]} 50%, ${colors[2]} 100%)`;
+    
+    // Update app icon colors to match theme
+    updateAppIconColors(colors[0]);
+}
+
+function updateAppIconColors(primaryColor) {
+    const appIcons = document.querySelectorAll('.app-icon-container');
+    appIcons.forEach((icon, index) => {
+        // Create variations of the primary color for different apps
+        const hue = (index * 30) % 360;
+        const saturation = 70 + (index * 10) % 30;
+        const lightness = 45 + (index * 5) % 20;
+        
+        icon.style.background = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+    });
+}
 
 function initializeThemeListener() {
     window.addEventListener('message', function(event) {
         if (event.data.type === 'theme-change') {
-            // Apply theme to current page
-            document.body.className = '';
-            document.body.classList.add(event.data.theme);
+            applyWallpaperTheme(event.data.theme);
             
             // Update CSS custom properties
             const root = document.documentElement;
@@ -32,6 +134,97 @@ function initializeThemeListener() {
             root.style.setProperty('--dynamic-accent', colors.accent);
         }
     });
+}
+
+function toggleHotspot() {
+    isHotspotEnabled = !isHotspotEnabled;
+    const hotspotToggle = document.getElementById('hotspotToggle');
+    const hotspotToggleItem = hotspotToggle?.closest('.toggle-item');
+    
+    if (hotspotToggleItem) {
+        hotspotToggleItem.classList.toggle('active', isHotspotEnabled);
+    }
+    
+    showToast(isHotspotEnabled ? 'Hotspot attivato' : 'Hotspot disattivato');
+    saveSettings();
+}
+
+function toggleScreenRecord() {
+    isScreenRecordEnabled = !isScreenRecordEnabled;
+    const recordToggle = document.getElementById('recordToggle');
+    const recordToggleItem = recordToggle?.closest('.toggle-item');
+    
+    if (recordToggleItem) {
+        recordToggleItem.classList.toggle('active', isScreenRecordEnabled);
+    }
+    
+    if (isScreenRecordEnabled) {
+        startScreenRecording();
+    } else {
+        stopScreenRecording();
+    }
+    
+    showToast(isScreenRecordEnabled ? 'Registrazione schermo avviata' : 'Registrazione schermo fermata');
+    saveSettings();
+}
+
+function togglePowerSaving() {
+    isPowerSavingEnabled = !isPowerSavingEnabled;
+    const powerToggle = document.getElementById('powerToggle');
+    const powerToggleItem = powerToggle?.closest('.toggle-item');
+    
+    if (powerToggleItem) {
+        powerToggleItem.classList.toggle('active', isPowerSavingEnabled);
+    }
+    
+    if (isPowerSavingEnabled) {
+        // Reduce animations and brightness
+        document.body.style.filter = 'brightness(0.8)';
+        document.documentElement.style.setProperty('--transition-fast', '0.1s');
+    } else {
+        document.body.style.filter = '';
+        document.documentElement.style.setProperty('--transition-fast', '0.2s');
+    }
+    
+    showToast(isPowerSavingEnabled ? 'Risparmio energetico attivato' : 'Risparmio energetico disattivato');
+    saveSettings();
+}
+
+function startScreenRecording() {
+    // Show recording indicator
+    const indicator = document.createElement('div');
+    indicator.id = 'recordingIndicator';
+    indicator.innerHTML = `
+        <div class="recording-dot"></div>
+        <span>REC</span>
+    `;
+    
+    indicator.style.cssText = `
+        position: fixed;
+        top: 50px;
+        left: 20px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(244, 67, 54, 0.9);
+        color: white;
+        padding: 8px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: bold;
+        z-index: 1000;
+        animation: slideInLeft 0.3s ease;
+    `;
+    
+    document.body.appendChild(indicator);
+}
+
+function stopScreenRecording() {
+    const indicator = document.getElementById('recordingIndicator');
+    if (indicator) {
+        indicator.style.animation = 'slideOutLeft 0.3s ease';
+        setTimeout(() => indicator.remove(), 300);
+    }
 }
 
 function toggleAirplaneMode() {
@@ -92,29 +285,14 @@ function initializeHomeScreen() {
     // Add staggered animation to app icons
     const appIcons = document.querySelectorAll('.app-icon');
     appIcons.forEach((icon, index) => {
-        icon.style.animationDelay = `${index * 0.05}s`;
+        icon.style.animationDelay = `${index * 0.1}s`;
         icon.classList.add('animate-fade-in');
     });
-    
-    // Add parallax effect to wallpaper
-    initializeParallax();
     
     // Initialize weather widget
     updateWeatherWidget();
     
-    console.log('CronoOS Home screen initialized');
-}
-
-function initializeParallax() {
-    const wallpaper = document.querySelector('.wallpaper');
-    if (!wallpaper) return;
-    
-    document.addEventListener('mousemove', function(e) {
-        const x = (e.clientX / window.innerWidth) * 100;
-        const y = (e.clientY / window.innerHeight) * 100;
-        
-        wallpaper.style.backgroundPosition = `${50 + (x - 50) * 0.1}% ${50 + (y - 50) * 0.1}%`;
-    });
+    console.log('CronoOS 2.0 Home screen initialized');
 }
 
 function updateWeatherWidget() {
@@ -166,7 +344,9 @@ function addAppToGrid(app) {
     appIcon.onclick = () => openInstalledApp(app.name);
     
     appIcon.innerHTML = `
-        <div class="icon ${app.iconClass}"><i class="${app.icon}"></i></div>
+        <div class="app-icon-container">
+            <i class="${app.icon}"></i>
+        </div>
         <span>${app.name}</span>
     `;
     
@@ -295,11 +475,11 @@ function showAppContextMenu(e, appId) {
     contextMenu.className = 'app-context-menu';
     contextMenu.innerHTML = `
         <div class="context-menu-item" onclick="uninstallApp(${appId})">
-            <i class="fas fa-trash"></i>
+            <i class="ph ph-trash"></i>
             <span>Disinstalla</span>
         </div>
         <div class="context-menu-item" onclick="showAppInfo(${appId})">
-            <i class="fas fa-info-circle"></i>
+            <i class="ph ph-info"></i>
             <span>Informazioni</span>
         </div>
     `;
@@ -309,12 +489,13 @@ function showAppContextMenu(e, appId) {
         top: ${e.clientY}px;
         left: ${e.clientX}px;
         background: var(--card-color);
-        border-radius: 8px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         z-index: 2000;
         animation: fadeIn 0.2s ease;
         backdrop-filter: blur(20px);
         border: 1px solid var(--divider-color);
+        overflow: hidden;
     `;
     
     document.body.appendChild(contextMenu);
@@ -391,14 +572,28 @@ function listenForAppInstalls() {
 
 function initializeQuickPanel() {
     const brightnessSlider = document.getElementById('brightnessSlider');
+    const volumeSlider = document.getElementById('volumeSlider');
+    
     if (brightnessSlider) {
         brightnessSlider.addEventListener('input', function() {
             updateBrightness(this.value);
         });
     }
     
+    if (volumeSlider) {
+        volumeSlider.addEventListener('input', function() {
+            updateVolume(this.value);
+        });
+    }
+    
     // Update toggle states
     updateToggleStates();
+}
+
+function updateVolume(value) {
+    // Apply volume changes
+    showToast(`Volume: ${value}%`);
+    saveSettings();
 }
 
 function updateToggleStates() {
@@ -408,6 +603,9 @@ function updateToggleStates() {
     const airplaneToggle = document.getElementById('airplaneToggle');
     const flashlightToggle = document.getElementById('flashlightToggle');
     const dndToggle = document.getElementById('dndToggle');
+    const hotspotToggle = document.getElementById('hotspotToggle');
+    const recordToggle = document.getElementById('recordToggle');
+    const powerToggle = document.getElementById('powerToggle');
     
     if (wifiToggle) {
         const wifiItem = wifiToggle.closest('.toggle-item');
@@ -438,6 +636,21 @@ function updateToggleStates() {
         const dndItem = dndToggle.closest('.toggle-item');
         dndItem.classList.toggle('active', isDoNotDisturbEnabled);
     }
+    
+    if (hotspotToggle) {
+        const hotspotItem = hotspotToggle.closest('.toggle-item');
+        hotspotItem.classList.toggle('active', isHotspotEnabled);
+    }
+    
+    if (recordToggle) {
+        const recordItem = recordToggle.closest('.toggle-item');
+        recordItem.classList.toggle('active', isScreenRecordEnabled);
+    }
+    
+    if (powerToggle) {
+        const powerItem = powerToggle.closest('.toggle-item');
+        powerItem.classList.toggle('active', isPowerSavingEnabled);
+    }
 }
 
 function initializeNotifications() {
@@ -447,11 +660,11 @@ function initializeNotifications() {
     
     // Simulate new notifications
     setTimeout(() => {
-        addNotification('fas fa-mobile-alt', 'Sistema', 'Aggiornamento disponibile', '1 min fa');
+        addNotification('ph ph-device-mobile', 'Sistema', 'Aggiornamento disponibile', '1 min fa');
     }, 5000);
     
     setTimeout(() => {
-        addNotification('fas fa-envelope', 'Gmail', 'Nuova email da lavoro', '3 min fa');
+        addNotification('ph ph-envelope', 'Gmail', 'Nuova email da lavoro', '3 min fa');
     }, 10000);
 }
 
@@ -480,202 +693,64 @@ function addNotification(icon, title, text, time) {
     }
 }
 
-// App icon interactions
-document.addEventListener('DOMContentLoaded', function() {
-    const appIcons = document.querySelectorAll('.app-icon');
-    
-    appIcons.forEach(icon => {
-        icon.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.05) translateY(-2px)';
-        });
-        
-        icon.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
-        });
-        
-        icon.addEventListener('mousedown', function() {
-            this.style.transform = 'scale(0.95)';
-        });
-        
-        icon.addEventListener('mouseup', function() {
-            this.style.transform = 'scale(1.05) translateY(-2px)';
-        });
-    });
-});
-
-// Dock interactions
-document.addEventListener('DOMContentLoaded', function() {
-    const dockItems = document.querySelectorAll('.dock-item');
-    
-    dockItems.forEach(item => {
-        item.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.15) translateY(-4px)';
-        });
-        
-        item.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1) translateY(0)';
-        });
-    });
-});
-
-// Dynamic wallpaper effects
-function initializeDynamicWallpaper() {
-    const wallpaper = document.querySelector('.wallpaper');
-    if (!wallpaper) return;
-    
-    const hour = new Date().getHours();
-    let gradient;
-    
-    if (hour >= 6 && hour < 12) {
-        // Morning
-        gradient = 'linear-gradient(135deg, #FF9500 0%, #FFCC00 50%, #5AC8FA 100%)';
-    } else if (hour >= 12 && hour < 18) {
-        // Afternoon
-        gradient = 'linear-gradient(135deg, #007AFF 0%, #5856D6 50%, #FF2D92 100%)';
-    } else if (hour >= 18 && hour < 22) {
-        // Evening
-        gradient = 'linear-gradient(135deg, #FF3B30 0%, #FF2D92 50%, #5856D6 100%)';
-    } else {
-        // Night
-        gradient = 'linear-gradient(135deg, #1C1C1E 0%, #2C2C2E 50%, #5856D6 100%)';
-    }
-    
-    wallpaper.style.background = gradient;
-    wallpaper.style.backgroundSize = '400% 400%';
+// Navigation functions
+function goBack() {
+    window.history.back();
 }
 
-// Initialize dynamic wallpaper
-document.addEventListener('DOMContentLoaded', function() {
-    initializeDynamicWallpaper();
-    
-    // Update wallpaper every hour
-    setInterval(initializeDynamicWallpaper, 3600000);
-});
-
-// Search functionality (for future implementation)
-function initializeSearch() {
-    const searchInput = document.getElementById('searchInput');
-    if (!searchInput) return;
-    
-    searchInput.addEventListener('input', debounce(function() {
-        const query = this.value.toLowerCase();
-        const appIcons = document.querySelectorAll('.app-icon');
-        
-        appIcons.forEach(icon => {
-            const appName = icon.querySelector('span').textContent.toLowerCase();
-            const shouldShow = appName.includes(query);
-            
-            icon.style.display = shouldShow ? 'flex' : 'none';
-            
-            if (shouldShow && query) {
-                icon.style.animation = 'pulse 0.5s ease';
-            }
-        });
-    }, 300));
+function showRecentApps() {
+    showToast('App recenti - Funzionalità in arrivo!');
 }
 
-// Widget interactions
-function initializeWidgets() {
-    const weatherWidget = document.querySelector('.weather-widget');
-    if (!weatherWidget) return;
-    
-    weatherWidget.addEventListener('click', function() {
-        // Could open weather app or show more details
-        showToast('Widget meteo');
-    });
-    
-    // Add swipe gestures for widgets
-    let startX = 0;
-    
-    weatherWidget.addEventListener('touchstart', function(e) {
-        startX = e.touches[0].clientX;
-    });
-    
-    weatherWidget.addEventListener('touchend', function(e) {
-        const endX = e.changedTouches[0].clientX;
-        const diff = startX - endX;
-        
-        if (Math.abs(diff) > 50) {
-            // Swipe detected - could switch between widgets
-            updateWeatherWidget();
-        }
-    });
-}
-
-// Initialize widgets
-document.addEventListener('DOMContentLoaded', function() {
-    initializeWidgets();
-});
-
-// App organization (drag and drop for future implementation)
-function initializeAppOrganization() {
-    const appIcons = document.querySelectorAll('.app-icon');
-    
-    appIcons.forEach(icon => {
-        icon.draggable = true;
-        
-        icon.addEventListener('dragstart', function(e) {
-            e.dataTransfer.setData('text/plain', '');
-            this.style.opacity = '0.5';
-        });
-        
-        icon.addEventListener('dragend', function() {
-            this.style.opacity = '1';
-        });
-        
-        icon.addEventListener('dragover', function(e) {
-            e.preventDefault();
-        });
-        
-        icon.addEventListener('drop', function(e) {
-            e.preventDefault();
-            // Could implement app reordering here
-            showToast('App riorganizzata');
-        });
-    });
-}
-
-// Performance monitoring
-function monitorPerformance() {
-    if ('performance' in window) {
-        window.addEventListener('load', function() {
-            const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
-            console.log(`CronoOS Home screen loaded in ${loadTime}ms`);
-        });
-    }
-}
-
-// Initialize performance monitoring
-document.addEventListener('DOMContentLoaded', monitorPerformance);
-
-// Accessibility improvements
-function initializeAccessibility() {
-    const appIcons = document.querySelectorAll('.app-icon');
-    
-    appIcons.forEach(icon => {
-        // Add keyboard navigation
-        icon.setAttribute('tabindex', '0');
-        
-        icon.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                this.click();
-            }
-        });
-        
-        // Add ARIA labels
-        const appName = icon.querySelector('span').textContent;
-        icon.setAttribute('aria-label', `Apri ${appName}`);
-        icon.setAttribute('role', 'button');
-    });
-}
-
-// Initialize accessibility
-document.addEventListener('DOMContentLoaded', initializeAccessibility);
-
-// Add CSS for context menu and drag effects
+// Add CSS for new features
 const homeStyles = document.createElement('style');
 homeStyles.textContent = `
+    .nav-buttons {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        padding: 0 20px;
+    }
+    
+    .nav-btn {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        padding: 12px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    
+    .nav-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .nav-btn:active {
+        transform: scale(0.95);
+    }
+    
+    .recording-dot {
+        width: 8px;
+        height: 8px;
+        background: white;
+        border-radius: 50%;
+        animation: pulse 1s infinite;
+    }
+    
+    @keyframes slideInLeft {
+        from { transform: translateX(-100%); }
+        to { transform: translateX(0); }
+    }
+    
+    @keyframes slideOutLeft {
+        from { transform: translateX(0); }
+        to { transform: translateX(-100%); }
+    }
+    
     .app-context-menu {
         min-width: 160px;
         overflow: hidden;
@@ -688,7 +763,7 @@ homeStyles.textContent = `
         padding: 12px 16px;
         cursor: pointer;
         transition: background-color 0.2s ease;
-        font-size: var(--font-size-sm);
+        font-size: 14px;
         color: var(--text-primary);
     }
     
@@ -696,38 +771,9 @@ homeStyles.textContent = `
         background: var(--surface-color);
     }
     
-    .context-menu-item:first-child {
-        border-radius: 8px 8px 0 0;
-    }
-    
-    .context-menu-item:last-child {
-        border-radius: 0 0 8px 8px;
-    }
-    
     .context-menu-item i {
         width: 16px;
         text-align: center;
-    }
-    
-    .app-icon.dragging {
-        opacity: 0.5;
-        transform: rotate(5deg);
-    }
-    
-    .installed-app {
-        position: relative;
-    }
-    
-    .installed-app::after {
-        content: '';
-        position: absolute;
-        top: -2px;
-        right: -2px;
-        width: 8px;
-        height: 8px;
-        background: var(--cronos-green);
-        border-radius: 50%;
-        border: 2px solid var(--card-color);
     }
 `;
 

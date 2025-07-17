@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lock Screen - One UI OS</title>
+    <title>Lock Screen - CronoOS 2.0</title>
     <link rel="stylesheet" href="styles/phosphor-icons.css">
     <link rel="stylesheet" href="styles/dynamic-theming.css">
     <link rel="stylesheet" href="styles/modern-ui.css">
@@ -12,34 +12,127 @@
 </head>
 <body>
     <div class="lockscreen">
-        <div class="wallpaper-lock"></div>
+        <div class="wallpaper-lock" id="lockWallpaper"></div>
+        
+        <!-- Status Bar -->
+        <div class="lock-status-bar">
+            <div class="status-left">
+                <span class="carrier">Nepnus</span>
+            </div>
+            <div class="status-right">
+                <span class="signal"><i class="ph ph-cell-signal-high"></i></span>
+                <span class="wifi"><i class="ph ph-wifi-high"></i></span>
+                <span class="battery">76<i class="ph ph-battery-charging"></i></span>
+            </div>
+        </div>
         
         <div class="lock-content">
-            <div class="lock-time">
-                <div class="time-display" id="lockTime">9:41</div>
-                <div class="date-display" id="lockDate">Lunedì, 6 Gennaio</div>
+            <!-- Lock Icon -->
+            <div class="lock-icon">
+                <i class="ph ph-lock"></i>
             </div>
             
+            <!-- Time Display -->
+            <div class="lock-time">
+                <div class="time-display" id="lockTime">12:50</div>
+                <div class="date-display" id="lockDate">Wed, August 21</div>
+            </div>
+            
+            <!-- Widgets -->
+            <div class="lock-widgets">
+                <div class="widget-row">
+                    <div class="widget small">
+                        <div class="widget-icon">📅</div>
+                        <div class="widget-text">21</div>
+                    </div>
+                    <div class="widget medium">
+                        <div class="widget-icon">🌡️</div>
+                        <div class="widget-text">72°</div>
+                        <div class="widget-subtext">Calendar<br>No events today</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Notifications -->
             <div class="lock-notifications">
                 <div class="lock-notification">
-                    <div class="notification-icon"><i class="ph ph-chat-circle"></i></div>
-                    <div class="notification-text">2 nuovi messaggi</div>
+                    <div class="notification-app-icon messages">
+                        <i class="ph ph-chat-circle-fill"></i>
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-header">
+                            <span class="notification-app">Messages</span>
+                            <span class="notification-time">Now</span>
+                        </div>
+                        <div class="notification-title">Toothless: wdym?</div>
+                    </div>
+                    <div class="notification-expand">
+                        <i class="ph ph-caret-down"></i>
+                    </div>
+                </div>
+                
+                <div class="lock-notification">
+                    <div class="notification-app-icon settings">
+                        <i class="ph ph-gear-fill"></i>
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-header">
+                            <span class="notification-app">Settings</span>
+                            <span class="notification-time">12:00</span>
+                        </div>
+                        <div class="notification-title">New software update available!</div>
+                    </div>
+                    <div class="notification-expand">
+                        <i class="ph ph-caret-down"></i>
+                    </div>
+                </div>
+                
+                <div class="lock-notification">
+                    <div class="notification-app-icon whatsapp">
+                        <i class="ph ph-whatsapp-logo"></i>
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-header">
+                            <span class="notification-app">WhatsApp</span>
+                            <span class="notification-time">11:12</span>
+                        </div>
+                        <div class="notification-title">I GOT SUSHI!</div>
+                    </div>
+                    <div class="notification-expand">
+                        <i class="ph ph-caret-down"></i>
+                    </div>
                 </div>
             </div>
             
-            <div class="unlock-area">
-                <div class="unlock-handle" id="unlockHandle">
-                    <div class="unlock-icon"><i class="ph ph-lock-open"></i></div>
+            <!-- Fingerprint Scanner -->
+            <div class="fingerprint-area">
+                <div class="fingerprint-scanner" id="fingerprintScanner" onclick="startFingerprintScan()">
+                    <div class="fingerprint-icon">
+                        <i class="ph ph-fingerprint"></i>
+                    </div>
+                    <div class="fingerprint-animation">
+                        <div class="scan-ring"></div>
+                        <div class="scan-ring"></div>
+                        <div class="scan-ring"></div>
+                    </div>
                 </div>
-                <div class="unlock-text">Scorri per sbloccare</div>
             </div>
             
+            <!-- Quick Actions -->
             <div class="quick-actions">
                 <div class="quick-action" onclick="openApp('camera')">
-                    <div class="action-icon"><i class="ph ph-camera"></i></div>
+                    <div class="action-icon">
+                        <i class="ph ph-flashlight"></i>
+                    </div>
                 </div>
-                <div class="quick-action" onclick="openApp('phone')">
-                    <div class="action-icon"><i class="ph ph-phone"></i></div>
+                <div class="quick-action center" onclick="startFingerprintScan()">
+                    <div class="action-text">Fast charging</div>
+                    <div class="action-subtext">Fully charged</div>
+                </div>
+                <div class="quick-action" onclick="openApp('camera')">
+                    <div class="action-icon">
+                        <i class="ph ph-camera"></i>
+                    </div>
                 </div>
             </div>
         </div>
