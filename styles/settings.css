@@ -1,0 +1,435 @@
+/* Settings App Styles */
+
+.settings-content {
+    padding: var(--spacing-md);
+}
+
+/* User Profile */
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    background: var(--card-color);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-lg);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.user-profile:hover {
+    background: var(--surface-color);
+}
+
+.profile-avatar {
+    width: 60px;
+    height: 60px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.profile-name {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.profile-email {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.profile-edit {
+    width: 40px;
+    height: 40px;
+    background: var(--surface-color);
+    border: none;
+    border-radius: 50%;
+    color: var(--text-secondary);
+    font-size: 16px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-edit:hover {
+    background: var(--divider-color);
+    color: var(--text-primary);
+}
+
+/* Settings Categories */
+.settings-categories {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.settings-category {
+    background: var(--card-color);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: all var(--transition-fast);
+}
+
+.category-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-lg);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.category-header:hover {
+    background: var(--surface-color);
+}
+
+.category-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.category-icon {
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    background: var(--surface-color);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.category-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.category-arrow {
+    font-size: 18px;
+    color: var(--text-secondary);
+    transition: transform var(--transition-fast);
+}
+
+.settings-category.expanded .category-arrow {
+    transform: rotate(90deg);
+}
+
+.category-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-normal);
+    background: var(--surface-color);
+}
+
+.settings-category.expanded .category-content {
+    max-height: 500px;
+}
+
+/* Setting Items */
+.setting-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-bottom: 1px solid var(--divider-color);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.setting-item:last-child {
+    border-bottom: none;
+}
+
+.setting-item:hover {
+    background: var(--divider-color);
+}
+
+.setting-info {
+    flex: 1;
+}
+
+.setting-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.setting-description {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.setting-control {
+    margin-left: var(--spacing-md);
+}
+
+.setting-control input[type="range"] {
+    width: 120px;
+    height: 4px;
+    background: var(--divider-color);
+    border-radius: 2px;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.setting-control input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.setting-control select {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--divider-color);
+    border-radius: var(--radius-sm);
+    background: var(--card-color);
+    color: var(--text-primary);
+    font-size: 14px;
+}
+
+/* Device Info Modal */
+.device-info {
+    text-align: center;
+    padding: var(--spacing-lg);
+}
+
+.device-image {
+    font-size: 64px;
+    margin-bottom: var(--spacing-lg);
+}
+
+.device-details {
+    text-align: left;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md) 0;
+    border-bottom: 1px solid var(--divider-color);
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.info-value {
+    font-size: 14px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: color var(--transition-fast);
+}
+
+.info-value:hover {
+    color: var(--primary-color);
+}
+
+/* Developer Options Modal */
+.easter-egg {
+    text-align: center;
+    padding: var(--spacing-lg);
+}
+
+.easter-egg-icon {
+    font-size: 64px;
+    margin-bottom: var(--spacing-md);
+    animation: bounce 1s;
+}
+
+.easter-egg p {
+    font-size: 16px;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.developer-options {
+    margin-top: var(--spacing-lg);
+    text-align: left;
+}
+
+.dev-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md) 0;
+    border-bottom: 1px solid var(--divider-color);
+}
+
+.dev-option:last-child {
+    border-bottom: none;
+}
+
+.dev-option span {
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+/* Animations */
+@keyframes settingSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.setting-item {
+    animation: settingSlideIn 0.3s ease;
+}
+
+.setting-item:nth-child(1) { animation-delay: 0.1s; }
+.setting-item:nth-child(2) { animation-delay: 0.2s; }
+.setting-item:nth-child(3) { animation-delay: 0.3s; }
+.setting-item:nth-child(4) { animation-delay: 0.4s; }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .settings-content {
+        padding: var(--spacing-sm);
+    }
+    
+    .user-profile {
+        padding: var(--spacing-md);
+    }
+    
+    .profile-avatar {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    .profile-name {
+        font-size: 16px;
+    }
+    
+    .profile-email {
+        font-size: 13px;
+    }
+    
+    .category-header {
+        padding: var(--spacing-md);
+    }
+    
+    .category-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+    }
+    
+    .category-title {
+        font-size: 15px;
+    }
+    
+    .setting-item {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    
+    .setting-title {
+        font-size: 15px;
+    }
+    
+    .setting-description {
+        font-size: 13px;
+    }
+    
+    .setting-control input[type="range"] {
+        width: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .user-profile {
+        gap: var(--spacing-sm);
+    }
+    
+    .profile-avatar {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+    
+    .profile-name {
+        font-size: 15px;
+    }
+    
+    .profile-email {
+        font-size: 12px;
+    }
+    
+    .profile-edit {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+    
+    .category-header {
+        padding: var(--spacing-sm);
+    }
+    
+    .category-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+    
+    .category-title {
+        font-size: 14px;
+    }
+    
+    .setting-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+    }
+    
+    .setting-control {
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    .setting-control input[type="range"] {
+        width: 100%;
+    }
+    
+    .device-image {
+        font-size: 48px;
+    }
+    
+    .easter-egg-icon {
+        font-size: 48px;
+    }
+    
+    .easter-egg p {
+        font-size: 14px;
+    }
+}

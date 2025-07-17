@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impostazioni - One UI OS</title>
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/settings.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="app-header">
+            <button class="back-btn" onclick="goHome()">←</button>
+            <h1>Impostazioni</h1>
+            <div class="header-actions">
+                <button class="header-btn">🔍</button>
+            </div>
+        </div>
+        
+        <div class="settings-content">
+            <!-- User Profile -->
+            <div class="user-profile">
+                <div class="profile-avatar">👤</div>
+                <div class="profile-info">
+                    <div class="profile-name">Mario Rossi</div>
+                    <div class="profile-email">mario.rossi@email.com</div>
+                </div>
+                <button class="profile-edit">✏️</button>
+            </div>
+            
+            <!-- Settings Categories -->
+            <div class="settings-categories">
+                <!-- Display -->
+                <div class="settings-category">
+                    <div class="category-header" onclick="toggleCategory('display')">
+                        <div class="category-info">
+                            <div class="category-icon">🖥️</div>
+                            <div class="category-title">Display</div>
+                        </div>
+                        <div class="category-arrow">›</div>
+                    </div>
+                    <div class="category-content" id="display">
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-title">Luminosità</div>
+                            </div>
+                            <div class="setting-control">
+                                <input type="range" id="brightnessControl" min="0" max="100" value="50">
+                            </div>
+                        </div>
+                        <div class="setting-item" onclick="toggleDarkMode()">
+                            <div class="setting-info">
+                                <div class="setting-title">Modalità Scura</div>
+                                <div class="setting-description">Attiva tema scuro</div>
+                            </div>
+                            <div class="setting-control">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="darkModeToggle">
+                                    <label for="darkModeToggle"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-title">Dimensione Font</div>
+                            </div>
+                            <div class="setting-control">
+                                <select id="fontSizeSelect">
+                                    <option value="small">Piccolo</option>
+                                    <option value="medium" selected>Medio</option>
+                                    <option value="large">Grande</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sound -->
+                <div class="settings-category">
+                    <div class="category-header" onclick="toggleCategory('sound')">
+                        <div class="category-info">
+                            <div class="category-icon">🔊</div>
+                            <div class="category-title">Suoni e Vibrazione</div>
+                        </div>
+                        <div class="category-arrow">›</div>
+                    </div>
+                    <div class="category-content" id="sound">
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-title">Volume Suoneria</div>
+                            </div>
+                            <div class="setting-control">
+                                <input type="range" id="ringtoneVolume" min="0" max="100" value="70">
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-title">Volume Media</div>
+                            </div>
+                            <div class="setting-control">
+                                <input type="range" id="mediaVolume" min="0" max="100" value="60">
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-title">Vibrazione</div>
+                                <div class="setting-description">Vibra per chiamate e notifiche</div>
+                            </div>
+                            <div class="setting-control">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="vibrationToggle" checked>
+                                    <label for="vibrationToggle"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Connectivity -->
+                <div class="settings-category">
+                    <div class="category-header" onclick="toggleCategory('connectivity')">
+                        <div class="category-info">
+                            <div class="category-icon">📶</div>
+                            <div class="category-title">Connessioni</div>
+                        </div>
+                        <div class="category-arrow">›</div>
+                    </div>
+                    <div class="category-content" id="connectivity">
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-title">Wi-Fi</div>
+                                <div class="setting-description">Casa_WiFi_5G</div>
+                            </div>
+                            <div class="setting-control">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="wifiToggle" checked>
+                                    <label for="wifiToggle"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-title">Bluetooth</div>
+                                <div class="setting-description">AirPods Pro</div>
+                            </div>
+                            <div class="setting-control">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="bluetoothToggle" checked>
+                                    <label for="bluetoothToggle"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-title">Dati Mobili</div>
+                                <div class="setting-description">TIM</div>
+                            </div>
+                            <div class="setting-control">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="mobileDataToggle" checked>
+                                    <label for="mobileDataToggle"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- About -->
+                <div class="settings-category">
+                    <div class="category-header" onclick="openAboutDevice()">
+                        <div class="category-info">
+                            <div class="category-icon">ℹ️</div>
+                            <div class="category-title">Informazioni Dispositivo</div>
+                        </div>
+                        <div class="category-arrow">›</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- About Device Modal -->
+        <div class="modal" id="aboutModal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Informazioni Dispositivo</h3>
+                    <button class="close-btn" onclick="closeAboutModal()">×</button>
+                </div>
+                
+                <div class="modal-body">
+                    <div class="device-info">
+                        <div class="device-image">📱</div>
+                        <div class="device-details">
+                            <div class="info-item">
+                                <div class="info-label">Modello</div>
+                                <div class="info-value">Galaxy S24 Ultra</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Versione Android</div>
+                                <div class="info-value">14</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">One UI</div>
+                                <div class="info-value">6.1</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Numero Build</div>
+                                <div class="info-value" onclick="handleBuildTap()">UP1A.231005.007</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">RAM</div>
+                                <div class="info-value">12 GB</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Memoria</div>
+                                <div class="info-value">256 GB</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Processore</div>
+                                <div class="info-value">Snapdragon 8 Gen 3</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Developer Options Modal -->
+        <div class="modal" id="developerModal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>🎉 Opzioni Sviluppatore Attivate!</h3>
+                    <button class="close-btn" onclick="closeDeveloperModal()">×</button>
+                </div>
+                
+                <div class="modal-body">
+                    <div class="easter-egg">
+                        <div class="easter-egg-icon">🐰</div>
+                        <p>Congratulazioni! Hai trovato l'easter egg!</p>
+                        <p>Sei ora uno sviluppatore Android! 🚀</p>
+                        <div class="developer-options">
+                            <div class="dev-option">
+                                <span>Debug USB</span>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="usbDebug">
+                                    <label for="usbDebug"></label>
+                                </div>
+                            </div>
+                            <div class="dev-option">
+                                <span>Mostra tocchi</span>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="showTouches">
+                                    <label for="showTouches"></label>
+                                </div>
+                            </div>
+                            <div class="dev-option">
+                                <span>Animazioni 0.5x</span>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="fastAnimations">
+                                    <label for="fastAnimations"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="scripts/global.js"></script>
+    <script src="scripts/settings.js"></script>
+</body>
+</html>

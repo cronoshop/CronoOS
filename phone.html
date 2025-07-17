@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telefono - One UI OS</title>
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/phone.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="app-header">
+            <button class="back-btn" onclick="goHome()">←</button>
+            <h1>Telefono</h1>
+            <div class="header-actions">
+                <button class="header-btn">⋮</button>
+            </div>
+        </div>
+        
+        <div class="phone-tabs">
+            <div class="tab active" onclick="switchTab('keypad')">Tastierino</div>
+            <div class="tab" onclick="switchTab('recents')">Recenti</div>
+            <div class="tab" onclick="switchTab('contacts')">Contatti</div>
+        </div>
+        
+        <div class="tab-content">
+            <!-- Keypad Tab -->
+            <div class="tab-panel active" id="keypad">
+                <div class="number-display">
+                    <input type="text" id="numberInput" placeholder="Inserisci numero" readonly>
+                </div>
+                
+                <div class="keypad">
+                    <div class="keypad-row">
+                        <button class="key" onclick="addNumber('1')">1<span></span></button>
+                        <button class="key" onclick="addNumber('2')">2<span>ABC</span></button>
+                        <button class="key" onclick="addNumber('3')">3<span>DEF</span></button>
+                    </div>
+                    <div class="keypad-row">
+                        <button class="key" onclick="addNumber('4')">4<span>GHI</span></button>
+                        <button class="key" onclick="addNumber('5')">5<span>JKL</span></button>
+                        <button class="key" onclick="addNumber('6')">6<span>MNO</span></button>
+                    </div>
+                    <div class="keypad-row">
+                        <button class="key" onclick="addNumber('7')">7<span>PQRS</span></button>
+                        <button class="key" onclick="addNumber('8')">8<span>TUV</span></button>
+                        <button class="key" onclick="addNumber('9')">9<span>WXYZ</span></button>
+                    </div>
+                    <div class="keypad-row">
+                        <button class="key" onclick="addNumber('*')">*</button>
+                        <button class="key" onclick="addNumber('0')">0<span>+</span></button>
+                        <button class="key" onclick="addNumber('#')">#</button>
+                    </div>
+                </div>
+                
+                <div class="call-actions">
+                    <button class="call-btn" onclick="makeCall()">📞</button>
+                    <button class="delete-btn" onclick="deleteNumber()">⌫</button>
+                </div>
+            </div>
+            
+            <!-- Recents Tab -->
+            <div class="tab-panel" id="recents">
+                <div class="call-list">
+                    <div class="call-item">
+                        <div class="call-info">
+                            <div class="caller-name">Marco Rossi</div>
+                            <div class="call-details">📞 Chiamata in uscita • 2 min fa</div>
+                        </div>
+                        <button class="call-back-btn" onclick="callBack('+39 123 456 789')">📞</button>
+                    </div>
+                    <div class="call-item">
+                        <div class="call-info">
+                            <div class="caller-name">Anna Bianchi</div>
+                            <div class="call-details">📞 Chiamata persa • 15 min fa</div>
+                        </div>
+                        <button class="call-back-btn" onclick="callBack('+39 987 654 321')">📞</button>
+                    </div>
+                    <div class="call-item">
+                        <div class="call-info">
+                            <div class="caller-name">Luca Verdi</div>
+                            <div class="call-details">📞 Chiamata in entrata • 1 ora fa</div>
+                        </div>
+                        <button class="call-back-btn" onclick="callBack('+39 555 123 456')">📞</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contacts Tab -->
+            <div class="tab-panel" id="contacts">
+                <div class="search-bar">
+                    <input type="text" placeholder="Cerca contatti..." id="contactSearch">
+                </div>
+                <div class="contacts-list">
+                    <div class="contact-item">
+                        <div class="contact-avatar">M</div>
+                        <div class="contact-info">
+                            <div class="contact-name">Marco Rossi</div>
+                            <div class="contact-number">+39 123 456 789</div>
+                        </div>
+                        <button class="contact-call-btn" onclick="callContact('+39 123 456 789')">📞</button>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-avatar">A</div>
+                        <div class="contact-info">
+                            <div class="contact-name">Anna Bianchi</div>
+                            <div class="contact-number">+39 987 654 321</div>
+                        </div>
+                        <button class="contact-call-btn" onclick="callContact('+39 987 654 321')">📞</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="scripts/global.js"></script>
+    <script src="scripts/phone.js"></script>
+</body>
+</html>

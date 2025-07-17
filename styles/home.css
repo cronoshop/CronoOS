@@ -1,0 +1,509 @@
+/* Home Screen Styles */
+
+.home-screen {
+    min-height: 100vh;
+    position: relative;
+    padding: 24px 0 80px 0;
+    overflow: hidden;
+}
+
+.wallpaper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    z-index: -1;
+}
+
+/* Widget Area */
+.widget-area {
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.weather-widget {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-lg);
+    color: white;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: fadeIn 0.8s ease;
+}
+
+.weather-temp {
+    font-size: 48px;
+    font-weight: 300;
+    margin-bottom: var(--spacing-sm);
+}
+
+.weather-desc {
+    font-size: 18px;
+    margin-bottom: var(--spacing-xs);
+    opacity: 0.9;
+}
+
+.weather-location {
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+/* App Grid */
+.app-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-lg);
+    padding: 0 var(--spacing-lg);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.app-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    animation: fadeIn 0.6s ease;
+    animation-fill-mode: both;
+}
+
+.app-icon:nth-child(1) { animation-delay: 0.1s; }
+.app-icon:nth-child(2) { animation-delay: 0.2s; }
+.app-icon:nth-child(3) { animation-delay: 0.3s; }
+.app-icon:nth-child(4) { animation-delay: 0.4s; }
+.app-icon:nth-child(5) { animation-delay: 0.5s; }
+.app-icon:nth-child(6) { animation-delay: 0.6s; }
+.app-icon:nth-child(7) { animation-delay: 0.7s; }
+.app-icon:nth-child(8) { animation-delay: 0.8s; }
+.app-icon:nth-child(9) { animation-delay: 0.9s; }
+.app-icon:nth-child(10) { animation-delay: 1.0s; }
+
+.app-icon:hover {
+    transform: scale(1.1);
+}
+
+.app-icon:active {
+    transform: scale(0.95);
+}
+
+.icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin-bottom: var(--spacing-sm);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all var(--transition-fast);
+}
+
+.app-icon:hover .icon {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.app-icon span {
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Specific App Icon Colors */
+.phone-icon {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+}
+
+.messages-icon {
+    background: linear-gradient(135deg, #2196F3, #1976D2);
+}
+
+.camera-icon {
+    background: linear-gradient(135deg, #FF9800, #F57C00);
+}
+
+.gallery-icon {
+    background: linear-gradient(135deg, #E91E63, #C2185B);
+}
+
+.music-icon {
+    background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+}
+
+.calendar-icon {
+    background: linear-gradient(135deg, #F44336, #D32F2F);
+}
+
+.clock-icon {
+    background: linear-gradient(135deg, #607D8B, #455A64);
+}
+
+.files-icon {
+    background: linear-gradient(135deg, #795548, #5D4037);
+}
+
+.playstore-icon {
+    background: linear-gradient(135deg, #4CAF50, #388E3C);
+}
+
+.settings-icon {
+    background: linear-gradient(135deg, #9E9E9E, #616161);
+}
+
+/* Dock */
+.dock {
+    position: fixed;
+    bottom: var(--spacing-lg);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: var(--spacing-md);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 100;
+    animation: slideInUp 0.8s ease;
+}
+
+.dock-item {
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.dock-item:hover {
+    transform: scale(1.2) translateY(-5px);
+}
+
+.dock-item:active {
+    transform: scale(1.1) translateY(-3px);
+}
+
+.dock-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Quick Panel */
+.quick-panel {
+    position: fixed;
+    top: 24px;
+    right: -400px;
+    width: 350px;
+    height: calc(100vh - 24px);
+    background: var(--card-color);
+    box-shadow: -4px 0 20px var(--shadow-color);
+    transition: right var(--transition-normal);
+    z-index: 1500;
+    overflow-y: auto;
+}
+
+.quick-panel.active {
+    right: 0;
+}
+
+.quick-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid var(--divider-color);
+}
+
+.quick-panel-header h3 {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.close-panel {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    transition: background-color var(--transition-fast);
+}
+
+.close-panel:hover {
+    background-color: var(--surface-color);
+}
+
+.quick-toggles {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+}
+
+.toggle-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-lg);
+    background: var(--surface-color);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.toggle-item:hover {
+    background: var(--divider-color);
+    transform: translateY(-2px);
+}
+
+.toggle-item.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+.toggle-icon {
+    font-size: 24px;
+    margin-bottom: var(--spacing-sm);
+    transition: transform var(--transition-fast);
+}
+
+.toggle-item:hover .toggle-icon {
+    transform: scale(1.1);
+}
+
+.toggle-item span {
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.brightness-control {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    border-top: 1px solid var(--divider-color);
+}
+
+.brightness-control input[type="range"] {
+    flex: 1;
+    height: 4px;
+    background: var(--divider-color);
+    border-radius: 2px;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.brightness-control input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Notifications Panel */
+.notifications-panel {
+    position: fixed;
+    top: 24px;
+    left: -400px;
+    width: 350px;
+    height: calc(100vh - 24px);
+    background: var(--card-color);
+    box-shadow: 4px 0 20px var(--shadow-color);
+    transition: left var(--transition-normal);
+    z-index: 1500;
+    overflow-y: auto;
+}
+
+.notifications-panel.active {
+    left: 0;
+}
+
+.notifications-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid var(--divider-color);
+}
+
+.notifications-header h3 {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.notifications-list {
+    padding: var(--spacing-md);
+}
+
+.notification-item {
+    display: flex;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--surface-color);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.notification-item:hover {
+    background: var(--divider-color);
+    transform: translateX(4px);
+}
+
+.notification-icon {
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.notification-content {
+    flex: 1;
+}
+
+.notification-title {
+    font-weight: 500;
+    margin-bottom: var(--spacing-xs);
+}
+
+.notification-text {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.notification-time {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--overlay-color);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-normal);
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Gesture Areas */
+.gesture-area {
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 50px;
+    z-index: 500;
+    cursor: pointer;
+}
+
+.gesture-area.top {
+    top: 0;
+}
+
+.gesture-area.bottom {
+    bottom: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .app-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--spacing-md);
+        padding: 0 var(--spacing-md);
+    }
+    
+    .icon {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+    }
+    
+    .app-icon span {
+        font-size: 11px;
+    }
+    
+    .quick-panel,
+    .notifications-panel {
+        width: 100%;
+    }
+    
+    .quick-panel {
+        right: -100%;
+    }
+    
+    .notifications-panel {
+        left: -100%;
+    }
+    
+    .dock {
+        bottom: var(--spacing-md);
+        padding: var(--spacing-sm);
+    }
+    
+    .dock-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .weather-widget {
+        margin: 0 var(--spacing-md);
+    }
+    
+    .weather-temp {
+        font-size: 36px;
+    }
+    
+    .app-grid {
+        gap: var(--spacing-sm);
+    }
+    
+    .icon {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+    
+    .app-icon span {
+        font-size: 10px;
+    }
+}

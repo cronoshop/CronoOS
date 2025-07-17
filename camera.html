@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotocamera - One UI OS</title>
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/camera.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="camera-view">
+            <div class="camera-header">
+                <button class="back-btn" onclick="goHome()">←</button>
+                <div class="camera-modes">
+                    <div class="mode active" onclick="switchMode('photo')">FOTO</div>
+                    <div class="mode" onclick="switchMode('video')">VIDEO</div>
+                    <div class="mode" onclick="switchMode('portrait')">RITRATTO</div>
+                </div>
+                <div class="camera-settings">
+                    <button class="setting-btn" onclick="toggleFlash()">⚡</button>
+                    <button class="setting-btn" onclick="toggleTimer()">⏱️</button>
+                </div>
+            </div>
+            
+            <div class="camera-viewfinder">
+                <div class="viewfinder-overlay">
+                    <div class="focus-indicator" id="focusIndicator"></div>
+                    <div class="grid-lines" id="gridLines">
+                        <div class="grid-line"></div>
+                        <div class="grid-line"></div>
+                        <div class="grid-line"></div>
+                        <div class="grid-line"></div>
+                    </div>
+                </div>
+                <div class="camera-preview">
+                    <div class="preview-placeholder">
+                        📷 Anteprima Fotocamera
+                    </div>
+                </div>
+            </div>
+            
+            <div class="camera-controls">
+                <div class="control-left">
+                    <button class="gallery-btn" onclick="openApp('gallery')">
+                        <div class="gallery-thumbnail">🖼️</div>
+                    </button>
+                </div>
+                
+                <div class="control-center">
+                    <button class="capture-btn" id="captureBtn" onclick="capturePhoto()">
+                        <div class="capture-inner"></div>
+                    </button>
+                </div>
+                
+                <div class="control-right">
+                    <button class="switch-camera-btn" onclick="switchCamera()">🔄</button>
+                </div>
+            </div>
+            
+            <div class="camera-bottom-controls">
+                <div class="zoom-control">
+                    <button class="zoom-btn" onclick="setZoom(1)">1x</button>
+                    <button class="zoom-btn" onclick="setZoom(2)">2x</button>
+                    <button class="zoom-btn" onclick="setZoom(5)">5x</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Flash Overlay -->
+        <div class="flash-overlay" id="flashOverlay"></div>
+        
+        <!-- Capture Success -->
+        <div class="capture-success" id="captureSuccess">
+            <div class="success-icon">✓</div>
+            <div class="success-text">Foto salvata</div>
+        </div>
+    </div>
+    
+    <script src="scripts/global.js"></script>
+    <script src="scripts/camera.js"></script>
+</body>
+</html>

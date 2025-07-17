@@ -1,1 +1,163 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One UI OS</title>
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/home.css">
+</head>
+<body>
+    <div class="status-bar">
+        <div class="status-left">
+            <span class="time" id="statusTime">9:41</span>
+        </div>
+        <div class="status-right">
+            <span class="signal">●●●●</span>
+            <span class="wifi">📶</span>
+            <span class="battery">🔋</span>
+        </div>
+    </div>
 
+    <!-- Quick Panel -->
+    <div class="quick-panel" id="quickPanel">
+        <div class="quick-panel-header">
+            <h3>Pannello Rapido</h3>
+            <button class="close-panel" onclick="toggleQuickPanel()">×</button>
+        </div>
+        <div class="quick-toggles">
+            <div class="toggle-item" onclick="toggleWifi()">
+                <div class="toggle-icon wifi-toggle" id="wifiToggle">📶</div>
+                <span>Wi-Fi</span>
+            </div>
+            <div class="toggle-item" onclick="toggleBluetooth()">
+                <div class="toggle-icon bluetooth-toggle" id="bluetoothToggle">🔵</div>
+                <span>Bluetooth</span>
+            </div>
+            <div class="toggle-item" onclick="toggleDarkMode()">
+                <div class="toggle-icon dark-toggle" id="darkToggle">🌙</div>
+                <span>Modalità Notte</span>
+            </div>
+            <div class="toggle-item" onclick="goToLockScreen()">
+                <div class="toggle-icon">🔒</div>
+                <span>Blocca</span>
+            </div>
+        </div>
+        <div class="brightness-control">
+            <span>🔅</span>
+            <input type="range" id="brightnessSlider" min="0" max="100" value="50">
+            <span>🔆</span>
+        </div>
+    </div>
+
+    <!-- Notifications Panel -->
+    <div class="notifications-panel" id="notificationsPanel">
+        <div class="notifications-header">
+            <h3>Notifiche</h3>
+            <button class="close-panel" onclick="toggleNotifications()">×</button>
+        </div>
+        <div class="notifications-list">
+            <div class="notification-item">
+                <div class="notification-icon">📱</div>
+                <div class="notification-content">
+                    <div class="notification-title">Messaggi</div>
+                    <div class="notification-text">Nuovo messaggio da Marco</div>
+                    <div class="notification-time">2 min fa</div>
+                </div>
+            </div>
+            <div class="notification-item">
+                <div class="notification-icon">📧</div>
+                <div class="notification-content">
+                    <div class="notification-title">Email</div>
+                    <div class="notification-text">3 nuove email</div>
+                    <div class="notification-time">5 min fa</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="closePanels()"></div>
+
+    <!-- Home Screen -->
+    <div class="home-screen">
+        <div class="wallpaper"></div>
+        
+        <!-- Widget Area -->
+        <div class="widget-area">
+            <div class="weather-widget">
+                <div class="weather-temp">22°</div>
+                <div class="weather-desc">Soleggiato</div>
+                <div class="weather-location">Milano</div>
+            </div>
+        </div>
+
+        <!-- App Grid -->
+        <div class="app-grid">
+            <div class="app-icon" onclick="openApp('phone')">
+                <div class="icon phone-icon">📞</div>
+                <span>Telefono</span>
+            </div>
+            <div class="app-icon" onclick="openApp('messages')">
+                <div class="icon messages-icon">💬</div>
+                <span>Messaggi</span>
+            </div>
+            <div class="app-icon" onclick="openApp('camera')">
+                <div class="icon camera-icon">📷</div>
+                <span>Fotocamera</span>
+            </div>
+            <div class="app-icon" onclick="openApp('gallery')">
+                <div class="icon gallery-icon">🖼️</div>
+                <span>Galleria</span>
+            </div>
+            <div class="app-icon" onclick="openApp('music')">
+                <div class="icon music-icon">🎵</div>
+                <span>Musica</span>
+            </div>
+            <div class="app-icon" onclick="openApp('calendar')">
+                <div class="icon calendar-icon">📅</div>
+                <span>Calendario</span>
+            </div>
+            <div class="app-icon" onclick="openApp('clock')">
+                <div class="icon clock-icon">⏰</div>
+                <span>Orologio</span>
+            </div>
+            <div class="app-icon" onclick="openApp('files')">
+                <div class="icon files-icon">📁</div>
+                <span>File</span>
+            </div>
+            <div class="app-icon" onclick="openApp('playstore')">
+                <div class="icon playstore-icon">🏪</div>
+                <span>Play Store</span>
+            </div>
+            <div class="app-icon" onclick="openApp('settings')">
+                <div class="icon settings-icon">⚙️</div>
+                <span>Impostazioni</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dock -->
+    <div class="dock">
+        <div class="dock-item" onclick="openApp('phone')">
+            <div class="dock-icon">📞</div>
+        </div>
+        <div class="dock-item" onclick="openApp('messages')">
+            <div class="dock-icon">💬</div>
+        </div>
+        <div class="dock-item" onclick="openApp('camera')">
+            <div class="dock-icon">📷</div>
+        </div>
+        <div class="dock-item" onclick="openApp('music')">
+            <div class="dock-icon">🎵</div>
+        </div>
+    </div>
+
+    <!-- Gesture Areas -->
+    <div class="gesture-area top" ontouchstart="handleSwipeDown()" onmousedown="handleSwipeDown()"></div>
+    <div class="gesture-area bottom" ontouchstart="handleSwipeUp()" onmousedown="handleSwipeUp()"></div>
+
+    <script src="scripts/global.js"></script>
+    <script src="scripts/home.js"></script>
+</body>
+</html>

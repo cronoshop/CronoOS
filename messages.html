@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messaggi - One UI OS</title>
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/messages.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="app-header">
+            <button class="back-btn" onclick="goHome()">←</button>
+            <h1>Messaggi</h1>
+            <div class="header-actions">
+                <button class="header-btn">✏️</button>
+            </div>
+        </div>
+        
+        <div class="search-bar">
+            <input type="text" placeholder="Cerca messaggi..." id="messageSearch">
+        </div>
+        
+        <div class="conversations-list" id="conversationsList">
+            <div class="conversation-item" onclick="openConversation('Marco Rossi')">
+                <div class="conversation-avatar">M</div>
+                <div class="conversation-info">
+                    <div class="conversation-header">
+                        <div class="conversation-name">Marco Rossi</div>
+                        <div class="conversation-time">14:30</div>
+                    </div>
+                    <div class="conversation-preview">Ciao! Come stai?</div>
+                </div>
+                <div class="unread-badge">2</div>
+            </div>
+            
+            <div class="conversation-item" onclick="openConversation('Anna Bianchi')">
+                <div class="conversation-avatar">A</div>
+                <div class="conversation-info">
+                    <div class="conversation-header">
+                        <div class="conversation-name">Anna Bianchi</div>
+                        <div class="conversation-time">Ieri</div>
+                    </div>
+                    <div class="conversation-preview">Perfetto, ci sentiamo domani</div>
+                </div>
+            </div>
+            
+            <div class="conversation-item" onclick="openConversation('Gruppo Famiglia')">
+                <div class="conversation-avatar">👨‍👩‍👧‍👦</div>
+                <div class="conversation-info">
+                    <div class="conversation-header">
+                        <div class="conversation-name">Gruppo Famiglia</div>
+                        <div class="conversation-time">Ieri</div>
+                    </div>
+                    <div class="conversation-preview">Mamma: Cena domenica alle 13:00</div>
+                </div>
+                <div class="unread-badge">5</div>
+            </div>
+        </div>
+        
+        <!-- Chat View (Hidden by default) -->
+        <div class="chat-view" id="chatView" style="display: none;">
+            <div class="chat-header">
+                <button class="back-btn" onclick="closeChatView()">←</button>
+                <div class="chat-contact-info">
+                    <div class="chat-avatar" id="chatAvatar">M</div>
+                    <div class="chat-contact-details">
+                        <div class="chat-contact-name" id="chatContactName">Marco Rossi</div>
+                        <div class="chat-status">Online</div>
+                    </div>
+                </div>
+                <div class="chat-actions">
+                    <button class="header-btn">📞</button>
+                    <button class="header-btn">📹</button>
+                </div>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <div class="message received">
+                    <div class="message-bubble">Ciao! Come stai?</div>
+                    <div class="message-time">14:25</div>
+                </div>
+                <div class="message sent">
+                    <div class="message-bubble">Tutto bene, grazie! Tu?</div>
+                    <div class="message-time">14:27</div>
+                </div>
+                <div class="message received">
+                    <div class="message-bubble">Benissimo! Ci vediamo stasera?</div>
+                    <div class="message-time">14:30</div>
+                </div>
+            </div>
+            
+            <div class="chat-input-area">
+                <button class="attachment-btn">📎</button>
+                <input type="text" class="message-input" placeholder="Scrivi un messaggio..." id="messageInput">
+                <button class="send-btn" onclick="sendMessage()">➤</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="scripts/global.js"></script>
+    <script src="scripts/messages.js"></script>
+</body>
+</html>

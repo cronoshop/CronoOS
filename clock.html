@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orologio - One UI OS</title>
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/clock.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="app-header">
+            <button class="back-btn" onclick="goHome()">←</button>
+            <h1>Orologio</h1>
+            <div class="header-actions">
+                <button class="header-btn">⋮</button>
+            </div>
+        </div>
+        
+        <div class="clock-tabs">
+            <div class="tab active" onclick="switchTab('alarm')">Sveglia</div>
+            <div class="tab" onclick="switchTab('timer')">Timer</div>
+            <div class="tab" onclick="switchTab('stopwatch')">Cronometro</div>
+            <div class="tab" onclick="switchTab('worldclock')">Fuso Orario</div>
+        </div>
+        
+        <div class="tab-content">
+            <!-- Alarm Tab -->
+            <div class="tab-panel active" id="alarm">
+                <div class="alarms-list">
+                    <div class="alarm-item">
+                        <div class="alarm-info">
+                            <div class="alarm-time">07:00</div>
+                            <div class="alarm-label">Sveglia mattutina</div>
+                            <div class="alarm-days">Lun, Mar, Mer, Gio, Ven</div>
+                        </div>
+                        <div class="alarm-toggle">
+                            <input type="checkbox" id="alarm1" checked>
+                            <label for="alarm1" class="toggle-switch"></label>
+                        </div>
+                    </div>
+                    
+                    <div class="alarm-item">
+                        <div class="alarm-info">
+                            <div class="alarm-time">22:30</div>
+                            <div class="alarm-label">Ora di dormire</div>
+                            <div class="alarm-days">Tutti i giorni</div>
+                        </div>
+                        <div class="alarm-toggle">
+                            <input type="checkbox" id="alarm2">
+                            <label for="alarm2" class="toggle-switch"></label>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="add-alarm-btn" onclick="addAlarm()">+ Aggiungi Sveglia</button>
+            </div>
+            
+            <!-- Timer Tab -->
+            <div class="tab-panel" id="timer">
+                <div class="timer-display">
+                    <div class="timer-time" id="timerDisplay">00:00:00</div>
+                </div>
+                
+                <div class="timer-picker">
+                    <div class="time-picker">
+                        <div class="picker-column">
+                            <label>Ore</label>
+                            <input type="number" id="timerHours" min="0" max="23" value="0">
+                        </div>
+                        <div class="picker-column">
+                            <label>Minuti</label>
+                            <input type="number" id="timerMinutes" min="0" max="59" value="5">
+                        </div>
+                        <div class="picker-column">
+                            <label>Secondi</label>
+                            <input type="number" id="timerSeconds" min="0" max="59" value="0">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timer-controls">
+                    <button class="timer-btn" id="startTimerBtn" onclick="startTimer()">Avvia</button>
+                    <button class="timer-btn" id="pauseTimerBtn" onclick="pauseTimer()" style="display: none;">Pausa</button>
+                    <button class="timer-btn" id="resetTimerBtn" onclick="resetTimer()" style="display: none;">Reset</button>
+                </div>
+            </div>
+            
+            <!-- Stopwatch Tab -->
+            <div class="tab-panel" id="stopwatch">
+                <div class="stopwatch-display">
+                    <div class="stopwatch-time" id="stopwatchDisplay">00:00:00</div>
+                    <div class="stopwatch-milliseconds" id="stopwatchMs">00</div>
+                </div>
+                
+                <div class="laps-list" id="lapsList">
+                    <!-- Laps will be added here -->
+                </div>
+                
+                <div class="stopwatch-controls">
+                    <button class="stopwatch-btn" id="startStopwatchBtn" onclick="startStopwatch()">Avvia</button>
+                    <button class="stopwatch-btn" id="lapBtn" onclick="addLap()" style="display: none;">Giro</button>
+                    <button class="stopwatch-btn" id="pauseStopwatchBtn" onclick="pauseStopwatch()" style="display: none;">Pausa</button>
+                    <button class="stopwatch-btn" id="resetStopwatchBtn" onclick="resetStopwatch()" style="display: none;">Reset</button>
+                </div>
+            </div>
+            
+            <!-- World Clock Tab -->
+            <div class="tab-panel" id="worldclock">
+                <div class="world-clocks-list">
+                    <div class="world-clock-item">
+                        <div class="clock-info">
+                            <div class="clock-city">Milano</div>
+                            <div class="clock-country">Italia</div>
+                        </div>
+                        <div class="clock-time">
+                            <div class="clock-current-time" id="milanTime">09:41</div>
+                            <div class="clock-date">Oggi</div>
+                        </div>
+                    </div>
+                    
+                    <div class="world-clock-item">
+                        <div class="clock-info">
+                            <div class="clock-city">New York</div>
+                            <div class="clock-country">Stati Uniti</div>
+                        </div>
+                        <div class="clock-time">
+                            <div class="clock-current-time" id="nyTime">03:41</div>
+                            <div class="clock-date">Oggi</div>
+                        </div>
+                    </div>
+                    
+                    <div class="world-clock-item">
+                        <div class="clock-info">
+                            <div class="clock-city">Tokyo</div>
+                            <div class="clock-country">Giappone</div>
+                        </div>
+                        <div class="clock-time">
+                            <div class="clock-current-time" id="tokyoTime">17:41</div>
+                            <div class="clock-date">Oggi</div>
+                        </div>
+                    </div>
+                    
+                    <div class="world-clock-item">
+                        <div class="clock-info">
+                            <div class="clock-city">Londra</div>
+                            <div class="clock-country">Regno Unito</div>
+                        </div>
+                        <div class="clock-time">
+                            <div class="clock-current-time" id="londonTime">08:41</div>
+                            <div class="clock-date">Oggi</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="add-clock-btn" onclick="addWorldClock()">+ Aggiungi Fuso Orario</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="scripts/global.js"></script>
+    <script src="scripts/clock.js"></script>
+</body>
+</html>

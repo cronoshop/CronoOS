@@ -1,0 +1,360 @@
+/* Phone App Styles */
+
+.phone-tabs {
+    display: flex;
+    background-color: var(--card-color);
+    border-bottom: 1px solid var(--divider-color);
+}
+
+.phone-tabs .tab {
+    flex: 1;
+    padding: var(--spacing-md);
+    text-align: center;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--text-secondary);
+    border-bottom: 2px solid transparent;
+    transition: all var(--transition-fast);
+}
+
+.phone-tabs .tab.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+.phone-tabs .tab:hover {
+    background-color: var(--surface-color);
+}
+
+/* Keypad Styles */
+.number-display {
+    padding: var(--spacing-xl);
+    text-align: center;
+    background: var(--card-color);
+    border-bottom: 1px solid var(--divider-color);
+}
+
+.number-display input {
+    font-size: 24px;
+    font-weight: 300;
+    text-align: center;
+    border: none;
+    background: transparent;
+    color: var(--text-primary);
+    width: 100%;
+    max-width: 300px;
+}
+
+.number-display input:focus {
+    outline: none;
+}
+
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--divider-color);
+    margin: 0;
+}
+
+.keypad-row {
+    display: contents;
+}
+
+.key {
+    background: var(--card-color);
+    border: none;
+    padding: var(--spacing-xl);
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80px;
+}
+
+.key:hover {
+    background: var(--surface-color);
+}
+
+.key:active {
+    background: var(--divider-color);
+    transform: scale(0.95);
+}
+
+.key span {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: var(--spacing-xs);
+    font-weight: 400;
+}
+
+.call-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-xl);
+    padding: var(--spacing-xl);
+    background: var(--card-color);
+}
+
+.call-btn {
+    width: 60px;
+    height: 60px;
+    background: var(--oneui-green);
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.call-btn:hover {
+    background: #45a049;
+    transform: scale(1.05);
+}
+
+.call-btn:active {
+    transform: scale(0.95);
+}
+
+.delete-btn {
+    width: 50px;
+    height: 50px;
+    background: var(--surface-color);
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-btn:hover {
+    background: var(--divider-color);
+    color: var(--text-primary);
+}
+
+/* Call List Styles */
+.call-list {
+    padding: var(--spacing-md);
+}
+
+.call-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-md);
+    background: var(--card-color);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.call-item:hover {
+    background: var(--surface-color);
+    transform: translateX(4px);
+}
+
+.call-info {
+    flex: 1;
+}
+
+.caller-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.call-details {
+    font-size: 14px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.call-back-btn {
+    width: 40px;
+    height: 40px;
+    background: var(--oneui-green);
+    border: none;
+    border-radius: 50%;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.call-back-btn:hover {
+    background: #45a049;
+    transform: scale(1.05);
+}
+
+/* Contacts Styles */
+.search-bar {
+    padding: var(--spacing-md);
+    background: var(--card-color);
+    border-bottom: 1px solid var(--divider-color);
+}
+
+.search-bar input {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: 1px solid var(--divider-color);
+    border-radius: var(--radius-md);
+    font-size: 16px;
+    background: var(--surface-color);
+    color: var(--text-primary);
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.contacts-list {
+    padding: var(--spacing-md);
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--card-color);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.contact-item:hover {
+    background: var(--surface-color);
+    transform: translateX(4px);
+}
+
+.contact-avatar {
+    width: 50px;
+    height: 50px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 500;
+    flex-shrink: 0;
+}
+
+.contact-info {
+    flex: 1;
+}
+
+.contact-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.contact-number {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.contact-call-btn {
+    width: 40px;
+    height: 40px;
+    background: var(--oneui-green);
+    border: none;
+    border-radius: 50%;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-call-btn:hover {
+    background: #45a049;
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .keypad {
+        gap: 2px;
+    }
+    
+    .key {
+        min-height: 70px;
+        font-size: 20px;
+    }
+    
+    .key span {
+        font-size: 10px;
+    }
+    
+    .call-btn {
+        width: 55px;
+        height: 55px;
+        font-size: 20px;
+    }
+    
+    .delete-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .number-display input {
+        font-size: 20px;
+    }
+    
+    .key {
+        min-height: 60px;
+        font-size: 18px;
+        padding: var(--spacing-md);
+    }
+    
+    .call-actions {
+        padding: var(--spacing-lg);
+        gap: var(--spacing-lg);
+    }
+    
+    .contact-avatar {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+    
+    .contact-name {
+        font-size: 15px;
+    }
+    
+    .contact-number {
+        font-size: 13px;
+    }
+}

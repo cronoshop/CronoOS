@@ -1,0 +1,414 @@
+/* Play Store App Styles */
+
+.store-tabs {
+    display: flex;
+    background-color: var(--card-color);
+    border-bottom: 1px solid var(--divider-color);
+}
+
+.store-tabs .tab {
+    flex: 1;
+    padding: var(--spacing-md);
+    text-align: center;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--text-secondary);
+    border-bottom: 2px solid transparent;
+    transition: all var(--transition-fast);
+}
+
+.store-tabs .tab.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+.store-tabs .tab:hover {
+    background-color: var(--surface-color);
+}
+
+/* Featured Section */
+.featured-section {
+    padding: var(--spacing-lg);
+    background: var(--card-color);
+    border-bottom: 1px solid var(--divider-color);
+}
+
+.featured-section h3 {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.featured-apps {
+    display: flex;
+    gap: var(--spacing-lg);
+    overflow-x: auto;
+    padding-bottom: var(--spacing-sm);
+}
+
+.featured-app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.featured-app:hover {
+    transform: translateY(-2px);
+}
+
+.app-icon-large {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--oneui-green), var(--oneui-blue));
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    color: white;
+    margin-bottom: var(--spacing-sm);
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.app-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+/* Apps List */
+.apps-list,
+.games-list,
+.updates-list {
+    padding: var(--spacing-md);
+}
+
+.apps-list h3,
+.games-list h3,
+.updates-list h3 {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.app-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--card-color);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.app-item:hover {
+    background: var(--surface-color);
+    transform: translateX(4px);
+}
+
+.app-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--oneui-green), var(--oneui-blue));
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.app-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.app-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.app-developer {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-xs);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.app-rating {
+    font-size: 12px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.install-btn,
+.update-btn {
+    background: var(--oneui-green);
+    color: white;
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-xl);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    min-width: 80px;
+}
+
+.install-btn:hover,
+.update-btn:hover {
+    background: #45a049;
+    transform: translateY(-1px);
+}
+
+.install-btn:active,
+.update-btn:active {
+    transform: translateY(0);
+}
+
+.install-btn.installing {
+    background: var(--text-secondary);
+    cursor: not-allowed;
+}
+
+.update-all-btn {
+    width: 100%;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    margin-top: var(--spacing-md);
+}
+
+.update-all-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+/* Installation Progress */
+.install-progress {
+    position: fixed;
+    bottom: 80px;
+    left: var(--spacing-md);
+    right: var(--spacing-md);
+    background: var(--card-color);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    box-shadow: 0 4px 20px var(--shadow-color);
+    z-index: 1000;
+    animation: slideInUp 0.3s ease;
+}
+
+.progress-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.progress-app-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--oneui-green), var(--oneui-blue));
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: white;
+    flex-shrink: 0;
+}
+
+.progress-details {
+    flex: 1;
+}
+
+.progress-app-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.progress-status {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.progress-bar {
+    height: 4px;
+    background: var(--surface-color);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: var(--spacing-sm);
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--oneui-green);
+    border-radius: 2px;
+    transition: width var(--transition-fast);
+    width: 0%;
+}
+
+.progress-percentage {
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+/* App Details (for future expansion) */
+.app-screenshots {
+    display: flex;
+    gap: var(--spacing-sm);
+    overflow-x: auto;
+    padding: var(--spacing-md);
+}
+
+.screenshot {
+    width: 200px;
+    height: 350px;
+    background: var(--surface-color);
+    border-radius: var(--radius-md);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    color: var(--text-secondary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .featured-apps {
+        gap: var(--spacing-md);
+    }
+    
+    .featured-app {
+        min-width: 80px;
+    }
+    
+    .app-icon-large {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+    }
+    
+    .app-title {
+        font-size: 12px;
+    }
+    
+    .app-item {
+        padding: var(--spacing-sm);
+    }
+    
+    .app-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    .app-name {
+        font-size: 15px;
+    }
+    
+    .app-developer {
+        font-size: 13px;
+    }
+    
+    .app-rating {
+        font-size: 11px;
+    }
+    
+    .install-btn,
+    .update-btn {
+        padding: var(--spacing-xs) var(--spacing-md);
+        font-size: 12px;
+        min-width: 70px;
+    }
+}
+
+@media (max-width: 480px) {
+    .featured-section {
+        padding: var(--spacing-md);
+    }
+    
+    .featured-section h3,
+    .apps-list h3,
+    .games-list h3,
+    .updates-list h3 {
+        font-size: 16px;
+    }
+    
+    .featured-app {
+        min-width: 70px;
+    }
+    
+    .app-icon-large {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    .app-item {
+        gap: var(--spacing-sm);
+    }
+    
+    .app-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+    
+    .app-name {
+        font-size: 14px;
+    }
+    
+    .app-developer {
+        font-size: 12px;
+    }
+    
+    .install-progress {
+        bottom: 60px;
+        left: var(--spacing-sm);
+        right: var(--spacing-sm);
+    }
+    
+    .progress-app-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+    
+    .progress-app-name {
+        font-size: 13px;
+    }
+    
+    .progress-status {
+        font-size: 11px;
+    }
+}

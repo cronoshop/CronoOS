@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Store - One UI OS</title>
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/playstore.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="app-header">
+            <button class="back-btn" onclick="goHome()">←</button>
+            <h1>Play Store</h1>
+            <div class="header-actions">
+                <button class="header-btn">🔍</button>
+                <button class="header-btn">👤</button>
+            </div>
+        </div>
+        
+        <div class="search-bar">
+            <input type="text" placeholder="Cerca app e giochi..." id="storeSearch">
+        </div>
+        
+        <div class="store-tabs">
+            <div class="tab active" onclick="switchTab('apps')">App</div>
+            <div class="tab" onclick="switchTab('games')">Giochi</div>
+            <div class="tab" onclick="switchTab('updates')">Aggiornamenti</div>
+        </div>
+        
+        <div class="tab-content">
+            <!-- Apps Tab -->
+            <div class="tab-panel active" id="apps">
+                <div class="featured-section">
+                    <h3>App in evidenza</h3>
+                    <div class="featured-apps">
+                        <div class="featured-app" onclick="viewApp('WhatsApp')">
+                            <div class="app-icon-large">💬</div>
+                            <div class="app-title">WhatsApp</div>
+                        </div>
+                        <div class="featured-app" onclick="viewApp('Instagram')">
+                            <div class="app-icon-large">📷</div>
+                            <div class="app-title">Instagram</div>
+                        </div>
+                        <div class="featured-app" onclick="viewApp('Spotify')">
+                            <div class="app-icon-large">🎵</div>
+                            <div class="app-title">Spotify</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="apps-list">
+                    <h3>App popolari</h3>
+                    
+                    <div class="app-item" onclick="viewApp('WhatsApp')">
+                        <div class="app-icon">💬</div>
+                        <div class="app-info">
+                            <div class="app-name">WhatsApp Messenger</div>
+                            <div class="app-developer">WhatsApp LLC</div>
+                            <div class="app-rating">⭐ 4.1 • Gratis</div>
+                        </div>
+                        <button class="install-btn" onclick="installApp('WhatsApp', event)">Installa</button>
+                    </div>
+                    
+                    <div class="app-item" onclick="viewApp('Instagram')">
+                        <div class="app-icon">📷</div>
+                        <div class="app-info">
+                            <div class="app-name">Instagram</div>
+                            <div class="app-developer">Instagram</div>
+                            <div class="app-rating">⭐ 4.3 • Gratis</div>
+                        </div>
+                        <button class="install-btn" onclick="installApp('Instagram', event)">Installa</button>
+                    </div>
+                    
+                    <div class="app-item" onclick="viewApp('Spotify')">
+                        <div class="app-icon">🎵</div>
+                        <div class="app-info">
+                            <div class="app-name">Spotify</div>
+                            <div class="app-developer">Spotify AB</div>
+                            <div class="app-rating">⭐ 4.4 • Gratis</div>
+                        </div>
+                        <button class="install-btn" onclick="installApp('Spotify', event)">Installa</button>
+                    </div>
+                    
+                    <div class="app-item" onclick="viewApp('Netflix')">
+                        <div class="app-icon">🎬</div>
+                        <div class="app-info">
+                            <div class="app-name">Netflix</div>
+                            <div class="app-developer">Netflix, Inc.</div>
+                            <div class="app-rating">⭐ 4.2 • Gratis</div>
+                        </div>
+                        <button class="install-btn" onclick="installApp('Netflix', event)">Installa</button>
+                    </div>
+                    
+                    <div class="app-item" onclick="viewApp('YouTube')">
+                        <div class="app-icon">📺</div>
+                        <div class="app-info">
+                            <div class="app-name">YouTube</div>
+                            <div class="app-developer">Google LLC</div>
+                            <div class="app-rating">⭐ 4.0 • Gratis</div>
+                        </div>
+                        <button class="install-btn" onclick="installApp('YouTube', event)">Installa</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Games Tab -->
+            <div class="tab-panel" id="games">
+                <div class="games-list">
+                    <h3>Giochi popolari</h3>
+                    
+                    <div class="app-item" onclick="viewApp('Candy Crush')">
+                        <div class="app-icon">🍭</div>
+                        <div class="app-info">
+                            <div class="app-name">Candy Crush Saga</div>
+                            <div class="app-developer">King</div>
+                            <div class="app-rating">⭐ 4.5 • Gratis</div>
+                        </div>
+                        <button class="install-btn" onclick="installApp('Candy Crush', event)">Installa</button>
+                    </div>
+                    
+                    <div class="app-item" onclick="viewApp('PUBG')">
+                        <div class="app-icon">🎮</div>
+                        <div class="app-info">
+                            <div class="app-name">PUBG Mobile</div>
+                            <div class="app-developer">PUBG Corporation</div>
+                            <div class="app-rating">⭐ 4.3 • Gratis</div>
+                        </div>
+                        <button class="install-btn" onclick="installApp('PUBG', event)">Installa</button>
+                    </div>
+                    
+                    <div class="app-item" onclick="viewApp('Among Us')">
+                        <div class="app-icon">👾</div>
+                        <div class="app-info">
+                            <div class="app-name">Among Us</div>
+                            <div class="app-developer">InnerSloth LLC</div>
+                            <div class="app-rating">⭐ 4.1 • €4.99</div>
+                        </div>
+                        <button class="install-btn" onclick="installApp('Among Us', event)">Acquista</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Updates Tab -->
+            <div class="tab-panel" id="updates">
+                <div class="updates-list">
+                    <h3>Aggiornamenti disponibili</h3>
+                    
+                    <div class="app-item">
+                        <div class="app-icon">💬</div>
+                        <div class="app-info">
+                            <div class="app-name">WhatsApp Messenger</div>
+                            <div class="app-developer">Versione 2.24.1.78</div>
+                            <div class="app-rating">Dimensione: 45.2 MB</div>
+                        </div>
+                        <button class="update-btn" onclick="updateApp('WhatsApp')">Aggiorna</button>
+                    </div>
+                    
+                    <div class="app-item">
+                        <div class="app-icon">📷</div>
+                        <div class="app-info">
+                            <div class="app-name">Instagram</div>
+                            <div class="app-developer">Versione 312.0.0.44.113</div>
+                            <div class="app-rating">Dimensione: 67.8 MB</div>
+                        </div>
+                        <button class="update-btn" onclick="updateApp('Instagram')">Aggiorna</button>
+                    </div>
+                    
+                    <button class="update-all-btn" onclick="updateAllApps()">Aggiorna tutto</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Installation Progress -->
+        <div class="install-progress" id="installProgress" style="display: none;">
+            <div class="progress-info">
+                <div class="progress-app-icon">💬</div>
+                <div class="progress-details">
+                    <div class="progress-app-name">WhatsApp</div>
+                    <div class="progress-status">Download in corso...</div>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-percentage" id="progressPercentage">0%</div>
+        </div>
+    </div>
+    
+    <script src="scripts/global.js"></script>
+    <script src="scripts/playstore.js"></script>
+</body>
+</html>

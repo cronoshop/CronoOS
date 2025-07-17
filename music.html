@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musica - One UI OS</title>
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/music.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="app-header">
+            <button class="back-btn" onclick="goHome()">←</button>
+            <h1>Musica</h1>
+            <div class="header-actions">
+                <button class="header-btn">🔍</button>
+                <button class="header-btn">⋮</button>
+            </div>
+        </div>
+        
+        <div class="music-tabs">
+            <div class="tab active" onclick="switchTab('library')">Libreria</div>
+            <div class="tab" onclick="switchTab('playlists')">Playlist</div>
+            <div class="tab" onclick="switchTab('artists')">Artisti</div>
+        </div>
+        
+        <div class="tab-content">
+            <!-- Library Tab -->
+            <div class="tab-panel active" id="library">
+                <div class="songs-list">
+                    <div class="song-item" onclick="playSong('Bohemian Rhapsody', 'Queen')">
+                        <div class="song-cover">🎵</div>
+                        <div class="song-info">
+                            <div class="song-title">Bohemian Rhapsody</div>
+                            <div class="song-artist">Queen</div>
+                        </div>
+                        <div class="song-duration">5:55</div>
+                        <button class="song-menu">⋮</button>
+                    </div>
+                    
+                    <div class="song-item" onclick="playSong('Imagine', 'John Lennon')">
+                        <div class="song-cover">🎼</div>
+                        <div class="song-info">
+                            <div class="song-title">Imagine</div>
+                            <div class="song-artist">John Lennon</div>
+                        </div>
+                        <div class="song-duration">3:07</div>
+                        <button class="song-menu">⋮</button>
+                    </div>
+                    
+                    <div class="song-item" onclick="playSong('Hotel California', 'Eagles')">
+                        <div class="song-cover">🦅</div>
+                        <div class="song-info">
+                            <div class="song-title">Hotel California</div>
+                            <div class="song-artist">Eagles</div>
+                        </div>
+                        <div class="song-duration">6:30</div>
+                        <button class="song-menu">⋮</button>
+                    </div>
+                    
+                    <div class="song-item" onclick="playSong('Stairway to Heaven', 'Led Zeppelin')">
+                        <div class="song-cover">🎸</div>
+                        <div class="song-info">
+                            <div class="song-title">Stairway to Heaven</div>
+                            <div class="song-artist">Led Zeppelin</div>
+                        </div>
+                        <div class="song-duration">8:02</div>
+                        <button class="song-menu">⋮</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Playlists Tab -->
+            <div class="tab-panel" id="playlists">
+                <div class="playlists-grid">
+                    <div class="playlist-item" onclick="openPlaylist('Preferiti')">
+                        <div class="playlist-cover">❤️</div>
+                        <div class="playlist-info">
+                            <div class="playlist-name">Preferiti</div>
+                            <div class="playlist-count">23 brani</div>
+                        </div>
+                    </div>
+                    
+                    <div class="playlist-item" onclick="openPlaylist('Rock Classico')">
+                        <div class="playlist-cover">🎸</div>
+                        <div class="playlist-info">
+                            <div class="playlist-name">Rock Classico</div>
+                            <div class="playlist-count">45 brani</div>
+                        </div>
+                    </div>
+                    
+                    <div class="playlist-item" onclick="openPlaylist('Relax')">
+                        <div class="playlist-cover">🧘</div>
+                        <div class="playlist-info">
+                            <div class="playlist-name">Relax</div>
+                            <div class="playlist-count">18 brani</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Artists Tab -->
+            <div class="tab-panel" id="artists">
+                <div class="artists-list">
+                    <div class="artist-item" onclick="openArtist('Queen')">
+                        <div class="artist-avatar">Q</div>
+                        <div class="artist-info">
+                            <div class="artist-name">Queen</div>
+                            <div class="artist-songs">12 brani</div>
+                        </div>
+                    </div>
+                    
+                    <div class="artist-item" onclick="openArtist('The Beatles')">
+                        <div class="artist-avatar">B</div>
+                        <div class="artist-info">
+                            <div class="artist-name">The Beatles</div>
+                            <div class="artist-songs">28 brani</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Now Playing Bar -->
+        <div class="now-playing-bar" id="nowPlayingBar" style="display: none;">
+            <div class="now-playing-info" onclick="openPlayer()">
+                <div class="now-playing-cover">🎵</div>
+                <div class="now-playing-details">
+                    <div class="now-playing-title" id="nowPlayingTitle">Bohemian Rhapsody</div>
+                    <div class="now-playing-artist" id="nowPlayingArtist">Queen</div>
+                </div>
+            </div>
+            <div class="now-playing-controls">
+                <button class="control-btn" onclick="previousSong()">⏮️</button>
+                <button class="control-btn play-pause" id="playPauseBtn" onclick="togglePlayPause()">⏸️</button>
+                <button class="control-btn" onclick="nextSong()">⏭️</button>
+            </div>
+        </div>
+        
+        <!-- Full Player -->
+        <div class="full-player" id="fullPlayer" style="display: none;">
+            <div class="player-header">
+                <button class="back-btn" onclick="closePlayer()">⌄</button>
+                <div class="player-title">In riproduzione</div>
+                <button class="header-btn">⋮</button>
+            </div>
+            
+            <div class="player-artwork">
+                <div class="artwork-display">🎵</div>
+            </div>
+            
+            <div class="player-info">
+                <div class="player-song-title" id="playerSongTitle">Bohemian Rhapsody</div>
+                <div class="player-artist-name" id="playerArtistName">Queen</div>
+            </div>
+            
+            <div class="player-progress">
+                <div class="progress-time">0:00</div>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                    <div class="progress-handle"></div>
+                </div>
+                <div class="progress-time">5:55</div>
+            </div>
+            
+            <div class="player-controls">
+                <button class="player-control-btn" onclick="toggleShuffle()">🔀</button>
+                <button class="player-control-btn" onclick="previousSong()">⏮️</button>
+                <button class="player-control-btn play-pause-large" onclick="togglePlayPause()">⏸️</button>
+                <button class="player-control-btn" onclick="nextSong()">⏭️</button>
+                <button class="player-control-btn" onclick="toggleRepeat()">🔁</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="scripts/global.js"></script>
+    <script src="scripts/music.js"></script>
+</body>
+</html>
