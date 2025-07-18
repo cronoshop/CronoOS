@@ -16,21 +16,9 @@
         </div>
         <div class="settings-content">
             <div class="settings-group">
-                <div class="setting-item">
-                    <div class="setting-info"><div class="setting-title">Vibrazione</div></div>
-                    <div class="setting-accessory"><div class="toggle-switch"><input type="checkbox" id="hapticToggle" checked><label for="hapticToggle"></label></div></div>
-                </div>
-            </div>
-            <div class="settings-group">
-                <div class="setting-item">
-                    <div class="setting-info"><div class="setting-title">Volume</div></div>
-                    <div class="setting-accessory" style="flex:1;"><input type="range" id="volumeControl" value="70" style="width:100%;"></div>
-                </div>
-            </div>
-            <div class="settings-group">
-                 <div class="setting-item" onclick="showToast('Selezione suoneria non implementata')">
+                 <div class="setting-item" onclick="navigateTo('ringtones.html')">
                     <div class="setting-info"><div class="setting-title">Suoneria</div></div>
-                    <div class="setting-accessory"><span class="accessory-text">Default</span><i class="fas fa-chevron-right"></i></div>
+                    <div class="setting-accessory"><span id="currentRingtoneName" class="accessory-text"></span><i class="fas fa-chevron-right"></i></div>
                 </div>
                  <div class="setting-item">
                     <div class="setting-info"><div class="setting-title">Suoni tastiera</div></div>
@@ -39,12 +27,14 @@
             </div>
         </div>
     </div>
-    <script src="scripts/global.js" defer></script>
+    <script src="scripts/global.js"></script>
     <script>
-        function showToast(message) {
-            // ... (codice della funzione showToast)
-        }
-        // Aggiungi qui la logica per i toggle di questa pagina
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentRingtone = localStorage.getItem('crono_ringtone') || 'default';
+            const ringtoneNameEl = document.getElementById('currentRingtoneName');
+            // Capitalize first letter for display
+            ringtoneNameEl.textContent = currentRingtone.charAt(0).toUpperCase() + currentRingtone.slice(1);
+        });
     </script>
 </body>
 </html>
