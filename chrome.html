@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chrome - CronoOS 3.2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/chrome.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="status-bar">
+            <div class="status-left"><span class="time" id="statusTime">9:41</span></div>
+            <div class="status-center"><div class="notch"></div></div>
+            <div class="status-right">
+                <span class="signal"><i class="fas fa-signal"></i></span>
+                <span class="wifi"><i class="fas fa-wifi"></i></span>
+                <span class="battery">100% <i class="fas fa-battery-full"></i></span>
+            </div>
+        </div>
+
+        <div class="chrome-header">
+            <button class="nav-btn" id="backBtn" disabled><i class="fas fa-chevron-left"></i></button>
+            <button class="nav-btn" id="forwardBtn" disabled><i class="fas fa-chevron-right"></i></button>
+            <div class="address-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" id="addressInput" placeholder="Cerca o digita un indirizzo web">
+                <button class.bind="reloadBtn" id="reloadBtn"><i class="fas fa-redo"></i></button>
+            </div>
+             <button class="nav-btn" id="menuBtn"><i class="fas fa-ellipsis-v"></i></button>
+        </div>
+
+        <div class="web-content" id="webContent">
+             <div class="welcome-screen">
+                <i class="fab fa-chrome"></i>
+                <h2>Benvenuto in Chrome</h2>
+                <p>La tua finestra sul web.</p>
+            </div>
+        </div>
+
+        <div class="bottom-nav">
+            <button class="bottom-nav-btn" onclick="goHome()"><i class="fas fa-home"></i></button>
+            <button class="bottom-nav-btn" id="newTabBtn"><i class="fas fa-plus-square"></i></button>
+            <button class="bottom-nav-btn" id="tabsBtn">
+                <div class="tab-counter">1</div>
+            </button>
+            <button class="bottom-nav-btn" onclick="showToast('Funzionalità non implementata')"><i class="fas fa-history"></i></button>
+            <button class="bottom-nav-btn" onclick="showToast('Funzionalità non implementata')"><i class="fas fa-ellipsis-h"></i></button>
+        </div>
+    </div>
+
+    <script src="scripts/global.js"></script>
+    <script src="scripts/chrome.js"></script>
+</body>
+</html>
