@@ -1,67 +1,138 @@
-// Home Screen JavaScript - CronoOS 2.1
+// Home Screen JavaScript - Phoenix Edition
 
 document.addEventListener('DOMContentLoaded', function() {
-    initializeHomeScreen();
-    updateToggleStates();
-});
+    const appGrid = document.getElementById('appGrid');
+    const dock = document.getElementById('dock');
+    
+    // Default dock apps
+    const DOCK_APPS = ['phone', 'messages', 'camera', 'playstore'];
 
-function initializeHomeScreen() {
-    // Add staggered animation to app icons
-    const appIcons = document.querySelectorAll('.app-icon');
-    appIcons.forEach((icon, index) => {
-        icon.style.animationDelay = `${index * 0.1}s`;
-        icon.classList.add('fade-in');
+    // --- Data Initialization ---
+    function getAvailableApps() {
+        const appsData = localStorage.getItem('crono_available_apps');
+        return appsData ? JSON.parse(appsData) : {};
+    }
+
+    function getInstalledApps() {
+        const installedData = localStorage.getItem('cronos_installed_apps');
+        // Core apps are always installed
+        const coreApps = ['phone', 'messages', 'camera', 'gallery', 'calendar', 'settings'];
+        if (!installedData) {
+            return coreApps;
+        }
+        const userApps = JSON.parse(installedData);
+        return [...new Set([...coreApps, ...userApps])];
+    }
+
+    // --- UI Rendering ---
+    function renderIcons() {
+        const availableApps = getAvailableApps();
+        const installedApps = getInstalledApps();
+        const appLayout = JSON.parse(localStorage.getItem('crono_app_layout')) || installedApps;
+
+        appGrid.innerHTML = '';
+        dock.innerHTML = '';
+
+        const appsToRender = appLayout.filter(id => installedApps.includes(id));
+
+        appsToRender.forEach(appId => {
+            const appData = availableApps[appId];
+            if (!appData) return;
+
+            const icon = createAppIcon(appId, appData);
+            if (DOCK_APPS.includes(appId)) {
+                dock.appendChild(icon);
+            } else {
+                appGrid.appendChild(icon);
+            }
+        });
+        
+        setupDragAndDrop();
+    }
+
+    function createAppIcon(id, data) {
+        const iconWrapper = document.createElement('div');
+        iconWrapper.className = 'app-icon';
+        iconWrapper.dataset.appId = id;
+        iconWrapper.setAttribute('draggable', 'true');
+
+        const container = document.createElement('div');
+        container.className = 'app-icon-container';
+        if(data.color) {
+            container.style.background = data.color;
+        }
+        
+        const icon = document.createElement('i');
+        icon.className = data.icon;
+        container.appendChild(icon);
+
+        const name = document.createElement('span');
+        name.textContent = data.name;
+
+        iconWrapper.appendChild(container);
+        iconWrapper.appendChild(name);
+
+        iconWrapper.addEventListener('click', () => openApp(id));
+        
+        return iconWrapper;
+    }
+    
+    // --- Drag and Drop ---
+    function setupDragAndDrop() {
+        const icons = document.querySelectorAll('.app-icon[draggable="true"]');
+        let draggedItem = null;
+
+        icons.forEach(item => {
+            item.addEventListener('dragstart', (e) => {
+                draggedItem = item;
+                setTimeout(() => item.classList.add('dragging'), 0);
+            });
+
+            item.addEventListener('dragend', () => {
+                draggedItem.classList.remove('dragging');
+                draggedItem = null;
+                saveLayout();
+            });
+        });
+
+        appGrid.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            const afterElement = getDragAfterElement(appGrid, e.clientY);
+            if (afterElement == null) {
+                appGrid.appendChild(draggedItem);
+            } else {
+                appGrid.insertBefore(draggedItem, afterElement);
+            }
+        });
+    }
+
+    function getDragAfterElement(container, y) {
+        const draggableElements = [...container.querySelectorAll('.app-icon:not(.dragging)')];
+        return draggableElements.reduce((closest, child) => {
+            const box = child.getBoundingClientRect();
+            const offset = y - box.top - box.height / 2;
+            if (offset < 0 && offset > closest.offset) {
+                return { offset: offset, element: child };
+            } else {
+                return closest;
+            }
+        }, { offset: Number.NEGATIVE_INFINITY }).element;
+    }
+
+    // --- Data Persistence ---
+    function saveLayout() {
+        const allIcons = [...appGrid.querySelectorAll('.app-icon'), ...dock.querySelectorAll('.app-icon')];
+        const layout = allIcons.map(icon => icon.dataset.appId);
+        localStorage.setItem('crono_app_layout', JSON.stringify(layout));
+    }
+    
+    // --- Initial Load ---
+    renderIcons();
+    
+    // Listen for storage changes to auto-update UI
+    window.addEventListener('storage', (e) => {
+        if (e.key === 'cronos_installed_apps' || e.key === 'crono_available_apps') {
+            location.reload(); // Simple way to reflect changes
+        }
     });
-    
-    // Initialize weather widget
-    updateWeatherWidget();
-    
-    console.log('CronoOS 2.1 Home screen initialized');
-}
-
-function updateWeatherWidget() {
-    const weatherWidget = document.querySelector('.weather-widget');
-    if (!weatherWidget) return;
-    
-    // Simulate weather data
-    const weatherData = {
-        temperature: Math.floor(Math.random() * 15) + 15, //15-30°C
-        condition: ['Soleggiato', 'Nuvoloso', 'Piovoso', 'Sereno'][Math.floor(Math.random() * 4)],
-        location: 'Milano'
-    };
-    
-    const tempElement = weatherWidget.querySelector('.weather-temp');
-    const descElement = weatherWidget.querySelector('.weather-desc');
-    const locationElement = weatherWidget.querySelector('.weather-location');
-    
-    if (tempElement) tempElement.textContent = `${weatherData.temperature}°`;
-    if (descElement) descElement.textContent = weatherData.condition;
-    if (locationElement) locationElement.textContent = weatherData.location;
-}
-
-function updateToggleStates() {
-    const wifiToggle = document.getElementById('wifiToggle');
-    const bluetoothToggle = document.getElementById('bluetoothToggle');
-    const darkToggle = document.getElementById('darkToggle');
-    const flashlightToggle = document.getElementById('flashlightToggle');
-    
-    if (wifiToggle) {
-        const wifiItem = wifiToggle.closest('.toggle-item');
-        if (wifiItem) wifiItem.classList.toggle('active', isWifiEnabled);
-    }
-    
-    if (bluetoothToggle) {
-        const bluetoothItem = bluetoothToggle.closest('.toggle-item');
-        if (bluetoothItem) bluetoothItem.classList.toggle('active', isBluetoothEnabled);
-    }
-    
-    if (darkToggle) {
-        const darkItem = darkToggle.closest('.toggle-item');
-        if (darkItem) darkItem.classList.toggle('active', isDarkModeEnabled);
-    }
-    
-    if (flashlightToggle) {
-        const flashlightItem = flashlightToggle.closest('.toggle-item');
-        if (flashlightItem) flashlightItem.classList.toggle('active', isFlashlightEnabled);
-    }
-}
+});
