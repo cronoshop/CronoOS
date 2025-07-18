@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galleria - CronoOS 2.3</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/gallery.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left"><span class="time" id="statusTime">9:41</span></div>
+            <div class="status-center"><div class="notch"></div></div>
+            <div class="status-right">
+                <span class="signal"><i class="fas fa-signal"></i></span>
+                <span class="wifi"><i class="fas fa-wifi"></i></span>
+                <span class="battery">100% <i class="fas fa-battery-full"></i></span>
+            </div>
+        </div>
+
+        <!-- App Header -->
+        <div class="app-header">
+            <button class="back-btn" onclick="goHome()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <h1>Galleria</h1>
+            <div class="header-actions">
+                <button class="header-btn" id="selectBtn">Seleziona</button>
+                <button class="header-btn" id="searchBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Gallery Tabs -->
+        <div class="tabs">
+            <div class="tab active" data-tab="photos">Foto</div>
+            <div class="tab" data-tab="albums">Album</div>
+            <div class="tab" data-tab="search">Cerca</div>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- Photos Tab -->
+            <div class="tab-panel active" id="photos">
+                <div class="photos-header">
+                    <div class="photos-count" id="photosCount">0 elementi</div>
+                    <div class="view-options">
+                        <button class="view-btn active" data-view="grid">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="view-btn" data-view="list">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="photos-grid" id="photosGrid">
+                    <!-- Photos will be loaded here -->
+                </div>
+                
+                <div class="empty-gallery" id="emptyGallery">
+                    <i class="fas fa-images"></i>
+                    <h3>Nessuna foto</h3>
+                    <p>Le foto scattate appariranno qui</p>
+                    <button class="btn btn-filled" onclick="openApp('camera.html')">
+                        Apri Fotocamera
+                    </button>
+                </div>
+            </div>
+
+            <!-- Albums Tab -->
+            <div class="tab-panel" id="albums">
+                <div class="albums-grid" id="albumsGrid">
+                    <!-- Albums will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Search Tab -->
+            <div class="tab-panel" id="search">
+                <div class="search-container">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Cerca foto..." id="searchInput">
+                    </div>
+                </div>
+                <div class="search-results" id="searchResults">
+                    <div class="search-empty">
+                        <i class="fas fa-search"></i>
+                        <p>Cerca nelle tue foto</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Selection Mode Footer -->
+        <div class="selection-footer" id="selectionFooter">
+            <div class="selection-info">
+                <span id="selectedCount">0 selezionati</span>
+            </div>
+            <div class="selection-actions">
+                <button class="selection-btn" id="shareSelectedBtn">
+                    <i class="fas fa-share"></i>
+                    Condividi
+                </button>
+                <button class="selection-btn" id="deleteSelectedBtn">
+                    <i class="fas fa-trash"></i>
+                    Elimina
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Photo Viewer Modal -->
+    <div class="photo-viewer-modal" id="photoViewerModal">
+        <div class="viewer-header">
+            <button class="viewer-close-btn" id="viewerCloseBtn">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="viewer-info">
+                <span id="photoIndex">1 di 10</span>
+            </div>
+            <div class="viewer-actions">
+                <button class="viewer-action-btn" id="viewerShareBtn">
+                    <i class="fas fa-share"></i>
+                </button>
+                <button class="viewer-action-btn" id="viewerDeleteBtn">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="viewer-content">
+            <button class="viewer-nav-btn prev" id="prevPhotoBtn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            
+            <div class="photo-container">
+                <img id="viewerImage" src="" alt="Foto">
+            </div>
+            
+            <button class="viewer-nav-btn next" id="nextPhotoBtn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        
+        <div class="viewer-footer">
+            <div class="photo-details" id="photoDetails">
+                <div class="photo-date"></div>
+                <div class="photo-location"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/global.js"></script>
+    <script src="scripts/gallery.js"></script>
+</body>
+</html>

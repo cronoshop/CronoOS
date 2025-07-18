@@ -1,30 +1,389 @@
-<div class="updates-list">
-    <div class="update-item">
-        <div class="update-info">
-            <div class="update-version">CronoOS 2.2 - Phoenix Edition</div>
-            <div class="update-date">18 Luglio 2025</div>
-            <div class="update-notes">
-                • Rifacimento completo di tutte le app e relative pagine<br>
-                • Miglioramento UI/UX in stile One UI/iOS<br>
-                • Mockup telefono e notch rifatti e stabilizzati<br>
-                • Funzionalità di installazione app completamente funzionante<br>
-                • Home screen dinamica con icone riposizionabili<br>
-                • Ottimizzazioni e pulizia codice
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impostazioni - CronoOS 2.3</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/settings.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left"><span class="time" id="statusTime">9:41</span></div>
+            <div class="status-center"><div class="notch"></div></div>
+            <div class="status-right">
+                <span class="signal"><i class="fas fa-signal"></i></span>
+                <span class="wifi"><i class="fas fa-wifi"></i></span>
+                <span class="battery">100% <i class="fas fa-battery-full"></i></span>
+            </div>
+        </div>
+
+        <!-- App Header -->
+        <div class="app-header">
+            <button class="back-btn" onclick="goHome()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <h1>Impostazioni</h1>
+            <div class="header-actions">
+                <button class="header-btn" id="searchSettingsBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Settings Content -->
+        <div class="settings-content">
+            <!-- User Profile -->
+            <div class="user-profile">
+                <div class="profile-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="profile-info">
+                    <div class="profile-name">Utente CronoOS</div>
+                    <div class="profile-email">utente@cronos.com</div>
+                </div>
+                <button class="profile-edit">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <!-- Settings Categories -->
+            <div class="settings-categories">
+                <!-- Display & Brightness -->
+                <div class="settings-category">
+                    <div class="category-header" onclick="toggleCategory('display')">
+                        <div class="category-info">
+                            <div class="category-icon" style="background: #FF9500;">
+                                <i class="fas fa-sun"></i>
+                            </div>
+                            <div class="category-title">Schermo e Luminosità</div>
+                        </div>
+                        <div class="category-arrow">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-title">Modalità Scura</div>
+                                <div class="setting-description">Attiva il tema scuro</div>
+                            </div>
+                            <div class="setting-control">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()">
+                                    <label for="darkModeToggle"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-title">Luminosità</div>
+                                <div class="setting-description">Regola la luminosità dello schermo</div>
+                            </div>
+                            <div class="setting-control">
+                                <input type="range" id="brightnessControl" min="10" max="100" value="50" onchange="updateBrightness(this.value)">
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-title">Auto-Lock</div>
+                                <div class="setting-description">Blocco automatico dopo 2 minuti</div>
+                            </div>
+                            <div class="setting-control">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="autoLockToggle" checked>
+                                    <label for="autoLockToggle"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sounds & Haptics -->
+                <div class="settings-category">
+                    <div class="category-header" onclick="toggleCategory('sounds')">
+                        <div class="category-info">
+                            <div class="category-icon" style="background: #FF2D92;">
+                                <i class="fas fa-volume-high"></i>
+                            </div>
+                            <div class="category-title">Suoni e Vibrazione</div>
+                        </div>
+                        <div class="category-arrow">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-title">Volume</div>
+                                <div class="setting-description">Volume generale del sistema</div>
+                            </div>
+                            <div class="setting-control">
+                                <input type="range" id="volumeControl" min="0" max="100" value="70">
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-title">Vibrazione</div>
+                                <div class="setting-description">Feedback aptico per le interazioni</div>
+                            </div>
+                            <div class="setting-control">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="hapticToggle" checked>
+                                    <label for="hapticToggle"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-title">Suoni Tastiera</div>
+                                <div class="setting-description">Suoni durante la digitazione</div>
+                            </div>
+                            <div class="setting-control">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="keyboardSoundsToggle">
+                                    <label for="keyboardSoundsToggle"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connectivity -->
+                <div class="settings-category">
+                    <div class="category-header" onclick="toggleCategory('connectivity')">
+                        <div class="category-info">
+                            <div class="category-icon" style="background: #0A84FF;">
+                                <i class="fas fa-wifi"></i>
+                            </div>
+                            <div class="category-title">Connettività</div>
+                        </div>
+                        <div class="category-arrow">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-title">Wi-Fi</div>
+                                <div class="setting-description">Connessione wireless</div>
+                            </div>
+                            <div class="setting-control">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="wifiToggle" checked onchange="toggleWifi()">
+                                    <label for="wifiToggle"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-title">Bluetooth</div>
+                                <div class="setting-description">Connessioni Bluetooth</div>
+                            </div>
+                            <div class="setting-control">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="bluetoothToggle" checked onchange="toggleBluetooth()">
+                                    <label for="bluetoothToggle"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-title">Modalità Aereo</div>
+                                <div class="setting-description">Disattiva tutte le connessioni</div>
+                            </div>
+                            <div class="setting-control">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="airplaneModeToggle">
+                                    <label for="airplaneModeToggle"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Privacy & Security -->
+                <div class="settings-category">
+                    <div class="category-header" onclick="toggleCategory('privacy')">
+                        <div class="category-info">
+                            <div class="category-icon" style="background: #30D158;">
+                                <i class="fas fa-shield-halved"></i>
+                            </div>
+                            <div class="category-title">Privacy e Sicurezza</div>
+                        </div>
+                        <div class="category-arrow">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-title">Blocco Schermo</div>
+                                <div class="setting-description">Configura il blocco schermo</div>
+                            </div>
+                            <div class="setting-control">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-title">Permessi App</div>
+                                <div class="setting-description">Gestisci i permessi delle app</div>
+                            </div>
+                            <div class="setting-control">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-title">Localizzazione</div>
+                                <div class="setting-description">Servizi di localizzazione</div>
+                            </div>
+                            <div class="setting-control">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="locationToggle" checked>
+                                    <label for="locationToggle"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- System -->
+                <div class="settings-category">
+                    <div class="category-header" onclick="toggleCategory('system')">
+                        <div class="category-info">
+                            <div class="category-icon" style="background: #8A8A8E;">
+                                <i class="fas fa-gear"></i>
+                            </div>
+                            <div class="category-title">Sistema</div>
+                        </div>
+                        <div class="category-arrow">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <div class="setting-item" onclick="openAboutDevice()">
+                            <div class="setting-info">
+                                <div class="setting-title">Informazioni Dispositivo</div>
+                                <div class="setting-description">CronoOS 2.3 - Phoenix Edition</div>
+                            </div>
+                            <div class="setting-control">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-title">Aggiornamenti</div>
+                                <div class="setting-description">Controlla aggiornamenti sistema</div>
+                            </div>
+                            <div class="setting-control">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-title">Ripristina</div>
+                                <div class="setting-description">Ripristina impostazioni di fabbrica</div>
+                            </div>
+                            <div class="setting-control">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="update-item">
-        <div class="update-info">
-            <div class="update-version">CronoOS 2.1 - Generic Bug Fix</div>
-            <div class="update-date">15 Gennaio 2025</div>
-            <div class="update-notes">
-                • Riscrittura completa del mockup<br>
-                • Nuovo notch statico<br>
-                • Fix grafici e di layout su ogni pagina<br>
-                • Riscrittura interfaccia secondo il nuovo stile<br>
-                • Codice ottimizzato e bug rimossi<br>
-                • Migliorata compatibilità e stabilità generale
+
+    <!-- About Device Modal -->
+    <div class="modal-overlay" id="aboutModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Informazioni Dispositivo</h2>
+                <button class="modal-close-btn" onclick="closeAboutModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="device-info">
+                    <div class="device-image">
+                        <i class="fas fa-mobile-screen-button"></i>
+                    </div>
+                    <div class="device-details">
+                        <div class="info-item">
+                            <span class="info-label">Nome Dispositivo</span>
+                            <span class="info-value">CronoPhone</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Sistema Operativo</span>
+                            <span class="info-value">CronoOS 2.3</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Versione</span>
+                            <span class="info-value">Phoenix Edition</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Build</span>
+                            <span class="info-value">23A344</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Processore</span>
+                            <span class="info-value">CronoChip A1</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Memoria</span>
+                            <span class="info-value">128 GB</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">RAM</span>
+                            <span class="info-value">8 GB</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Numero Seriale</span>
+                            <span class="info-value">CN2025001234</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="updates-list">
+                    <div class="update-item">
+                        <div class="update-info">
+                            <div class="update-version">CronoOS 2.3 - Phoenix Edition</div>
+                            <div class="update-date">18 Gennaio 2025</div>
+                            <div class="update-notes">
+                                • Sistema completamente rivisto e ottimizzato<br>
+                                • Nuove app: Fotocamera, Galleria, Calendario<br>
+                                • Interfaccia utente migliorata in stile iOS<br>
+                                • Correzioni di bug e miglioramenti prestazioni<br>
+                                • Supporto per temi scuro/chiaro<br>
+                                • Navigazione fluida e animazioni ottimizzate
+                            </div>
+                        </div>
+                    </div>
+                    <div class="update-item">
+                        <div class="update-info">
+                            <div class="update-version">CronoOS 2.1 - Generic Bug Fix</div>
+                            <div class="update-date">15 Gennaio 2025</div>
+                            <div class="update-notes">
+                                • Riscrittura completa del mockup<br>
+                                • Nuovo notch statico<br>
+                                • Fix grafici e di layout su ogni pagina<br>
+                                • Riscrittura interfaccia secondo il nuovo stile<br>
+                                • Codice ottimizzato e bug rimossi<br>
+                                • Migliorata compatibilità e stabilità generale
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+    <script src="scripts/global.js"></script>
+    <script src="scripts/settings.js"></script>
+</body>
+</html>

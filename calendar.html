@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario - CronoOS 2.3</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/calendar.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left"><span class="time" id="statusTime">9:41</span></div>
+            <div class="status-center"><div class="notch"></div></div>
+            <div class="status-right">
+                <span class="signal"><i class="fas fa-signal"></i></span>
+                <span class="wifi"><i class="fas fa-wifi"></i></span>
+                <span class="battery">100% <i class="fas fa-battery-full"></i></span>
+            </div>
+        </div>
+
+        <!-- App Header -->
+        <div class="app-header">
+            <button class="back-btn" onclick="goHome()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <h1 id="currentMonth">Gennaio 2025</h1>
+            <div class="header-actions">
+                <button class="header-btn" id="todayBtn">Oggi</button>
+                <button class="header-btn" id="addEventBtn">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Calendar Navigation -->
+        <div class="calendar-nav">
+            <button class="nav-btn" id="prevMonthBtn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="month-year" id="monthYear">
+                <span id="monthName">Gennaio</span>
+                <span id="yearName">2025</span>
+            </div>
+            <button class="nav-btn" id="nextMonthBtn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <!-- Calendar Grid -->
+        <div class="calendar-container">
+            <div class="calendar-weekdays">
+                <div class="weekday">Dom</div>
+                <div class="weekday">Lun</div>
+                <div class="weekday">Mar</div>
+                <div class="weekday">Mer</div>
+                <div class="weekday">Gio</div>
+                <div class="weekday">Ven</div>
+                <div class="weekday">Sab</div>
+            </div>
+            
+            <div class="calendar-grid" id="calendarGrid">
+                <!-- Calendar days will be generated here -->
+            </div>
+        </div>
+
+        <!-- Events List -->
+        <div class="events-section">
+            <div class="events-header">
+                <h3>Eventi di oggi</h3>
+                <span class="events-count" id="eventsCount">0 eventi</span>
+            </div>
+            <div class="events-list" id="eventsList">
+                <div class="no-events">
+                    <i class="fas fa-calendar-check"></i>
+                    <p>Nessun evento per oggi</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Event Modal -->
+    <div class="modal-overlay" id="addEventModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Nuovo Evento</h2>
+                <button class="modal-close-btn" id="closeEventModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class="form-row">
+                        <label>Titolo</label>
+                        <input type="text" id="eventTitle" placeholder="Titolo evento">
+                    </div>
+                    <div class="form-row">
+                        <label>Data</label>
+                        <input type="date" id="eventDate">
+                    </div>
+                    <div class="form-row">
+                        <label>Ora</label>
+                        <input type="time" id="eventTime">
+                    </div>
+                    <div class="form-row">
+                        <label>Descrizione</label>
+                        <textarea id="eventDescription" placeholder="Descrizione (opzionale)" rows="3"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <label>Colore</label>
+                        <div class="color-picker">
+                            <button class="color-option active" data-color="#0A84FF" style="background: #0A84FF;"></button>
+                            <button class="color-option" data-color="#30D158" style="background: #30D158;"></button>
+                            <button class="color-option" data-color="#FF453A" style="background: #FF453A;"></button>
+                            <button class="color-option" data-color="#FF9500" style="background: #FF9500;"></button>
+                            <button class="color-option" data-color="#AF52DE" style="background: #AF52DE;"></button>
+                            <button class="color-option" data-color="#FF2D92" style="background: #FF2D92;"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-gray" id="cancelEventBtn">Annulla</button>
+                    <button class="btn btn-filled" id="saveEventBtn">Salva</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Event Details Modal -->
+    <div class="modal-overlay" id="eventDetailsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="eventDetailsTitle">Dettagli Evento</h2>
+                <button class="modal-close-btn" id="closeDetailsModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="event-details">
+                    <div class="event-detail-item">
+                        <i class="fas fa-calendar"></i>
+                        <span id="eventDetailsDate"></span>
+                    </div>
+                    <div class="event-detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span id="eventDetailsTime"></span>
+                    </div>
+                    <div class="event-detail-item" id="eventDetailsDescriptionItem">
+                        <i class="fas fa-align-left"></i>
+                        <span id="eventDetailsDescription"></span>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-gray" id="editEventBtn">Modifica</button>
+                    <button class="btn" id="deleteEventBtn" style="background: #FF453A; color: white;">Elimina</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/global.js"></script>
+    <script src="scripts/calendar.js"></script>
+</body>
+</html>

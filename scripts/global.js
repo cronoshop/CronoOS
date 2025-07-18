@@ -57,21 +57,56 @@ function updateTime() {
 
 // Navigation Functions
 function goHome() {
-    document.body.style.transition = 'opacity 0.3s ease';
-    document.body.style.opacity = '0';
-    
-    setTimeout(() => {
-        window.location.href = 'home.html';
-    }, 300);
+    // Check if we're in an iframe (phone mockup)
+    if (window.parent !== window) {
+        // We're in the phone mockup iframe
+        window.parent.postMessage({ action: 'navigate', url: 'home.html' }, '*');
+    } else {
+        // Direct navigation
+        document.body.style.transition = 'opacity 0.3s ease';
+        document.body.style.opacity = '0';
+        
+        setTimeout(() => {
+            window.location.href = 'home.html';
+        }, 300);
+    }
 }
 
 function openApp(appName) {
-    document.body.style.transition = 'opacity 0.3s ease';
-    document.body.style.opacity = '0';
-    
-    setTimeout(() => {
-        window.location.href = `${appName}.html`;
-    }, 300);
+    // Check if we're in an iframe (phone mockup)
+    if (window.parent !== window) {
+        // We're in the phone mockup iframe
+        window.parent.postMessage({ action: 'navigate', url: appName }, '*');
+    } else {
+        // Direct navigation
+        document.body.style.transition = 'opacity 0.3s ease';
+        document.body.style.opacity = '0';
+        
+        setTimeout(() => {
+            window.location.href = appName;
+        }, 300);
+    }
+}
+
+// Listen for navigation messages from iframe
+if (window.parent !== window) {
+    window.addEventListener('message', function(event) {
+        if (event.data.action === 'navigate') {
+        window.location.href = 'home.html';
+        }
+    });
+}
+
+// Phone mockup navigation handler
+if (window.location.pathname.includes('index.html') || window.location.pathname === '/') {
+    window.addEventListener('message', function(event) {
+        if (event.data.action === 'navigate') {
+            const osFrame = document.getElementById('osFrame');
+            if (osFrame) {
+                osFrame.src = event.data.url;
+            }
+        }
+    });
 }
 
 // Quick Panel Functions

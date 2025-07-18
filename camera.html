@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotocamera - CronoOS 2.3</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/camera.css">
+</head>
+<body>
+    <div class="camera-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left"><span class="time" id="statusTime">9:41</span></div>
+            <div class="status-center"><div class="notch"></div></div>
+            <div class="status-right">
+                <span class="signal"><i class="fas fa-signal"></i></span>
+                <span class="wifi"><i class="fas fa-wifi"></i></span>
+                <span class="battery">100% <i class="fas fa-battery-full"></i></span>
+            </div>
+        </div>
+
+        <!-- Camera Header -->
+        <div class="camera-header">
+            <button class="back-btn" onclick="goHome()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="camera-modes">
+                <button class="mode-btn active" data-mode="photo">FOTO</button>
+                <button class="mode-btn" data-mode="video">VIDEO</button>
+                <button class="mode-btn" data-mode="portrait">RITRATTO</button>
+            </div>
+            <button class="settings-btn">
+                <i class="fas fa-gear"></i>
+            </button>
+        </div>
+
+        <!-- Camera Viewfinder -->
+        <div class="camera-viewfinder" id="viewfinder">
+            <div class="viewfinder-overlay">
+                <!-- Grid Lines -->
+                <div class="grid-lines" id="gridLines">
+                    <div class="grid-line vertical"></div>
+                    <div class="grid-line vertical"></div>
+                    <div class="grid-line horizontal"></div>
+                    <div class="grid-line horizontal"></div>
+                </div>
+                
+                <!-- Focus Ring -->
+                <div class="focus-ring" id="focusRing"></div>
+                
+                <!-- Timer Display -->
+                <div class="timer-display" id="timerDisplay">3</div>
+            </div>
+            
+            <!-- Simulated Camera Feed -->
+            <div class="camera-feed">
+                <div class="camera-placeholder">
+                    <i class="fas fa-camera"></i>
+                    <p>Anteprima Fotocamera</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Camera Controls -->
+        <div class="camera-controls">
+            <!-- Top Controls -->
+            <div class="top-controls">
+                <button class="control-btn" id="flashBtn" data-flash="off">
+                    <i class="fas fa-bolt-slash"></i>
+                </button>
+                <button class="control-btn" id="timerBtn" data-timer="off">
+                    <i class="fas fa-clock"></i>
+                </button>
+                <button class="control-btn" id="gridBtn" data-grid="off">
+                    <i class="fas fa-border-all"></i>
+                </button>
+                <button class="control-btn" id="flipBtn">
+                    <i class="fas fa-camera-rotate"></i>
+                </button>
+            </div>
+
+            <!-- Main Controls -->
+            <div class="main-controls">
+                <button class="gallery-btn" onclick="openApp('gallery.html')">
+                    <div class="gallery-preview">
+                        <i class="fas fa-images"></i>
+                    </div>
+                </button>
+                
+                <button class="capture-btn" id="captureBtn">
+                    <div class="capture-inner"></div>
+                </button>
+                
+                <button class="switch-camera-btn" id="switchCameraBtn">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Photo Preview Modal -->
+        <div class="photo-preview-modal" id="photoPreviewModal">
+            <div class="preview-header">
+                <button class="preview-close-btn" id="previewCloseBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="preview-actions">
+                    <button class="preview-action-btn" id="shareBtn">
+                        <i class="fas fa-share"></i>
+                    </button>
+                    <button class="preview-action-btn" id="deleteBtn">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="preview-content">
+                <img id="previewImage" src="" alt="Foto catturata">
+            </div>
+            <div class="preview-footer">
+                <button class="btn btn-filled" id="savePhotoBtn">Salva in Galleria</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/global.js"></script>
+    <script src="scripts/camera.js"></script>
+</body>
+</html>

@@ -84,6 +84,54 @@ function initializeSettingsControls() {
             saveSettingsData();
         });
     }
+    
+    // Other toggles
+    const hapticToggle = document.getElementById('hapticToggle');
+    const keyboardSoundsToggle = document.getElementById('keyboardSoundsToggle');
+    const autoLockToggle = document.getElementById('autoLockToggle');
+    const airplaneModeToggle = document.getElementById('airplaneModeToggle');
+    const locationToggle = document.getElementById('locationToggle');
+    
+    if (hapticToggle) {
+        hapticToggle.addEventListener('change', function() {
+            showToast(this.checked ? 'Vibrazione attivata' : 'Vibrazione disattivata');
+            saveSettingsData();
+        });
+    }
+    
+    if (keyboardSoundsToggle) {
+        keyboardSoundsToggle.addEventListener('change', function() {
+            showToast(this.checked ? 'Suoni tastiera attivati' : 'Suoni tastiera disattivati');
+            saveSettingsData();
+        });
+    }
+    
+    if (autoLockToggle) {
+        autoLockToggle.addEventListener('change', function() {
+            showToast(this.checked ? 'Auto-lock attivato' : 'Auto-lock disattivato');
+            saveSettingsData();
+        });
+    }
+    
+    if (airplaneModeToggle) {
+        airplaneModeToggle.addEventListener('change', function() {
+            const enabled = this.checked;
+            showToast(enabled ? 'Modalità aereo attivata' : 'Modalità aereo disattivata');
+            
+            // Disable other connectivity options when airplane mode is on
+            if (wifiToggle) wifiToggle.disabled = enabled;
+            if (bluetoothToggle) bluetoothToggle.disabled = enabled;
+            
+            saveSettingsData();
+        });
+    }
+    
+    if (locationToggle) {
+        locationToggle.addEventListener('change', function() {
+            showToast(this.checked ? 'Localizzazione attivata' : 'Localizzazione disattivata');
+            saveSettingsData();
+        });
+    }
 }
 
 function toggleCategory(categoryId) {
@@ -104,11 +152,17 @@ function toggleCategory(categoryId) {
 }
 
 function openAboutDevice() {
-    openModal('aboutModal');
+    const modal = document.getElementById('aboutModal');
+    if (modal) {
+        modal.classList.add('active');
+    }
 }
 
 function closeAboutModal() {
-    closeModal('aboutModal');
+    const modal = document.getElementById('aboutModal');
+    if (modal) {
+        modal.classList.remove('active');
+    }
 }
 
 function saveSettingsData() {
@@ -117,8 +171,23 @@ function saveSettingsData() {
         brightnessLevel: document.getElementById('brightnessControl')?.value || 50,
         volumeLevel: document.getElementById('volumeControl')?.value || 70,
         isWifiEnabled: document.getElementById('wifiToggle')?.checked !== false,
-        isBluetoothEnabled: document.getElementById('bluetoothToggle')?.checked !== false
+        isBluetoothEnabled: document.getElementById('bluetoothToggle')?.checked !== false,
+        isHapticEnabled: document.getElementById('hapticToggle')?.checked !== false,
+        isKeyboardSoundsEnabled: document.getElementById('keyboardSoundsToggle')?.checked || false,
+        isAutoLockEnabled: document.getElementById('autoLockToggle')?.checked !== false,
+        isAirplaneModeEnabled: document.getElementById('airplaneModeToggle')?.checked || false,
+        isLocationEnabled: document.getElementById('locationToggle')?.checked !== false
     };
     
     localStorage.setItem('cronos_settings', JSON.stringify(settings));
+}
+
+// Search functionality
+document.getElementById('searchSettingsBtn')?.addEventListener('click', function() {
+    showToast('Ricerca impostazioni non ancora implementata');
+});
+
+// Profile edit
+document.querySelector('.profile-edit')?.addEventListener('click', function() {
+    showToast('Modifica profilo non ancora implementata');
 }
