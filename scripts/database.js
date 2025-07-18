@@ -13,6 +13,10 @@ const AVAILABLE_APPS = {
     'playstore': { name: 'App Store', icon: 'fas fa-store', color: '#0A84FF', isCore: true, page: 'playstore.html' },
 
     // Installable Apps
+    'gpt-assistant': { name: 'CronoGPT', icon: 'fas fa-brain', color: 'linear-gradient(135deg, #667eea, #764ba2)', description: 'Assistente AI integrato.', category: 'gpt' },
+    'cronogames': { name: 'CronoGames', icon: 'fas fa-gamepad', color: '#FF6B6B', description: 'Giochi AI generati.', category: 'gpt' },
+    'weather': { name: 'Meteo', icon: 'fas fa-cloud-sun', color: '#74B9FF', description: 'Previsioni meteo accurate.', category: 'utility' },
+    'clock': { name: 'Orologio', icon: 'fas fa-clock', color: '#FD79A8', description: 'Timer, sveglie e cronometro.', category: 'utility' },
     'whatsapp': { name: 'WhatsApp', icon: 'fab fa-whatsapp', color: '#25D366', description: 'Messaggistica semplice e sicura.' },
     'instagram': { name: 'Instagram', icon: 'fab fa-instagram', color: 'linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%)', description: 'Condividi momenti con il mondo.' },
     'youtube': { name: 'YouTube', icon: 'fab fa-youtube', color: '#FF0000', description: 'Guarda, carica e condividi video.' },

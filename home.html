@@ -22,15 +22,108 @@
         </div>
 
         <div class="home-screen-content">
+            <!-- Widgets Section -->
+            <div class="widgets-section">
+                <div class="widgets-grid">
+                    <div class="widget widget-time" onclick="openApp('clock.html')">
+                        <span class="time" id="widgetTime">9:41</span>
+                        <span class="date" id="widgetDate">Lunedì 15 Luglio</span>
+                    </div>
+                    
+                    <div class="widget widget-weather" onclick="openApp('weather.html')">
+                        <div class="weather-info">
+                            <div class="weather-temp">22°</div>
+                            <div class="weather-desc">Soleggiato</div>
+                        </div>
+                        <div class="weather-icon">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="widget widget-calendar" onclick="openApp('calendar.html')">
+                        <div class="calendar-day" id="widgetDay">15</div>
+                        <div class="calendar-month" id="widgetMonth">Luglio</div>
+                    </div>
+                    
+                    <div class="widget widget-gpt widget-large" onclick="openApp('gpt-assistant.html')">
+                        <div class="gpt-title">
+                            <i class="fas fa-brain"></i>
+                            CronoGPT Assistant
+                        </div>
+                        <div class="gpt-shortcuts">
+                            <button class="gpt-shortcut" onclick="event.stopPropagation(); openGPTModule('studio')">Studio</button>
+                            <button class="gpt-shortcut" onclick="event.stopPropagation(); openGPTModule('assist')">Assist</button>
+                            <button class="gpt-shortcut" onclick="event.stopPropagation(); openGPTModule('translate')">Traduci</button>
+                            <button class="gpt-shortcut" onclick="event.stopPropagation(); openGPTModule('design')">Design</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <div class="app-grid" id="appGrid">
                 <!-- Apps will be dynamically loaded here -->
                 </div>
         </div>
 
         <div class="dock-container">
+            <!-- System Navigation Bar -->
+            <div class="system-nav-bar">
+                <button class="nav-system-btn" onclick="goBack()" title="Indietro">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="nav-system-btn nav-home" onclick="goHome()" title="Home">
+                    <i class="fas fa-circle"></i>
+                </button>
+                <button class="nav-system-btn" onclick="showMultitasking()" title="Multitasking">
+                    <i class="fas fa-layer-group"></i>
+                </button>
+            </div>
+            
             <div class="dock" id="dock">
                 <!-- Dock apps will be dynamically loaded here -->
                  </div>
+        </div>
+        
+        <!-- Multitasking Overlay -->
+        <div class="multitasking-overlay" id="multitaskingOverlay">
+            <div class="multitasking-header">
+                <h2>App Recenti</h2>
+                <button class="close-multitasking" onclick="hideMultitasking()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="app-cards-container">
+                <div class="app-card glass-panel" onclick="openApp('settings.html')">
+                    <div class="app-preview">
+                        <i class="fas fa-gear"></i>
+                        <span>Impostazioni</span>
+                    </div>
+                    <button class="close-app-card">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="app-card glass-panel" onclick="openApp('messages.html')">
+                    <div class="app-preview">
+                        <i class="fas fa-comment-dots"></i>
+                        <span>Messaggi</span>
+                    </div>
+                    <button class="close-app-card">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="app-card glass-panel" onclick="openApp('camera.html')">
+                    <div class="app-preview">
+                        <i class="fas fa-camera"></i>
+                        <span>Fotocamera</span>
+                    </div>
+                    <button class="close-app-card">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
     

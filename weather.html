@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meteo - CronoOS 3.0</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/cronoglass.css">
+    <link rel="stylesheet" href="styles/weather.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left"><span class="time" id="statusTime">9:41</span></div>
+            <div class="status-center"><div class="notch"></div></div>
+            <div class="status-right">
+                <span class="signal"><i class="fas fa-signal"></i></span>
+                <span class="wifi"><i class="fas fa-wifi"></i></span>
+                <span class="battery">100% <i class="fas fa-battery-full"></i></span>
+            </div>
+        </div>
+
+        <!-- App Header -->
+        <div class="app-header glass">
+            <button class="back-btn" onclick="goHome()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <h1><i class="fas fa-cloud-sun"></i> Meteo</h1>
+            <button class="header-btn">
+                <i class="fas fa-location-dot"></i>
+            </button>
+        </div>
+
+        <!-- Weather Content -->
+        <div class="weather-content">
+            <!-- Current Weather -->
+            <div class="current-weather glass-panel">
+                <div class="location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Milano, Italia</span>
+                </div>
+                
+                <div class="current-temp">
+                    <span class="temp">22°</span>
+                    <div class="weather-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                </div>
+                
+                <div class="weather-desc">Soleggiato</div>
+                <div class="temp-range">Max 25° • Min 18°</div>
+                
+                <div class="weather-details">
+                    <div class="detail-item">
+                        <i class="fas fa-eye"></i>
+                        <span>Visibilità</span>
+                        <span>10 km</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-tint"></i>
+                        <span>Umidità</span>
+                        <span>65%</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-wind"></i>
+                        <span>Vento</span>
+                        <span>12 km/h</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hourly Forecast -->
+            <div class="hourly-forecast glass-panel">
+                <h3>Previsioni Orarie</h3>
+                <div class="hourly-scroll">
+                    <div class="hour-item">
+                        <span class="hour">Ora</span>
+                        <i class="fas fa-sun weather-icon"></i>
+                        <span class="hour-temp">22°</span>
+                    </div>
+                    <div class="hour-item">
+                        <span class="hour">14:00</span>
+                        <i class="fas fa-sun weather-icon"></i>
+                        <span class="hour-temp">24°</span>
+                    </div>
+                    <div class="hour-item">
+                        <span class="hour">15:00</span>
+                        <i class="fas fa-cloud-sun weather-icon"></i>
+                        <span class="hour-temp">25°</span>
+                    </div>
+                    <div class="hour-item">
+                        <span class="hour">16:00</span>
+                        <i class="fas fa-cloud weather-icon"></i>
+                        <span class="hour-temp">23°</span>
+                    </div>
+                    <div class="hour-item">
+                        <span class="hour">17:00</span>
+                        <i class="fas fa-cloud-rain weather-icon"></i>
+                        <span class="hour-temp">21°</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weekly Forecast -->
+            <div class="weekly-forecast glass-panel">
+                <h3>Previsioni 7 Giorni</h3>
+                <div class="week-list">
+                    <div class="day-item">
+                        <span class="day">Oggi</span>
+                        <i class="fas fa-sun weather-icon"></i>
+                        <span class="day-temps">25° / 18°</span>
+                    </div>
+                    <div class="day-item">
+                        <span class="day">Dom</span>
+                        <i class="fas fa-cloud-sun weather-icon"></i>
+                        <span class="day-temps">23° / 16°</span>
+                    </div>
+                    <div class="day-item">
+                        <span class="day">Lun</span>
+                        <i class="fas fa-cloud-rain weather-icon"></i>
+                        <span class="day-temps">19° / 14°</span>
+                    </div>
+                    <div class="day-item">
+                        <span class="day">Mar</span>
+                        <i class="fas fa-cloud weather-icon"></i>
+                        <span class="day-temps">21° / 15°</span>
+                    </div>
+                    <div class="day-item">
+                        <span class="day">Mer</span>
+                        <i class="fas fa-sun weather-icon"></i>
+                        <span class="day-temps">26° / 19°</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Navigation -->
+        <div class="system-nav-bar nav-glass">
+            <button class="nav-system-btn" onclick="goBack()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="nav-system-btn nav-home" onclick="goHome()">
+                <i class="fas fa-circle"></i>
+            </button>
+            <button class="nav-system-btn" onclick="showMultitasking()">
+                <i class="fas fa-layer-group"></i>
+            </button>
+        </div>
+    </div>
+
+    <script src="scripts/global.js"></script>
+    <script src="scripts/navigation.js"></script>
+</body>
+</html>

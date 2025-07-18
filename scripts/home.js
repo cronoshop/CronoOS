@@ -3,6 +3,12 @@
 // Ora contiene direttamente i dati di default per evitare qualsiasi errore di caricamento.
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize widgets
+    initializeWidgets();
+    
+    // Initialize multitasking
+    initializeMultitasking();
+    
     // --- Database Interno di Default ---
     // Questa è la lista di app che la home CONOSCE. Non dipende da altri file.
     const DEFAULT_APPS_DATABASE = {
@@ -17,10 +23,14 @@ document.addEventListener('DOMContentLoaded', () => {
         'instagram': { name: 'Instagram', icon: 'fab fa-instagram', color: 'linear-gradient(45deg, #f09433,#e6683c,#dc2743,#cc2366,#bc1888)'},
         'youtube': { name: 'YouTube', icon: 'fab fa-youtube', color: '#FF0000' },
         'spotify': { name: 'Spotify', icon: 'fab fa-spotify', color: '#1DB954' },
+        'gpt-assistant': { name: 'CronoGPT', icon: 'fas fa-brain', color: 'linear-gradient(135deg, #667eea, #764ba2)', page: 'gpt-assistant.html' },
+        'cronogames': { name: 'CronoGames', icon: 'fas fa-gamepad', color: '#FF6B6B', page: 'cronogames.html' },
+        'weather': { name: 'Meteo', icon: 'fas fa-cloud-sun', color: '#74B9FF', page: 'weather.html' },
+        'clock': { name: 'Orologio', icon: 'fas fa-clock', color: '#FD79A8', page: 'clock.html' },
     };
 
     // App di default nel dock
-    const DEFAULT_DOCK_APPS = ['phone', 'messages', 'camera', 'playstore'];
+    const DEFAULT_DOCK_APPS = ['phone', 'messages', 'camera', 'gpt-assistant'];
 
     const appGrid = document.getElementById('appGrid');
     const dock = document.getElementById('dock');
@@ -187,4 +197,132 @@ document.addEventListener('DOMContentLoaded', () => {
             initializeHomeScreen();
         }
     });
+    
+    // Update widgets every minute
+    setInterval(updateWidgets, 60000);
 });
+
+// Widget Functions
+function initializeWidgets() {
+    updateWidgets();
+    setupWidgetInteractions();
+}
+
+function updateWidgets() {
+    const now = new Date();
+    
+    // Update time widget
+    const widgetTime = document.getElementById('widgetTime');
+    const widgetDate = document.getElementById('widgetDate');
+    if (widgetTime) {
+        widgetTime.textContent = now.toLocaleTimeString('it-IT', { 
+            hour: '2-digit', 
+            minute: '2-digit',
+            hour12: false 
+        });
+    }
+    if (widgetDate) {
+        widgetDate.textContent = now.toLocaleDateString('it-IT', { 
+            weekday: 'long', 
+            day: 'numeric', 
+            month: 'long' 
+        });
+    }
+    
+    // Update calendar widget
+    const widgetDay = document.getElementById('widgetDay');
+    const widgetMonth = document.getElementById('widgetMonth');
+    if (widgetDay) {
+        widgetDay.textContent = now.getDate();
+    }
+    if (widgetMonth) {
+        widgetMonth.textContent = now.toLocaleDateString('it-IT', { month: 'long' });
+    }
+}
+
+function setupWidgetInteractions() {
+    // Add hover effects to widgets
+    document.querySelectorAll('.widget').forEach(widget => {
+        widget.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px) scale(1.02)';
+        });
+        
+        widget.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+}
+
+function openGPTModule(module) {
+    const modules = {
+        'studio': 'CronoStudio - Aiuto per studiare',
+        'assist': 'CronoAssist - Assistente personale',
+        'translate': 'GPT-Translator - Traduttore istantaneo',
+        'design': 'CronoDesign - Design con AI'
+    };
+    
+    showToast(`Apertura ${modules[module]}...`);
+    setTimeout(() => {
+        openApp(`gpt-${module}.html`);
+    }, 1000);
+}
+
+// Multitasking Functions
+function initializeMultitasking() {
+    // Setup multitasking overlay
+    const overlay = document.getElementById('multitaskingOverlay');
+    if (overlay) {
+        // Close on background click
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) {
+                hideMultitasking();
+            }
+        });
+    }
+}
+
+function showMultitasking() {
+    const overlay = document.getElementById('multitaskingOverlay');
+    if (!overlay) return;
+    
+    overlay.classList.add('active');
+    
+    // Add spring animation to cards
+    setTimeout(() => {
+        document.querySelectorAll('.app-card').forEach((card, index) => {
+            setTimeout(() => {
+                card.classList.add('spring-animation');
+            }, index * 100);
+        });
+    }, 200);
+    
+    showToast('Multitasking aperto');
+}
+
+function hideMultitasking() {
+    const overlay = document.getElementById('multitaskingOverlay');
+    if (!overlay) return;
+    
+    overlay.classList.remove('active');
+    
+    // Remove animations
+    document.querySelectorAll('.app-card').forEach(card => {
+        card.classList.remove('spring-animation');
+    });
+}
+
+function goBack() {
+    if (document.getElementById('multitaskingOverlay')?.classList.contains('active')) {
+        hideMultitasking();
+        return;
+    }
+    
+    // Since we're on home, just show a toast
+    showToast('Già nella Home');
+}
+
+// Make functions globally available
+window.showMultitasking = showMultitasking;
+window.hideMultitasking = hideMultitasking;
+window.goBack = goBack;
+window.openGPTModule = openGPTModule;

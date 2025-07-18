@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation - CronoOS 3.0</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/cronoglass.css">
+    <link rel="stylesheet" href="styles/navigation.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left"><span class="time" id="statusTime">9:41</span></div>
+            <div class="status-center"><div class="notch"></div></div>
+            <div class="status-right">
+                <span class="signal"><i class="fas fa-signal"></i></span>
+                <span class="wifi"><i class="fas fa-wifi"></i></span>
+                <span class="battery">100% <i class="fas fa-battery-full"></i></span>
+            </div>
+        </div>
+
+        <!-- Navigation Demo Content -->
+        <div class="nav-demo-content">
+            <h1>Navigation System</h1>
+            <p>Questa è una demo del nuovo sistema di navigazione CronoOS 3.0</p>
+            
+            <div class="demo-buttons">
+                <button class="btn-glass" onclick="showToast('Navigazione Home')">
+                    <i class="fas fa-home"></i> Home
+                </button>
+                <button class="btn-glass" onclick="showToast('Navigazione Indietro')">
+                    <i class="fas fa-arrow-left"></i> Indietro
+                </button>
+                <button class="btn-glass" onclick="showMultitasking()">
+                    <i class="fas fa-layer-group"></i> Multitasking
+                </button>
+            </div>
+        </div>
+
+        <!-- System Navigation Bar -->
+        <div class="system-nav-bar nav-glass">
+            <button class="nav-system-btn" onclick="goBack()" title="Indietro">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="nav-system-btn nav-home" onclick="goHome()" title="Home">
+                <i class="fas fa-circle"></i>
+            </button>
+            <button class="nav-system-btn" onclick="showMultitasking()" title="Multitasking">
+                <i class="fas fa-layer-group"></i>
+            </button>
+        </div>
+
+        <!-- Multitasking Overlay -->
+        <div class="multitasking-overlay" id="multitaskingOverlay">
+            <div class="multitasking-header">
+                <h2>App Recenti</h2>
+                <button class="close-multitasking" onclick="hideMultitasking()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="app-cards-container">
+                <div class="app-card glass-panel" onclick="openApp('home.html')">
+                    <div class="app-preview">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </div>
+                    <button class="close-app-card">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="app-card glass-panel" onclick="openApp('settings.html')">
+                    <div class="app-preview">
+                        <i class="fas fa-gear"></i>
+                        <span>Impostazioni</span>
+                    </div>
+                    <button class="close-app-card">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="app-card glass-panel" onclick="openApp('messages.html')">
+                    <div class="app-preview">
+                        <i class="fas fa-comment-dots"></i>
+                        <span>Messaggi</span>
+                    </div>
+                    <button class="close-app-card">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/global.js"></script>
+    <script src="scripts/navigation.js"></script>
+</body>
+</html>

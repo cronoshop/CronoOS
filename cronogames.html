@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CronoGames - CronoOS 3.0</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/cronoglass.css">
+    <link rel="stylesheet" href="styles/cronogames.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left"><span class="time" id="statusTime">9:41</span></div>
+            <div class="status-center"><div class="notch"></div></div>
+            <div class="status-right">
+                <span class="signal"><i class="fas fa-signal"></i></span>
+                <span class="wifi"><i class="fas fa-wifi"></i></span>
+                <span class="battery">100% <i class="fas fa-battery-full"></i></span>
+            </div>
+        </div>
+
+        <!-- App Header -->
+        <div class="app-header glass">
+            <button class="back-btn" onclick="goHome()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <h1><i class="fas fa-gamepad"></i> CronoGames</h1>
+            <button class="header-btn">
+                <i class="fas fa-trophy"></i>
+            </button>
+        </div>
+
+        <!-- Games Grid -->
+        <div class="games-container">
+            <div class="games-grid">
+                <div class="game-card glass-panel" onclick="openGame('snake')">
+                    <div class="game-icon">
+                        <i class="fas fa-snake"></i>
+                    </div>
+                    <div class="game-info">
+                        <h3>Snake Neo</h3>
+                        <p>Classico rivisitato con skin e temi</p>
+                        <div class="game-stats">
+                            <span><i class="fas fa-star"></i> 4.8</span>
+                            <span><i class="fas fa-download"></i> 1.2K</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card glass-panel" onclick="openGame('tap-master')">
+                    <div class="game-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="game-info">
+                        <h3>Tap Master</h3>
+                        <p>Gioco musicale minimal e coinvolgente</p>
+                        <div class="game-stats">
+                            <span><i class="fas fa-star"></i> 4.6</span>
+                            <span><i class="fas fa-download"></i> 890</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card glass-panel" onclick="openGame('pixel-miner')">
+                    <div class="game-icon">
+                        <i class="fas fa-pickaxe"></i>
+                    </div>
+                    <div class="game-info">
+                        <h3>Pixel Miner</h3>
+                        <p>Gestisci una miniera e potenzia</p>
+                        <div class="game-stats">
+                            <span><i class="fas fa-star"></i> 4.7</span>
+                            <span><i class="fas fa-download"></i> 2.1K</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card glass-panel" onclick="openGame('crono-trivia')">
+                    <div class="game-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="game-info">
+                        <h3>CronoTrivia</h3>
+                        <p>Quiz dinamico aggiornabile via Wi-Fi</p>
+                        <div class="game-stats">
+                            <span><i class="fas fa-star"></i> 4.9</span>
+                            <span><i class="fas fa-download"></i> 3.5K</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Games Section -->
+            <div class="ai-games-section glass-panel">
+                <h3><i class="fas fa-robot"></i> Giochi AI Generati</h3>
+                <p>Crea nuovi giochi con l'intelligenza artificiale</p>
+                <button class="generate-game-btn" onclick="generateAIGame()">
+                    <i class="fas fa-magic"></i>
+                    Genera Nuovo Gioco
+                </button>
+            </div>
+        </div>
+
+        <!-- System Navigation -->
+        <div class="system-nav-bar nav-glass">
+            <button class="nav-system-btn" onclick="goBack()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="nav-system-btn nav-home" onclick="goHome()">
+                <i class="fas fa-circle"></i>
+            </button>
+            <button class="nav-system-btn" onclick="showMultitasking()">
+                <i class="fas fa-layer-group"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Game Modal -->
+    <div class="game-modal" id="gameModal">
+        <div class="game-modal-content glass-panel">
+            <div class="game-modal-header">
+                <h2 id="gameTitle">Snake Neo</h2>
+                <button class="close-game-btn" onclick="closeGame()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="game-area" id="gameArea">
+                <!-- Game will be rendered here -->
+            </div>
+            <div class="game-controls">
+                <button class="game-control-btn" onclick="startGame()">
+                    <i class="fas fa-play"></i> Gioca
+                </button>
+                <button class="game-control-btn" onclick="pauseGame()">
+                    <i class="fas fa-pause"></i> Pausa
+                </button>
+                <button class="game-control-btn" onclick="resetGame()">
+                    <i class="fas fa-redo"></i> Reset
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/global.js"></script>
+    <script src="scripts/navigation.js"></script>
+    <script src="scripts/cronogames.js"></script>
+</body>
+</html>

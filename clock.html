@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orologio - CronoOS 3.0</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/cronoglass.css">
+    <link rel="stylesheet" href="styles/clock.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left"><span class="time" id="statusTime">9:41</span></div>
+            <div class="status-center"><div class="notch"></div></div>
+            <div class="status-right">
+                <span class="signal"><i class="fas fa-signal"></i></span>
+                <span class="wifi"><i class="fas fa-wifi"></i></span>
+                <span class="battery">100% <i class="fas fa-battery-full"></i></span>
+            </div>
+        </div>
+
+        <!-- App Header -->
+        <div class="app-header glass">
+            <button class="back-btn" onclick="goHome()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <h1><i class="fas fa-clock"></i> Orologio</h1>
+            <button class="header-btn">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+
+        <!-- Clock Tabs -->
+        <div class="clock-tabs">
+            <div class="tab active" data-tab="world-clock">Mondiale</div>
+            <div class="tab" data-tab="alarm">Sveglia</div>
+            <div class="tab" data-tab="stopwatch">Cronometro</div>
+            <div class="tab" data-tab="timer">Timer</div>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="clock-content">
+            <!-- World Clock Tab -->
+            <div class="tab-panel active" id="world-clock">
+                <div class="world-clocks">
+                    <div class="world-clock-item glass-panel">
+                        <div class="city-info">
+                            <div class="city-name">Milano</div>
+                            <div class="city-time" id="milanTime">13:41</div>
+                        </div>
+                        <div class="time-diff">Ora locale</div>
+                    </div>
+                    
+                    <div class="world-clock-item glass-panel">
+                        <div class="city-info">
+                            <div class="city-name">New York</div>
+                            <div class="city-time" id="nyTime">07:41</div>
+                        </div>
+                        <div class="time-diff">-6 ore</div>
+                    </div>
+                    
+                    <div class="world-clock-item glass-panel">
+                        <div class="city-info">
+                            <div class="city-name">Tokyo</div>
+                            <div class="city-time" id="tokyoTime">21:41</div>
+                        </div>
+                        <div class="time-diff">+8 ore</div>
+                    </div>
+                    
+                    <div class="world-clock-item glass-panel">
+                        <div class="city-info">
+                            <div class="city-name">Londra</div>
+                            <div class="city-time" id="londonTime">12:41</div>
+                        </div>
+                        <div class="time-diff">-1 ora</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alarm Tab -->
+            <div class="tab-panel" id="alarm">
+                <div class="alarms-list">
+                    <div class="alarm-item glass-panel">
+                        <div class="alarm-info">
+                            <div class="alarm-time">07:00</div>
+                            <div class="alarm-label">Sveglia mattutina</div>
+                        </div>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="alarm1" checked>
+                            <label for="alarm1"></label>
+                        </div>
+                    </div>
+                    
+                    <div class="alarm-item glass-panel">
+                        <div class="alarm-info">
+                            <div class="alarm-time">22:30</div>
+                            <div class="alarm-label">Promemoria sonno</div>
+                        </div>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="alarm2">
+                            <label for="alarm2"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stopwatch Tab -->
+            <div class="tab-panel" id="stopwatch">
+                <div class="stopwatch-container glass-panel">
+                    <div class="stopwatch-display">
+                        <span id="stopwatchTime">00:00:00</span>
+                    </div>
+                    <div class="stopwatch-controls">
+                        <button class="control-btn secondary" id="resetBtn" onclick="resetStopwatch()">
+                            <i class="fas fa-redo"></i>
+                            Reset
+                        </button>
+                        <button class="control-btn primary" id="startStopBtn" onclick="toggleStopwatch()">
+                            <i class="fas fa-play"></i>
+                            Avvia
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timer Tab -->
+            <div class="tab-panel" id="timer">
+                <div class="timer-container glass-panel">
+                    <div class="timer-display">
+                        <span id="timerTime">05:00</span>
+                    </div>
+                    <div class="timer-controls">
+                        <button class="control-btn secondary" onclick="resetTimer()">
+                            <i class="fas fa-redo"></i>
+                            Reset
+                        </button>
+                        <button class="control-btn primary" id="timerStartBtn" onclick="toggleTimer()">
+                            <i class="fas fa-play"></i>
+                            Avvia
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Navigation -->
+        <div class="system-nav-bar nav-glass">
+            <button class="nav-system-btn" onclick="goBack()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="nav-system-btn nav-home" onclick="goHome()">
+                <i class="fas fa-circle"></i>
+            </button>
+            <button class="nav-system-btn" onclick="showMultitasking()">
+                <i class="fas fa-layer-group"></i>
+            </button>
+        </div>
+    </div>
+
+    <script src="scripts/global.js"></script>
+    <script src="scripts/navigation.js"></script>
+    <script src="scripts/clock.js"></script>
+</body>
+</html>
