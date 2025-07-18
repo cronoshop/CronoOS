@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (powerButton && osFrame) {
         powerButton.addEventListener('click', () => {
-            // Check current page and toggle between lock and home
+            // Controlla la pagina corrente e alterna tra lock e home
             const currentSrc = osFrame.contentWindow.location.href;
             if (currentSrc.includes('lock.html')) {
                 osFrame.src = 'home.html';
@@ -16,7 +16,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Adjust size for responsiveness
+    // *** NUOVA PARTE AGGIUNTA - GESTORE DELLA NAVIGAZIONE ***
+    // Ascolta i messaggi dall'iframe (es. quando si clicca un'app)
+    window.addEventListener('message', function(event) {
+        if (event.data && event.data.action === 'navigate') {
+            if (osFrame) {
+                osFrame.src = event.data.url;
+            }
+        }
+    });
+    // *** FINE PARTE AGGIUNTA ***
+
+
+    // Adatta le dimensioni per la responsività
     function adjustPhoneSize() {
         const phoneMockup = document.querySelector('.phone-mockup');
         if (!phoneMockup || window.innerWidth <= 480) return;
