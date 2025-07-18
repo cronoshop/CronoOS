@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset - Impostazioni</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/settings.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="app-header">
+            <button class="back-btn" onclick="history.back()"><i class="fas fa-chevron-left"></i> Generali</button>
+            <h1>Inizializza</h1>
+        </div>
+        <div class="settings-content">
+            <div class="settings-group">
+                <div class="setting-item" onclick="resetSettings()">
+                    <div class="setting-info"><div class="setting-title">Ripristina impostazioni</div></div>
+                </div>
+                 <div class="setting-item" onclick="uninstallAllApps()">
+                    <div class="setting-info"><div class="setting-title">Disinstalla tutte le app</div></div>
+                </div>
+                <div class="setting-item" onclick="factoryReset()">
+                    <div class="setting-info"><div class="setting-title" style="color: var(--ios-red);">Inizializza contenuto e impostazioni</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/global.js"></script>
+    <script>
+        function resetSettings() {
+            if (confirm('Sei sicuro di voler ripristinare tutte le impostazioni ai valori predefiniti? L\'azione non è reversibile.')) {
+                // Rimuove solo le impostazioni di personalizzazione
+                localStorage.removeItem('crono_theme');
+                localStorage.removeItem('crono_bluelight');
+                localStorage.removeItem('crono_wallpaper');
+                localStorage.removeItem('crono_large_text');
+                localStorage.removeItem('crono_bold_text');
+                localStorage.removeItem('crono_power_saving');
+                showToast('Impostazioni ripristinate. Riavvio in corso...');
+                setTimeout(() => window.location.href = 'lock.html', 2000);
+            }
+        }
+
+        function uninstallAllApps() {
+             if (confirm('Sei sicuro di voler disinstallare tutte le app scaricate?')) {
+                // Mantiene solo le app di sistema
+                const coreApps = ['phone', 'messages', 'camera', 'settings', 'gallery', 'calendar', 'playstore'];
+                localStorage.setItem('cronos_installed_apps_v2', JSON.stringify(coreApps));
+                showToast('App disinstallate. Ricarico la Home...');
+                setTimeout(() => window.location.href = 'home.html', 2000);
+            }
+        }
+
+        function factoryReset() {
+            if (confirm('ATTENZIONE: Stai per cancellare tutti i dati e le impostazioni da questo dispositivo. L\'azione è irreversibile. Continuare?')) {
+                showToast('Ripristino dati di fabbrica in corso...');
+                localStorage.clear(); // Cancella TUTTO
+                setTimeout(() => {
+                    showToast('Dispositivo ripristinato. Riavvio...');
+                    window.location.href = 'index.html';
+                }, 2500);
+            }
+        }
+    </script>
+</body>
+</html>
