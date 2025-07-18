@@ -10,14 +10,10 @@
 </head>
 <body>
     <div class="home-screen-container">
-        <div class="wallpaper" id="dynamicWallpaper"></div>
+        <div class="wallpaper"></div>
         <div class="status-bar">
-            <div class="status-left">
-                <span class="time" id="statusTime">9:41</span>
-            </div>
-            <div class="status-center">
-                <div class="notch"></div>
-            </div>
+            <div class="status-left"><span class="time" id="statusTime">9:41</span></div>
+            <div class="status-center"><div class="notch"></div></div>
             <div class="status-right">
                 <span class="signal"><i class="fas fa-signal"></i></span>
                 <span class="wifi"><i class="fas fa-wifi"></i></span>
@@ -30,14 +26,13 @@
                 </div>
         </div>
 
-        <div class="dock" id="dock">
-             </div>
-
-        <div class="navigation-bar-container">
-            <div class="nav-indicator"></div>
+        <div class="dock-container">
+            <div class="dock" id="dock">
+                 </div>
         </div>
     </div>
-
+    
+    <script src="scripts/database.js"></script>
     <script src="scripts/home.js"></script>
     <script src="scripts/global.js"></script>
 </body>
