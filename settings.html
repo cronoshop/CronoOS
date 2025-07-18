@@ -3,54 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Impostazioni - CronoOS 2.4</title>
+    <title>Impostazioni - CronoOS Phoenix Pro</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/settings.css">
 </head>
 <body>
     <div class="app-container">
-        <div class="status-bar">
-            <div class="status-left"><span class="time" id="statusTime">9:41</span></div>
-            <div class="status-center"><div class="notch"></div></div>
-            <div class="status-right">
-                <span class="signal"><i class="fas fa-signal"></i></span>
-                <span class="wifi"><i class="fas fa-wifi"></i></span>
-                <span class="battery">100% <i class="fas fa-battery-full"></i></span>
-            </div>
-        </div>
         <div class="app-header">
             <h1>Impostazioni</h1>
         </div>
         <div class="settings-content">
             <div class="settings-group">
                 <div class="setting-item user-profile" onclick="navigateTo('account.html')">
-                    <div class="profile-avatar">
-                        <img id="profileImage" src="" alt="Profile" style="display: none;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <i class="fas fa-user" id="profileIcon"></i>
-                    </div>
+                    <div class="profile-avatar"><i class="fas fa-user"></i></div>
                     <div class="setting-info profile-info">
-                        <div class="profile-name" id="profileName">Utente CronoOS</div>
-                        <div class="profile-details" id="profileEmail">Apple ID, iCloud, Media e Acquisti</div>
+                        <div class="profile-name">Utente CronoOS</div>
+                        <div class="profile-details">Apple ID, iCloud, Media e Acquisti</div>
                     </div>
-                    <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
-                </div>
-            </div>
-            <div class="settings-group">
-                <div class="setting-item" onclick="navigateTo('connectivity.html')">
-                    <div class="setting-icon" style="background: #0A84FF;"><i class="fas fa-wifi"></i></div>
-                    <div class="setting-info"><div class="setting-title">Connettività</div></div>
-                    <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
-                </div>
-                <div class="setting-item" onclick="navigateTo('sounds.html')">
-                    <div class="setting-icon" style="background: #FF2D92;"><i class="fas fa-volume-high"></i></div>
-                    <div class="setting-info"><div class="setting-title">Suoni e Vibrazione</div></div>
                     <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
                 </div>
             </div>
             <div class="settings-group">
                 <div class="setting-item" onclick="navigateTo('display.html')">
-                    <div class="setting-icon" style="background: #FF9500;"><i class="fas fa-sun"></i></div>
+                    <div class="setting-icon" style="background: #0A84FF;"><i class="fas fa-sun"></i></div>
                     <div class="setting-info"><div class="setting-title">Schermo e Luminosità</div></div>
                     <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
                 </div>
@@ -59,21 +35,27 @@
                     <div class="setting-info"><div class="setting-title">Sfondo e Stile</div></div>
                     <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
                 </div>
-            </div>
-            <div class="settings-group">
-                <div class="setting-item" onclick="navigateTo('privacy.html')">
-                    <div class="setting-icon" style="background: #30D158;"><i class="fas fa-shield-halved"></i></div>
-                    <div class="setting-info"><div class="setting-title">Privacy e Sicurezza</div></div>
+                 <div class="setting-item" onclick="navigateTo('accessibility.html')">
+                    <div class="setting-icon" style="background: #30D158;"><i class="fas fa-universal-access"></i></div>
+                    <div class="setting-info"><div class="setting-title">Accessibilità</div></div>
                     <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
                 </div>
-                 <div class="setting-item" onclick="navigateTo('system.html')">
-                    <div class="setting-icon" style="background: #8A8A8E;"><i class="fas fa-gear"></i></div>
-                    <div class="setting-info"><div class="setting-title">Sistema</div></div>
+            </div>
+            <div class="settings-group">
+                <div class="setting-item" onclick="navigateTo('battery.html')">
+                     <div class="setting-icon" style="background: #30D158;"><i class="fas fa-battery-full"></i></div>
+                    <div class="setting-info"><div class="setting-title">Batteria</div></div>
+                    <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
+                </div>
+                <div class="setting-item" onclick="navigateTo('system.html')">
+                     <div class="setting-icon" style="background: #8A8A8E;"><i class="fas fa-gear"></i></div>
+                    <div class="setting-info"><div class="setting-title">Generali</div></div>
                     <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
                 </div>
             </div>
         </div>
     </div>
     <script src="scripts/settings.js"></script>
+    <script src="scripts/global.js"></script>
 </body>
 </html>
