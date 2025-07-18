@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Manager - CronoOS 3.1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../styles/global.css">
+    <link rel="stylesheet" href="../styles/cronoglass-enhanced.css">
+    <link rel="stylesheet" href="../styles/navbar.css">
+    <link rel="stylesheet" href="../css/file-manager.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Status Bar -->
+        <div class="status-bar glass-nav">
+            <div class="status-left"><span class="time" id="statusTime">9:41</span></div>
+            <div class="status-center"><div class="notch"></div></div>
+            <div class="status-right">
+                <span class="signal"><i class="fas fa-signal"></i></span>
+                <span class="wifi"><i class="fas fa-wifi"></i></span>
+                <span class="battery">100% <i class="fas fa-battery-full"></i></span>
+            </div>
+        </div>
+
+        <!-- App Header -->
+        <div class="app-header glass-panel">
+            <button class="back-btn glass-btn" onclick="goHome()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <h1><i class="fas fa-folder"></i> File Manager</h1>
+            <div class="header-actions">
+                <button class="header-btn glass-btn" id="searchBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="header-btn glass-btn" id="viewBtn">
+                    <i class="fas fa-th"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Breadcrumb -->
+        <div class="breadcrumb glass-card">
+            <button class="breadcrumb-item active">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </button>
+        </div>
+
+        <!-- Quick Access -->
+        <div class="quick-access">
+            <h3>Accesso Rapido</h3>
+            <div class="quick-items">
+                <div class="quick-item glass-card" onclick="openFolder('downloads')">
+                    <i class="fas fa-download"></i>
+                    <span>Download</span>
+                </div>
+                <div class="quick-item glass-card" onclick="openFolder('documents')">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Documenti</span>
+                </div>
+                <div class="quick-item glass-card" onclick="openFolder('images')">
+                    <i class="fas fa-images"></i>
+                    <span>Immagini</span>
+                </div>
+                <div class="quick-item glass-card" onclick="openFolder('music')">
+                    <i class="fas fa-music"></i>
+                    <span>Musica</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- File List -->
+        <div class="file-list-container">
+            <div class="file-list-header">
+                <h3>File e Cartelle</h3>
+                <div class="sort-options">
+                    <button class="sort-btn glass-btn active" data-sort="name">
+                        <i class="fas fa-sort-alpha-down"></i>
+                    </button>
+                    <button class="sort-btn glass-btn" data-sort="date">
+                        <i class="fas fa-sort-numeric-down"></i>
+                    </button>
+                    <button class="sort-btn glass-btn" data-sort="size">
+                        <i class="fas fa-sort-amount-down"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="file-list" id="fileList">
+                <!-- Files will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Storage Info -->
+        <div class="storage-info glass-panel">
+            <div class="storage-header">
+                <i class="fas fa-hdd"></i>
+                <span>Spazio di Archiviazione</span>
+            </div>
+            <div class="storage-bar">
+                <div class="storage-used" style="width: 65%;"></div>
+            </div>
+            <div class="storage-details">
+                <span>6.5 GB utilizzati di 10 GB</span>
+                <span>3.5 GB disponibili</span>
+            </div>
+        </div>
+
+        <!-- Global Navigation -->
+        <div class="global-navbar glass-nav">
+            <a href="../home.html" class="navbar-btn" data-page="home">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="../playstore.html" class="navbar-btn active" data-page="apps">
+                <i class="fas fa-th"></i>
+                <span>App</span>
+            </a>
+            <a href="../settings.html" class="navbar-btn" data-page="settings">
+                <i class="fas fa-gear"></i>
+                <span>Impostazioni</span>
+            </a>
+            <a href="../system.html" class="navbar-btn" data-page="info">
+                <i class="fas fa-info-circle"></i>
+                <span>Info</span>
+            </a>
+            <a href="../playstore.html" class="navbar-btn" data-page="store">
+                <i class="fas fa-store"></i>
+                <span>Store</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- File Context Menu -->
+    <div class="context-menu glass-modal" id="contextMenu">
+        <div class="context-item" onclick="openFile()">
+            <i class="fas fa-folder-open"></i>
+            <span>Apri</span>
+        </div>
+        <div class="context-item" onclick="shareFile()">
+            <i class="fas fa-share"></i>
+            <span>Condividi</span>
+        </div>
+        <div class="context-item" onclick="renameFile()">
+            <i class="fas fa-edit"></i>
+            <span>Rinomina</span>
+        </div>
+        <div class="context-item danger" onclick="deleteFile()">
+            <i class="fas fa-trash"></i>
+            <span>Elimina</span>
+        </div>
+    </div>
+
+    <script src="../js/global-enhanced.js"></script>
+    <script src="../js/apps/file-manager.js"></script>
+</body>
+</html>

@@ -83,51 +83,33 @@
                 <!-- Dock apps will be dynamically loaded here -->
                  </div>
         </div>
-        
-        <!-- Multitasking Overlay -->
-        <div class="multitasking-overlay" id="multitaskingOverlay">
-            <div class="multitasking-header">
-                <h2>App Recenti</h2>
-                <button class="close-multitasking" onclick="hideMultitasking()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            
-            <div class="app-cards-container">
-                <div class="app-card glass-panel" onclick="openApp('settings.html')">
-                    <div class="app-preview">
-                        <i class="fas fa-gear"></i>
-                        <span>Impostazioni</span>
-                    </div>
-                    <button class="close-app-card">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                
-                <div class="app-card glass-panel" onclick="openApp('messages.html')">
-                    <div class="app-preview">
-                        <i class="fas fa-comment-dots"></i>
-                        <span>Messaggi</span>
-                    </div>
-                    <button class="close-app-card">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                
-                <div class="app-card glass-panel" onclick="openApp('camera.html')">
-                    <div class="app-preview">
-                        <i class="fas fa-camera"></i>
-                        <span>Fotocamera</span>
-                    </div>
-                    <button class="close-app-card">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            </div>
+
+        <!-- Global Navigation -->
+        <div class="global-navbar glass-nav">
+            <a href="home.html" class="navbar-btn home active" data-page="home">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="playstore.html" class="navbar-btn" data-page="apps">
+                <i class="fas fa-th"></i>
+                <span>App</span>
+            </a>
+            <a href="settings.html" class="navbar-btn" data-page="settings">
+                <i class="fas fa-gear"></i>
+                <span>Impostazioni</span>
+            </a>
+            <a href="system.html" class="navbar-btn" data-page="info">
+                <i class="fas fa-info-circle"></i>
+                <span>Info</span>
+            </a>
+            <a href="playstore.html" class="navbar-btn" data-page="store">
+                <i class="fas fa-store"></i>
+                <span>Store</span>
+            </a>
         </div>
     </div>
     
-    <script src="scripts/global.js"></script>
+    <script src="js/global-enhanced.js"></script>
     <script src="scripts/home.js"></script>
 </body>
 </html>

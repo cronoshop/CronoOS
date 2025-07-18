@@ -63,21 +63,34 @@
             </div>
         </div>
         
-        <!-- System Navigation -->
-        <div class="system-nav-bar">
-            <button class="nav-system-btn" onclick="goBack()">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <button class="nav-system-btn nav-home" onclick="goHome()">
-                <i class="fas fa-circle"></i>
-            </button>
-            <button class="nav-system-btn" onclick="showMultitasking()">
-                <i class="fas fa-layer-group"></i>
-            </button>
+        <!-- Global Navigation -->
+        <div class="global-navbar glass-nav">
+            <a href="home.html" class="navbar-btn" data-page="home">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="playstore.html" class="navbar-btn active" data-page="apps">
+                <i class="fas fa-th"></i>
+                <span>App</span>
+            </a>
+            <a href="settings.html" class="navbar-btn" data-page="settings">
+                <i class="fas fa-gear"></i>
+                <span>Impostazioni</span>
+            </a>
+            <a href="system.html" class="navbar-btn" data-page="info">
+                <i class="fas fa-info-circle"></i>
+                <span>Info</span>
+            </a>
+            <a href="playstore.html" class="navbar-btn" data-page="store">
+                <i class="fas fa-store"></i>
+                <span>Store</span>
+            </a>
         </div>
     </div>
 
-    <script src="scripts/global.js"></script>
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/cronoglass-enhanced.css">
+    <script src="js/global-enhanced.js"></script>
     <script src="scripts/navigation.js"></script>
     <script src="scripts/playstore.js"></script>
 </body>
