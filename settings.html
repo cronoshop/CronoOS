@@ -19,20 +19,12 @@
                 <span class="battery">100% <i class="fas fa-battery-full"></i></span>
             </div>
         </div>
-
         <div class="app-header">
             <h1>Impostazioni</h1>
-            <div class="header-actions">
-                <button class="header-btn" id="searchSettingsBtn">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
         </div>
-
         <div class="settings-content">
-            
             <div class="settings-group">
-                <div class="setting-item user-profile" onclick="openAccountSettings()">
+                <div class="setting-item user-profile" onclick="navigateTo('account.html')">
                     <div class="profile-avatar">
                         <img id="profileImage" src="" alt="Profile" style="display: none;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <i class="fas fa-user" id="profileIcon"></i>
@@ -41,50 +33,40 @@
                         <div class="profile-name" id="profileName">Utente CronoOS</div>
                         <div class="profile-details" id="profileEmail">Apple ID, iCloud, Media e Acquisti</div>
                     </div>
-                    <div class="setting-accessory">
-                        <i class="fas fa-chevron-right"></i>
-                    </div>
+                    <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
                 </div>
             </div>
-
             <div class="settings-group">
-                <div class="setting-item" onclick="openConnectivitySettings()">
+                <div class="setting-item" onclick="navigateTo('connectivity.html')">
                     <div class="setting-icon" style="background: #0A84FF;"><i class="fas fa-wifi"></i></div>
                     <div class="setting-info"><div class="setting-title">Connettività</div></div>
                     <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
                 </div>
-                <div class="setting-item" onclick="openSoundsSettings()">
+                <div class="setting-item" onclick="navigateTo('sounds.html')">
                     <div class="setting-icon" style="background: #FF2D92;"><i class="fas fa-volume-high"></i></div>
                     <div class="setting-info"><div class="setting-title">Suoni e Vibrazione</div></div>
                     <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
                 </div>
             </div>
-            
             <div class="settings-group">
-                <div class="setting-item" onclick="openDisplaySettings()">
+                <div class="setting-item" onclick="navigateTo('display.html')">
                     <div class="setting-icon" style="background: #FF9500;"><i class="fas fa-sun"></i></div>
                     <div class="setting-info"><div class="setting-title">Schermo e Luminosità</div></div>
                     <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
                 </div>
-                <div class="setting-item" onclick="openWallpaperSettings()">
+                <div class="setting-item" onclick="navigateTo('wallpaper.html')">
                     <div class="setting-icon" style="background: #AF52DE;"><i class="fas fa-image"></i></div>
                     <div class="setting-info"><div class="setting-title">Sfondo e Stile</div></div>
                     <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
                 </div>
             </div>
-
             <div class="settings-group">
-                <div class="setting-item" onclick="openPrivacySettings()">
+                <div class="setting-item" onclick="navigateTo('privacy.html')">
                     <div class="setting-icon" style="background: #30D158;"><i class="fas fa-shield-halved"></i></div>
                     <div class="setting-info"><div class="setting-title">Privacy e Sicurezza</div></div>
                     <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
                 </div>
-                <div class="setting-item" onclick="openAccountManagement()">
-                    <div class="setting-icon" style="background: #34C759;"><i class="fas fa-user-circle"></i></div>
-                    <div class="setting-info"><div class="setting-title">Account</div></div>
-                    <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
-                </div>
-                <div class="setting-item" onclick="openSystemSettings()">
+                 <div class="setting-item" onclick="navigateTo('system.html')">
                     <div class="setting-icon" style="background: #8A8A8E;"><i class="fas fa-gear"></i></div>
                     <div class="setting-info"><div class="setting-title">Sistema</div></div>
                     <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
@@ -92,8 +74,6 @@
             </div>
         </div>
     </div>
-
-    <script src="scripts/global.js"></script>
     <script src="scripts/settings.js"></script>
 </body>
 </html>
