@@ -4,82 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lock Screen - CronoOS 2.1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/lock.css">
 </head>
 <body>
     <div class="lockscreen">
         <div class="wallpaper-lock" id="lockWallpaper"></div>
-        
-        <!-- Status Bar -->
-        <div class="lock-status-bar">
-            <div class="status-left">
-                <span class="carrier">CronoOS</span>
-            </div>
-            <div class="status-right">
-                <span class="signal">●●●</span>
-                <span class="wifi">📶</span>
-                <span class="battery">100%</span>
-            </div>
-        </div>
-        
+
         <div class="lock-content">
-            <!-- Time Display -->
             <div class="lock-time">
                 <div class="time-display" id="lockTime">9:41</div>
-                <div class="date-display" id="lockDate">Lunedì 15 Gennaio</div>
+                <div class="date-display" id="lockDate">Venerdì 18 Luglio</div>
             </div>
-            
-            <!-- Notifications -->
-            <div class="lock-notifications">
-                <div class="lock-notification">
-                    <div class="notification-app-icon messages">
-                        💬
-                    </div>
-                    <div class="notification-content">
-                        <div class="notification-header">
-                            <span class="notification-app">Messaggi</span>
-                            <span class="notification-time">Ora</span>
-                        </div>
-                        <div class="notification-title">Marco: Ciao! Come stai?</div>
-                    </div>
-                </div>
-                
-                <div class="lock-notification">
-                    <div class="notification-app-icon settings">
-                        ⚙️
-                    </div>
-                    <div class="notification-content">
-                        <div class="notification-header">
-                            <span class="notification-app">Impostazioni</span>
-                            <span class="notification-time">12:00</span>
-                        </div>
-                        <div class="notification-title">Aggiornamento disponibile!</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Fingerprint Scanner -->
-            <div class="fingerprint-area">
-                <div class="fingerprint-scanner" id="fingerprintScanner" onclick="startFingerprintScan()">
-                    <div class="fingerprint-icon">
-                        👆
-                    </div>
-                    <div class="fingerprint-text">Tocca per sbloccare</div>
-                </div>
-            </div>
-            
-            <!-- Quick Actions -->
-            <div class="quick-actions">
-                <div class="quick-action" onclick="openApp('camera')">
-                    <div class="action-icon">🔦</div>
-                </div>
-                <div class="quick-action center" onclick="goHome()">
-                    <div class="action-text">Scorri per sbloccare</div>
-                </div>
-                <div class="quick-action" onclick="openApp('camera')">
-                    <div class="action-icon">📷</div>
-                </div>
+
+            <div class="unlock-prompt" id="unlockPrompt">
+                <i class="fas fa-chevron-up"></i>
+                <p>Scorri verso l'alto per sbloccare</p>
             </div>
         </div>
     </div>
