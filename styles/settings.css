@@ -1,22 +1,45 @@
 /* Settings App Styles - CronoOS 2.4 Redesigned */
 
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
 .app-container {
-    background: var(--bg-primary-light);
+    background: #f2f2f7;
     height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
 [data-theme="dark"] .app-container {
-    background: var(--bg-primary-dark);
+    background: #000;
+}
+
+.app-header {
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 44px; /* Altezza standard iOS */
 }
 
 .app-header h1 {
-    font-size: 1.8rem;
-    font-weight: 700;
+    font-size: 17px;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
     position: absolute;
-    bottom: 12px;
-    left: 20px;
+    left: 0;
+}
+
+.app-header .back-btn {
+    background: none;
+    border: none;
+    color: #007aff;
+    font-size: 17px;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1;
 }
 
 .settings-content {
@@ -25,27 +48,26 @@
     padding: 16px;
 }
 
-/* Settings Group */
 .settings-group {
     margin-bottom: 20px;
-    background: var(--bg-secondary-light);
+    background: #fff;
     border-radius: 12px;
     overflow: hidden;
 }
 
 [data-theme="dark"] .settings-group {
-    background: var(--bg-secondary-dark);
+    background: #1c1c1e;
 }
 
-/* Setting Item */
 .setting-item {
     display: flex;
     align-items: center;
     gap: 16px;
-    padding: 14px 16px;
+    padding: 12px 16px;
     cursor: pointer;
     transition: background-color 0.2s ease;
-    border-bottom: 1px solid var(--separator-light);
+    border-bottom: 1px solid #e5e5ea;
+    min-height: 44px;
 }
 
 .setting-item:last-child {
@@ -53,20 +75,20 @@
 }
 
 [data-theme="dark"] .setting-item {
-    border-bottom-color: var(--separator-dark);
+    border-bottom-color: #38383a;
 }
 
 .setting-item:hover {
-    background: var(--fill-gray-1-light);
+    background: #e5e5ea;
 }
 
 [data-theme="dark"] .setting-item:hover {
-    background: var(--fill-gray-1-dark);
+    background: #38383a;
 }
 
 .setting-icon {
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -82,71 +104,108 @@
 
 .setting-title {
     font-size: 17px;
-    color: var(--text-primary-light);
+    color: #000;
 }
 
 [data-theme="dark"] .setting-title {
-    color: var(--text-primary-dark);
+    color: #fff;
+}
+
+.setting-description {
+    font-size: 13px;
+    color: #8a8a8e;
+    margin-top: 2px;
 }
 
 .setting-accessory {
-    color: var(--text-secondary-light);
+    color: #8a8a8e;
     font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-[data-theme="dark"] .setting-accessory {
-    color: var(--text-secondary-dark);
+.setting-accessory .accessory-text {
+    font-size: 17px;
+    color: #8a8a8e;
 }
 
-
-/* User Profile Specific Styles */
+/* User Profile */
 .user-profile {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 16px;
 }
 
 .profile-avatar {
-    width: 70px;
-    height: 70px;
-    background: var(--ios-blue);
-    color: white;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-size: 28px;
     flex-shrink: 0;
-    position: relative;
     overflow: hidden;
 }
 
-.profile-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
 .profile-name {
-    font-size: 22px;
-    font-weight: 500;
-    color: var(--text-primary-light);
-    margin-bottom: 4px;
-}
-
-[data-theme="dark"] .profile-name {
-    color: var(--text-primary-dark);
+    font-size: 20px;
 }
 
 .profile-details {
-    font-size: 14px;
-    color: var(--text-secondary-light);
+    font-size: 13px;
+    color: #8a8a8e;
 }
 
-[data-theme="dark"] .profile-details {
-    color: var(--text-secondary-dark);
+/* Toggle Switch */
+.toggle-switch {
+    position: relative;
+    width: 51px;
+    height: 31px;
 }
 
-/* Rimuovi stili vecchi e non più usati */
-.settings-category, .category-header, .category-content, .category-actions {
-    display: none;
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-switch label {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #e9e9eb;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.toggle-switch label:before {
+    position: absolute;
+    content: "";
+    height: 27px;
+    width: 27px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+input:checked + label {
+    background-color: #34c759;
+}
+
+input:checked + label:before {
+    transform: translateX(20px);
+}
+
+/* Action Button */
+.action-button {
+    background: #007aff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
 }
