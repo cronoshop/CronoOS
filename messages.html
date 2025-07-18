@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messaggi - CronoOS 2.1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/messages.css">
+</head>
+<body>
+    <div id="conversation-list-view">
+        <div class="app-container">
+            <div class="app-header">
+                <button class="back-btn" onclick="goHome()"><i class="fas fa-chevron-left"></i></button>
+                <h1>Messaggi</h1>
+                <div class="header-actions">
+                    <button class="header-btn"><i class="fas fa-edit"></i></button>
+                </div>
+            </div>
+            
+            <div class="conversations-list" id="conversationsList">
+                </div>
+        </div>
+    </div>
+
+    <div class="chat-modal" id="chat-view">
+        <div class="chat-header">
+            <button class="back-btn" id="backToConversations"><i class="fas fa-chevron-left"></i></button>
+            <div class="chat-contact-info">
+                <div class="chat-avatar" id="chatAvatar"></div>
+                <div class="chat-contact-name" id="chatContactName"></div>
+            </div>
+            <div class="chat-actions">
+                <button class="chat-action-btn"><i class="fas fa-phone"></i></button>
+            </div>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            </div>
+        
+        <div class="chat-input-container">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Messaggio...">
+            <button class="send-btn" id="sendBtn"><i class="fas fa-arrow-up"></i></button>
+        </div>
+    </div>
+
+    <script src="scripts/global.js"></script>
+    <script src="scripts/messages.js"></script>
+</body>
+</html>
