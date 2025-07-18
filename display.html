@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Schermo e Luminosità - Impostazioni</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/settings.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <script src="scripts/global.js" defer></script>
 </head>
 <body>
     <div class="app-container">
         <div class="app-header">
-            <button class="back-btn" onclick="window.location.href = 'settings.html'"><i class="fas fa-chevron-left"></i> Impostazioni</button>
+            <button class="back-btn" onclick="history.back()"><i class="fas fa-chevron-left"></i> Impostazioni</button>
             <h1>Schermo e Luminosità</h1>
         </div>
         <div class="settings-content">
+            <div id="blue-light-filter-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,149,0,0.2); z-index:-1; display:none; transition: opacity 0.5s;"></div>
             <div class="settings-group">
                 <div class="setting-item">
                     <div class="setting-info"><div class="setting-title">Modalità Scura</div></div>
@@ -27,14 +29,49 @@
                     <div class="setting-accessory" style="flex:1;"><input type="range" style="width:100%;"></div>
                 </div>
                  <div class="setting-item">
-                    <div class="setting-info"><div class="setting-title">Night Shift</div><div class="setting-description">Sposta i colori del display su tonalità più calde.</div></div>
-                    <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
+                    <div class="setting-info"><div class="setting-title">Filtro Luce Blu</div></div>
+                    <div class="setting-accessory"><div class="toggle-switch"><input type="checkbox" id="blueLightToggle"><label for="blueLightToggle"></label></div></div>
                 </div>
             </div>
         </div>
     </div>
     <script>
-        // Logica per questa pagina
+        document.addEventListener('DOMContentLoaded', () => {
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const blueLightToggle = document.getElementById('blueLightToggle');
+            const blueLightOverlay = document.getElementById('blue-light-filter-overlay');
+
+            // Imposta lo stato iniziale del toggle Modalità Scura
+            darkModeToggle.checked = (localStorage.getItem('crono_theme') === 'dark');
+            
+            // Imposta lo stato iniziale del toggle Filtro Luce Blu
+            blueLightToggle.checked = (localStorage.getItem('crono_bluelight') === 'on');
+            if(blueLightToggle.checked) blueLightOverlay.style.display = 'block';
+
+            // Gestisci il cambio di tema
+            darkModeToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('crono_theme', 'dark');
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                    localStorage.setItem('crono_theme', 'light');
+                }
+            });
+
+            // Gestisci il filtro luce blu
+            blueLightToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    blueLightOverlay.style.display = 'block';
+                    localStorage.setItem('crono_bluelight', 'on');
+                    showToast('Filtro luce blu attivato');
+                } else {
+                    blueLightOverlay.style.display = 'none';
+                    localStorage.setItem('crono_bluelight', 'off');
+                    showToast('Filtro luce blu disattivato');
+                }
+            });
+        });
     </script>
 </body>
 </html>
