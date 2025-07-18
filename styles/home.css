@@ -1,131 +1,39 @@
-/* Home Screen Styles - iOS Inspired Redesign */
+/* Home Screen Styles - Phoenix Edition */
 :root {
     --ios-blur: 25px;
     --ios-saturate: 180%;
     --light-glass-bg: rgba(255, 255, 255, 0.25);
-    --dark-glass-bg: rgba(50, 50, 50, 0.25);
-    --light-panel-bg: rgba(242, 242, 247, 0.8);
-    --dark-panel-bg: rgba(28, 28, 30, 0.8);
-    --app-icon-size: 64px;
-    --app-icon-radius: 16px;
+    --dark-glass-bg: rgba(45, 45, 45, 0.25);
+    --app-icon-size: 70px;
+    --app-icon-radius: 18px;
     --widget-radius: 28px;
 }
 
 body {
-    /* Utilizza il font di sistema di Apple, con fallback standard */
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .home-screen {
-    min-height: 100vh;
+    height: 100vh;
     position: relative;
-    padding: 0; /* Rimosso padding per un controllo completo */
     overflow: hidden;
     display: flex;
     flex-direction: column;
 }
 
-/* Status Bar */
-.status-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 54px; /* Altezza più realistica per i nuovi device */
-    background: transparent; /* Sfondo rimosso per un look fluttuante */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 24px;
-    font-size: 15px;
-    font-weight: 600;
-    z-index: 1000;
-    color: white;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-.status-center {
-    position: absolute;
-    top: 12px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.notch {
-    /* Stile "Dynamic Island" */
-    width: 125px;
-    height: 36px;
-    background: black;
-    border-radius: 20px; /* Molto arrotondato */
-    position: relative;
-}
-
-.status-left, .status-right {
-    display: flex;
-    align-items: center;
-    gap: 12px; /* Spaziatura maggiore */
-    z-index: 1001;
-}
-
-.status-right .battery i {
-    margin-left: 4px;
-    font-size: 18px;
-    vertical-align: middle;
-}
-
-/* Dynamic Wallpaper */
 .wallpaper {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #4343a3 0%, #a343a3 100%); /* Sfondo più violaceo come nelle immagini */
+    background: linear-gradient(135deg, #4343a3 0%, #a343a3 100%);
     background-size: cover;
     background-position: center;
     z-index: -1;
 }
 
-/* Widget Area */
-.widget-area {
-    padding: 20px;
-    margin-top: 70px; /* Spazio sotto la status bar */
-    margin-bottom: 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-}
-
-.weather-widget {
-    background: var(--light-glass-bg);
-    backdrop-filter: blur(var(--ios-blur)) saturate(var(--ios-saturate));
-    -webkit-backdrop-filter: blur(var(--ios-blur)) saturate(var(--ios-saturate));
-    border-radius: var(--widget-radius);
-    padding: 20px;
-    color: white;
-    text-align: left; /* Allineamento a sinistra come in iOS */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    grid-column: span 2; /* Occupa tutta la larghezza per ora */
-}
-
-.weather-temp {
-    font-size: 48px;
-    font-weight: 300;
-    margin-bottom: 4px;
-}
-
-.weather-desc {
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 4px;
-}
-
-.weather-location {
-    font-size: 16px;
-    opacity: 0.8;
-}
-
-/* App Grid */
 .app-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -133,7 +41,7 @@ body {
     padding: 0 24px;
     flex: 1;
     align-content: start;
-    margin-bottom: 110px; /* Spazio per il dock */
+    margin-top: 70px;
 }
 
 .app-icon {
@@ -143,6 +51,12 @@ body {
     gap: 10px;
     cursor: pointer;
     transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    touch-action: none; /* For better drag-drop */
+}
+
+.app-icon.dragging {
+    opacity: 0.5;
+    transform: scale(1.1);
 }
 
 .app-icon:active {
@@ -156,22 +70,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 28px; /* Icone più grandi */
-    
-    /* Stile Glassmorphism per le icone */
+    font-size: 32px;
     background: var(--light-glass-bg);
-    backdrop-filter: blur(var(--ios-blur)) saturate(var(--ios-saturate));
-    -webkit-backdrop-filter: blur(var(--ios-blur)) saturate(var(--ios-saturate));
-    border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    
-    /* Le icone dentro il contenitore avranno un colore scuro per contrasto */
-    color: #1d1d1f;
 }
 
-/* Stile per l'icona FontAwesome dentro il container */
 .app-icon-container i {
-    color: white; /* Icone bianche come in iOS */
+    color: white;
     text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
@@ -181,112 +86,40 @@ body {
     color: white;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
     text-align: center;
+    background: rgba(0,0,0,0.2);
+    border-radius: 5px;
+    padding: 1px 4px;
 }
 
-/* RIMOZIONE VECCHI COLORI ICONE */
-.phone-app, .messages-app, .camera-app, .gallery-app, 
-.music-app, .calendar-app, .clock-app, .files-app, 
-.playstore-app, .settings-app {
-    background: transparent; /* Rimuove i gradienti */
-}
-
-/* Navigation Bar (trasformata in Dock) */
-.navigation-bar {
+/* Dock */
+.dock {
     position: fixed;
     bottom: 12px;
     left: 50%;
     transform: translateX(-50%);
     width: calc(100% - 24px);
     max-width: 400px;
-    height: 95px; /* Altezza tipica del dock */
-    
-    /* Effetto vetro per il dock */
+    height: 100px;
     background: var(--light-glass-bg);
     backdrop-filter: blur(var(--ios-blur)) saturate(var(--ios-saturate));
     -webkit-backdrop-filter: blur(var(--ios-blur)) saturate(var(--ios-saturate));
     border-radius: var(--widget-radius);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    
     z-index: 100;
-    cursor: default;
-}
-
-.nav-indicator {
-    display: none; /* Nascondiamo il vecchio indicatore */
-}
-
-/* Quick Panel (Control Center) - da implementare logica dark mode se necessario */
-.quick-panel {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 100%;
-    height: 100%;
-    background: transparent; /* Il pannello stesso è trasparente */
-    transition: right 0.4s ease-in-out;
-    z-index: 1500;
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding: 20px;
+    justify-content: space-around;
+    padding: 0 10px;
 }
 
-/* Aggiungere un contenitore interno per gli elementi del Control Center */
-/* Questo stile è un'ipotesi, andrebbe aggiunto nell'HTML un div.quick-panel-content */
-.quick-panel > .quick-panel-content {
-    background: var(--light-panel-bg);
-    backdrop-filter: blur(var(--ios-blur)) saturate(var(--ios-saturate));
-    -webkit-backdrop-filter: blur(var(--ios-blur)) saturate(var(--ios-saturate));
-    border-radius: var(--widget-radius);
-    padding: 16px;
-    width: 100%;
-    max-width: 400px;
-}
-
-.quick-toggles {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-}
-
-.toggle-item {
-    background: rgba(120, 120, 128, 0.2);
-    border-radius: 16px;
-    padding: 16px;
-    color: black;
-}
-
-[data-theme="dark"] .toggle-item {
-    background: rgba(120, 120, 128, 0.3);
-    color: white;
-}
-
-.toggle-item.active {
-    background: white;
-    color: black;
-}
-
-[data-theme="dark"] .toggle-item.active {
-    background: #0A84FF; /* Blu di iOS */
-    color: white;
-}
-
-/* Overlay (sfoca lo sfondo quando il pannello è attivo) */
-.overlay {
+.navigation-bar {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
-    z-index: 1499; /* Dietro al pannello */
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.4s ease;
-}
-
-.overlay.active {
-    opacity: 1;
-    visibility: visible;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 134px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 2.5px;
+    z-index: 200;
 }
