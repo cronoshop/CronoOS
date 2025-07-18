@@ -1,0 +1,58 @@
+<!DOCTYPE html><html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPT Studio - CronoOS Phoenix Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/cronoglass.css">
+    <link rel="stylesheet" href="styles/gpt-studio.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="app-header">
+            <h1>GPT Studio</h1>
+        </div><div class="gpt-studio-content">
+        <div class="input-area">
+            <label for="promptInput">Prompt:</label>
+            <textarea id="promptInput" placeholder="Scrivi qui il tuo prompt..."></textarea>
+            <button onclick="sendPrompt()">Invia</button>
+        </div>
+
+        <div class="output-area">
+            <label>Risposta:</label>
+            <div id="responseOutput">La risposta apparirà qui...</div>
+        </div>
+    </div>
+
+    <!-- Global Navigation -->
+    <div class="global-navbar glass-nav">
+        <a href="home.html" class="navbar-btn" data-page="home">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="playstore.html" class="navbar-btn" data-page="apps">
+            <i class="fas fa-th"></i>
+            <span>App</span>
+        </a>
+        <a href="settings.html" class="navbar-btn" data-page="settings">
+            <i class="fas fa-gear"></i>
+            <span>Impostazioni</span>
+        </a>
+        <a href="system.html" class="navbar-btn" data-page="info">
+            <i class="fas fa-info-circle"></i>
+            <span>Info</span>
+        </a>
+        <a href="playstore.html" class="navbar-btn" data-page="store">
+            <i class="fas fa-store"></i>
+            <span>Store</span>
+        </a>
+    </div>
+</div>
+
+<script src="scripts/gpt-studio.js"></script>
+<script src="js/global-enhanced.js"></script>
+<script src="scripts/global.js"></script>
+
+</body>
+</html>
