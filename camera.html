@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fotocamera - CronoOS 2.3</title>
+    <title>Fotocamera - CronoOS 3.1</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="styles/global.css">
-    <link rel="stylesheet" href="styles/camera.css">
-    <link rel="stylesheet" href="styles/cronoglass.css">
+    <link rel="stylesheet" href="../styles/global.css">
+    <link rel="stylesheet" href="../styles/cronoglass-enhanced.css">
+    <link rel="stylesheet" href="../styles/navbar.css">
+    <link rel="stylesheet" href="../css/camera-enhanced.css">
 </head>
 <body>
     <div class="camera-container">
         <!-- Status Bar -->
-        <div class="status-bar">
+        <div class="status-bar glass-nav">
             <div class="status-left"><span class="time" id="statusTime">9:41</span></div>
             <div class="status-center"><div class="notch"></div></div>
             <div class="status-right">
@@ -23,8 +24,8 @@
         </div>
 
         <!-- Camera Header -->
-        <div class="camera-header">
-            <button class="back-btn" onclick="goHome()">
+        <div class="camera-header glass-panel">
+            <button class="back-btn glass-btn" onclick="goHome()">
                 <i class="fas fa-chevron-left"></i>
             </button>
             <div class="camera-modes">
@@ -32,13 +33,16 @@
                 <button class="mode-btn" data-mode="video">VIDEO</button>
                 <button class="mode-btn" data-mode="portrait">RITRATTO</button>
             </div>
-            <button class="settings-btn">
+            <button class="settings-btn glass-btn">
                 <i class="fas fa-gear"></i>
             </button>
         </div>
 
         <!-- Camera Viewfinder -->
         <div class="camera-viewfinder" id="viewfinder">
+            <video id="cameraFeed" autoplay muted playsinline></video>
+            <canvas id="captureCanvas" style="display: none;"></canvas>
+            
             <div class="viewfinder-overlay">
                 <!-- Grid Lines -->
                 <div class="grid-lines" id="gridLines">
@@ -53,64 +57,67 @@
                 
                 <!-- Timer Display -->
                 <div class="timer-display" id="timerDisplay">3</div>
-            </div>
-            
-            <!-- Simulated Camera Feed -->
-            <div class="camera-feed">
-                <div class="camera-placeholder">
+                
+                <!-- Camera Access Message -->
+                <div class="camera-access-message glass-panel" id="cameraAccessMessage">
                     <i class="fas fa-camera"></i>
-                    <p>Anteprima Fotocamera</p>
+                    <h3>Accesso alla Fotocamera</h3>
+                    <p>Consenti l'accesso alla fotocamera per scattare foto</p>
+                    <button class="glass-btn" onclick="requestCameraPermission()">
+                        <i class="fas fa-video"></i>
+                        Attiva Fotocamera
+                    </button>
                 </div>
             </div>
         </div>
 
         <!-- Camera Controls -->
-        <div class="camera-controls">
+        <div class="camera-controls glass-panel">
             <!-- Top Controls -->
             <div class="top-controls">
-                <button class="control-btn" id="flashBtn" data-flash="off">
+                <button class="control-btn glass-btn" id="flashBtn" data-flash="off">
                     <i class="fas fa-bolt-slash"></i>
                 </button>
-                <button class="control-btn" id="timerBtn" data-timer="off">
+                <button class="control-btn glass-btn" id="timerBtn" data-timer="off">
                     <i class="fas fa-clock"></i>
                 </button>
-                <button class="control-btn" id="gridBtn" data-grid="off">
+                <button class="control-btn glass-btn" id="gridBtn" data-grid="off">
                     <i class="fas fa-border-all"></i>
                 </button>
-                <button class="control-btn" id="flipBtn">
+                <button class="control-btn glass-btn" id="flipBtn">
                     <i class="fas fa-camera-rotate"></i>
                 </button>
             </div>
 
             <!-- Main Controls -->
             <div class="main-controls">
-                <button class="gallery-btn" onclick="openApp('gallery.html')">
+                <button class="gallery-btn glass-btn" onclick="openApp('../gallery.html')">
                     <div class="gallery-preview">
                         <i class="fas fa-images"></i>
                     </div>
                 </button>
                 
-                <button class="capture-btn" id="captureBtn">
+                <button class="capture-btn glass-panel" id="captureBtn">
                     <div class="capture-inner"></div>
                 </button>
                 
-                <button class="switch-camera-btn" id="switchCameraBtn">
+                <button class="switch-camera-btn glass-btn" id="switchCameraBtn">
                     <i class="fas fa-sync-alt"></i>
                 </button>
             </div>
         </div>
 
         <!-- Photo Preview Modal -->
-        <div class="photo-preview-modal" id="photoPreviewModal">
+        <div class="photo-preview-modal glass-modal" id="photoPreviewModal">
             <div class="preview-header">
-                <button class="preview-close-btn" id="previewCloseBtn">
+                <button class="preview-close-btn glass-btn" id="previewCloseBtn">
                     <i class="fas fa-times"></i>
                 </button>
                 <div class="preview-actions">
-                    <button class="preview-action-btn" id="shareBtn">
+                    <button class="preview-action-btn glass-btn" id="shareBtn">
                         <i class="fas fa-share"></i>
                     </button>
-                    <button class="preview-action-btn" id="deleteBtn">
+                    <button class="preview-action-btn glass-btn" id="deleteBtn">
                         <i class="fas fa-trash"></i>
                     </button>
                 </div>
@@ -119,51 +126,39 @@
                 <img id="previewImage" src="" alt="Foto catturata">
             </div>
             <div class="preview-footer">
-                <button class="btn btn-filled" id="savePhotoBtn">Salva in Galleria</button>
+                <button class="glass-btn" id="savePhotoBtn">
+                    <i class="fas fa-save"></i>
+                    Salva in Galleria
+                </button>
             </div>
         </div>
-    </div>
-    <!-- System Navigation -->
-        <div class="system-nav-bar nav-glass">
-            <button class="nav-system-btn" onclick="goBack()">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <button class="nav-system-btn nav-home" onclick="goHome()">
-                <i class="fas fa-circle"></i>
-            </button>
-            <button class="nav-system-btn" onclick="showMultitasking()">
-                <i class="fas fa-layer-group"></i>
-            </button>
+
+        <!-- Global Navigation -->
+        <div class="global-navbar glass-nav">
+            <a href="../home.html" class="navbar-btn" data-page="home">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="../playstore.html" class="navbar-btn" data-page="apps">
+                <i class="fas fa-th"></i>
+                <span>App</span>
+            </a>
+            <a href="../settings.html" class="navbar-btn" data-page="settings">
+                <i class="fas fa-gear"></i>
+                <span>Impostazioni</span>
+            </a>
+            <a href="../system.html" class="navbar-btn" data-page="info">
+                <i class="fas fa-info-circle"></i>
+                <span>Info</span>
+            </a>
+            <a href="../playstore.html" class="navbar-btn active" data-page="store">
+                <i class="fas fa-store"></i>
+                <span>Store</span>
+            </a>
         </div>
-</div>
-
-    <!-- Global Navigation -->
-    <div class="global-navbar glass-nav">
-        <a href="home.html" class="navbar-btn" data-page="home">
-            <i class="fas fa-home"></i>
-            <span>Home</span>
-        </a>
-        <a href="playstore.html" class="navbar-btn" data-page="apps">
-            <i class="fas fa-th"></i>
-            <span>App</span>
-        </a>
-        <a href="settings.html" class="navbar-btn" data-page="settings">
-            <i class="fas fa-gear"></i>
-            <span>Impostazioni</span>
-        </a>
-        <a href="system.html" class="navbar-btn" data-page="info">
-            <i class="fas fa-info-circle"></i>
-            <span>Info</span>
-        </a>
-        <a href="playstore.html" class="navbar-btn" data-page="store">
-            <i class="fas fa-store"></i>
-            <span>Store</span>
-        </a>
     </div>
 
-    <link rel="stylesheet" href="styles/navbar.css">
-    <link rel="stylesheet" href="styles/cronoglass-enhanced.css">
-    <script src="js/global-enhanced.js"></script>
-    <script src="scripts/camera.js"></script>
+    <script src="../js/global-enhanced.js"></script>
+    <script src="../js/apps/camera-enhanced.js"></script>
 </body>
 </html>
