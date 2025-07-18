@@ -16,31 +16,23 @@
         </div>
         <div class="settings-content">
             <div class="settings-group">
-                <div class="setting-item" onclick="openAbout()">
+                <div class="setting-item" onclick="showToast('CronoOS Phoenix Pro v1.0')">
                     <div class="setting-info"><div class="setting-title">Info</div></div>
                     <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
                 </div>
-                <div class="setting-item" onclick="checkForUpdates()">
+                <div class="setting-item" onclick="showToast('Sei già alla versione più recente.')">
                     <div class="setting-info"><div class="setting-title">Aggiornamento Software</div></div>
-                    <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
+                     <div class="setting-accessory"><span class="accessory-text">CronoOS 2.5</span><i class="fas fa-chevron-right"></i></div>
                 </div>
             </div>
              <div class="settings-group">
-                <div class="setting-item" onclick="resetDevice()">
+                <div class="setting-item" onclick="navigateTo('reset.html')">
                     <div class="setting-info"><div class="setting-title">Trasferisci o inizializza CronoPhone</div></div>
                     <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="scripts/global.js" defer></script>
-    <script>
-        function showToast(message) {
-            // ... (codice della funzione showToast)
-        }
-        function openAbout() { showToast('Info dispositivo...'); }
-        function checkForUpdates() { showToast('Ricerca aggiornamenti...'); }
-        function resetDevice() { showToast('Apertura opzioni di ripristino...'); }
-    </script>
+    <script src="scripts/global.js"></script>
 </body>
 </html>
