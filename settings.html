@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Impostazioni - CronoOS 2.3</title>
+    <title>Impostazioni - CronoOS 2.4</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/settings.css">
 </head>
 <body>
     <div class="app-container">
-        <!-- Status Bar -->
         <div class="status-bar">
             <div class="status-left"><span class="time" id="statusTime">9:41</span></div>
             <div class="status-center"><div class="notch"></div></div>
@@ -21,11 +20,7 @@
             </div>
         </div>
 
-        <!-- App Header -->
         <div class="app-header">
-            <button class="back-btn" onclick="goHome()">
-                <i class="fas fa-chevron-left"></i>
-            </button>
             <h1>Impostazioni</h1>
             <div class="header-actions">
                 <button class="header-btn" id="searchSettingsBtn">
@@ -34,618 +29,65 @@
             </div>
         </div>
 
-        <!-- Settings Content -->
         <div class="settings-content">
-            <!-- User Profile -->
-            <div class="user-profile">
-                <div class="profile-avatar">
-                    <img id="profileImage" src="" alt="Profile" style="display: none;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <i class="fas fa-user" id="profileIcon"></i>
-                </div>
-                <div class="profile-info">
-                    <div class="profile-name" id="profileName">Utente CronoOS</div>
-                    <div class="profile-email" id="profileEmail">utente@cronos.com</div>
-                </div>
-                <button class="profile-edit">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-
-            <!-- Settings Categories -->
-            <div class="settings-categories">
-                <!-- Account -->
-                <div class="settings-category">
-                    <button class="category-header" onclick="toggleCategory('account')">
-                        <div class="category-info">
-                            <div class="category-icon" style="background: #34C759;">
-                                <i class="fas fa-user-circle"></i>
-                            </div>
-                            <div class="category-title">Account</div>
-                        </div>
-                        <div class="category-actions">
-                            <button class="category-go-btn" onclick="openAccountSettings(event)">Vai</button>
-                            <div class="category-arrow">
-                                <i class="fas fa-chevron-right"></i>
-                            </div>
-                        </div>
-                    </button>
-                    <div class="category-content">
-                        <div class="account-actions">
-                            <button class="account-action" onclick="editProfile()">Modifica Profilo</button>
-                            <button class="account-action" onclick="changeAvatar()">Cambia Avatar</button>
-                            <button class="account-action" onclick="signOut()">Esci</button>
-                            <button class="account-action danger" onclick="deleteAccount()">Elimina Account</button>
-                        </div>
+            
+            <div class="settings-group">
+                <div class="setting-item user-profile" onclick="openAccountSettings()">
+                    <div class="profile-avatar">
+                        <img id="profileImage" src="" alt="Profile" style="display: none;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <i class="fas fa-user" id="profileIcon"></i>
                     </div>
-                </div>
-
-                <!-- Display & Brightness -->
-                <div class="settings-category">
-                    <button class="category-header" onclick="toggleCategory('display')">
-                        <div class="category-info">
-                            <div class="category-icon" style="background: #FF9500;">
-                                <i class="fas fa-sun"></i>
-                            </div>
-                            <div class="category-title">Schermo e Luminosità</div>
-                        </div>
-                        <div class="category-actions">
-                            <button class="category-go-btn" onclick="openDisplaySettings(event)">Vai</button>
-                            <div class="category-arrow">
-                                <i class="fas fa-chevron-right"></i>
-                            </div>
-                        </div>
-                    </button>
-                    <div class="category-content">
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <div class="setting-title">Modalità Scura</div>
-                                <div class="setting-description">Attiva il tema scuro</div>
-                            </div>
-                            <div class="setting-control">
-                                <div class="toggle-switch">
-                                    <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()">
-                                    <label for="darkModeToggle"></label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <div class="setting-title">Luminosità</div>
-                                <div class="setting-description">Regola la luminosità dello schermo</div>
-                            </div>
-                            <div class="setting-control">
-                                <input type="range" id="brightnessControl" min="10" max="100" value="50" onchange="updateBrightness(this.value)">
-                            </div>
-                        </div>
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <div class="setting-title">Auto-Lock</div>
-                                <div class="setting-description">Blocco automatico dopo 2 minuti</div>
-                            </div>
-                            <div class="setting-control">
-                                <div class="toggle-switch">
-                                    <input type="checkbox" id="autoLockToggle" checked>
-                                    <label for="autoLockToggle"></label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="setting-item" onclick="openLockFontSettings()">
-                            <div class="setting-info">
-                                <div class="setting-title">Font Orologio</div>
-                                <div class="setting-description">Personalizza il font dell'orologio nella lockscreen</div>
-                            </div>
-                            <div class="setting-control">
-                                <i class="fas fa-chevron-right"></i>
-                            </div>
-                        </div>
+                    <div class="setting-info profile-info">
+                        <div class="profile-name" id="profileName">Utente CronoOS</div>
+                        <div class="profile-details" id="profileEmail">Apple ID, iCloud, Media e Acquisti</div>
                     </div>
-                </div>
-
-                <!-- Wallpaper & Style -->
-                <div class="settings-category">
-                    <button class="category-header" onclick="toggleCategory('wallpaper')">
-                        <div class="category-info">
-                            <div class="category-icon" style="background: #AF52DE;">
-                                <i class="fas fa-image"></i>
-                            </div>
-                            <div class="category-title">Sfondo e Stile</div>
-                        </div>
-                        <div class="category-actions">
-                            <button class="category-go-btn" onclick="openWallpaperSettings(event)">Vai</button>
-                            <div class="category-arrow">
-                                <i class="fas fa-chevron-right"></i>
-                            </div>
-                        </div>
-                    </button>
-                    <div class="category-content">
-                        <div class="setting-item" onclick="openWallpaperSettings()">
-                            <div class="setting-info">
-                                <div class="setting-title">Sfondo</div>
-                                <div class="setting-description">Personalizza lo sfondo del sistema</div>
-                            </div>
-                            <div class="setting-control">
-                                <i class="fas fa-chevron-right"></i>
-                            </div>
-                        </div>
-                        <div class="setting-item" onclick="openThemeSettings()">
-                            <div class="setting-info">
-                                <div class="setting-title">Tema Colori</div>
-                                <div class="setting-description">Cambia il colore delle icone</div>
-                            </div>
-                            <div class="setting-control">
-                                <i class="fas fa-chevron-right"></i>
-                            </div>
-                        </div>
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <div class="setting-title">Always-On Display</div>
-                                <div class="setting-description">Mostra sempre l'orologio quando il telefono è bloccato</div>
-                            </div>
-                            <div class="setting-control">
-                                <div class="toggle-switch">
-                                    <input type="checkbox" id="aodToggle" onchange="toggleAOD()">
-                                    <label for="aodToggle"></label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Sounds & Haptics -->
-                <div class="settings-category">
-                    <button class="category-header" onclick="toggleCategory('sounds')">
-                        <div class="category-info">
-                            <div class="category-icon" style="background: #FF2D92;">
-                                <i class="fas fa-volume-high"></i>
-                            </div>
-                            <div class="category-title">Suoni e Vibrazione</div>
-                        </div>
-                        <div class="category-actions">
-                            <button class="category-go-btn" onclick="openSoundsSettings(event)">Vai</button>
-                            <div class="category-arrow">
-                                <i class="fas fa-chevron-right"></i>
-                            </div>
-                        </div>
-                    </button>
-                    <div class="category-content">
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <div class="setting-title">Volume</div>
-                                <div class="setting-description">Volume generale del sistema</div>
-                            </div>
-                            <div class="setting-control">
-                                <input type="range" id="volumeControl" min="0" max="100" value="70">
-                            </div>
-                        </div>
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <div class="setting-title">Vibrazione</div>
-                                <div class="setting-description">Feedback aptico per le interazioni</div>
-                            </div>
-                            <div class="setting-control">
-                                <div class="toggle-switch">
-                                    <input type="checkbox" id="hapticToggle" checked>
-                                    <label for="hapticToggle"></label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <div class="setting-title">Suoni Tastiera</div>
-                                <div class="setting-description">Suoni durante la digitazione</div>
-                            </div>
-                            <div class="setting-control">
-                                <div class="toggle-switch">
-                                    <input type="checkbox" id="keyboardSoundsToggle">
-                                    <label for="keyboardSoundsToggle"></label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Connectivity -->
-                <div class="settings-category">
-                    <button class="category-header" onclick="toggleCategory('connectivity')">
-                        <div class="category-info">
-                            <div class="category-icon" style="background: #0A84FF;">
-                                <i class="fas fa-wifi"></i>
-                            </div>
-                            <div class="category-title">Connettività</div>
-                        </div>
-                        <div class="category-actions">
-                            <button class="category-go-btn" onclick="openConnectivitySettings(event)">Vai</button>
-                            <div class="category-arrow">
-                                <i class="fas fa-chevron-right"></i>
-                            </div>
-                        </div>
-                    </button>
-                    <div class="category-content">
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <div class="setting-title">Wi-Fi</div>
-                                <div class="setting-description">Connessione wireless</div>
-                            </div>
-                            <div class="setting-control">
-                                <div class="toggle-switch">
-                                    <input type="checkbox" id="wifiToggle" checked onchange="toggleWifi()">
-                                    <label for="wifiToggle"></label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <div class="setting-title">Bluetooth</div>
-                                <div class="setting-description">Connessioni Bluetooth</div>
-                            </div>
-                            <div class="setting-control">
-                                <div class="toggle-switch">
-                                    <input type="checkbox" id="bluetoothToggle" checked onchange="toggleBluetooth()">
-                                    <label for="bluetoothToggle"></label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <div class="setting-title">Modalità Aereo</div>
-                                <div class="setting-description">Disattiva tutte le connessioni</div>
-                            </div>
-                            <div class="setting-control">
-                                <div class="toggle-switch">
-                                    <input type="checkbox" id="airplaneModeToggle">
-                                    <label for="airplaneModeToggle"></label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Privacy & Security -->
-                <div class="settings-category">
-                    <button class="category-header" onclick="toggleCategory('privacy')">
-                        <div class="category-info">
-                            <div class="category-icon" style="background: #30D158;">
-                                <i class="fas fa-shield-halved"></i>
-                            </div>
-                            <div class="category-title">Privacy e Sicurezza</div>
-                        </div>
-                        <div class="category-actions">
-                            <button class="category-go-btn" onclick="openPrivacySettings(event)">Vai</button>
-                            <div class="category-arrow">
-                                <i class="fas fa-chevron-right"></i>
-                            </div>
-                        </div>
-                    </button>
-                    <div class="category-content">
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <div class="setting-title">Blocco Schermo</div>
-                                <div class="setting-description">Configura il blocco schermo</div>
-                            </div>
-                            <div class="setting-control">
-                                <i class="fas fa-chevron-right"></i>
-                            </div>
-                        </div>
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <div class="setting-title">Permessi App</div>
-                                <div class="setting-description">Gestisci i permessi delle app</div>
-                            </div>
-                            <div class="setting-control">
-                                <i class="fas fa-chevron-right"></i>
-                            </div>
-                        </div>
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <div class="setting-title">Localizzazione</div>
-                                <div class="setting-description">Servizi di localizzazione</div>
-                            </div>
-                            <div class="setting-control">
-                                <div class="toggle-switch">
-                                    <input type="checkbox" id="locationToggle" checked>
-                                    <label for="locationToggle"></label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- System -->
-                <div class="settings-category">
-                    <button class="category-header" onclick="toggleCategory('system')">
-                        <div class="category-info">
-                            <div class="category-icon" style="background: #8A8A8E;">
-                                <i class="fas fa-gear"></i>
-                            </div>
-                            <div class="category-title">Sistema</div>
-                        </div>
-                        <div class="category-actions">
-                            <button class="category-go-btn" onclick="openSystemSettings(event)">Vai</button>
-                            <div class="category-arrow">
-                                <i class="fas fa-chevron-right"></i>
-                            </div>
-                        </div>
-                    </button>
-                    <div class="category-content">
-                        <div class="setting-item" onclick="openAboutDevice()">
-                            <div class="setting-info">
-                                <div class="setting-title">Informazioni Dispositivo</div>
-                                <div class="setting-description">CronoOS 2.3 - Phoenix Edition</div>
-                            </div>
-                            <div class="setting-control">
-                                <i class="fas fa-chevron-right"></i>
-                            </div>
-                        </div>
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <div class="setting-title">Aggiornamenti</div>
-                                <div class="setting-description">Controlla aggiornamenti sistema</div>
-                            </div>
-                            <div class="setting-control">
-                                <i class="fas fa-chevron-right"></i>
-                            </div>
-                        </div>
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <div class="setting-title">Ripristina</div>
-                                <div class="setting-description">Ripristina impostazioni di fabbrica</div>
-                            </div>
-                            <div class="setting-control">
-                                <i class="fas fa-chevron-right"></i>
-                            </div>
-                        </div>
+                    <div class="setting-accessory">
+                        <i class="fas fa-chevron-right"></i>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- Lock Font Settings Modal -->
-    <div class="modal-overlay" id="lockFontModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Font Orologio</h2>
-                <button class="modal-close-btn" onclick="closeLockFontModal()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="font-selector">
-                    <div class="font-option" data-font="default">
-                        <div>
-                            <div class="font-preview font-default">12:34</div>
-                            <div class="font-name">Default</div>
-                        </div>
-                    </div>
-                    <div class="font-option" data-font="thin">
-                        <div>
-                            <div class="font-preview font-thin">12:34</div>
-                            <div class="font-name">Thin</div>
-                        </div>
-                    </div>
-                    <div class="font-option" data-font="mono">
-                        <div>
-                            <div class="font-preview font-mono">12:34</div>
-                            <div class="font-name">Monospace</div>
-                        </div>
-                    </div>
-                    <div class="font-option" data-font="rounded">
-                        <div>
-                            <div class="font-preview font-rounded">12:34</div>
-                            <div class="font-name">Rounded</div>
-                        </div>
-                    </div>
-                    <div class="font-option" data-font="serif">
-                        <div>
-                            <div class="font-preview font-serif">12:34</div>
-                            <div class="font-name">Serif</div>
-                        </div>
-                    </div>
+            <div class="settings-group">
+                <div class="setting-item" onclick="openConnectivitySettings()">
+                    <div class="setting-icon" style="background: #0A84FF;"><i class="fas fa-wifi"></i></div>
+                    <div class="setting-info"><div class="setting-title">Connettività</div></div>
+                    <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
+                </div>
+                <div class="setting-item" onclick="openSoundsSettings()">
+                    <div class="setting-icon" style="background: #FF2D92;"><i class="fas fa-volume-high"></i></div>
+                    <div class="setting-info"><div class="setting-title">Suoni e Vibrazione</div></div>
+                    <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Wallpaper Settings Modal -->
-    <div class="modal-overlay" id="wallpaperModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Sfondo</h2>
-                <button class="modal-close-btn" onclick="closeWallpaperModal()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="wallpaper-upload">
-                    <div class="upload-area" onclick="document.getElementById('wallpaperInput').click()">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                        <div class="upload-text">Carica Immagine</div>
-                        <div class="upload-description">Seleziona un'immagine dal tuo dispositivo</div>
-                    </div>
-                    <input type="file" id="wallpaperInput" accept="image/*" style="display: none;" onchange="handleWallpaperUpload(event)">
+            
+            <div class="settings-group">
+                <div class="setting-item" onclick="openDisplaySettings()">
+                    <div class="setting-icon" style="background: #FF9500;"><i class="fas fa-sun"></i></div>
+                    <div class="setting-info"><div class="setting-title">Schermo e Luminosità</div></div>
+                    <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
+                </div>
+                <div class="setting-item" onclick="openWallpaperSettings()">
+                    <div class="setting-icon" style="background: #AF52DE;"><i class="fas fa-image"></i></div>
+                    <div class="setting-info"><div class="setting-title">Sfondo e Stile</div></div>
+                    <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- Theme Settings Modal -->
-    <div class="modal-overlay" id="themeModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Tema Colori</h2>
-                <button class="modal-close-btn" onclick="closeThemeModal()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="theme-colors">
-                    <div class="color-theme" data-theme="blue" style="background: linear-gradient(135deg, #0A84FF, #5AC8FA);" onclick="selectTheme('blue')"></div>
-                    <div class="color-theme" data-theme="green" style="background: linear-gradient(135deg, #30D158, #34C759);" onclick="selectTheme('green')"></div>
-                    <div class="color-theme" data-theme="purple" style="background: linear-gradient(135deg, #AF52DE, #5856D6);" onclick="selectTheme('purple')"></div>
-                    <div class="color-theme" data-theme="orange" style="background: linear-gradient(135deg, #FF9500, #FFCC00);" onclick="selectTheme('orange')"></div>
-                    <div class="color-theme" data-theme="red" style="background: linear-gradient(135deg, #FF453A, #FF2D92);" onclick="selectTheme('red')"></div>
-                    <div class="color-theme" data-theme="pink" style="background: linear-gradient(135deg, #FF2D92, #AF52DE);" onclick="selectTheme('pink')"></div>
-                    <div class="color-theme" data-theme="teal" style="background: linear-gradient(135deg, #5AC8FA, #30D158);" onclick="selectTheme('teal')"></div>
-                    <div class="color-theme" data-theme="gray" style="background: linear-gradient(135deg, #8A8A8E, #48484A);" onclick="selectTheme('gray')"></div>
+            <div class="settings-group">
+                <div class="setting-item" onclick="openPrivacySettings()">
+                    <div class="setting-icon" style="background: #30D158;"><i class="fas fa-shield-halved"></i></div>
+                    <div class="setting-info"><div class="setting-title">Privacy e Sicurezza</div></div>
+                    <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- About Device Modal -->
-    <div class="modal-overlay" id="aboutModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Informazioni Dispositivo</h2>
-                <button class="modal-close-btn" onclick="closeAboutModal()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="device-info">
-                    <div class="device-image">
-                        <i class="fas fa-mobile-screen-button"></i>
-                    </div>
-                    <div class="device-details">
-                        <div class="info-item">
-                            <span class="info-label">Nome Dispositivo</span>
-                            <span class="info-value">CronoPhone</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Sistema Operativo</span>
-                            <span class="info-value">CronoOS 2.3</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Versione</span>
-                            <span class="info-value">Phoenix Edition</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Build</span>
-                            <span class="info-value">23A344</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Processore</span>
-                            <span class="info-value">CronoChip A1</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Memoria</span>
-                            <span class="info-value">128 GB</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">RAM</span>
-                            <span class="info-value">8 GB</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Numero Seriale</span>
-                            <span class="info-value">CN2025001234</span>
-                        </div>
-                    </div>
+                <div class="setting-item" onclick="openAccountManagement()">
+                    <div class="setting-icon" style="background: #34C759;"><i class="fas fa-user-circle"></i></div>
+                    <div class="setting-info"><div class="setting-title">Account</div></div>
+                    <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
                 </div>
-                
-                <div class="updates-list">
-                    <div class="update-item">
-                        <div class="update-info">
-                            <div class="update-version">CronoOS 2.4.1 - Minor Bug Fixing</div>
-                            <div class="update-date">21 Gennaio 2025</div>
-                            <div class="update-notes">
-                                🔧 <strong>AGGIORNAMENTO MINORE - BUG FIXING</strong><br><br>
-                                <strong>🎯 Miglioramenti Impostazioni:</strong><br>
-                                • Aggiunto pulsante "Vai" accanto alle frecce delle categorie<br>
-                                • Ogni categoria ora ha accesso diretto con un click<br>
-                                • Migliorata l'usabilità dell'interfaccia impostazioni<br><br>
-                                
-                                <strong>📱 Nuove App Disponibili:</strong><br>
-                                • WhatsApp - Messaggistica completa con chat funzionanti<br>
-                                • Instagram - Feed social con like, storie e interazioni<br>
-                                • YouTube - Player video con controlli completi<br>
-                                • Facebook - Social network con post e reazioni<br>
-                                • Gmail - Client email completo con lettura messaggi<br><br>
-                                
-                                <strong>🎨 Caratteristiche App:</strong><br>
-                                • Design fedele alle app originali<br>
-                                • Interazioni realistiche e fluide<br>
-                                • Contenuti di esempio per testing<br>
-                                • Navigazione completa e intuitiva<br>
-                                • Supporto tema scuro/chiaro<br><br>
-                                
-                                <strong>🐛 Bug Fix:</strong><br>
-                                • Risolti problemi di navigazione nelle impostazioni<br>
-                                • Migliorata responsività su dispositivi mobili<br>
-                                • Ottimizzate le performance generali<br>
-                                • Corretti piccoli bug di interfaccia<br><br>
-                                
-                                <em>Questo aggiornamento prepara il terreno per ulteriori app e funzionalità in arrivo.</em>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="update-item">
-                        <div class="update-info">
-                            <div class="update-version">CronoOS 2.4 - Final Major Update</div>
-                            <div class="update-date">20 Gennaio 2025</div>
-                            <div class="update-notes">
-                                🎉 <strong>AGGIORNAMENTO FINALE DELLA SERIE 2.x</strong><br><br>
-                                <strong>🔧 Nuove Funzionalità:</strong><br>
-                                • Lockscreen completamente ridisegnata con scorciatoie personalizzabili<br>
-                                • 5 font selezionabili per l'orologio della lockscreen<br>
-                                • Always-On Display (AOD) per mostrare sempre l'ora<br>
-                                • Sezione Account completa con gestione profilo e avatar<br>
-                                • Upload sfondo personalizzato<br>
-                                • 8 temi colore per personalizzare le icone<br>
-                                • Quick Panel accessibile con swipe dall'alto<br>
-                                • App Store completamente funzionante<br><br>
-                                
-                                <strong>🎨 Miglioramenti Design:</strong><br>
-                                • Interfaccia Impostazioni completamente ridisegnata<br>
-                                • Ogni elemento è ora completamente cliccabile<br>
-                                • Animazioni fluide e transizioni ottimizzate<br>
-                                • Mockup telefono più realistico e interattivo<br>
-                                • Eliminazione di tutte le zone morte nell'interfaccia<br><br>
-                                
-                                <strong>🐛 Bug Fix:</strong><br>
-                                • Risolti tutti i problemi di navigazione<br>
-                                • App Store ora completamente funzionante<br>
-                                • Telefono integrato nel mockup ottimizzato<br>
-                                • Correzioni di stabilità generale<br>
-                                • Migliorata la compatibilità mobile<br><br>
-                                
-                                <strong>📱 Sistema:</strong><br>
-                                • Codice completamente ottimizzato e pulito<br>
-                                • Prestazioni migliorate del 40%<br>
-                                • Supporto completo per temi scuro/chiaro<br>
-                                • Base solida per il futuro CronoOS 4.0<br><br>
-                                
-                                <em>Questo è l'ultimo aggiornamento major della serie 2.x. Il prossimo sarà CronoOS 4.0 con architettura completamente rinnovata.</em>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="update-item">
-                        <div class="update-info">
-                            <div class="update-version">CronoOS 2.3 - Phoenix Edition</div>
-                            <div class="update-date">18 Gennaio 2025</div>
-                            <div class="update-notes">
-                                • Sistema completamente rivisto e ottimizzato<br>
-                                • Nuove app: Fotocamera, Galleria, Calendario<br>
-                                • Interfaccia utente migliorata in stile iOS<br>
-                                • Correzioni di bug e miglioramenti prestazioni<br>
-                                • Supporto per temi scuro/chiaro<br>
-                                • Navigazione fluida e animazioni ottimizzate
-                            </div>
-                        </div>
-                    </div>
-                    <div class="update-item">
-                        <div class="update-info">
-                            <div class="update-version">CronoOS 2.1 - Generic Bug Fix</div>
-                            <div class="update-date">15 Gennaio 2025</div>
-                            <div class="update-notes">
-                                • Riscrittura completa del mockup<br>
-                                • Nuovo notch statico<br>
-                                • Fix grafici e di layout su ogni pagina<br>
-                                • Riscrittura interfaccia secondo il nuovo stile<br>
-                                • Codice ottimizzato e bug rimossi<br>
-                                • Migliorata compatibilità e stabilità generale
-                            </div>
-                        </div>
-                    </div>
+                <div class="setting-item" onclick="openSystemSettings()">
+                    <div class="setting-icon" style="background: #8A8A8E;"><i class="fas fa-gear"></i></div>
+                    <div class="setting-info"><div class="setting-title">Sistema</div></div>
+                    <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
                 </div>
             </div>
         </div>
