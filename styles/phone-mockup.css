@@ -1,4 +1,4 @@
-/* Phone Mockup Styles - CronoOS 2.1 Clean Design */
+/* Phone Mockup Styles - CronoOS 2.1 "Titanium" Design */
 
 * {
     margin: 0;
@@ -8,7 +8,7 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #4343a3 0%, #a343a3 100%);
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -20,11 +20,11 @@ body {
 /* Phone Mockup Container */
 .phone-mockup {
     position: relative;
-    width: 375px;
-    height: 812px;
+    /* Dimensioni basate su un moderno aspect ratio */
+    width: 375px; 
+    height: 800px;
     margin: 0 auto;
-    filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.5));
-    transform-origin: center center;
+    filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.4));
     transition: transform 0.3s ease;
 }
 
@@ -33,14 +33,16 @@ body {
     position: relative;
     width: 100%;
     height: 100%;
-    background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
-    border-radius: 40px;
-    padding: 8px;
+    /* Gradiente per un effetto titanio/argento */
+    background: linear-gradient(145deg, #e2e2e2, #c8c8c8);
+    /* Angoli meno arrotondati per un look squadrato */
+    border-radius: 28px; 
+    /* Padding ridotto per bordi sottili */
+    padding: 5px; 
     box-shadow: 
-        inset 0 2px 4px rgba(255, 255, 255, 0.1),
-        inset 0 -2px 4px rgba(0, 0, 0, 0.3),
-        0 0 0 1px #333,
-        0 25px 50px rgba(0, 0, 0, 0.6);
+        inset 0 1px 1px rgba(255, 255, 255, 0.6),
+        inset 0 -1px 1px rgba(0, 0, 0, 0.2),
+        0 0 0 1px #b0b0b0;
     overflow: hidden;
 }
 
@@ -49,82 +51,87 @@ body {
     width: 100%;
     height: 100%;
     background: #000;
-    border-radius: 32px;
+    /* Radius interno leggermente inferiore a quello della cornice */
+    border-radius: 23px; 
     overflow: hidden;
     position: relative;
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-/* OS Frame */
+/* Aggiunta della fotocamera "hole-punch" */
+.phone-screen::before {
+    content: '';
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 10px;
+    background: #000;
+    border-radius: 50%;
+    z-index: 20; /* Assicura che sia sopra l'iframe */
+    border: 1px solid #222;
+}
+
+/* OS Frame (iframe) */
 #osFrame {
     width: 100%;
     height: 100%;
     border: none;
-    border-radius: 32px;
+    border-radius: 23px; /* Stessa radius dello screen container */
     background: #000;
 }
 
 /* Physical Buttons */
 .phone-button {
     position: absolute;
-    background: linear-gradient(145deg, #444, #222);
-    border-radius: 2px;
+    /* Stile che combacia con la cornice */
+    background: linear-gradient(145deg, #d3d3d3, #b4b4b4);
+    border-radius: 4px;
     cursor: pointer;
     transition: all 0.1s ease;
-    box-shadow: 
-        inset 0 1px 2px rgba(255, 255, 255, 0.1),
-        inset 0 -1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .phone-button:hover {
-    background: linear-gradient(145deg, #555, #333);
+    background: linear-gradient(145deg, #e0e0e0, #c0c0c0);
 }
 
 .phone-button:active {
-    transform: translateY(0.5px);
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+    transform: translateX(0.5px);
 }
 
-/* Volume Buttons */
+/* Tutti i pulsanti a destra */
+.power {
+    right: -4px; /* Sporge leggermente */
+    top: 130px;
+    width: 4px;
+    height: 65px;
+}
+
 .volume-up {
-    left: -3px;
-    top: 120px;
-    width: 3px;
-    height: 28px;
+    right: -4px;
+    top: 210px;
+    width: 4px;
+    height: 40px;
 }
 
 .volume-down {
-    left: -3px;
-    top: 160px;
-    width: 3px;
-    height: 28px;
-}
-
-/* Power Button */
-.power {
-    right: -3px;
-    top: 140px;
-    width: 3px;
-    height: 50px;
+    right: -4px;
+    top: 260px;
+    width: 4px;
+    height: 40px;
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-    .phone-mockup {
-        width: 320px;
-        height: 693px;
-        transform: scale(0.9);
-    }
-}
-
 @media (max-width: 480px) {
     .phone-mockup {
-        width: 280px;
-        height: 607px;
-        transform: scale(0.8);
+        /* Scala l'intero mockup per schermi più piccoli */
+        transform: scale(0.85);
     }
     
     body {
         padding: 10px;
     }
 }
+
