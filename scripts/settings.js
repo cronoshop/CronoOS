@@ -136,5 +136,26 @@ function handleWallpaperUpload(event) {
         reader.readAsDataURL(file);
     }
 }
+document.addEventListener('DOMContentLoaded', function() {
+    loadUserProfile();
+});
+
+function loadUserProfile() {
+    const profile = JSON.parse(localStorage.getItem('cronos_user_profile') || '{}');
+    if (profile.name) {
+        document.getElementById('profileName').textContent = profile.name;
+    }
+    if (profile.avatar) {
+        const img = document.getElementById('profileImage');
+        const icon = document.getElementById('profileIcon');
+        img.src = profile.avatar;
+        img.style.display = 'block';
+        icon.style.display = 'none';
+    }
+}
+
+function navigateTo(page) {
+    window.location.href = page;
+}
 
 // E così via per tutte le altre funzioni dei modali...
