@@ -191,3 +191,4 @@ document.getElementById('searchSettingsBtn')?.addEventListener('click', function
 document.querySelector('.profile-edit')?.addEventListener('click', function() {
     showToast('Modifica profilo non ancora implementata');
 }
+)
