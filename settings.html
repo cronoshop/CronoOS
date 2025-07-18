@@ -85,5 +85,40 @@
     <link rel="stylesheet" href="styles/cronoglass-enhanced.css">
     <script src="scripts/settings.js"></script>
     <script src="js/global-enhanced.js"></script>
+    <script src="scripts/global.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const blueLightToggle = document.getElementById('blueLightToggle');
+            const blueLightOverlay = document.getElementById('blue-light-filter-overlay');
+
+            // Stato iniziale dai settings salvati
+            darkModeToggle.checked = (localStorage.getItem('crono_theme') === 'dark');
+            blueLightToggle.checked = (localStorage.getItem('crono_bluelight') === 'on');
+
+            // Applica il filtro se era attivo
+            if(blueLightToggle.checked) blueLightOverlay.classList.add('active');
+
+            // Gestione Modalità Scura
+            darkModeToggle.addEventListener('change', function() {
+                const theme = this.checked ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', theme);
+                localStorage.setItem('crono_theme', theme);
+            });
+
+            // Gestione Filtro Luce Blu
+            blueLightToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    blueLightOverlay.classList.add('active');
+                    localStorage.setItem('crono_bluelight', 'on');
+                    showToast('Filtro luce blu attivato');
+                } else {
+                    blueLightOverlay.classList.remove('active');
+                    localStorage.setItem('crono_bluelight', 'off');
+                    showToast('Filtro luce blu disattivato');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
