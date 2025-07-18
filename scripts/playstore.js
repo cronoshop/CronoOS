@@ -122,7 +122,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     searchInput.addEventListener('input', (e) => renderApps(e.target.value));
-    
+    function saveInstalledApps() {
+        // This key 'cronos_installed_apps' is what home.js listens for.
+        localStorage.setItem('cronos_installed_apps', JSON.stringify(installedApps));
+        console.log('App Store: Notified home screen of installation changes.');
+        // The 'storage' event listener in home.js will now automatically handle the UI update.
+    }
     // Initial Render
     renderApps();
 });
