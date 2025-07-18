@@ -1,203 +1,288 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>CronoOS 2.0 Mockup</title>
-<style>
-  /* Reset */
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-  }
-  body, html {
-    width: 100%; height: 100%;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+/* Phone Mockup Styles - CronoOS 2.0 (Extended & Improved) */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    min-height: 100vh;
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: center;
+    padding: 40px; /* aumentato */
     overflow: hidden;
-  }
-
-  /* Phone container */
-  .phone-mockup {
-    position: relative;
-    width: 375px;
-    height: 812px;
-    border-radius: 48px;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.4);
-    background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
-    padding: 6px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-
-  /* Phone screen */
-  .phone-screen {
-    flex: 1;
-    border-radius: 42px;
-    background: black;
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* Status Bar */
-  .status-bar {
-    height: 24px;
-    background: var(--background-color, #000);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 16px;
-    color: white;
-    font-size: 12px;
     user-select: none;
-  }
-  .status-bar .left, .status-bar .right {
+}
+
+/* MOCKUP CONTAINER */
+.phone-mockup {
+    position: relative;
+    width: 420px;       /* più largo */
+    height: 900px;      /* più lungo */
+    margin: 0 auto;
+    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.6));
+    transform-origin: center center;
+    transition: transform 0.3s ease;
+    background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+    border-radius: 52px; /* più arrotondato */
+    padding: 10px;       /* più spazio interno */
+    box-shadow: 
+        inset 0 2px 6px rgba(255, 255, 255, 0.12),
+        inset 0 -2px 6px rgba(0, 0, 0, 0.35),
+        0 0 0 1.2px #222,
+        0 35px 75px rgba(0, 0, 0, 0.75);
+    overflow: hidden;
+}
+
+/* PHONE FRAME */
+.phone-frame {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #222222, #111111);
+    border-radius: 48px;
+    padding: 12px; /* più spazio */
+    box-shadow: 
+        inset 0 3px 8px rgba(255, 255, 255, 0.15),
+        inset 0 -3px 8px rgba(0, 0, 0, 0.45),
+        0 0 0 1.5px #333,
+        0 35px 80px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
     display: flex;
-    align-items: center;
-    gap: 8px;
-  }
+    flex-direction: column;
+}
 
-  /* Dynamic Island (static notch) */
-  .dynamic-island {
-    margin: 8px auto;
-    width: 150px;
-    height: 36px;
-    background: #222;
-    border-radius: 18px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.8);
-  }
+/* PHONE SCREEN */
+.phone-screen {
+    width: 100%;
+    height: 100%;
+    background: #0a0a0a;
+    border-radius: 44px;
+    overflow: hidden;
+    position: relative;
+    box-shadow:
+      inset 0 0 20px rgba(0, 0, 0, 0.9);
+    display: flex;
+    flex-direction: column;
+}
 
-  /* Content area */
-  .content {
-    flex: 1;
-    padding: 20px;
-    color: white;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
+/* IFRAME OS */
+#osFrame {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 44px;
+    background: #000;
+    transform: scale(1);
+    transform-origin: center center;
+    transition: transform 0.4s ease;
+    box-shadow:
+      inset 0 0 20px #00f0ff44;
+}
 
-  /* Bottom Pill Bar */
-  .pill-bar {
-    height: 34px;
-    margin: 12px auto 20px;
-    width: 134px;
-    border-radius: 18px;
-    background: #333;
-    box-shadow: 0 5px 8px rgba(0,0,0,0.6);
-    cursor: pointer;
-  }
-
-  /* Physical Buttons */
-  .phone-button {
+/* PHYSICAL BUTTONS */
+.phone-button {
     position: absolute;
-    background: linear-gradient(145deg, #444, #222);
-    border-radius: 2px;
+    background: linear-gradient(145deg, #555, #222);
+    border-radius: 3px;
     cursor: pointer;
     transition: all 0.15s ease;
-    box-shadow: inset 0 1px 2px rgba(255,255,255,0.1), inset 0 -1px 2px rgba(0,0,0,0.3);
-  }
-  .phone-button:hover {
-    background: linear-gradient(145deg, #555, #333);
-  }
-  .phone-button:active {
-    transform: translateY(0.5px);
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
-  }
-  .volume-up { left: -3px; top: 140px; width: 3px; height: 28px; }
-  .volume-down { left: -3px; top: 175px; width: 3px; height: 28px; }
-  .power { right: -3px; top: 155px; width: 3px; height: 50px; }
+    box-shadow: 
+        inset 0 2px 4px rgba(255, 255, 255, 0.15),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.4);
+    user-select: none;
+}
 
-  /* Lockscreen fake fingerprint sensor */
-  .lockscreen-fingerprint {
-    width: 64px;
-    height: 64px;
-    background: radial-gradient(circle at center, #444 40%, #000 80%);
-    border-radius: 50%;
-    margin: 0 auto;
+.phone-button:hover {
+    background: linear-gradient(145deg, #666, #333);
+}
+
+.phone-button:active {
+    transform: translateY(0.7px);
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* Buttons positioning: più spaziati e definiti */
+.volume-up {
+    left: -6px;
+    top: 130px;
+    width: 4px;
+    height: 32px;
+    border-radius: 2px;
     box-shadow:
-      0 0 8px #0af,
-      inset 0 0 6px #09f,
-      inset 0 0 15px #0cf;
-    animation: pulseFingerprint 3s infinite;
-  }
-  @keyframes pulseFingerprint {
-    0%, 100% { box-shadow:
-      0 0 8px #0af,
-      inset 0 0 6px #09f,
-      inset 0 0 15px #0cf;
-    }
-    50% {
-      box-shadow:
-      0 0 15px #0af,
-      inset 0 0 10px #09f,
-      inset 0 0 25px #0cf;
-    }
-  }
+      inset 0 1px 3px #999,
+      0 1px 5px rgba(0,0,0,0.7);
+}
 
-  /* Scrollbar styling for content */
-  .content::-webkit-scrollbar {
-    width: 6px;
-  }
-  .content::-webkit-scrollbar-thumb {
-    background: #555;
+.volume-down {
+    left: -6px;
+    top: 175px;
+    width: 4px;
+    height: 32px;
+    border-radius: 2px;
+    box-shadow:
+      inset 0 1px 3px #999,
+      0 1px 5px rgba(0,0,0,0.7);
+}
+
+.power {
+    right: -6px;
+    top: 155px;
+    width: 4px;
+    height: 58px;
     border-radius: 3px;
-  }
-  .content::-webkit-scrollbar-track {
-    background: transparent;
-  }
+    box-shadow:
+      inset 0 2px 4px #999,
+      0 1px 6px rgba(0,0,0,0.8);
+}
 
-  /* Responsive */
-  @media (max-width: 420px) {
-    .phone-mockup {
-      width: 320px;
-      height: 700px;
-    }
-    .pill-bar {
-      width: 100px;
-      height: 28px;
-    }
-  }
-</style>
-</head>
-<body>
-  <div class="phone-mockup" role="application" aria-label="CronoOS phone mockup">
-    <div class="phone-frame">
-      <div class="phone-screen" tabindex="0">
-        <!-- Status bar -->
-        <div class="status-bar" role="banner">
-          <div class="left">9:41 AM</div>
-          <div class="right">
-            <span>🔋100%</span>
-            <span>📶LTE</span>
-          </div>
-        </div>
+/* MOCKUP DECORAZIONI */
 
-        <!-- Dynamic island (static notch) -->
-        <div class="dynamic-island" aria-hidden="true"></div>
+// NOTCH STATICO (versione “minimal dynamic island”)
+.phone-notch {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px;
+    height: 40px;
+    background: #000;
+    border-radius: 24px 24px 18px 18px;
+    box-shadow:
+      0 3px 6px rgba(0,0,0,0.9),
+      inset 0 1px 4px #222;
+    z-index: 15;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #00d8ff;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    user-select: none;
+    font-family: 'Courier New', Courier, monospace;
+}
 
-        <!-- Main content -->
-        <main class="content" role="main" tabindex="0">
-          <h1>Benvenuto in CronoOS 2.0</h1>
-          <p>Questo è il mockup della home. Contenuti centrati e visibili, scroll fluido e design moderno.</p>
-          <p>Qui potrai integrare app, quick panel, notifiche e molto altro.</p>
-        </main>
+/* STATUS BAR ridisegnata */
 
-        <!-- Bottom pill bar -->
-        <div class="pill-bar" role="button" aria-label="Barra di navigazione">
-        </div>
+.status-bar {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    padding: 0 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #000, #111);
+    color: #a9a9a9;
+    font-size: 14px;
+    font-weight: 600;
+    user-select: none;
+    text-shadow: 0 0 2px #0008;
+    border-bottom: 1px solid #222;
+    z-index: 25;
+}
 
-        <!-- Physical buttons -->
-        <div class="phone-button volume-up" role="button" aria-label="Volume Su" tabindex="0"></div>
-        <div class="phone-button volume-down" role="button" aria-label="Volume Giù" tabindex="0"></div>
-        <div class="phone-button power" role="button" aria-label="Pulsante Accensione" tabindex="0"></div>
+.status-bar .left,
+.status-bar .center,
+.status-bar .right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
 
-      </div>
-    </div>
-  </div>
-</body>
-</html>
+.status-bar .center {
+    justify-content: center;
+    flex: 1;
+}
+
+/* STATUS BAR ICONS (signal, wifi, battery) */
+.status-icon {
+    width: 18px;
+    height: 18px;
+    fill: #aaa;
+    filter: drop-shadow(0 0 0.5px #0006);
+    transition: fill 0.3s ease;
+    cursor: default;
+}
+
+/* BATTERY */
+.battery-icon {
+    position: relative;
+    width: 26px;
+    height: 12px;
+    border: 2px solid #aaa;
+    border-radius: 3px;
+    box-sizing: content-box;
+}
+
+.battery-icon::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    right: -6px;
+    width: 4px;
+    height: 6px;
+    background: #aaa;
+    border-radius: 1px;
+}
+
+/* BATTERY LEVEL */
+.battery-level {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 60%;
+    background: #00ff90;
+    border-radius: 2px 0 0 2px;
+    transition: width 0.5s ease;
+}
+
+/* SIGNAL ICON */
+.signal-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+}
+
+.signal-bar {
+    width: 3px;
+    background: #aaa;
+    border-radius: 1px;
+    transition: background 0.4s ease;
+}
+
+.signal-bar:nth-child(1) { height: 5px; }
+.signal-bar:nth-child(2) { height: 8px; }
+.signal-bar:nth-child(3) { height: 12px; }
+.signal-bar:nth-child(4) { height: 16px; }
+
+/* WIFI ICON */
+.wifi-icon {
+    width: 20px;
+    height: 14px;
+    stroke: #aaa;
+    stroke-width: 2;
+    fill: none;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+}
+
+/* QUICK PANEL */
+
+.quick-panel {
+    position: absolute;
+    bottom: 60px;
+    left: 0;
+    width: 100%;
+    max-height: 320px;
+    background: #111a25cc;
+    backdrop-filter: blur(16px);
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    box-shadow: 0 -2px
