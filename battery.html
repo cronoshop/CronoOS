@@ -3,58 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Batteria - Impostazioni</title>
+    <title>Account - Impostazioni</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/settings.css">
     <style>
-        .battery-level { padding: 20px; text-align: center; }
-        .battery-icon { font-size: 64px; color: var(--ios-green); }
-        .battery-percentage { font-size: 24px; font-weight: 600; margin-top: 10px;}
-        .battery-status { font-size: 14px; color: var(--text-secondary-light); }
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 24px;
+            gap: 16px;
+        }
+        .profile-avatar-large {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: #e5e5ea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: var(--text-secondary-light);
+            position: relative;
+            cursor: pointer;
+        }
+        .profile-avatar-large img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        .profile-avatar-large:hover::after {
+            content: 'Cambia';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            font-size: 12px;
+            padding: 4px;
+            border-bottom-left-radius: 45px;
+            border-bottom-right-radius: 45px;
+            text-align: center;
+        }
+        .form-row input {
+            width: 100%;
+            text-align: right;
+        }
     </style>
 </head>
 <body>
     <div class="app-container">
         <div class="app-header">
             <button class="back-btn" onclick="history.back()"><i class="fas fa-chevron-left"></i> Impostazioni</button>
-            <h1>Batteria</h1>
+            <h1>Account</h1>
         </div>
         <div class="settings-content">
-            <div class="settings-group">
-                <div class="battery-level">
-                    <i id="batteryIcon" class="fas fa-battery-full battery-icon"></i>
-                    <div id="batteryPercentage" class="battery-percentage">100%</div>
-                    <div id="batteryStatus" class="battery-status">Carica Completa</div>
+            <input type="file" id="avatarInput" accept="image/*" style="display:none;">
+
+            <div class="profile-header">
+                <div class="profile-avatar-large" id="profileAvatarLarge" onclick="document.getElementById('avatarInput').click()">
+                    <img id="profileImage" src="" style="display:none;" />
+                    <i id="profileIcon" class="fas fa-user"></i>
                 </div>
             </div>
+
             <div class="settings-group">
-                <div class="setting-item">
-                    <div class="setting-info">
-                        <div class="setting-title">Risparmio energetico</div>
-                        <div class="setting-description">Riduce le prestazioni e le attività in background per estendere la durata della batteria.</div>
-                    </div>
-                    <div class="setting-accessory"><div class="toggle-switch"><input type="checkbox" id="powerSavingToggle"><label for="powerSavingToggle"></label></div></div>
+                <div class="form-row">
+                    <label>Nome</label>
+                    <input type="text" id="profileNameInput" placeholder="Il tuo nome">
+                </div>
+                 <div class="form-row">
+                    <label>Email</label>
+                    <input type="email" id="profileEmailInput" placeholder="La tua email">
                 </div>
             </div>
-             <div class="settings-group">
-                <div class="setting-item" onclick="showToast('Funzione non disponibile')">
-                    <div class="setting-info"><div class="setting-title">Stato batteria</div></div>
+
+            <div class="settings-group">
+                 <div class="setting-item" onclick="showToast('Funzione non ancora disponibile')">
+                    <div class="setting-info"><div class="setting-title">Collega Account Google</div></div>
                     <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
+                </div>
+            </div>
+
+            <div class="settings-group">
+                <div class="setting-item" onclick="saveProfile()">
+                    <div class="setting-info" style="color: var(--ios-blue); text-align: center; width: 100%;">Salva Modifiche</div>
                 </div>
             </div>
         </div>
     </div>
     <script src="scripts/global.js"></script>
+    <script src="scripts/settings.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const powerSavingToggle = document.getElementById('powerSavingToggle');
-            powerSavingToggle.checked = localStorage.getItem('crono_power_saving') === 'on';
-            powerSavingToggle.addEventListener('change', function() {
-                localStorage.setItem('crono_power_saving', this.checked ? 'on' : 'off');
-                showToast(this.checked ? 'Risparmio energetico attivato' : 'Risparmio energetico disattivato');
-            });
-        });
+        document.addEventListener('DOMContentLoaded', loadProfile);
     </script>
 </body>
 </html>
