@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibilità - Impostazioni</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/settings.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="app-header">
+            <button class="back-btn" onclick="history.back()"><i class="fas fa-chevron-left"></i> Impostazioni</button>
+            <h1>Accessibilità</h1>
+        </div>
+        <div class="settings-content">
+            <div class="settings-group">
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-title">Testo più grande</div>
+                        <div class="setting-description">Rende il testo più leggibile aumentando la dimensione del font.</div>
+                    </div>
+                    <div class="setting-accessory"><div class="toggle-switch"><input type="checkbox" id="largeTextToggle"><label for="largeTextToggle"></label></div></div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-title">Testo in grassetto</div>
+                    </div>
+                    <div class="setting-accessory"><div class="toggle-switch"><input type="checkbox" id="boldTextToggle"><label for="boldTextToggle"></label></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/global.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const largeTextToggle = document.getElementById('largeTextToggle');
+            const boldTextToggle = document.getElementById('boldTextToggle');
+
+            // Stato iniziale dai settings
+            largeTextToggle.checked = document.body.classList.contains('large-text');
+            boldTextToggle.checked = document.body.classList.contains('bold-text');
+
+            largeTextToggle.addEventListener('change', function() {
+                document.body.classList.toggle('large-text', this.checked);
+                localStorage.setItem('crono_large_text', this.checked);
+                showToast(this.checked ? 'Testo grande attivato' : 'Testo grande disattivato');
+            });
+
+            boldTextToggle.addEventListener('change', function() {
+                document.body.classList.toggle('bold-text', this.checked);
+                localStorage.setItem('crono_bold_text', this.checked);
+                 showToast(this.checked ? 'Testo grassetto attivato' : 'Testo grassetto disattivato');
+            });
+        });
+    </script>
+</body>
+</html>
