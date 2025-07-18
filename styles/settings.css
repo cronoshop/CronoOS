@@ -162,6 +162,33 @@
     color: var(--text-primary-dark);
 }
 
+.category-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.category-go-btn {
+    background: var(--ios-blue);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.category-go-btn:hover {
+    background: #0056CC;
+    transform: scale(1.05);
+}
+
+.category-go-btn:active {
+    transform: scale(0.95);
+}
+
 .category-arrow {
     font-size: 16px;
     color: var(--text-secondary-light);

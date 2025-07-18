@@ -414,6 +414,48 @@ function selectTheme(themeName) {
     showToast(`Tema ${themeName} applicato!`);
 }
 
+// Category Navigation Functions
+function openAccountSettings(event) {
+    event.stopPropagation();
+    showToast('Apertura impostazioni account...');
+    // Here you could navigate to a dedicated account settings page
+}
+
+function openDisplaySettings(event) {
+    event.stopPropagation();
+    showToast('Apertura impostazioni schermo...');
+    // Here you could navigate to a dedicated display settings page
+}
+
+function openWallpaperSettings(event) {
+    event.stopPropagation();
+    openWallpaperSettings();
+}
+
+function openSoundsSettings(event) {
+    event.stopPropagation();
+    showToast('Apertura impostazioni audio...');
+    // Here you could navigate to a dedicated sounds settings page
+}
+
+function openConnectivitySettings(event) {
+    event.stopPropagation();
+    showToast('Apertura impostazioni connettività...');
+    // Here you could navigate to a dedicated connectivity settings page
+}
+
+function openPrivacySettings(event) {
+    event.stopPropagation();
+    showToast('Apertura impostazioni privacy...');
+    // Here you could navigate to a dedicated privacy settings page
+}
+
+function openSystemSettings(event) {
+    event.stopPropagation();
+    showToast('Apertura impostazioni sistema...');
+    // Here you could navigate to a dedicated system settings page
+}
+
 function saveSettingsData() {
     const settings = {
         isDarkModeEnabled: document.getElementById('darkModeToggle')?.checked || false,

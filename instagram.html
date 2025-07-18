@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram - CronoOS 2.4.1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/instagram.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left"><span class="time" id="statusTime">9:41</span></div>
+            <div class="status-center"><div class="notch"></div></div>
+            <div class="status-right">
+                <span class="signal"><i class="fas fa-signal"></i></span>
+                <span class="wifi"><i class="fas fa-wifi"></i></span>
+                <span class="battery">100% <i class="fas fa-battery-full"></i></span>
+            </div>
+        </div>
+
+        <!-- Instagram Header -->
+        <div class="instagram-header">
+            <div class="logo">
+                <i class="fab fa-instagram"></i>
+                <span>Instagram</span>
+            </div>
+            <div class="header-actions">
+                <button class="header-btn">
+                    <i class="fas fa-heart"></i>
+                </button>
+                <button class="header-btn">
+                    <i class="fab fa-facebook-messenger"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Stories Section -->
+        <div class="stories-section">
+            <div class="stories-container">
+                <div class="story-item my-story">
+                    <div class="story-avatar">
+                        <div class="avatar-placeholder">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <button class="add-story-btn">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <span class="story-username">La tua storia</span>
+                </div>
+                
+                <div class="story-item">
+                    <div class="story-avatar viewed">
+                        <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" alt="Marco">
+                    </div>
+                    <span class="story-username">marco_r</span>
+                </div>
+                
+                <div class="story-item">
+                    <div class="story-avatar">
+                        <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" alt="Anna">
+                    </div>
+                    <span class="story-username">anna.b</span>
+                </div>
+                
+                <div class="story-item">
+                    <div class="story-avatar">
+                        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" alt="Luca">
+                    </div>
+                    <span class="story-username">luca_v</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feed -->
+        <div class="feed">
+            <!-- Post 1 -->
+            <div class="post">
+                <div class="post-header">
+                    <div class="post-user">
+                        <div class="user-avatar">
+                            <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" alt="Marco">
+                        </div>
+                        <div class="user-info">
+                            <span class="username">marco_r</span>
+                            <span class="location">Milano, Italia</span>
+                        </div>
+                    </div>
+                    <button class="post-menu">
+                        <i class="fas fa-ellipsis"></i>
+                    </button>
+                </div>
+                
+                <div class="post-image">
+                    <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop" alt="Post">
+                </div>
+                
+                <div class="post-actions">
+                    <div class="action-buttons">
+                        <button class="action-btn like-btn">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-comment"></i>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <button class="save-btn">
+                        <i class="fas fa-bookmark"></i>
+                    </button>
+                </div>
+                
+                <div class="post-info">
+                    <div class="likes">
+                        <strong>142 Mi piace</strong>
+                    </div>
+                    <div class="caption">
+                        <strong>marco_r</strong> Bellissima giornata a Milano! ☀️ #milano #sole
+                    </div>
+                    <div class="comments-link">
+                        Visualizza tutti i 23 commenti
+                    </div>
+                    <div class="post-time">
+                        2 ore fa
+                    </div>
+                </div>
+            </div>
+
+            <!-- Post 2 -->
+            <div class="post">
+                <div class="post-header">
+                    <div class="post-user">
+                        <div class="user-avatar">
+                            <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" alt="Anna">
+                        </div>
+                        <div class="user-info">
+                            <span class="username">anna.b</span>
+                            <span class="location">Roma, Italia</span>
+                        </div>
+                    </div>
+                    <button class="post-menu">
+                        <i class="fas fa-ellipsis"></i>
+                    </button>
+                </div>
+                
+                <div class="post-image">
+                    <img src="https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop" alt="Post">
+                </div>
+                
+                <div class="post-actions">
+                    <div class="action-buttons">
+                        <button class="action-btn like-btn liked">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-comment"></i>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <button class="save-btn">
+                        <i class="fas fa-bookmark"></i>
+                    </button>
+                </div>
+                
+                <div class="post-info">
+                    <div class="likes">
+                        <strong>89 Mi piace</strong>
+                    </div>
+                    <div class="caption">
+                        <strong>anna.b</strong> Weekend perfetto! 🌸 #weekend #relax
+                    </div>
+                    <div class="comments-link">
+                        Visualizza tutti i 15 commenti
+                    </div>
+                    <div class="post-time">
+                        5 ore fa
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <button class="nav-btn active">
+                <i class="fas fa-home"></i>
+            </button>
+            <button class="nav-btn">
+                <i class="fas fa-search"></i>
+            </button>
+            <button class="nav-btn">
+                <i class="fas fa-plus-square"></i>
+            </button>
+            <button class="nav-btn">
+                <i class="fas fa-heart"></i>
+            </button>
+            <button class="nav-btn" onclick="goHome()">
+                <i class="fas fa-user"></i>
+            </button>
+        </div>
+    </div>
+
+    <script src="scripts/global.js"></script>
+    <script src="scripts/instagram.js"></script>
+</body>
+</html>

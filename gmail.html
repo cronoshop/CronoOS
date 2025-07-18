@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gmail - CronoOS 2.4.1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/gmail.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left"><span class="time" id="statusTime">9:41</span></div>
+            <div class="status-center"><div class="notch"></div></div>
+            <div class="status-right">
+                <span class="signal"><i class="fas fa-signal"></i></span>
+                <span class="wifi"><i class="fas fa-wifi"></i></span>
+                <span class="battery">100% <i class="fas fa-battery-full"></i></span>
+            </div>
+        </div>
+
+        <!-- Gmail Header -->
+        <div class="gmail-header">
+            <button class="menu-btn" onclick="goHome()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Cerca nella posta">
+            </div>
+            <button class="profile-btn">
+                <i class="fas fa-user-circle"></i>
+            </button>
+        </div>
+
+        <!-- Email List -->
+        <div class="email-list">
+            <!-- Email 1 -->
+            <div class="email-item unread" onclick="openEmail(1)">
+                <div class="email-avatar">
+                    <div class="avatar-circle" style="background: #ea4335;">
+                        <span>M</span>
+                    </div>
+                </div>
+                <div class="email-content">
+                    <div class="email-header">
+                        <span class="sender-name">Marco Rossi</span>
+                        <span class="email-time">10:30</span>
+                    </div>
+                    <div class="email-subject">Riunione di domani</div>
+                    <div class="email-preview">Ciao! Volevo confermarti la riunione di domani alle 14:00. Abbiamo diversi punti importanti da discutere...</div>
+                </div>
+                <div class="email-actions">
+                    <button class="star-btn">
+                        <i class="far fa-star"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Email 2 -->
+            <div class="email-item" onclick="openEmail(2)">
+                <div class="email-avatar">
+                    <div class="avatar-circle" style="background: #34a853;">
+                        <span>A</span>
+                    </div>
+                </div>
+                <div class="email-content">
+                    <div class="email-header">
+                        <span class="sender-name">Anna Bianchi</span>
+                        <span class="email-time">09:15</span>
+                    </div>
+                    <div class="email-subject">Progetto completato</div>
+                    <div class="email-preview">Ottima notizia! Il progetto è stato completato con successo. Tutti i deliverable sono stati consegnati in tempo...</div>
+                </div>
+                <div class="email-actions">
+                    <button class="star-btn starred">
+                        <i class="fas fa-star"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Email 3 -->
+            <div class="email-item" onclick="openEmail(3)">
+                <div class="email-avatar">
+                    <div class="avatar-circle" style="background: #fbbc04;">
+                        <span>G</span>
+                    </div>
+                </div>
+                <div class="email-content">
+                    <div class="email-header">
+                        <span class="sender-name">Google</span>
+                        <span class="email-time">Ieri</span>
+                    </div>
+                    <div class="email-subject">Attività del tuo account</div>
+                    <div class="email-preview">Riepilogo delle attività recenti del tuo account Google. Nessuna attività sospetta rilevata...</div>
+                </div>
+                <div class="email-actions">
+                    <button class="star-btn">
+                        <i class="far fa-star"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Email 4 -->
+            <div class="email-item unread" onclick="openEmail(4)">
+                <div class="email-avatar">
+                    <div class="avatar-circle" style="background: #9c27b0;">
+                        <span>L</span>
+                    </div>
+                </div>
+                <div class="email-content">
+                    <div class="email-header">
+                        <span class="sender-name">Luca Verdi</span>
+                        <span class="email-time">2 giorni fa</span>
+                    </div>
+                    <div class="email-subject">Invito evento</div>
+                    <div class="email-preview">Ti invito al mio compleanno sabato prossimo! Sarà una festa fantastica con tutti gli amici...</div>
+                </div>
+                <div class="email-actions">
+                    <button class="star-btn">
+                        <i class="far fa-star"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Email 5 -->
+            <div class="email-item" onclick="openEmail(5)">
+                <div class="email-avatar">
+                    <div class="avatar-circle" style="background: #ff5722;">
+                        <span>N</span>
+                    </div>
+                </div>
+                <div class="email-content">
+                    <div class="email-header">
+                        <span class="sender-name">Newsletter Tech</span>
+                        <span class="email-time">3 giorni fa</span>
+                    </div>
+                    <div class="email-subject">Le ultime novità tecnologiche</div>
+                    <div class="email-preview">Scopri le innovazioni più interessanti della settimana nel mondo della tecnologia...</div>
+                </div>
+                <div class="email-actions">
+                    <button class="star-btn">
+                        <i class="far fa-star"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Action Button -->
+        <button class="fab" onclick="composeEmail()">
+            <i class="fas fa-pen"></i>
+        </button>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <button class="nav-btn active">
+                <i class="fas fa-inbox"></i>
+                <span>Posta in arrivo</span>
+            </button>
+            <button class="nav-btn">
+                <i class="fas fa-paper-plane"></i>
+                <span>Inviati</span>
+            </button>
+            <button class="nav-btn">
+                <i class="fas fa-star"></i>
+                <span>Speciali</span>
+            </button>
+            <button class="nav-btn">
+                <i class="fas fa-trash"></i>
+                <span>Cestino</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Email Detail Modal -->
+    <div class="email-modal" id="emailModal">
+        <div class="email-detail-header">
+            <button class="back-btn" onclick="closeEmail()">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="email-actions-header">
+                <button class="action-btn">
+                    <i class="fas fa-archive"></i>
+                </button>
+                <button class="action-btn">
+                    <i class="fas fa-trash"></i>
+                </button>
+                <button class="action-btn">
+                    <i class="fas fa-ellipsis-vertical"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="email-detail-content">
+            <div class="email-detail-header-info">
+                <div class="sender-info">
+                    <div class="sender-avatar">
+                        <span id="senderInitial">M</span>
+                    </div>
+                    <div class="sender-details">
+                        <div class="sender-name" id="senderName">Marco Rossi</div>
+                        <div class="sender-email" id="senderEmail">marco.rossi@email.com</div>
+                    </div>
+                </div>
+                <div class="email-meta">
+                    <div class="email-date" id="emailDate">Oggi alle 10:30</div>
+                    <button class="star-btn-detail">
+                        <i class="far fa-star"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="email-subject-detail" id="emailSubject">
+                Riunione di domani
+            </div>
+            
+            <div class="email-body" id="emailBody">
+                <p>Ciao!</p>
+                <p>Volevo confermarti la riunione di domani alle 14:00. Abbiamo diversi punti importanti da discutere:</p>
+                <ul>
+                    <li>Revisione del progetto corrente</li>
+                    <li>Pianificazione delle prossime milestone</li>
+                    <li>Allocazione delle risorse</li>
+                    <li>Budget per il prossimo trimestre</li>
+                </ul>
+                <p>Ti prego di confermare la tua presenza.</p>
+                <p>Grazie!</p>
+                <p>Marco</p>
+            </div>
+        </div>
+        
+        <div class="email-reply-section">
+            <button class="reply-btn" onclick="replyEmail()">
+                <i class="fas fa-reply"></i>
+                <span>Rispondi</span>
+            </button>
+            <button class="reply-all-btn" onclick="replyAllEmail()">
+                <i class="fas fa-reply-all"></i>
+                <span>Rispondi a tutti</span>
+            </button>
+            <button class="forward-btn" onclick="forwardEmail()">
+                <i class="fas fa-share"></i>
+                <span>Inoltra</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="scripts/global.js"></script>
+    <script src="scripts/gmail.js"></script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp - CronoOS 2.4.1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/whatsapp.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left"><span class="time" id="statusTime">9:41</span></div>
+            <div class="status-center"><div class="notch"></div></div>
+            <div class="status-right">
+                <span class="signal"><i class="fas fa-signal"></i></span>
+                <span class="wifi"><i class="fas fa-wifi"></i></span>
+                <span class="battery">100% <i class="fas fa-battery-full"></i></span>
+            </div>
+        </div>
+
+        <!-- App Header -->
+        <div class="app-header whatsapp-header">
+            <button class="back-btn" onclick="goHome()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <h1>WhatsApp</h1>
+            <div class="header-actions">
+                <button class="header-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="header-btn">
+                    <i class="fas fa-ellipsis-vertical"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- WhatsApp Tabs -->
+        <div class="whatsapp-tabs">
+            <div class="tab active" data-tab="chats">Chat</div>
+            <div class="tab" data-tab="status">Stati</div>
+            <div class="tab" data-tab="calls">Chiamate</div>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- Chats Tab -->
+            <div class="tab-panel active" id="chats">
+                <div class="chat-list">
+                    <div class="chat-item" onclick="openChat('Marco Rossi')">
+                        <div class="chat-avatar">
+                            <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" alt="Marco">
+                        </div>
+                        <div class="chat-info">
+                            <div class="chat-name">Marco Rossi</div>
+                            <div class="chat-message">Ciao! Come stai? 😊</div>
+                        </div>
+                        <div class="chat-meta">
+                            <div class="chat-time">10:30</div>
+                            <div class="unread-count">2</div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-item" onclick="openChat('Anna Bianchi')">
+                        <div class="chat-avatar">
+                            <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" alt="Anna">
+                        </div>
+                        <div class="chat-info">
+                            <div class="chat-name">Anna Bianchi</div>
+                            <div class="chat-message">Perfetto! Ci vediamo stasera</div>
+                        </div>
+                        <div class="chat-meta">
+                            <div class="chat-time">09:15</div>
+                            <div class="message-status">
+                                <i class="fas fa-check-double"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-item" onclick="openChat('Famiglia')">
+                        <div class="chat-avatar group-avatar">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="chat-info">
+                            <div class="chat-name">Famiglia</div>
+                            <div class="chat-message">Mamma: Pranzo domenica da noi?</div>
+                        </div>
+                        <div class="chat-meta">
+                            <div class="chat-time">Ieri</div>
+                            <div class="unread-count">5</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status Tab -->
+            <div class="tab-panel" id="status">
+                <div class="status-section">
+                    <div class="my-status">
+                        <div class="status-avatar">
+                            <div class="avatar-ring">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <button class="add-status-btn">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="status-info">
+                            <div class="status-title">Il mio stato</div>
+                            <div class="status-subtitle">Tocca per aggiungere un aggiornamento di stato</div>
+                        </div>
+                    </div>
+                    
+                    <div class="status-list">
+                        <div class="status-item">
+                            <div class="status-avatar viewed">
+                                <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" alt="Marco">
+                            </div>
+                            <div class="status-info">
+                                <div class="status-name">Marco Rossi</div>
+                                <div class="status-time">2 ore fa</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calls Tab -->
+            <div class="tab-panel" id="calls">
+                <div class="calls-list">
+                    <div class="call-item">
+                        <div class="call-avatar">
+                            <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" alt="Marco">
+                        </div>
+                        <div class="call-info">
+                            <div class="call-name">Marco Rossi</div>
+                            <div class="call-details">
+                                <i class="fas fa-phone-flip incoming"></i>
+                                Oggi, 10:30
+                            </div>
+                        </div>
+                        <button class="call-back-btn">
+                            <i class="fas fa-phone"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="call-item">
+                        <div class="call-avatar">
+                            <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" alt="Anna">
+                        </div>
+                        <div class="call-info">
+                            <div class="call-name">Anna Bianchi</div>
+                            <div class="call-details">
+                                <i class="fas fa-video outgoing"></i>
+                                Ieri, 15:20
+                            </div>
+                        </div>
+                        <button class="call-back-btn">
+                            <i class="fas fa-video"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Action Button -->
+        <button class="fab" onclick="newChat()">
+            <i class="fas fa-comment"></i>
+        </button>
+    </div>
+
+    <!-- Chat Modal -->
+    <div class="chat-modal" id="chatModal">
+        <div class="chat-header">
+            <button class="back-btn" onclick="closeChat()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="chat-contact">
+                <div class="contact-avatar">
+                    <img id="chatContactAvatar" src="" alt="">
+                </div>
+                <div class="contact-info">
+                    <div class="contact-name" id="chatContactName"></div>
+                    <div class="contact-status">online</div>
+                </div>
+            </div>
+            <div class="chat-actions">
+                <button class="chat-action-btn">
+                    <i class="fas fa-video"></i>
+                </button>
+                <button class="chat-action-btn">
+                    <i class="fas fa-phone"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            <!-- Messages will be loaded here -->
+        </div>
+        
+        <div class="chat-input-container">
+            <button class="attachment-btn">
+                <i class="fas fa-plus"></i>
+            </button>
+            <input type="text" class="chat-input" id="chatInput" placeholder="Scrivi un messaggio...">
+            <button class="send-btn" id="sendBtn">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <script src="scripts/global.js"></script>
+    <script src="scripts/whatsapp.js"></script>
+</body>
+</html>
