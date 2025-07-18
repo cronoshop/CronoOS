@@ -1,4 +1,4 @@
-/* Home Screen Styles - CronoOS 2.0 */
+/* Home Screen Styles - CronoOS 2.1 */
 
 .home-screen {
     min-height: 100vh;
@@ -18,7 +18,6 @@
     height: 44px;
     background: rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -37,23 +36,11 @@
 }
 
 .notch {
-    width: 110px;
-    height: 40px;
+    width: 120px;
+    height: 30px;
     background: rgba(0, 0, 0, 0.9);
-    border-radius: 0 0 20px 20px;
+    border-radius: 0 0 16px 16px;
     position: relative;
-}
-
-.notch::before {
-    content: '';
-    position: absolute;
-    top: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 2px;
 }
 
 .status-left, .status-right {
@@ -68,32 +55,25 @@
     position: fixed;
     top: 52px;
     right: 16px;
-    width: 36px;
-    height: 36px;
-    background: rgba(255, 255, 255, 0.15);
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
     border: none;
     border-radius: 50%;
     color: white;
     font-size: 14px;
     cursor: pointer;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
     z-index: 1001;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .quick-panel-button:hover {
-    transform: scale(1.05);
-    background: rgba(255, 255, 255, 0.25);
-}
-
-.quick-panel-button:active {
-    transform: scale(0.95);
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.3);
 }
 
 /* Dynamic Wallpaper */
@@ -103,21 +83,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, 
-        var(--dynamic-primary, #007AFF) 0%, 
-        var(--dynamic-secondary, #5856D6) 50%, 
-        var(--dynamic-accent, #FF2D92) 100%);
-    background-size: 400% 400%;
-    animation: gradientShift 20s ease infinite;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     z-index: -1;
-}
-
-@keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    25% { background-position: 100% 50%; }
-    50% { background-position: 100% 100%; }
-    75% { background-position: 0% 100%; }
-    100% { background-position: 0% 50%; }
 }
 
 /* Widget Area */
@@ -130,34 +97,28 @@
 .weather-widget {
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: 20px;
+    border-radius: 16px;
     padding: 20px;
     color: white;
     text-align: center;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    animation: fadeIn 0.8s ease;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .weather-temp {
-    font-size: 48px;
+    font-size: 36px;
     font-weight: 300;
     margin-bottom: 8px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .weather-desc {
     font-size: 16px;
     margin-bottom: 4px;
-    opacity: 0.9;
     font-weight: 500;
 }
 
 .weather-location {
     font-size: 14px;
-    opacity: 0.7;
-    font-weight: 400;
+    opacity: 0.8;
 }
 
 /* App Grid */
@@ -166,8 +127,6 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     padding: 0 20px;
-    max-width: 100%;
-    margin: 0 auto;
     flex: 1;
     align-content: start;
 }
@@ -178,15 +137,13 @@
     align-items: center;
     gap: 8px;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s ease;
     padding: 8px;
-    border-radius: 16px;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
+    border-radius: 12px;
 }
 
 .app-icon:hover {
-    transform: scale(1.05) translateY(-2px);
+    transform: scale(1.05);
 }
 
 .app-icon:active {
@@ -194,42 +151,16 @@
 }
 
 .app-icon-container {
-    position: relative;
     width: 60px;
     height: 60px;
-    border-radius: 16px;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--dynamic-primary, #007AFF);
-    box-shadow: 
-        0 8px 24px rgba(0, 0, 0, 0.15),
-        0 2px 8px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow: hidden;
-}
-
-.app-icon-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.2) 0%, 
-        rgba(255, 255, 255, 0.05) 50%, 
-        rgba(0, 0, 0, 0.05) 100%);
-    border-radius: inherit;
-    pointer-events: none;
-}
-
-.app-icon-container i {
-    font-size: 26px;
+    font-size: 24px;
     color: white;
-    z-index: 1;
-    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
 }
 
 .app-icon span {
@@ -238,24 +169,33 @@
     color: white;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
     text-align: center;
-    line-height: 1.2;
 }
+
+/* App Icon Colors */
+.phone-app { background: linear-gradient(135deg, #30D158, #28a745); }
+.messages-app { background: linear-gradient(135deg, #007AFF, #0056b3); }
+.camera-app { background: linear-gradient(135deg, #8E8E93, #6c757d); }
+.gallery-app { background: linear-gradient(135deg, #FF2D92, #e91e63); }
+.music-app { background: linear-gradient(135deg, #FF2D92, #e91e63); }
+.calendar-app { background: linear-gradient(135deg, #FF3B30, #dc3545); }
+.clock-app { background: linear-gradient(135deg, #000000, #333333); }
+.files-app { background: linear-gradient(135deg, #007AFF, #0056b3); }
+.playstore-app { background: linear-gradient(135deg, #5AC8FA, #17a2b8); }
+.settings-app { background: linear-gradient(135deg, #8E8E93, #6c757d); }
 
 /* Quick Panel */
 .quick-panel {
     position: fixed;
     top: 44px;
-    right: -380px;
-    width: 360px;
+    right: -320px;
+    width: 300px;
     height: calc(100vh - 44px);
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
     box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
-    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: right 0.4s ease;
     z-index: 1500;
     overflow-y: auto;
-    border-left: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 [data-theme="dark"] .quick-panel {
@@ -272,7 +212,6 @@
     align-items: center;
     padding: 20px;
     border-bottom: 1px solid var(--divider-color);
-    backdrop-filter: blur(20px);
 }
 
 .quick-panel-header h3 {
@@ -298,7 +237,7 @@
 
 .quick-toggles {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 12px;
     padding: 20px;
 }
@@ -309,44 +248,34 @@
     align-items: center;
     padding: 16px;
     background: var(--surface-color);
-    border-radius: 16px;
+    border-radius: 12px;
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 1px solid var(--divider-color);
     aspect-ratio: 1;
     justify-content: center;
 }
 
 .toggle-item:hover {
-    background: rgba(var(--dynamic-primary-rgb), 0.1);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    background: rgba(0, 122, 255, 0.1);
 }
 
 .toggle-item.active {
-    background: var(--dynamic-primary);
+    background: var(--primary-color);
     color: white;
-    border-color: var(--dynamic-primary);
 }
 
 .toggle-icon {
     font-size: 20px;
     margin-bottom: 8px;
-    transition: transform 0.2s ease;
-}
-
-.toggle-item:hover .toggle-icon {
-    transform: scale(1.1);
 }
 
 .toggle-item span {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
     text-align: center;
 }
 
-.brightness-control,
-.volume-control {
+.brightness-control {
     display: flex;
     align-items: center;
     gap: 16px;
@@ -354,8 +283,7 @@
     border-top: 1px solid var(--divider-color);
 }
 
-.brightness-control input[type="range"],
-.volume-control input[type="range"] {
+.brightness-control input[type="range"] {
     flex: 1;
     height: 4px;
     background: var(--divider-color);
@@ -364,113 +292,13 @@
     -webkit-appearance: none;
 }
 
-.brightness-control input[type="range"]::-webkit-slider-thumb,
-.volume-control input[type="range"]::-webkit-slider-thumb {
+.brightness-control input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 20px;
     height: 20px;
     background: var(--primary-color);
     border-radius: 50%;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
-}
-
-/* Notifications Panel */
-.notifications-panel {
-    position: fixed;
-    top: 44px;
-    left: -380px;
-    width: 360px;
-    height: calc(100vh - 44px);
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.2);
-    transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 1500;
-    overflow-y: auto;
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-[data-theme="dark"] .notifications-panel {
-    background: rgba(28, 28, 30, 0.95);
-}
-
-.notifications-panel.active {
-    left: 0;
-}
-
-.notifications-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    border-bottom: 1px solid var(--divider-color);
-    backdrop-filter: blur(20px);
-}
-
-.notifications-header h3 {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--text-primary);
-}
-
-.notifications-list {
-    padding: 16px;
-}
-
-.notification-item {
-    display: flex;
-    gap: 12px;
-    padding: 16px;
-    background: var(--surface-color);
-    border-radius: 16px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: 1px solid var(--divider-color);
-}
-
-.notification-item:hover {
-    background: rgba(0, 122, 255, 0.05);
-    transform: translateX(4px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.notification-icon {
-    font-size: 16px;
-    width: 40px;
-    height: 40px;
-    background: var(--primary-color);
-    color: white;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
-}
-
-.notification-content {
-    flex: 1;
-}
-
-.notification-title {
-    font-weight: 600;
-    margin-bottom: 4px;
-    font-size: 14px;
-    color: var(--text-primary);
-}
-
-.notification-text {
-    font-size: 13px;
-    color: var(--text-secondary);
-    margin-bottom: 4px;
-}
-
-.notification-time {
-    font-size: 12px;
-    color: var(--text-secondary);
 }
 
 /* Navigation Bar */
@@ -490,7 +318,6 @@
 
 .navigation-bar:hover {
     background: rgba(255, 255, 255, 1);
-    height: 6px;
 }
 
 .nav-indicator {
@@ -498,7 +325,6 @@
     height: 100%;
     background: rgba(255, 255, 255, 0.9);
     border-radius: inherit;
-    transition: all 0.3s ease;
 }
 
 /* Overlay */
@@ -510,7 +336,6 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     z-index: 1000;
     opacity: 0;
     visibility: hidden;
@@ -532,27 +357,12 @@
     .app-icon-container {
         width: 56px;
         height: 56px;
-    }
-    
-    .app-icon-container i {
-        font-size: 24px;
-    }
-    
-    .app-icon span {
-        font-size: 11px;
-    }
-    
-    .quick-panel,
-    .notifications-panel {
-        width: 100%;
+        font-size: 22px;
     }
     
     .quick-panel {
+        width: 100%;
         right: -100%;
-    }
-    
-    .notifications-panel {
-        left: -100%;
     }
     
     .weather-widget {
@@ -561,34 +371,6 @@
     }
     
     .weather-temp {
-        font-size: 40px;
+        font-size: 32px;
     }
 }
-
-/* Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.app-icon {
-    animation: fadeIn 0.6s ease;
-    animation-fill-mode: both;
-}
-
-.app-icon:nth-child(1) { animation-delay: 0.1s; }
-.app-icon:nth-child(2) { animation-delay: 0.15s; }
-.app-icon:nth-child(3) { animation-delay: 0.2s; }
-.app-icon:nth-child(4) { animation-delay: 0.25s; }
-.app-icon:nth-child(5) { animation-delay: 0.3s; }
-.app-icon:nth-child(6) { animation-delay: 0.35s; }
-.app-icon:nth-child(7) { animation-delay: 0.4s; }
-.app-icon:nth-child(8) { animation-delay: 0.45s; }
-.app-icon:nth-child(9) { animation-delay: 0.5s; }
-.app-icon:nth-child(10) { animation-delay: 0.55s; }

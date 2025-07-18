@@ -3,10 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CronoOS 2.0</title>
-    <link rel="stylesheet" href="styles/phosphor-icons.css">
-    <link rel="stylesheet" href="styles/dynamic-theming.css">
-    <link rel="stylesheet" href="styles/modern-ui.css">
+    <title>CronoOS 2.1</title>
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/home.css">
 </head>
@@ -20,96 +17,45 @@
             <div class="notch"></div>
         </div>
         <div class="status-right">
-            <span class="signal"><i class="ph ph-cell-signal-high"></i></span>
-            <span class="wifi"><i class="ph ph-wifi-high"></i></span>
-            <span class="battery">76<i class="ph ph-battery-charging"></i></span>
+            <span class="signal">●●●</span>
+            <span class="wifi">📶</span>
+            <span class="battery">100%</span>
         </div>
     </div>
 
     <!-- Quick Panel Button -->
     <button class="quick-panel-button" id="quickPanelButton" onclick="toggleQuickPanel()">
-        <i class="ph ph-sliders-horizontal"></i>
+        ⚙️
     </button>
 
     <!-- Quick Panel -->
     <div class="quick-panel" id="quickPanel">
         <div class="quick-panel-header">
-            <h3>Pannello Rapido</h3>
+            <h3>Controlli</h3>
             <button class="close-panel" onclick="toggleQuickPanel()">×</button>
         </div>
         <div class="quick-toggles">
             <div class="toggle-item" onclick="toggleWifi()">
-                <div class="toggle-icon wifi-toggle" id="wifiToggle"><i class="ph ph-wifi-high"></i></div>
+                <div class="toggle-icon" id="wifiToggle">📶</div>
                 <span>Wi-Fi</span>
             </div>
             <div class="toggle-item" onclick="toggleBluetooth()">
-                <div class="toggle-icon bluetooth-toggle" id="bluetoothToggle"><i class="ph ph-bluetooth"></i></div>
+                <div class="toggle-icon" id="bluetoothToggle">🔵</div>
                 <span>Bluetooth</span>
             </div>
-            <div class="toggle-item" onclick="toggleAirplaneMode()">
-                <div class="toggle-icon airplane-toggle" id="airplaneToggle"><i class="ph ph-airplane"></i></div>
-                <span>Aereo</span>
-            </div>
             <div class="toggle-item" onclick="toggleDarkMode()">
-                <div class="toggle-icon dark-toggle" id="darkToggle"><i class="ph ph-moon"></i></div>
-                <span>Dark Mode</span>
+                <div class="toggle-icon" id="darkToggle">🌙</div>
+                <span>Scuro</span>
             </div>
             <div class="toggle-item" onclick="toggleFlashlight()">
-                <div class="toggle-icon flashlight-toggle" id="flashlightToggle"><i class="ph ph-flashlight"></i></div>
+                <div class="toggle-icon" id="flashlightToggle">🔦</div>
                 <span>Torcia</span>
-            </div>
-            <div class="toggle-item" onclick="toggleDoNotDisturb()">
-                <div class="toggle-icon dnd-toggle" id="dndToggle"><i class="ph ph-moon-stars"></i></div>
-                <span>Non Disturbare</span>
-            </div>
-            <div class="toggle-item" onclick="toggleHotspot()">
-                <div class="toggle-icon hotspot-toggle" id="hotspotToggle"><i class="ph ph-wifi-medium"></i></div>
-                <span>Hotspot</span>
-            </div>
-            <div class="toggle-item" onclick="toggleScreenRecord()">
-                <div class="toggle-icon record-toggle" id="recordToggle"><i class="ph ph-record"></i></div>
-                <span>Registra</span>
-            </div>
-            <div class="toggle-item" onclick="togglePowerSaving()">
-                <div class="toggle-icon power-toggle" id="powerToggle"><i class="ph ph-battery-low"></i></div>
-                <span>Risparmio</span>
             </div>
         </div>
         <div class="brightness-control">
-            <span><i class="ph ph-sun-dim"></i></span>
+            <span>☀️</span>
             <input type="range" id="brightnessSlider" min="0" max="100" value="50">
-            <span><i class="ph ph-sun"></i></span>
-        </div>
-        <div class="volume-control">
-            <span><i class="ph ph-speaker-low"></i></span>
-            <input type="range" id="volumeSlider" min="0" max="100" value="70">
-            <span><i class="ph ph-speaker-high"></i></span>
-        </div>
-    </div>
-
-    <!-- Notifications Panel -->
-    <div class="notifications-panel" id="notificationsPanel">
-        <div class="notifications-header">
-            <h3>Notifiche</h3>
-            <button class="close-panel" onclick="toggleNotifications()">×</button>
-        </div>
-        <div class="notifications-list">
-            <div class="notification-item">
-                <div class="notification-icon"><i class="ph ph-chat-circle"></i></div>
-                <div class="notification-content">
-                    <div class="notification-title">Messaggi</div>
-                    <div class="notification-text">Nuovo messaggio da Marco</div>
-                    <div class="notification-time">2 min fa</div>
-                </div>
-            </div>
-            <div class="notification-item">
-                <div class="notification-icon"><i class="ph ph-envelope"></i></div>
-                <div class="notification-content">
-                    <div class="notification-title">Email</div>
-                    <div class="notification-text">3 nuove email</div>
-                    <div class="notification-time">5 min fa</div>
-                </div>
-            </div>
+            <span>☀️</span>
         </div>
     </div>
 
@@ -131,63 +77,63 @@
 
         <!-- App Grid -->
         <div class="app-grid" id="appGrid">
-            <div class="app-icon phone-app" onclick="openApp('phone')">
-                <div class="app-icon-container">
-                    <i class="ph ph-phone"></i>
+            <div class="app-icon" onclick="openApp('phone')">
+                <div class="app-icon-container phone-app">
+                    📞
                 </div>
                 <span>Telefono</span>
             </div>
-            <div class="app-icon messages-app" onclick="openApp('messages')">
-                <div class="app-icon-container">
-                    <i class="ph ph-chat-circle"></i>
+            <div class="app-icon" onclick="openApp('messages')">
+                <div class="app-icon-container messages-app">
+                    💬
                 </div>
                 <span>Messaggi</span>
             </div>
-            <div class="app-icon camera-app" onclick="openApp('camera')">
-                <div class="app-icon-container">
-                    <i class="ph ph-camera"></i>
+            <div class="app-icon" onclick="openApp('camera')">
+                <div class="app-icon-container camera-app">
+                    📷
                 </div>
                 <span>Fotocamera</span>
             </div>
-            <div class="app-icon gallery-app" onclick="openApp('gallery')">
-                <div class="app-icon-container">
-                    <i class="ph ph-images"></i>
+            <div class="app-icon" onclick="openApp('gallery')">
+                <div class="app-icon-container gallery-app">
+                    🖼️
                 </div>
                 <span>Galleria</span>
             </div>
-            <div class="app-icon music-app" onclick="openApp('music')">
-                <div class="app-icon-container">
-                    <i class="ph ph-music-notes"></i>
+            <div class="app-icon" onclick="openApp('music')">
+                <div class="app-icon-container music-app">
+                    🎵
                 </div>
                 <span>Musica</span>
             </div>
-            <div class="app-icon calendar-app" onclick="openApp('calendar')">
-                <div class="app-icon-container">
-                    <i class="ph ph-calendar"></i>
+            <div class="app-icon" onclick="openApp('calendar')">
+                <div class="app-icon-container calendar-app">
+                    📅
                 </div>
                 <span>Calendario</span>
             </div>
-            <div class="app-icon clock-app" onclick="openApp('clock')">
-                <div class="app-icon-container">
-                    <i class="ph ph-clock"></i>
+            <div class="app-icon" onclick="openApp('clock')">
+                <div class="app-icon-container clock-app">
+                    ⏰
                 </div>
                 <span>Orologio</span>
             </div>
-            <div class="app-icon files-app" onclick="openApp('files')">
-                <div class="app-icon-container">
-                    <i class="ph ph-folder"></i>
+            <div class="app-icon" onclick="openApp('files')">
+                <div class="app-icon-container files-app">
+                    📁
                 </div>
                 <span>File</span>
             </div>
-            <div class="app-icon playstore-app" onclick="openApp('playstore')">
-                <div class="app-icon-container">
-                    <i class="ph ph-storefront"></i>
+            <div class="app-icon" onclick="openApp('playstore')">
+                <div class="app-icon-container playstore-app">
+                    🏪
                 </div>
                 <span>App Store</span>
             </div>
-            <div class="app-icon settings-app" onclick="openApp('settings')">
-                <div class="app-icon-container">
-                    <i class="ph ph-gear"></i>
+            <div class="app-icon" onclick="openApp('settings')">
+                <div class="app-icon-container settings-app">
+                    ⚙️
                 </div>
                 <span>Impostazioni</span>
             </div>
@@ -201,6 +147,5 @@
 
     <script src="scripts/global.js"></script>
     <script src="scripts/home.js"></script>
-    <script src="scripts/theme-system.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-// Phone Mockup JavaScript
+// Phone Mockup JavaScript - CronoOS 2.1
 
 document.addEventListener('DOMContentLoaded', function() {
     initializePhoneMockup();
@@ -11,12 +11,8 @@ function initializePhoneMockup() {
     
     if (!phoneFrame || !osFrame) return;
     
-    // Add loading animation
-    showLoadingAnimation();
-    
     // Handle frame load
     osFrame.addEventListener('load', function() {
-        hideLoadingAnimation();
         setupFrameCommunication();
     });
     
@@ -24,59 +20,13 @@ function initializePhoneMockup() {
     setupPhoneInteractions();
 }
 
-function showLoadingAnimation() {
-    const phoneScreen = document.querySelector('.phone-screen');
-    if (!phoneScreen) return;
-    
-    const loader = document.createElement('div');
-    loader.className = 'phone-loader';
-    loader.innerHTML = `
-        <div class="loader-content">
-            <div class="loader-logo">CronoOS</div>
-            <div class="loader-spinner"></div>
-        </div>
-    `;
-    
-    loader.style.cssText = `
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1000;
-        border-radius: 37px;
-    `;
-    
-    phoneScreen.appendChild(loader);
-}
-
-function hideLoadingAnimation() {
-    const loader = document.querySelector('.phone-loader');
-    if (loader) {
-        loader.style.opacity = '0';
-        setTimeout(() => loader.remove(), 500);
-    }
-}
-
 function setupFrameCommunication() {
-    const osFrame = document.getElementById('osFrame');
-    if (!osFrame) return;
-    
     // Listen for messages from the OS
     window.addEventListener('message', function(event) {
         if (event.data.type === 'os-navigation') {
-            handleOSNavigation(event.data);
+            console.log('OS Navigation:', event.data);
         }
     });
-}
-
-function handleOSNavigation(data) {
-    // Handle navigation events from the OS
-    console.log('OS Navigation:', data);
 }
 
 function setupPhoneInteractions() {
@@ -133,39 +83,21 @@ function simulatePowerButton() {
 
 function simulateVolumeUp() {
     showVolumeIndicator('🔊');
-    
-    // Send volume up to OS
-    const osFrame = document.getElementById('osFrame');
-    if (osFrame && osFrame.contentWindow) {
-        osFrame.contentWindow.postMessage({
-            type: 'volume-change',
-            direction: 'up'
-        }, '*');
-    }
 }
 
 function simulateVolumeDown() {
     showVolumeIndicator('🔉');
-    
-    // Send volume down to OS
-    const osFrame = document.getElementById('osFrame');
-    if (osFrame && osFrame.contentWindow) {
-        osFrame.contentWindow.postMessage({
-            type: 'volume-change',
-            direction: 'down'
-        }, '*');
-    }
 }
 
-function showVolumeIndicator(direction) {
+function showVolumeIndicator(icon) {
     const indicator = document.createElement('div');
     indicator.className = 'volume-indicator';
     indicator.innerHTML = `
-        <div class="volume-icon">${direction}</div>
+        <div class="volume-icon">${icon}</div>
         <div class="volume-bars">
             <div class="volume-bar active"></div>
             <div class="volume-bar active"></div>
-            <div class="volume-bar ${direction === '🔊' ? 'active' : ''}"></div>
+            <div class="volume-bar ${icon === '🔊' ? 'active' : ''}"></div>
         </div>
     `;
     
@@ -174,17 +106,16 @@ function showVolumeIndicator(direction) {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background: rgba(0, 0, 0, 0.9);
+        background: rgba(0, 0, 0, 0.8);
         backdrop-filter: blur(20px);
         color: white;
-        padding: 24px;
-        border-radius: 16px;
+        padding: 20px;
+        border-radius: 12px;
         display: flex;
         align-items: center;
         gap: 12px;
         z-index: 10001;
         animation: fadeInOut 2s ease;
-        border: 1px solid rgba(255, 255, 255, 0.1);
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     `;
     
@@ -217,43 +148,16 @@ function adjustPhoneSize() {
     
     const scale = Math.min(maxWidth / 375, maxHeight / 812);
     
-    phoneMockup.style.transform = `scale(${scale})`;
-    phoneMockup.style.transformOrigin = 'center center';
+    if (scale < 1) {
+        phoneMockup.style.transform = `scale(${scale})`;
+    } else {
+        phoneMockup.style.transform = 'scale(1)';
+    }
 }
 
-// Add CSS for additional animations
+// Add CSS for animations
 const additionalStyles = document.createElement('style');
 additionalStyles.textContent = `
-    .loader-content {
-        text-align: center;
-        color: white;
-    }
-    
-    .loader-logo {
-        font-size: 24px;
-        font-weight: 600;
-        margin-bottom: 20px;
-        background: linear-gradient(135deg, #667eea, #764ba2);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-    
-    .loader-spinner {
-        width: 30px;
-        height: 30px;
-        border: 3px solid rgba(255, 255, 255, 0.3);
-        border-top: 3px solid #667eea;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-        margin: 0 auto;
-    }
-    
-    @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
-    
     @keyframes fadeInOut {
         0%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
         20%, 80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }

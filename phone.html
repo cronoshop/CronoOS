@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telefono - One UI OS</title>
+    <title>Telefono - CronoOS 2.1</title>
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/phone.css">
 </head>
@@ -17,7 +17,7 @@
             </div>
         </div>
         
-        <div class="phone-tabs">
+        <div class="phone-tabs tabs">
             <div class="tab active" onclick="switchTab('keypad')">Tastierino</div>
             <div class="tab" onclick="switchTab('recents')">Recenti</div>
             <div class="tab" onclick="switchTab('contacts')">Contatti</div>
@@ -31,26 +31,18 @@
                 </div>
                 
                 <div class="keypad">
-                    <div class="keypad-row">
-                        <button class="key" onclick="addNumber('1')">1<span></span></button>
-                        <button class="key" onclick="addNumber('2')">2<span>ABC</span></button>
-                        <button class="key" onclick="addNumber('3')">3<span>DEF</span></button>
-                    </div>
-                    <div class="keypad-row">
-                        <button class="key" onclick="addNumber('4')">4<span>GHI</span></button>
-                        <button class="key" onclick="addNumber('5')">5<span>JKL</span></button>
-                        <button class="key" onclick="addNumber('6')">6<span>MNO</span></button>
-                    </div>
-                    <div class="keypad-row">
-                        <button class="key" onclick="addNumber('7')">7<span>PQRS</span></button>
-                        <button class="key" onclick="addNumber('8')">8<span>TUV</span></button>
-                        <button class="key" onclick="addNumber('9')">9<span>WXYZ</span></button>
-                    </div>
-                    <div class="keypad-row">
-                        <button class="key" onclick="addNumber('*')">*</button>
-                        <button class="key" onclick="addNumber('0')">0<span>+</span></button>
-                        <button class="key" onclick="addNumber('#')">#</button>
-                    </div>
+                    <button class="key" onclick="addNumber('1')">1</button>
+                    <button class="key" onclick="addNumber('2')">2<span>ABC</span></button>
+                    <button class="key" onclick="addNumber('3')">3<span>DEF</span></button>
+                    <button class="key" onclick="addNumber('4')">4<span>GHI</span></button>
+                    <button class="key" onclick="addNumber('5')">5<span>JKL</span></button>
+                    <button class="key" onclick="addNumber('6')">6<span>MNO</span></button>
+                    <button class="key" onclick="addNumber('7')">7<span>PQRS</span></button>
+                    <button class="key" onclick="addNumber('8')">8<span>TUV</span></button>
+                    <button class="key" onclick="addNumber('9')">9<span>WXYZ</span></button>
+                    <button class="key" onclick="addNumber('*')">*</button>
+                    <button class="key" onclick="addNumber('0')">0<span>+</span></button>
+                    <button class="key" onclick="addNumber('#')">#</button>
                 </div>
                 
                 <div class="call-actions">
@@ -75,13 +67,6 @@
                             <div class="call-details">📞 Chiamata persa • 15 min fa</div>
                         </div>
                         <button class="call-back-btn" onclick="callBack('+39 987 654 321')">📞</button>
-                    </div>
-                    <div class="call-item">
-                        <div class="call-info">
-                            <div class="caller-name">Luca Verdi</div>
-                            <div class="call-details">📞 Chiamata in entrata • 1 ora fa</div>
-                        </div>
-                        <button class="call-back-btn" onclick="callBack('+39 555 123 456')">📞</button>
                     </div>
                 </div>
             </div>

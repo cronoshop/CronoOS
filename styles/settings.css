@@ -1,4 +1,4 @@
-/* Settings App Styles */
+/* Settings App Styles - CronoOS 2.1 */
 
 .settings-content {
     padding: var(--spacing-md);
@@ -15,6 +15,7 @@
     margin-bottom: var(--spacing-lg);
     cursor: pointer;
     transition: all var(--transition-fast);
+    border: 1px solid var(--divider-color);
 }
 
 .user-profile:hover {
@@ -40,7 +41,7 @@
 
 .profile-name {
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--text-primary);
     margin-bottom: var(--spacing-xs);
 }
@@ -82,6 +83,7 @@
     border-radius: var(--radius-md);
     overflow: hidden;
     transition: all var(--transition-fast);
+    border: 1px solid var(--divider-color);
 }
 
 .category-header {
@@ -198,13 +200,38 @@
     cursor: pointer;
 }
 
-.setting-control select {
-    padding: var(--spacing-sm) var(--spacing-md);
-    border: 1px solid var(--divider-color);
-    border-radius: var(--radius-sm);
+/* Updates List */
+.updates-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+}
+
+.update-item {
     background: var(--card-color);
-    color: var(--text-primary);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    border: 1px solid var(--divider-color);
+}
+
+.update-version {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-xs);
+}
+
+.update-date {
     font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.update-notes {
+    font-size: 14px;
+    color: var(--text-primary);
+    line-height: 1.5;
 }
 
 /* Device Info Modal */
@@ -243,74 +270,7 @@
 .info-value {
     font-size: 14px;
     color: var(--text-primary);
-    cursor: pointer;
-    transition: color var(--transition-fast);
 }
-
-.info-value:hover {
-    color: var(--primary-color);
-}
-
-/* Developer Options Modal */
-.easter-egg {
-    text-align: center;
-    padding: var(--spacing-lg);
-}
-
-.easter-egg-icon {
-    font-size: 64px;
-    margin-bottom: var(--spacing-md);
-    animation: bounce 1s;
-}
-
-.easter-egg p {
-    font-size: 16px;
-    color: var(--text-primary);
-    margin-bottom: var(--spacing-md);
-}
-
-.developer-options {
-    margin-top: var(--spacing-lg);
-    text-align: left;
-}
-
-.dev-option {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: var(--spacing-md) 0;
-    border-bottom: 1px solid var(--divider-color);
-}
-
-.dev-option:last-child {
-    border-bottom: none;
-}
-
-.dev-option span {
-    font-size: 14px;
-    color: var(--text-primary);
-}
-
-/* Animations */
-@keyframes settingSlideIn {
-    from {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-.setting-item {
-    animation: settingSlideIn 0.3s ease;
-}
-
-.setting-item:nth-child(1) { animation-delay: 0.1s; }
-.setting-item:nth-child(2) { animation-delay: 0.2s; }
-.setting-item:nth-child(3) { animation-delay: 0.3s; }
-.setting-item:nth-child(4) { animation-delay: 0.4s; }
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -328,108 +288,15 @@
         font-size: 20px;
     }
     
-    .profile-name {
-        font-size: 16px;
-    }
-    
-    .profile-email {
-        font-size: 13px;
-    }
-    
     .category-header {
         padding: var(--spacing-md);
-    }
-    
-    .category-icon {
-        width: 35px;
-        height: 35px;
-        font-size: 18px;
-    }
-    
-    .category-title {
-        font-size: 15px;
     }
     
     .setting-item {
         padding: var(--spacing-sm) var(--spacing-md);
     }
     
-    .setting-title {
-        font-size: 15px;
-    }
-    
-    .setting-description {
-        font-size: 13px;
-    }
-    
     .setting-control input[type="range"] {
         width: 100px;
-    }
-}
-
-@media (max-width: 480px) {
-    .user-profile {
-        gap: var(--spacing-sm);
-    }
-    
-    .profile-avatar {
-        width: 45px;
-        height: 45px;
-        font-size: 18px;
-    }
-    
-    .profile-name {
-        font-size: 15px;
-    }
-    
-    .profile-email {
-        font-size: 12px;
-    }
-    
-    .profile-edit {
-        width: 35px;
-        height: 35px;
-        font-size: 14px;
-    }
-    
-    .category-header {
-        padding: var(--spacing-sm);
-    }
-    
-    .category-icon {
-        width: 32px;
-        height: 32px;
-        font-size: 16px;
-    }
-    
-    .category-title {
-        font-size: 14px;
-    }
-    
-    .setting-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--spacing-sm);
-    }
-    
-    .setting-control {
-        margin-left: 0;
-        width: 100%;
-    }
-    
-    .setting-control input[type="range"] {
-        width: 100%;
-    }
-    
-    .device-image {
-        font-size: 48px;
-    }
-    
-    .easter-egg-icon {
-        font-size: 48px;
-    }
-    
-    .easter-egg p {
-        font-size: 14px;
     }
 }

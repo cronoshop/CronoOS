@@ -1,4 +1,4 @@
-/* Phone Mockup Styles - CronoOS 2.0 (Extended & Improved) */
+/* Phone Mockup Styles - CronoOS 2.1 Clean Design */
 
 * {
     margin: 0;
@@ -8,281 +8,123 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px; /* aumentato */
+    padding: 20px;
     overflow: hidden;
-    user-select: none;
 }
 
-/* MOCKUP CONTAINER */
+/* Phone Mockup Container */
 .phone-mockup {
     position: relative;
-    width: 450px;       /* più largo */
-    height: 750px;      /* più lungo */
+    width: 375px;
+    height: 812px;
     margin: 0 auto;
-    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.6));
+    filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.5));
     transform-origin: center center;
     transition: transform 0.3s ease;
-    background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
-    border-radius: 52px; /* più arrotondato */
-    padding: 10px;       /* più spazio interno */
-    box-shadow: 
-        inset 0 2px 6px rgba(255, 255, 255, 0.12),
-        inset 0 -2px 6px rgba(0, 0, 0, 0.35),
-        0 0 0 1.2px #222,
-        0 35px 75px rgba(0, 0, 0, 0.75);
-    overflow: hidden;
 }
 
-/* PHONE FRAME */
+/* Phone Frame */
 .phone-frame {
     position: relative;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #222222, #111111);
-    border-radius: 48px;
-    padding: 12px; /* più spazio */
+    background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+    border-radius: 40px;
+    padding: 8px;
     box-shadow: 
-        inset 0 3px 8px rgba(255, 255, 255, 0.15),
-        inset 0 -3px 8px rgba(0, 0, 0, 0.45),
-        0 0 0 1.5px #333,
-        0 35px 80px rgba(0, 0, 0, 0.7);
+        inset 0 2px 4px rgba(255, 255, 255, 0.1),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+        0 0 0 1px #333,
+        0 25px 50px rgba(0, 0, 0, 0.6);
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
 }
 
-/* PHONE SCREEN */
+/* Phone Screen */
 .phone-screen {
     width: 100%;
     height: 100%;
-    background: #0a0a0a;
-    border-radius: 55px;
+    background: #000;
+    border-radius: 32px;
     overflow: hidden;
     position: relative;
-    box-shadow:
-      inset 0 0 20px rgba(0, 0, 0, 0.9);
-    display: flex;
-    flex-direction: column;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-/* IFRAME OS */
+/* OS Frame */
 #osFrame {
-    width: 90%;
-    height: 90%;
+    width: 100%;
+    height: 100%;
     border: none;
-    border-radius: 55px;
+    border-radius: 32px;
     background: #000;
-    transform: scale(1);
-    transform-origin: center center;
-    transition: transform 0.4s ease;
-    box-shadow:
-      inset 0 0 20px #00f0ff44;
 }
 
-/* PHYSICAL BUTTONS */
+/* Physical Buttons */
 .phone-button {
     position: absolute;
-    background: linear-gradient(145deg, #555, #222);
-    border-radius: 3px;
+    background: linear-gradient(145deg, #444, #222);
+    border-radius: 2px;
     cursor: pointer;
-    transition: all 0.15s ease;
+    transition: all 0.1s ease;
     box-shadow: 
-        inset 0 2px 4px rgba(255, 255, 255, 0.15),
-        inset 0 -2px 4px rgba(0, 0, 0, 0.4);
-    user-select: none;
+        inset 0 1px 2px rgba(255, 255, 255, 0.1),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .phone-button:hover {
-    background: linear-gradient(145deg, #666, #333);
+    background: linear-gradient(145deg, #555, #333);
 }
 
 .phone-button:active {
-    transform: translateY(0.7px);
-    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.6);
+    transform: translateY(0.5px);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* Buttons positioning: più spaziati e definiti */
+/* Volume Buttons */
 .volume-up {
-    left: -6px;
-    top: 130px;
-    width: 4px;
-    height: 32px;
-    border-radius: 2px;
-    box-shadow:
-      inset 0 1px 3px #999,
-      0 1px 5px rgba(0,0,0,0.7);
+    left: -3px;
+    top: 120px;
+    width: 3px;
+    height: 28px;
 }
 
 .volume-down {
-    left: -6px;
-    top: 175px;
-    width: 4px;
-    height: 32px;
-    border-radius: 2px;
-    box-shadow:
-      inset 0 1px 3px #999,
-      0 1px 5px rgba(0,0,0,0.7);
-}
-
-.power {
-    right: -6px;
-    top: 155px;
-    width: 4px;
-    height: 58px;
-    border-radius: 3px;
-    box-shadow:
-      inset 0 2px 4px #999,
-      0 1px 6px rgba(0,0,0,0.8);
-}
-
-/* MOCKUP DECORAZIONI */
-
-// NOTCH STATICO (versione “minimal dynamic island”)
-.phone-notch {
-    position: absolute;
-    top: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 150px;
-    height: 50px;
-    background: #000;
-    border-radius: 24px 24px 18px 18px;
-    box-shadow:
-      0 3px 6px rgba(0,0,0,0.9),
-      inset 0 1px 4px #222;
-    z-index: 15;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #00d8ff;
-    font-weight: 600;
-    font-size: 14px;
-    letter-spacing: 0.04em;
-    user-select: none;
-    font-family: 'Courier New', Courier, monospace;
-}
-
-/* STATUS BAR ridisegnata */
-
-.status-bar {
-    position: relative;
-    width: 100%;
-    height: 40px;
-    padding: 0 18px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: linear-gradient(90deg, #000, #111);
-    color: #a9a9a9;
-    font-size: 14px;
-    font-weight: 600;
-    user-select: none;
-    text-shadow: 0 0 2px #0008;
-    border-bottom: 1px solid #222;
-    z-index: 25;
-}
-
-.status-bar .left,
-.status-bar .center,
-.status-bar .right {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
-.status-bar .center {
-    justify-content: center;
-    flex: 1;
-}
-
-/* STATUS BAR ICONS (signal, wifi, battery) */
-.status-icon {
-    width: 18px;
-    height: 18px;
-    fill: #aaa;
-    filter: drop-shadow(0 0 0.5px #0006);
-    transition: fill 0.3s ease;
-    cursor: default;
-}
-
-/* BATTERY */
-.battery-icon {
-    position: relative;
-    width: 26px;
-    height: 12px;
-    border: 2px solid #aaa;
-    border-radius: 3px;
-    box-sizing: content-box;
-}
-
-.battery-icon::after {
-    content: "";
-    position: absolute;
-    top: 3px;
-    right: -6px;
-    width: 4px;
-    height: 6px;
-    background: #aaa;
-    border-radius: 1px;
-}
-
-/* BATTERY LEVEL */
-.battery-level {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 60%;
-    background: #00ff90;
-    border-radius: 2px 0 0 2px;
-    transition: width 0.5s ease;
-}
-
-/* SIGNAL ICON */
-.signal-bars {
-    display: flex;
-    align-items: flex-end;
-    gap: 2px;
-}
-
-.signal-bar {
+    left: -3px;
+    top: 160px;
     width: 3px;
-    background: #aaa;
-    border-radius: 1px;
-    transition: background 0.4s ease;
+    height: 28px;
 }
 
-.signal-bar:nth-child(1) { height: 5px; }
-.signal-bar:nth-child(2) { height: 8px; }
-.signal-bar:nth-child(3) { height: 12px; }
-.signal-bar:nth-child(4) { height: 16px; }
-
-/* WIFI ICON */
-.wifi-icon {
-    width: 20px;
-    height: 14px;
-    stroke: #aaa;
-    stroke-width: 2;
-    fill: none;
-    stroke-linejoin: round;
-    stroke-linecap: round;
+/* Power Button */
+.power {
+    right: -3px;
+    top: 140px;
+    width: 3px;
+    height: 50px;
 }
 
-/* QUICK PANEL */
+/* Responsive Design */
+@media (max-width: 768px) {
+    .phone-mockup {
+        width: 320px;
+        height: 693px;
+        transform: scale(0.9);
+    }
+}
 
-.quick-panel {
-    position: absolute;
-    bottom: 60px;
-    left: 0;
-    width: 100%;
-    max-height: 320px;
-    background: #111a25cc;
-    backdrop-filter: blur(16px);
-    border-top-left-radius: 24px;
-    border-top-right-radius: 24px;
-    box-shadow: 0 -2px
+@media (max-width: 480px) {
+    .phone-mockup {
+        width: 280px;
+        height: 607px;
+        transform: scale(0.8);
+    }
+    
+    body {
+        padding: 10px;
+    }
+}
