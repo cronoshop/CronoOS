@@ -1,4 +1,4 @@
-// Global JavaScript Functions - CronoOS 2.1
+// Global JavaScript Functions - CronoOS 2.4.3
 
 // Global state
 let currentTheme = 'light';
@@ -529,3 +529,158 @@ window.addEventListener('error', function(e) {
     console.error('CronoOS Error:', e.error);
     showToast('Si è verificato un errore', 3000);
 });
+/* Settings App Styles - CronoOS 2.5 */
+
+:root {
+    --bg-primary-light: #f2f2f7;
+    --bg-secondary-light: #ffffff;
+    --text-primary-light: #000000;
+    --text-secondary-light: #8a8a8e;
+    --separator-light: #e5e5ea;
+    --ios-blue: #007aff;
+    --ios-red: #ff3b30;
+
+    --bg-primary-dark: #000000;
+    --bg-secondary-dark: #1c1c1e;
+    --text-primary-dark: #ffffff;
+    --text-secondary-dark: #8d8d92;
+    --separator-dark: #38383a;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+}
+
+.app-container {
+    background: var(--bg-primary-light);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: background-image 0.5s ease-in-out;
+}
+
+[data-theme="dark"] .app-container {
+    background: var(--bg-primary-dark);
+}
+
+.app-header {
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 44px;
+    /* Effetto vetro per coerenza con lo sfondo */
+    background: rgba(242, 242, 247, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+[data-theme="dark"] .app-header {
+    background: rgba(0, 0, 0, 0.7);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.app-header h1 {
+    font-size: 17px;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    color: var(--text-primary-light);
+}
+[data-theme="dark"] .app-header h1 {
+    color: var(--text-primary-dark);
+}
+
+.app-header .back-btn {
+    background: none;
+    border: none;
+    color: var(--ios-blue);
+    font-size: 17px;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1;
+}
+
+.settings-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+}
+
+.settings-group {
+    margin-bottom: 20px;
+    background: var(--bg-secondary-light);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+[data-theme="dark"] .settings-group {
+    background: var(--bg-secondary-dark);
+}
+
+.setting-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border-bottom: 1px solid var(--separator-light);
+    min-height: 44px;
+}
+.setting-item:last-child {
+    border-bottom: none;
+}
+[data-theme="dark"] .setting-item {
+    border-bottom-color: var(--separator-dark);
+}
+.setting-item:hover {
+    background: #e5e5ea;
+}
+[data-theme="dark"] .setting-item:hover {
+    background: #38383a;
+}
+
+.setting-title {
+    font-size: 17px;
+    color: var(--text-primary-light);
+}
+[data-theme="dark"] .setting-title {
+    color: var(--text-primary-dark);
+}
+
+.setting-description {
+    font-size: 13px;
+    color: var(--text-secondary-light);
+    margin-top: 2px;
+}
+[data-theme="dark"] .setting-description {
+    color: var(--text-secondary-dark);
+}
+
+.setting-accessory {
+    color: var(--text-secondary-light);
+}
+[data-theme="dark"] .setting-accessory {
+    color: var(--text-secondary-dark);
+}
+
+/* Stili per il toast */
+.toast-notification {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    z-index: 1001;
+    font-size: 14px;
+    transition: opacity 0.5s ease;
+    opacity: 1;
+}
