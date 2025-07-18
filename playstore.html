@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Store - CronoOS 2.1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/playstore.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="app-header">
+            <button class="back-btn" onclick="goHome()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <h1>App Store</h1>
+            <div class="header-actions">
+                <button class="header-btn" onclick="openProfile()">
+                    <i class="fas fa-user-circle"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="search-container">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Cerca App e Giochi" id="appSearch">
+            </div>
+        </div>
+
+        <div class="apps-section">
+            <h2>App Essenziali</h2>
+            <div class="apps-grid" id="appsGrid">
+                </div>
+        </div>
+    </div>
+
+    <script src="scripts/global.js"></script>
+    <script src="scripts/playstore.js"></script>
+</body>
+</html>
