@@ -150,3 +150,22 @@
         font-size: 72px;
     }
 }
+/* Stili Aggiuntivi per Font Orologio */
+
+.font-default { 
+    font-weight: 200;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
+}
+.font-thin { 
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
+    font-weight: 100; /* Ultra-leggero */
+    letter-spacing: 0px;
+}
+.font-serif { 
+    font-family: 'Times New Roman', Times, serif; 
+    font-weight: 400;
+}
+.font-mono { 
+    font-family: 'Courier New', Courier, monospace; 
+    font-weight: 600;
+}
