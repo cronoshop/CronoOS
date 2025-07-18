@@ -7,78 +7,72 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/settings.css">
+    <style>
+        .profile-header { display: flex; flex-direction: column; align-items: center; padding: 24px; gap: 16px; }
+        .profile-avatar-large { width: 90px; height: 90px; border-radius: 50%; background: #e5e5ea; display: flex; align-items: center; justify-content: center; font-size: 40px; color: var(--text-secondary-light); position: relative; }
+        .profile-avatar-large img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .profile-name-display { font-size: 22px; font-weight: 600; }
+        .profile-email-display { font-size: 16px; color: var(--text-secondary-light); }
+    </style>
 </head>
 <body>
     <div class="app-container">
         <div class="app-header">
-            <button class="back-btn" onclick="window.location.href = 'settings.html'"><i class="fas fa-chevron-left"></i> Impostazioni</button>
-            <h1>Apple ID</h1>
+            <button class="back-btn" onclick="history.back()"><i class="fas fa-chevron-left"></i> Impostazioni</button>
+            <h1>Account</h1>
         </div>
         <div class="settings-content">
+            <div class="profile-header">
+                <div class="profile-avatar-large">
+                    <img id="profileImage" src="" style="display:none;" />
+                    <i id="profileIcon" class="fas fa-user"></i>
+                </div>
+                <div id="profileNameDisplay" class="profile-name-display">Utente CronoOS</div>
+                <div id="profileEmailDisplay" class="profile-email-display">email@esempio.com</div>
+            </div>
+
             <div class="settings-group">
-                <div class="setting-item" onclick="editProfile()">
-                    <div class="setting-info">
-                        <div class="setting-title">Nome, Numeri di telefono, Email</div>
-                    </div>
+                <div class="setting-item" onclick="navigateTo('personal-info.html')">
+                    <div class="setting-info"><div class="setting-title">Nome, Telefono, Email</div></div>
                     <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
                 </div>
-                <div class="setting-item" onclick="changePassword()">
-                    <div class="setting-info">
-                        <div class="setting-title">Password e sicurezza</div>
-                    </div>
-                    <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
-                </div>
-                <div class="setting-item" onclick="managePayment()">
-                    <div class="setting-info">
-                        <div class="setting-title">Pagamento e spedizione</div>
-                    </div>
+                <div class="setting-item" onclick="navigateTo('password-security.html')">
+                    <div class="setting-info"><div class="setting-title">Password e sicurezza</div></div>
                     <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
                 </div>
             </div>
-            <div class="settings-group">
-                <div class="setting-item" onclick="manageSubscriptions()">
-                    <div class="setting-info">
-                        <div class="setting-title">Abbonamenti</div>
-                    </div>
-                    <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
-                </div>
-            </div>
+
             <div class="settings-group" style="text-align: center;">
-                <div class="setting-item" style="color: #ff3b30;" onclick="signOut()">
-                    <div class="setting-info">
-                        <div class="setting-title" style="color: #ff3b30;">Esci</div>
-                    </div>
+                <div class="setting-item" style="color: #ff3b30;" onclick="showToast('Uscita dall\'account...')">
+                    <div class="setting-info"><div class="setting-title" style="color: #ff3b30;">Esci</div></div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="scripts/global.js"></script>
+    <script src="scripts/settings.js"></script>
     <script>
-        function showToast(message) {
-            const toast = document.createElement('div');
-            toast.className = 'toast-notification';
-            toast.textContent = message;
-            document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 3000);
-        }
+        // Carica i dati del profilo quando la pagina è pronta
+        document.addEventListener('DOMContentLoaded', () => {
+            const profile = JSON.parse(localStorage.getItem('cronos_user_profile') || '{}');
+            
+            const nameDisplay = document.getElementById('profileNameDisplay');
+            const emailDisplay = document.getElementById('profileEmailDisplay');
+            const profileImage = document.getElementById('profileImage');
+            const profileIcon = document.getElementById('profileIcon');
 
-        function editProfile() {
-            showToast('Apertura modifica profilo...');
-        }
-        function changePassword() {
-            showToast('Apertura gestione password...');
-        }
-        function managePayment() {
-            showToast('Apertura gestione pagamenti...');
-        }
-        function manageSubscriptions() {
-            showToast('Apertura gestione abbonamenti...');
-        }
-        function signOut() {
-            if (confirm('Sei sicuro di voler uscire?')) {
-                showToast('Disconnessione in corso...');
-                // Logica di logout
+            if (profile.name) nameDisplay.textContent = profile.name;
+            if (profile.email) emailDisplay.textContent = profile.email;
+
+            if (profile.avatar) {
+                profileImage.src = profile.avatar;
+                profileImage.style.display = 'block';
+                profileIcon.style.display = 'none';
+            } else {
+                profileImage.style.display = 'none';
+                profileIcon.style.display = 'block';
             }
-        }
+        });
     </script>
 </body>
 </html>
