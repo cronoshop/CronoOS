@@ -1,1 +1,49 @@
-
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suoni e Vibrazione - Impostazioni</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/settings.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="app-header">
+            <button class="back-btn" onclick="history.back()"><i class="fas fa-chevron-left"></i> Impostazioni</button>
+            <h1>Suoni e Vibrazione</h1>
+        </div>
+        <div class="settings-content">
+            <div class="settings-group">
+                <div class="setting-item">
+                    <div class="setting-info"><div class="setting-title">Vibrazione</div></div>
+                    <div class="setting-accessory"><div class="toggle-switch"><input type="checkbox" id="hapticToggle" checked><label for="hapticToggle"></label></div></div>
+                </div>
+            </div>
+            <div class="settings-group">
+                <div class="setting-item">
+                    <div class="setting-info"><div class="setting-title">Volume</div></div>
+                    <div class="setting-accessory" style="flex:1;"><input type="range" id="volumeControl" value="70" style="width:100%;"></div>
+                </div>
+            </div>
+            <div class="settings-group">
+                 <div class="setting-item" onclick="showToast('Selezione suoneria non implementata')">
+                    <div class="setting-info"><div class="setting-title">Suoneria</div></div>
+                    <div class="setting-accessory"><span class="accessory-text">Default</span><i class="fas fa-chevron-right"></i></div>
+                </div>
+                 <div class="setting-item">
+                    <div class="setting-info"><div class="setting-title">Suoni tastiera</div></div>
+                    <div class="setting-accessory"><div class="toggle-switch"><input type="checkbox" id="keyboardToggle"><label for="keyboardToggle"></label></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function showToast(message) {
+            // ... (codice della funzione showToast)
+        }
+        // Aggiungi qui la logica per i toggle di questa pagina
+    </script>
+</body>
+</html>
