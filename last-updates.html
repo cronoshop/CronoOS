@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aggiornamenti - Impostazioni</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/settings.css">
+    <style>
+        .update-log { padding: 0 16px 16px; }
+        .release-notes { margin-bottom: 24px; }
+        .release-notes h2 {
+            font-size: 20px;
+            font-weight: 700;
+            border-bottom: 2px solid var(--ios-blue);
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            color: var(--ios-blue);
+        }
+        .release-notes ul { list-style: none; padding-left: 0; }
+        .release-notes li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .release-notes li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--ios-green);
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="app-header">
+            <button class="back-btn" onclick="history.back()"><i class="fas fa-chevron-left"></i> Generali</button>
+            <h1>Aggiornamenti</h1>
+        </div>
+        <div class="settings-content update-log">
+
+            <div class="release-notes">
+                <h2>CronoOS 2.5 (Phoenix Pro+)</h2>
+                <ul>
+                    <li>Completati tutti i sottomenu delle Impostazioni per una navigazione completa.</li>
+                    <li>Nuova pagina funzionale per la selezione della Suoneria.</li>
+                    <li>Creata pagina per la gestione (simulata) dei Permessi App.</li>
+                    <li>Editor avanzato per la personalizzazione della Schermata di Blocco (stile font orologio).</li>
+                    <li>La Schermata di Blocco ora applica correttamente le personalizzazioni salvate.</li>
+                </ul>
+            </div>
+
+            <div class="release-notes">
+                <h2>CronoOS 2.4 (Phoenix Pro)</h2>
+                <ul>
+                    <li>Modalità Scura e Filtro Luce Blu resi completamente funzionanti e persistenti.</li>
+                    <li>Aggiunta possibilità di caricare uno Sfondo personalizzato.</li>
+                    <li>Nuova pagina Accessibilità con opzioni per testo grande e grassetto.</li>
+                    <li>Nuova pagina Batteria con modalità di risparmio energetico.</li>
+                    <li>Nuova pagina Reset con opzioni di ripristino funzionanti.</li>
+                    <li>Pagina Account ora permette di modificare e salvare nome, email e foto profilo.</li>
+                </ul>
+            </div>
+            
+            <div class="release-notes">
+                <h2>CronoOS 2.3 (Ultimo Major Update della serie 2.x)</h2>
+                <ul>
+                    <li>Lock screen completamente ridisegnata secondo design foto.</li>
+                    <li>Aggiunta personalizzazione font orologio (5 opzioni).</li>
+                    <li>Scorciatoie lock screen personalizzabili.</li>
+                    <li>Implementato Always-On Display attivabile da Quick Panel.</li>
+                    <li>Quick Panel ridisegnato, accessibile da swipe, con toggle funzionanti.</li>
+                    <li>Sezione impostazioni ridisegnata con blocchi interamente cliccabili.</li>
+                    <li>Nuova sezione Account attiva con gestione profilo.</li>
+                    <li>Sezione “Sfondo e stile” con caricamento immagine personalizzata.</li>
+                </ul>
+            </div>
+
+            <div class="release-notes">
+                <h2>CronoOS 2.2</h2>
+                <ul>
+                    <li>Miglioramenti App Store: UI rifatta e funzionalità installazione corretta.</li>
+                    <li>Rifacimento totale delle app principali: telefono, messaggi, store.</li>
+                    <li>Home e mockup resi più intuitivi e stabili.</li>
+                    <li>Risolti bug di navigazione e pulsanti non funzionanti.</li>
+                </ul>
+            </div>
+
+            <div class="release-notes">
+                <h2>CronoOS 2.1</h2>
+                <ul>
+                    <li>Patch generica bug fixing globale.</li>
+                    <li>Rifacimento notch e mockup da zero.</li>
+                    <li>Ridisegno stile grafico coerente con foto di riferimento.</li>
+                    <li>Correzione layout e bug animazioni.</li>
+                </ul>
+            </div>
+
+            <div class="release-notes">
+                <h2>CronoOS 2.0</h2>
+                <ul>
+                    <li>Rifacimento completo del mockup e UI (stile One UI 7/8).</li>
+                    <li>Nuovo notch statico e design minimalista.</li>
+                    <li>Quick panel funzionale e notifiche separate.</li>
+                    <li>Home screen drag & drop icone.</li>
+                    <li>Playstore con lista app installabili.</li>
+                </ul>
+            </div>
+
+            <div class="release-notes">
+                <h2>CronoOS 1.7</h2>
+                <ul>
+                    <li>Nuovo mockup telefono realistico.</li>
+                    <li>Lockscreen migliorata con animazioni di sblocco.</li>
+                    <li>Introduzione app store fittizio.</li>
+                </ul>
+            </div>
+
+            <div class="release-notes">
+                <h2>CronoOS 1.5</h2>
+                <ul>
+                    <li>Aggiunta barra dock personalizzabile.</li>
+                    <li>Miglioramenti grafici home screen.</li>
+                    <li>Animazioni transizioni più fluide tra app.</li>
+                </ul>
+            </div>
+
+            <div class="release-notes">
+                <h2>CronoOS 1.4</h2>
+                <ul>
+                    <li>Primo rilascio stabile.</li>
+                    <li>Home screen funzionale con icone fisse.</li>
+                    <li>Mockup telefono base implementato.</li>
+                    <li>App essenziali integrate: telefono, messaggi, calendario.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/global.js"></script>
+</body>
+</html>
