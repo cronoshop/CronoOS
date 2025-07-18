@@ -157,5 +157,94 @@ function loadUserProfile() {
 function navigateTo(page) {
     window.location.href = page;
 }
+// Settings App JavaScript - CronoOS Phoenix Pro
+
+function navigateTo(page) {
+    window.location.href = page;
+}
+
+/**
+ * Carica i dati del profilo negli input della pagina account.html.
+ */
+function loadProfile() {
+    const profile = JSON.parse(localStorage.getItem('cronos_user_profile') || '{}');
+    const nameInput = document.getElementById('profileNameInput');
+    const emailInput = document.getElementById('profileEmailInput');
+    const profileImage = document.getElementById('profileImage');
+    const profileIcon = document.getElementById('profileIcon');
+    const avatarInput = document.getElementById('avatarInput');
+
+    if (nameInput) nameInput.value = profile.name || '';
+    if (emailInput) emailInput.value = profile.email || '';
+
+    if (profile.avatar) {
+        profileImage.src = profile.avatar;
+        profileImage.style.display = 'block';
+        profileIcon.style.display = 'none';
+    } else {
+        profileImage.style.display = 'none';
+        profileIcon.style.display = 'block';
+    }
+    
+    // Gestione cambio avatar
+    if(avatarInput) {
+        avatarInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    profileImage.src = e.target.result;
+                    profileImage.style.display = 'block';
+                    profileIcon.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+}
+
+/**
+ * Salva i dati del profilo dal form nel localStorage.
+ */
+function saveProfile() {
+    const name = document.getElementById('profileNameInput').value;
+    const email = document.getElementById('profileEmailInput').value;
+    const avatarSrc = document.getElementById('profileImage').src;
+    
+    const profile = {
+        name: name,
+        email: email,
+        // Salva l'avatar solo se non è quello di default (un'icona)
+        avatar: avatarSrc.startsWith('data:image') ? avatarSrc : '' 
+    };
+
+    localStorage.setItem('cronos_user_profile', JSON.stringify(profile));
+    showToast('Profilo salvato!');
+    
+    // Aggiorna l'header della pagina Impostazioni
+    updateSettingsHeaderProfile();
+}
+
+
+/**
+ * Aggiorna la sezione profilo in settings.html
+ */
+function updateSettingsHeaderProfile() {
+     const profile = JSON.parse(localStorage.getItem('cronos_user_profile') || '{}');
+     const profileNameEl = document.querySelector('.user-profile .profile-name');
+     const profileAvatarIcon = document.querySelector('.user-profile .profile-avatar i');
+     // Qui potresti aggiungere un <img> per l'avatar se vuoi mostrarlo anche qui
+
+     if(profileNameEl && profile.name) {
+        profileNameEl.textContent = profile.name;
+     }
+}
+
+// Quando la pagina delle impostazioni si carica, aggiorna il profilo
+document.addEventListener('DOMContentLoaded', () => {
+    if(document.querySelector('.user-profile')) {
+        updateSettingsHeaderProfile();
+    }
+});
 
 // E così via per tutte le altre funzioni dei modali...
