@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suoneria - Impostazioni</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/settings.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="app-header">
+            <button class="back-btn" onclick="history.back()"><i class="fas fa-chevron-left"></i> Suoni</button>
+            <h1>Suoneria</h1>
+        </div>
+        <div class="settings-content">
+            <div class="settings-group" id="ringtoneList">
+                </div>
+        </div>
+    </div>
+    <script src="scripts/global.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ringtones = [
+                { id: 'default', name: 'Predefinita' },
+                { id: 'aurora', name: 'Aurora' },
+                { id: 'breeze', name: 'Brezza' },
+                { id: 'cosmos', name: 'Cosmo' },
+                { id: 'crystals', name: 'Cristalli' },
+                { id: 'summit', name: 'Vetta' }
+            ];
+            const ringtoneList = document.getElementById('ringtoneList');
+            const currentRingtone = localStorage.getItem('crono_ringtone') || 'default';
+
+            ringtones.forEach(ringtone => {
+                const item = document.createElement('div');
+                item.className = 'setting-item';
+                item.innerHTML = `
+                    <div class="setting-info"><div class="setting-title">${ringtone.name}</div></div>
+                    <div class="setting-accessory">${ringtone.id === currentRingtone ? '<i class="fas fa-check"></i>' : ''}</div>
+                `;
+                item.onclick = () => selectRingtone(ringtone.id);
+                ringtoneList.appendChild(item);
+            });
+        });
+
+        function selectRingtone(ringtoneId) {
+            localStorage.setItem('crono_ringtone', ringtoneId);
+            showToast(`Suoneria impostata: ${ringtoneId}`);
+            // Ricarica la lista per mostrare la spunta
+            location.reload();
+        }
+    </script>
+</body>
+</html>
