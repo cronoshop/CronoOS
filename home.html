@@ -23,118 +23,20 @@
         </div>
     </div>
 
-    <button class="quick-panel-button" id="quickPanelButton" onclick="toggleQuickPanel()">
-        <i class="fas fa-gears"></i>
-    </button>
-
-    <div class="quick-panel" id="quickPanel">
-        <div class="quick-panel-header">
-            <h3>Controlli</h3>
-            <button class="close-panel" onclick="toggleQuickPanel()"><i class="fas fa-times"></i></button>
-        </div>
-        <div class="quick-toggles">
-            <div class="toggle-item" onclick="toggleWifi()">
-                <div class="toggle-icon" id="wifiToggle"><i class="fas fa-wifi"></i></div>
-                <span>Wi-Fi</span>
-            </div>
-            <div class="toggle-item" onclick="toggleBluetooth()">
-                <div class="toggle-icon" id="bluetoothToggle"><i class="fab fa-bluetooth-b"></i></div>
-                <span>Bluetooth</span>
-            </div>
-            <div class="toggle-item" onclick="toggleDarkMode()">
-                <div class="toggle-icon" id="darkToggle"><i class="fas fa-moon"></i></div>
-                <span>Scuro</span>
-            </div>
-            <div class="toggle-item" onclick="toggleFlashlight()">
-                <div class="toggle-icon" id="flashlightToggle"><i class="fas fa-bolt"></i></div>
-                <span>Torcia</span>
-            </div>
-        </div>
-        <div class="brightness-control">
-            <span><i class="fas fa-sun"></i></span>
-            <input type="range" id="brightnessSlider" min="0" max="100" value="50">
-            <span><i class="fas fa-sun"></i></span>
-        </div>
-    </div>
-
-    <div class="overlay" id="overlay" onclick="closePanels()"></div>
-
     <div class="home-screen">
         <div class="wallpaper" id="dynamicWallpaper"></div>
         
         <div class="widget-area">
-            <div class="weather-widget">
-                <div class="weather-temp">22°</div>
-                <div class="weather-desc">Soleggiato</div>
-                <div class="weather-location">Milano</div>
             </div>
-        </div>
 
         <div class="app-grid" id="appGrid">
-            <div class="app-icon" onclick="openApp('phone')">
-                <div class="app-icon-container phone-app">
-                    <i class="fas fa-phone"></i>
-                </div>
-                <span>Telefono</span>
             </div>
-            <div class="app-icon" onclick="openApp('messages')">
-                <div class="app-icon-container messages-app">
-                    <i class="fas fa-comment-dots"></i>
-                </div>
-                <span>Messaggi</span>
-            </div>
-            <div class="app-icon" onclick="openApp('camera')">
-                <div class="app-icon-container camera-app">
-                    <i class="fas fa-camera"></i>
-                </div>
-                <span>Fotocamera</span>
-            </div>
-            <div class="app-icon" onclick="openApp('gallery')">
-                <div class="app-icon-container gallery-app">
-                    <i class="fas fa-images"></i>
-                </div>
-                <span>Galleria</span>
-            </div>
-            <div class="app-icon" onclick="openApp('music')">
-                <div class="app-icon-container music-app">
-                    <i class="fas fa-music"></i>
-                </div>
-                <span>Musica</span>
-            </div>
-            <div class="app-icon" onclick="openApp('calendar')">
-                <div class="app-icon-container calendar-app">
-                    <i class="fas fa-calendar-days"></i>
-                </div>
-                <span>Calendario</span>
-            </div>
-            <div class="app-icon" onclick="openApp('clock')">
-                <div class="app-icon-container clock-app">
-                    <i class="fas fa-clock"></i>
-                </div>
-                <span>Orologio</span>
-            </div>
-            <div class="app-icon" onclick="openApp('files')">
-                <div class="app-icon-container files-app">
-                    <i class="fas fa-folder"></i>
-                </div>
-                <span>File</span>
-            </div>
-            <div class="app-icon" onclick="openApp('playstore')">
-                <div class="app-icon-container playstore-app">
-                    <i class="fas fa-store"></i>
-                </div>
-                <span>App Store</span>
-            </div>
-            <div class="app-icon" onclick="openApp('settings')">
-                <div class="app-icon-container settings-app">
-                    <i class="fas fa-gear"></i>
-                </div>
-                <span>Impostazioni</span>
-            </div>
-        </div>
+
+        <div class="dock" id="dock">
+             </div>
     </div>
 
-    <div class="navigation-bar" id="navigationBar">
+    <div class="navigation-bar">
         <div class="nav-indicator"></div>
     </div>
 
