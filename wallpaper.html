@@ -26,16 +26,23 @@
                     <div class="setting-info"><div class="setting-title" style="color:var(--ios-red);">Rimuovi sfondo</div></div>
                 </div>
             </div>
+
+            <div class="settings-group">
+                 <div class="setting-item" onclick="navigateTo('lockscreen-editor.html')">
+                    <div class="setting-info"><div class="setting-title">Personalizza Schermata di Blocco</div></div>
+                    <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="scripts/global.js"></script>
     <script>
+        // ... (il javascript di questo file rimane uguale a prima)
         document.addEventListener('DOMContentLoaded', () => {
             const wallpaperInput = document.getElementById('wallpaperInput');
             wallpaperInput.addEventListener('change', function(event) {
                 const file = event.target.files[0];
                 if (!file) return;
-
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     const wallpaperDataUrl = e.target.result;
