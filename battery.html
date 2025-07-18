@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batteria - Impostazioni</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/settings.css">
+    <style>
+        .battery-level { padding: 20px; text-align: center; }
+        .battery-icon { font-size: 64px; color: var(--ios-green); }
+        .battery-percentage { font-size: 24px; font-weight: 600; margin-top: 10px;}
+        .battery-status { font-size: 14px; color: var(--text-secondary-light); }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="app-header">
+            <button class="back-btn" onclick="history.back()"><i class="fas fa-chevron-left"></i> Impostazioni</button>
+            <h1>Batteria</h1>
+        </div>
+        <div class="settings-content">
+            <div class="settings-group">
+                <div class="battery-level">
+                    <i id="batteryIcon" class="fas fa-battery-full battery-icon"></i>
+                    <div id="batteryPercentage" class="battery-percentage">100%</div>
+                    <div id="batteryStatus" class="battery-status">Carica Completa</div>
+                </div>
+            </div>
+            <div class="settings-group">
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-title">Risparmio energetico</div>
+                        <div class="setting-description">Riduce le prestazioni e le attività in background per estendere la durata della batteria.</div>
+                    </div>
+                    <div class="setting-accessory"><div class="toggle-switch"><input type="checkbox" id="powerSavingToggle"><label for="powerSavingToggle"></label></div></div>
+                </div>
+            </div>
+             <div class="settings-group">
+                <div class="setting-item" onclick="showToast('Funzione non disponibile')">
+                    <div class="setting-info"><div class="setting-title">Stato batteria</div></div>
+                    <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/global.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const powerSavingToggle = document.getElementById('powerSavingToggle');
+            powerSavingToggle.checked = localStorage.getItem('crono_power_saving') === 'on';
+            powerSavingToggle.addEventListener('change', function() {
+                localStorage.setItem('crono_power_saving', this.checked ? 'on' : 'off');
+                showToast(this.checked ? 'Risparmio energetico attivato' : 'Risparmio energetico disattivato');
+            });
+        });
+    </script>
+</body>
+</html>
