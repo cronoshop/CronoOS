@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalizza Lockscreen - Impostazioni</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/lock.css">
+    <style>
+        .editor-container { display: flex; flex-direction: column; height: 100vh; }
+        .lockscreen-preview { flex: 1; position: relative; display: flex; align-items: center; justify-content: center; transform: scale(0.9); border-radius: 40px; overflow: hidden; margin: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+        .editor-controls { background: var(--bg-secondary-light); padding: 16px; border-top-left-radius: 20px; border-top-right-radius: 20px; box-shadow: 0 -5px 20px rgba(0,0,0,0.1); }
+        [data-theme="dark"] .editor-controls { background: var(--bg-secondary-dark); }
+        .control-group { margin-bottom: 16px; }
+        .control-group label { font-size: 14px; font-weight: 500; color: var(--text-secondary-light); display: block; margin-bottom: 8px; }
+        .font-options, .color-options { display: flex; gap: 12px; flex-wrap: wrap; }
+        .font-option { padding: 8px 12px; border: 2px solid var(--separator-light); border-radius: 8px; cursor: pointer; }
+        .font-option.active { border-color: var(--ios-blue); background: rgba(0, 122, 255, 0.1); }
+        .color-option { width: 32px; height: 32px; border-radius: 50%; cursor: pointer; border: 3px solid transparent; }
+        .color-option.active { border-color: var(--ios-blue); }
+    </style>
+</head>
+<body>
+    <div class="editor-container">
+        <div class="app-header">
+            <button class="back-btn" onclick="history.back()">Annulla</button>
+            <h1>Personalizza</h1>
+            <button class="nav-btn" onclick="saveLockscreenSettings()"><b>Fatto</b></button>
+        </div>
+
+        <div class="lockscreen-preview">
+            <div class="wallpaper-lock" id="lockWallpaper"></div>
+            <div class="lock-content">
+                <div class="lock-time">
+                    <div class="time-display" id="lockTimePreview">23:01</div>
+                    <div class="date-display" id="lockDatePreview">Venerdì 18 Luglio</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="editor-controls">
+            <div class="control-group">
+                <label>Stile Orologio</label>
+                <div class="font-options" id="fontOptions">
+                    <div class="font-option" data-font="default">Default</div>
+                    <div class="font-option" data-font="thin">Sottile</div>
+                    <div class="font-option" data-font-serif">Serif</div>
+                    <div class="font-option" data-font-mono">Mono</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/global.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const settings = JSON.parse(localStorage.getItem('crono_lockscreen_settings') || '{}');
+            const timePreview = document.getElementById('lockTimePreview');
+            const fontOptions = document.getElementById('fontOptions');
+
+            let currentFont = settings.fontStyle || 'default';
+
+            function applyPreview() {
+                timePreview.className = `time-display font-${currentFont}`;
+                
+                fontOptions.querySelectorAll('.font-option').forEach(el => {
+                    el.classList.toggle('active', el.dataset.font === currentFont);
+                });
+            }
+
+            fontOptions.addEventListener('click', (e) => {
+                if(e.target.classList.contains('font-option')) {
+                    currentFont = e.target.dataset.font;
+                    applyPreview();
+                }
+            });
+
+            window.saveLockscreenSettings = () => {
+                const newSettings = { ...settings, fontStyle: currentFont };
+                localStorage.setItem('crono_lockscreen_settings', JSON.stringify(newSettings));
+                showToast('Schermata di blocco salvata!');
+                setTimeout(() => history.back(), 1000);
+            };
+
+            applyPreview();
+        });
+    </script>
+</body>
+</html>
