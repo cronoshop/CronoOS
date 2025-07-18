@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schermo e Luminosità - Impostazioni</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/settings.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="app-header">
+            <button class="back-btn" onclick="window.location.href = 'settings.html'"><i class="fas fa-chevron-left"></i> Impostazioni</button>
+            <h1>Schermo e Luminosità</h1>
+        </div>
+        <div class="settings-content">
+            <div class="settings-group">
+                <div class="setting-item">
+                    <div class="setting-info"><div class="setting-title">Modalità Scura</div></div>
+                    <div class="setting-accessory"><div class="toggle-switch"><input type="checkbox" id="darkModeToggle"><label for="darkModeToggle"></label></div></div>
+                </div>
+            </div>
+            <div class="settings-group">
+                <div class="setting-item">
+                    <div class="setting-info"><div class="setting-title">Luminosità</div></div>
+                    <div class="setting-accessory" style="flex:1;"><input type="range" style="width:100%;"></div>
+                </div>
+                 <div class="setting-item">
+                    <div class="setting-info"><div class="setting-title">Night Shift</div><div class="setting-description">Sposta i colori del display su tonalità più calde.</div></div>
+                    <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Logica per questa pagina
+    </script>
+</body>
+</html>
