@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/settings.css">
-    <script src="scripts/global.js" defer></script>
 </head>
 <body>
     <div class="app-container">
@@ -17,13 +16,7 @@
         </div>
         <div class="settings-content">
             <div class="settings-group">
-                <div class="setting-item">
-                    <div class="setting-info"><div class="setting-title">Localizzazione</div></div>
-                    <div class="setting-accessory"><div class="toggle-switch"><input type="checkbox" id="locationToggle" checked><label for="locationToggle"></label></div></div>
-                </div>
-            </div>
-            <div class="settings-group">
-                <div class="setting-item" onclick="showToast('Gestione permessi non implementata')">
+                <div class="setting-item" onclick="navigateTo('app-permissions.html')">
                     <div class="setting-info">
                         <div class="setting-title">Permessi App</div>
                         <div class="setting-description">Controlla quali app possono accedere ai tuoi dati.</div>
@@ -37,10 +30,6 @@
             </div>
         </div>
     </div>
-    <script>
-        function showToast(message) {
-            // ... (codice della funzione showToast)
-        }
-    </script>
+    <script src="scripts/global.js"></script>
 </body>
 </html>
