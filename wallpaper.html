@@ -1,1 +1,86 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sfondo e Stile - Impostazioni</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles/settings.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <script src="scripts/global.js" defer></script>
+</head>
+<body>
+    <div class="app-container">
+        <div class="app-header">
+            <button class="back-btn" onclick="history.back()"><i class="fas fa-chevron-left"></i> Impostazioni</button>
+            <h1>Sfondo e Stile</h1>
+        </div>
+        <div class="settings-content">
+            <input type="file" id="wallpaperInput" accept="image/*" style="display:none;">
 
+            <div class="settings-group">
+                <div class="setting-item" onclick="document.getElementById('wallpaperInput').click();">
+                    <div class="setting-info"><div class="setting-title">Scegli un nuovo sfondo</div></div>
+                    <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
+                </div>
+                 <div class="setting-item" onclick="removeWallpaper()">
+                    <div class="setting-info"><div class="setting-title" style="color:var(--ios-red);">Rimuovi sfondo personalizzato</div></div>
+                </div>
+            </div>
+
+            <div class="settings-group">
+                 <div class="setting-item" onclick="showToast('Non ancora implementato')">
+                    <div class="setting-info"><div class="setting-title">Personalizza Schermata di Blocco</div></div>
+                    <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info"><div class="setting-title">Always-On Display</div></div>
+                    <div class="setting-accessory"><div class="toggle-switch"><input type="checkbox" id="aodToggle"><label for="aodToggle"></label></div></div>
+                </div>
+            </div>
+
+             <div class="settings-group">
+                <div class="setting-item" onclick="showToast('Non ancora implementato')">
+                    <div class="setting-info">
+                        <div class="setting-title">Disposizione icone Quick Panel</div>
+                    </div>
+                    <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const wallpaperInput = document.getElementById('wallpaperInput');
+
+            wallpaperInput.addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const wallpaperDataUrl = e.target.result;
+                    // Salva in localStorage
+                    localStorage.setItem('crono_wallpaper', wallpaperDataUrl);
+                    // Applica immediatamente
+                    applyWallpaper(); // Funzione da global.js
+                    showToast('Sfondo aggiornato!');
+                };
+                reader.readAsDataURL(file);
+            });
+        });
+        
+        function removeWallpaper() {
+            if (confirm('Sei sicuro di voler rimuovere lo sfondo personalizzato?')) {
+                localStorage.removeItem('crono_wallpaper');
+                // Rimuovi lo stile per tornare al default
+                const appContainer = document.querySelector('.app-container');
+                if (appContainer) {
+                    appContainer.style.backgroundImage = 'none';
+                }
+                showToast('Sfondo rimosso.');
+            }
+        }
+    </script>
+</body>
+</html>
