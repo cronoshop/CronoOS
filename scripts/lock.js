@@ -166,3 +166,47 @@ function updateLockScreenTime() {
     update();
     setInterval(update, 1000);
 }
+// Lock Screen JavaScript - CronoOS Phoenix Pro
+
+document.addEventListener('DOMContentLoaded', function() {
+    applyLockScreenSettings();
+    updateLockScreenTime();
+    setupUnlockGesture();
+});
+
+function applyLockScreenSettings() {
+    const settings = JSON.parse(localStorage.getItem('crono_lockscreen_settings') || '{}');
+    const timeDisplay = document.getElementById('lockTime');
+    
+    const fontStyle = settings.fontStyle || 'default';
+
+    if (timeDisplay) {
+        timeDisplay.className = `time-display font-${fontStyle}`;
+    }
+}
+
+function setupUnlockGesture() {
+    const lockscreen = document.querySelector('.lockscreen');
+    lockscreen.addEventListener('click', performUnlock); // Semplificato per compatibilità
+}
+
+function performUnlock() {
+    const lockscreen = document.querySelector('.lockscreen');
+    lockscreen.classList.add('unlocking');
+    setTimeout(() => {
+        window.location.href = 'home.html';
+    }, 500); // Durata animazione
+}
+
+function updateLockScreenTime() {
+    const timeDisplay = document.getElementById('lockTime');
+    const dateDisplay = document.getElementById('lockDate');
+    
+    function update() {
+        const now = new Date();
+        timeDisplay.textContent = now.toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit', hour12: false });
+        dateDisplay.textContent = now.toLocaleDateString('it-IT', { weekday: 'long', day: 'numeric', month: 'long' });
+    }
+    update();
+    setInterval(update, 1000);
+}
