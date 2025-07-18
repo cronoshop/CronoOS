@@ -91,8 +91,8 @@ function openSoundsSettings() {
 }
 
 function openConnectivitySettings() {
-    showToast('Apertura impostazioni Connettività...');
-    // In futuro, qui potrai navigare alla pagina delle impostazioni connettività.
+    // Rimuovi la riga showToast e aggiungi questa per la navigazione
+    window.location.href = 'connectivity.html'; 
 }
 
 function openPrivacySettings() {
