@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informazioni Personali - Impostazioni</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/settings.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="app-header">
+            <button class="back-btn" onclick="history.back()"><i class="fas fa-chevron-left"></i> Account</button>
+            <h1>Informazioni Personali</h1>
+        </div>
+        <div class="settings-content">
+            <div class="settings-group">
+                <div class="form-row">
+                    <label>Nome</label>
+                    <input type="text" id="profileNameInput" placeholder="Il tuo nome">
+                </div>
+                 <div class="form-row">
+                    <label>Email</label>
+                    <input type="email" id="profileEmailInput" placeholder="La tua email">
+                </div>
+            </div>
+            <div class="settings-group">
+                <div class="setting-item" onclick="showToast('Funzione non disponibile')">
+                    <div class="setting-info"><div class="setting-title">Aggiungi numero di telefono</div></div>
+                </div>
+            </div>
+             <div class="settings-group">
+                <div class="setting-item" onclick="saveProfileAndGoBack()">
+                    <div class="setting-info" style="color: var(--ios-blue); text-align: center; width: 100%;">Salva e Torna</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/global.js"></script>
+    <script src="scripts/settings.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', loadProfile);
+
+        function saveProfileAndGoBack() {
+            saveProfile(); // Salva i dati
+            history.back(); // Torna alla pagina precedente
+        }
+    </script>
+</body>
+</html>
