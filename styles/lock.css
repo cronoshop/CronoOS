@@ -1,4 +1,4 @@
-/* Lock Screen Styles - Phoenix Edition */
+/* Lock Screen Styles - CronoOS 2.4 Final */
 .lockscreen {
     height: 100vh;
     position: relative;
@@ -35,12 +35,51 @@
     font-size: 82px;
     font-weight: 200;
     letter-spacing: -1px;
+    font-family: var(--lock-font, -apple-system);
+    transition: font-family 0.3s ease;
 }
 
 .lock-time .date-display {
     font-size: 20px;
     font-weight: 400;
     opacity: 0.9;
+}
+
+/* Lock Screen Shortcuts */
+.lock-shortcuts {
+    position: absolute;
+    bottom: 120px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px;
+    z-index: 10;
+}
+
+.lock-shortcut {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lock-shortcut:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.lock-shortcut:active {
+    transform: scale(0.95);
 }
 
 .unlock-prompt {
@@ -59,9 +98,30 @@
     font-weight: 500;
 }
 
+/* Always On Display */
+.aod-mode {
+    filter: brightness(0.3);
+}
+
+.aod-mode .lock-time .time-display {
+    font-size: 48px;
+}
+
+.aod-mode .lock-shortcuts,
+.aod-mode .unlock-prompt {
+    opacity: 0.5;
+}
+
 .lockscreen.unlocking {
     animation: unlockFade 0.5s ease-out forwards;
 }
+
+/* Font Styles */
+.font-default { font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+.font-thin { font-family: 'Helvetica Neue', sans-serif; font-weight: 100; }
+.font-mono { font-family: 'SF Mono', Monaco, monospace; }
+.font-rounded { font-family: 'SF Pro Rounded', sans-serif; }
+.font-serif { font-family: 'New York', serif; }
 
 @keyframes pulse {
     0%, 100% { transform: translateY(0); opacity: 0.8; }
@@ -71,4 +131,22 @@
 @keyframes unlockFade {
     from { opacity: 1; filter: brightness(1); }
     to { opacity: 0; filter: brightness(1.5); }
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .lock-shortcuts {
+        padding: 0 30px;
+        bottom: 100px;
+    }
+    
+    .lock-shortcut {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    .lock-time .time-display {
+        font-size: 72px;
+    }
 }

@@ -1,15 +1,54 @@
 // Lock Screen JavaScript - CronoOS 2.1
 
 let isUnlocking = false;
+let isAODEnabled = false;
+let lockFontStyle = 'default';
 
 document.addEventListener('DOMContentLoaded', function() {
     initializeLockScreen();
     updateLockScreenTime();
     setupUnlockGesture();
+    loadLockScreenSettings();
+    checkAODMode();
 });
 
 function initializeLockScreen() {
     console.log('CronoOS 2.1 Lock screen initialized');
+    applyLockScreenSettings();
+}
+
+function loadLockScreenSettings() {
+    const settings = JSON.parse(localStorage.getItem('cronos_lockscreen_settings') || '{}');
+    lockFontStyle = settings.fontStyle || 'default';
+    isAODEnabled = settings.aodEnabled || false;
+}
+
+function applyLockScreenSettings() {
+    const timeDisplay = document.getElementById('lockTime');
+    if (timeDisplay) {
+        timeDisplay.className = `time-display font-${lockFontStyle}`;
+    }
+}
+
+function checkAODMode() {
+    if (isAODEnabled) {
+        document.querySelector('.lockscreen').classList.add('aod-mode');
+    }
+}
+
+function toggleLockFlashlight() {
+    const flashlightBtn = document.getElementById('lockFlashlight');
+    const isOn = flashlightBtn.classList.contains('active');
+    
+    if (isOn) {
+        flashlightBtn.classList.remove('active');
+        flashlightBtn.style.background = 'rgba(255, 255, 255, 0.1)';
+        document.body.style.filter = '';
+    } else {
+        flashlightBtn.classList.add('active');
+        flashlightBtn.style.background = 'rgba(255, 255, 255, 0.3)';
+        document.body.style.filter = 'brightness(1.2)';
+    }
 }
 
 function setupUnlockGesture() {

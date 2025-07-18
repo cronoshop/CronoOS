@@ -3,24 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telefono - CronoOS 2.1</title>
+    <title>Telefono - CronoOS 2.4</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/phone.css">
 </head>
 <body>
     <div class="app-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left"><span class="time" id="statusTime">9:41</span></div>
+            <div class="status-center"><div class="notch"></div></div>
+            <div class="status-right">
+                <span class="signal"><i class="fas fa-signal"></i></span>
+                <span class="wifi"><i class="fas fa-wifi"></i></span>
+                <span class="battery">100% <i class="fas fa-battery-full"></i></span>
+            </div>
+        </div>
+
+        <!-- App Header -->
         <div class="app-header">
-            <button class="back-btn" onclick="goHome()">←</button>
+            <button class="back-btn" onclick="goHome()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
             <h1>Telefono</h1>
             <div class="header-actions">
-                <button class="header-btn">⋮</button>
+                <button class="header-btn">
+                    <i class="fas fa-ellipsis-vertical"></i>
+                </button>
             </div>
         </div>
         
-        <div class="phone-tabs tabs">
-            <div class="tab active" onclick="switchTab('keypad')">Tastierino</div>
-            <div class="tab" onclick="switchTab('recents')">Recenti</div>
-            <div class="tab" onclick="switchTab('contacts')">Contatti</div>
+        <!-- Phone Tabs -->
+        <div class="tabs">
+            <div class="tab active" data-tab="keypad">Tastierino</div>
+            <div class="tab" data-tab="recents">Recenti</div>
+            <div class="tab" data-tab="contacts">Contatti</div>
         </div>
         
         <div class="tab-content">
@@ -32,7 +50,7 @@
                 
                 <div class="keypad">
                     <button class="key" onclick="addNumber('1')">1</button>
-                    <button class="key" onclick="addNumber('2')">2<span>ABC</span></button>
+                    <button class="key" onclick="addNumber('2')">2 <span>ABC</span></button>
                     <button class="key" onclick="addNumber('3')">3<span>DEF</span></button>
                     <button class="key" onclick="addNumber('4')">4<span>GHI</span></button>
                     <button class="key" onclick="addNumber('5')">5<span>JKL</span></button>
@@ -41,13 +59,17 @@
                     <button class="key" onclick="addNumber('8')">8<span>TUV</span></button>
                     <button class="key" onclick="addNumber('9')">9<span>WXYZ</span></button>
                     <button class="key" onclick="addNumber('*')">*</button>
-                    <button class="key" onclick="addNumber('0')">0<span>+</span></button>
+                    <button class="key" onclick="addNumber('0')">0 <span>+</span></button>
                     <button class="key" onclick="addNumber('#')">#</button>
                 </div>
                 
                 <div class="call-actions">
-                    <button class="call-btn" onclick="makeCall()">📞</button>
-                    <button class="delete-btn" onclick="deleteNumber()">⌫</button>
+                    <button class="call-btn" onclick="makeCall()">
+                        <i class="fas fa-phone"></i>
+                    </button>
+                    <button class="delete-btn" onclick="deleteNumber()">
+                        <i class="fas fa-backspace"></i>
+                    </button>
                 </div>
             </div>
             
@@ -57,16 +79,26 @@
                     <div class="call-item">
                         <div class="call-info">
                             <div class="caller-name">Marco Rossi</div>
-                            <div class="call-details">📞 Chiamata in uscita • 2 min fa</div>
+                            <div class="call-details">
+                                <i class="fas fa-phone-flip" style="color: var(--ios-green);"></i>
+                                Chiamata in uscita • 2 min fa
+                            </div>
                         </div>
-                        <button class="call-back-btn" onclick="callBack('+39 123 456 789')">📞</button>
+                        <button class="call-back-btn" onclick="callBack('+39 123 456 789')">
+                            <i class="fas fa-phone"></i>
+                        </button>
                     </div>
                     <div class="call-item">
                         <div class="call-info">
                             <div class="caller-name">Anna Bianchi</div>
-                            <div class="call-details">📞 Chiamata persa • 15 min fa</div>
+                            <div class="call-details">
+                                <i class="fas fa-phone-slash" style="color: var(--ios-red);"></i>
+                                Chiamata persa • 15 min fa
+                            </div>
                         </div>
-                        <button class="call-back-btn" onclick="callBack('+39 987 654 321')">📞</button>
+                        <button class="call-back-btn" onclick="callBack('+39 987 654 321')">
+                            <i class="fas fa-phone"></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -83,7 +115,9 @@
                             <div class="contact-name">Marco Rossi</div>
                             <div class="contact-number">+39 123 456 789</div>
                         </div>
-                        <button class="contact-call-btn" onclick="callContact('+39 123 456 789')">📞</button>
+                        <button class="contact-call-btn" onclick="callContact('+39 123 456 789')">
+                            <i class="fas fa-phone"></i>
+                        </button>
                     </div>
                     <div class="contact-item">
                         <div class="contact-avatar">A</div>
@@ -91,7 +125,9 @@
                             <div class="contact-name">Anna Bianchi</div>
                             <div class="contact-number">+39 987 654 321</div>
                         </div>
-                        <button class="contact-call-btn" onclick="callContact('+39 987 654 321')">📞</button>
+                        <button class="contact-call-btn" onclick="callContact('+39 987 654 321')">
+                            <i class="fas fa-phone"></i>
+                        </button>
                     </div>
                 </div>
             </div>

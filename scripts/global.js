@@ -7,6 +7,7 @@ let isBluetoothEnabled = true;
 let isDarkModeEnabled = false;
 let isFlashlightEnabled = false;
 let brightnessLevel = 50;
+let quickPanelOpen = false;
 
 // Initialize the system
 document.addEventListener('DOMContentLoaded', function() {
@@ -14,11 +15,154 @@ document.addEventListener('DOMContentLoaded', function() {
     updateTime();
     setInterval(updateTime, 1000);
     loadSettings();
+    setupQuickPanel();
+    loadCustomWallpaper();
 });
 
 function initializeSystem() {
     applyTheme();
-    console.log('CronoOS 2.1 initialized');
+    console.log('CronoOS 2.4 initialized');
+}
+
+function loadCustomWallpaper() {
+    const customWallpaper = localStorage.getItem('cronos_custom_wallpaper');
+    if (customWallpaper) {
+        document.documentElement.style.setProperty('--custom-wallpaper', `url(${customWallpaper})`);
+    }
+}
+
+function setupQuickPanel() {
+    // Create quick panel if it doesn't exist
+    if (!document.getElementById('quickPanel')) {
+        const quickPanel = document.createElement('div');
+        quickPanel.id = 'quickPanel';
+        quickPanel.className = 'quick-panel';
+        quickPanel.innerHTML = `
+            <div class="quick-toggles">
+                <button class="quick-toggle" id="quickWifi" onclick="toggleWifi()">
+                    <i class="fas fa-wifi"></i>
+                    <span>Wi-Fi</span>
+                </button>
+                <button class="quick-toggle" id="quickBluetooth" onclick="toggleBluetooth()">
+                    <i class="fas fa-bluetooth"></i>
+                    <span>Bluetooth</span>
+                </button>
+                <button class="quick-toggle" id="quickAirplane" onclick="toggleAirplaneMode()">
+                    <i class="fas fa-plane"></i>
+                    <span>Aereo</span>
+                </button>
+                <button class="quick-toggle" id="quickFlashlight" onclick="toggleFlashlight()">
+                    <i class="fas fa-flashlight"></i>
+                    <span>Torcia</span>
+                </button>
+                <button class="quick-toggle" id="quickDark" onclick="toggleDarkMode()">
+                    <i class="fas fa-moon"></i>
+                    <span>Scuro</span>
+                </button>
+                <button class="quick-toggle" id="quickAOD" onclick="toggleQuickAOD()">
+                    <i class="fas fa-clock"></i>
+                    <span>AOD</span>
+                </button>
+                <button class="quick-toggle" id="quickSilent" onclick="toggleSilentMode()">
+                    <i class="fas fa-volume-mute"></i>
+                    <span>Silenzioso</span>
+                </button>
+                <button class="quick-toggle" onclick="openApp('settings.html')">
+                    <i class="fas fa-gear"></i>
+                    <span>Impostazioni</span>
+                </button>
+            </div>
+        `;
+        document.body.appendChild(quickPanel);
+    }
+    
+    // Setup swipe down gesture
+    let startY = 0;
+    let currentY = 0;
+    let isDragging = false;
+    
+    document.addEventListener('touchstart', (e) => {
+        if (e.touches[0].clientY < 100) { // Only from top area
+            startY = e.touches[0].clientY;
+            isDragging = true;
+        }
+    });
+    
+    document.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        currentY = e.touches[0].clientY;
+        const deltaY = currentY - startY;
+        
+        if (deltaY > 50 && !quickPanelOpen) {
+            openQuickPanel();
+        }
+    });
+    
+    document.addEventListener('touchend', () => {
+        isDragging = false;
+    });
+    
+    // Close on click outside
+    document.addEventListener('click', (e) => {
+        const quickPanel = document.getElementById('quickPanel');
+        if (quickPanelOpen && !quickPanel.contains(e.target)) {
+            closeQuickPanel();
+        }
+    });
+}
+
+function openQuickPanel() {
+    const quickPanel = document.getElementById('quickPanel');
+    if (quickPanel) {
+        quickPanel.classList.add('active');
+        quickPanelOpen = true;
+        updateQuickPanelStates();
+    }
+}
+
+function closeQuickPanel() {
+    const quickPanel = document.getElementById('quickPanel');
+    if (quickPanel) {
+        quickPanel.classList.remove('active');
+        quickPanelOpen = false;
+    }
+}
+
+function updateQuickPanelStates() {
+    const settings = JSON.parse(localStorage.getItem('cronos_settings') || '{}');
+    
+    document.getElementById('quickWifi')?.classList.toggle('active', settings.isWifiEnabled !== false);
+    document.getElementById('quickBluetooth')?.classList.toggle('active', settings.isBluetoothEnabled !== false);
+    document.getElementById('quickFlashlight')?.classList.toggle('active', isFlashlightEnabled);
+    document.getElementById('quickDark')?.classList.toggle('active', isDarkModeEnabled);
+    document.getElementById('quickAOD')?.classList.toggle('active', settings.aodEnabled || false);
+}
+
+function toggleAirplaneMode() {
+    const settings = JSON.parse(localStorage.getItem('cronos_settings') || '{}');
+    settings.isAirplaneModeEnabled = !settings.isAirplaneModeEnabled;
+    localStorage.setItem('cronos_settings', JSON.stringify(settings));
+    
+    document.getElementById('quickAirplane')?.classList.toggle('active', settings.isAirplaneModeEnabled);
+    showToast(settings.isAirplaneModeEnabled ? 'Modalità aereo attivata' : 'Modalità aereo disattivata');
+}
+
+function toggleQuickAOD() {
+    const settings = JSON.parse(localStorage.getItem('cronos_settings') || '{}');
+    settings.aodEnabled = !settings.aodEnabled;
+    localStorage.setItem('cronos_settings', JSON.stringify(settings));
+    
+    document.getElementById('quickAOD')?.classList.toggle('active', settings.aodEnabled);
+    showToast(settings.aodEnabled ? 'AOD attivato' : 'AOD disattivato');
+}
+
+function toggleSilentMode() {
+    const settings = JSON.parse(localStorage.getItem('cronos_settings') || '{}');
+    settings.isSilentModeEnabled = !settings.isSilentModeEnabled;
+    localStorage.setItem('cronos_settings', JSON.stringify(settings));
+    
+    document.getElementById('quickSilent')?.classList.toggle('active', settings.isSilentModeEnabled);
+    showToast(settings.isSilentModeEnabled ? 'Modalità silenziosa attivata' : 'Modalità silenziosa disattivata');
 }
 
 // Time and Date Functions
@@ -188,6 +332,7 @@ function toggleFlashlight() {
     
     showToast(isFlashlightEnabled ? 'Torcia accesa' : 'Torcia spenta');
     saveSettings();
+    updateQuickPanelStates();
 }
 
 // Theme Functions
@@ -287,6 +432,7 @@ function loadSettings() {
         
         applyTheme();
         updateToggleStates();
+        updateQuickPanelStates();
     }
 }
 

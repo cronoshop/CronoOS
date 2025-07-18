@@ -42,6 +42,9 @@
     --status-bar-height: 44px;
     --notch-width: 210px;
     --notch-height: 30px;
+    
+    /* Custom Wallpaper */
+    --custom-wallpaper: none;
 }
 
 /* --- Dark Theme --- */
@@ -99,6 +102,61 @@ body {
     color: white;
     font-size: 14px;
     font-weight: 600;
+    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* Quick Panel */
+.quick-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(20px);
+    padding: var(--status-bar-height) 20px 20px 20px;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+    z-index: 2000;
+    border-radius: 0 0 20px 20px;
+}
+
+.quick-panel.active {
+    transform: translateY(0);
+}
+
+.quick-toggles {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.quick-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.quick-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.quick-toggle.active {
+    background: var(--ios-blue);
+}
+
+.quick-toggle i {
+    font-size: 20px;
 }
 
 .status-left, .status-right {
@@ -538,6 +596,11 @@ body {
 .shadow { box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
 .shadow-lg { box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); }
 
+/* Custom Wallpaper Support */
+.wallpaper {
+    background-image: var(--custom-wallpaper);
+}
+
 /* --- Responsive Design --- */
 @media (max-width: 768px) {
     .app-header {
@@ -550,6 +613,10 @@ body {
     
     .modal-content {
         max-height: 95vh;
+    }
+    
+    .quick-toggles {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
@@ -565,5 +632,9 @@ body {
     
     .app-header {
         margin-top: 0;
+    }
+    
+    .quick-toggles {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
