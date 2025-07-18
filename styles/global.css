@@ -1,175 +1,164 @@
-/* Global Styles - CronoOS 2.1 */
+/* Global Styles - CronoOS 2.1 (iOS Design System) */
 
 :root {
-    /* Colors */
-    --primary-color: #007AFF;
-    --primary-light: #5AC8FA;
-    --primary-dark: #0051D5;
-    --background-color: #ffffff;
-    --surface-color: #f2f2f7;
-    --card-color: #ffffff;
-    --text-primary: #000000;
-    --text-secondary: #8e8e93;
-    --divider-color: #c6c6c8;
-    --shadow-color: rgba(0, 0, 0, 0.1);
+    /* --- Light Mode Colors (Apple HIG) --- */
+    --ios-blue: #0A84FF;
+    --ios-green: #30D158;
+    --ios-red: #FF453A;
+
+    --bg-primary-light: #F9F9F9;         /* Sfondo principale (leggermente off-white) */
+    --bg-secondary-light: #FFFFFF;      /* Sfondo di elementi come le celle */
+    --bg-grouped-light: #FFFFFF;        /* Sfondo per sezioni raggruppate */
     
-    /* Spacing */
-    --spacing-xs: 4px;
-    --spacing-sm: 8px;
-    --spacing-md: 16px;
-    --spacing-lg: 24px;
-    --spacing-xl: 32px;
+    --text-primary-light: #000000;
+    --text-secondary-light: #8A8A8E;    /* Grigio per sottotitoli */
+    --text-placeholder-light: #C4C4C6;
     
-    /* Border Radius */
+    --separator-light: #DCDCDC;         /* Separatore sottile */
+    --separator-opaque-light: #C6C6C8;  /* Separatore più visibile */
+    
+    --fill-gray-1-light: #EFEFF4;       /* Sfondo grigio per bottoni, etc. */
+    --fill-gray-2-light: #E5E5EA;
+
+    /* --- Universal Variables --- */
+    --material-blur: 16px;
+    --material-saturate: 180%;
+
     --radius-sm: 8px;
     --radius-md: 12px;
     --radius-lg: 16px;
-    --radius-xl: 24px;
-    
-    /* Transitions */
-    --transition-fast: 0.2s ease;
-    --transition-normal: 0.3s ease;
+    --radius-full: 9999px;
+
+    --transition-fast: 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+    --transition-normal: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Dark Theme */
+/* --- Dark Theme --- */
 [data-theme="dark"] {
-    --background-color: #000000;
-    --surface-color: #1c1c1e;
-    --card-color: #2c2c2e;
-    --text-primary: #ffffff;
-    --text-secondary: #8e8e93;
-    --divider-color: #38383a;
-    --shadow-color: rgba(0, 0, 0, 0.3);
+    --bg-primary-dark: #000000;
+    --bg-secondary-dark: #1C1C1E;
+    --bg-grouped-dark: #1C1C1E;
+    
+    --text-primary-dark: #FFFFFF;
+    --text-secondary-dark: #8D8D93;
+    --text-placeholder-dark: #5B5B5F;
+
+    --separator-dark: #38383A;
+    --separator-opaque-dark: #48484A;
+
+    --fill-gray-1-dark: #2C2C2E;
+    --fill-gray-2-dark: #3A3A3C;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent; /* Rimuove il flash blu al tocco */
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    background-color: var(--bg-primary-light);
+    color: var(--text-primary-light);
     line-height: 1.4;
     overflow-x: hidden;
-    transition: background-color var(--transition-normal), color var(--transition-normal);
+    transition: background-color 0.3s ease, color 0.3s ease;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* App Container */
-.app-container {
-    min-height: 100vh;
-    background-color: var(--background-color);
-    padding-top: 44px;
+[data-theme="dark"] body {
+    background-color: var(--bg-primary-dark);
+    color: var(--text-primary-dark);
 }
 
-/* App Header */
+/* --- App Header (Barra di Navigazione Superiore) --- */
 .app-header {
+    height: 56px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: var(--spacing-md);
-    background-color: var(--card-color);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--divider-color);
+    padding: 0 16px;
+    
+    /* Effetto vetro smerigliato */
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(var(--material-blur)) saturate(var(--material-saturate));
+    -webkit-backdrop-filter: blur(var(--material-blur)) saturate(var(--material-saturate));
+    border-bottom: 1px solid var(--separator-light);
+
     position: sticky;
     top: 0;
     z-index: 100;
-    height: 60px;
+}
+
+[data-theme="dark"] .app-header {
+    background-color: rgba(28, 28, 30, 0.8);
+    border-bottom: 1px solid var(--separator-dark);
 }
 
 .app-header h1 {
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 600;
-    color: var(--text-primary);
 }
 
-.back-btn {
+/* --- Pulsanti di Navigazione --- */
+.nav-btn {
     background: none;
     border: none;
-    font-size: 18px;
-    color: var(--primary-color);
+    font-size: 17px;
+    color: var(--ios-blue);
     cursor: pointer;
-    padding: var(--spacing-sm);
+    padding: 6px 8px;
     border-radius: var(--radius-sm);
-    transition: background-color var(--transition-fast);
+    transition: background-color 0.2s ease;
+}
+.nav-btn:hover {
+    background-color: var(--fill-gray-2-light);
+}
+[data-theme="dark"] .nav-btn:hover {
+    background-color: var(--fill-gray-2-dark);
 }
 
-.back-btn:hover {
-    background-color: var(--surface-color);
-}
-
-.header-actions {
-    display: flex;
-    gap: var(--spacing-sm);
-}
-
-.header-btn {
-    background: none;
+/* --- Pulsanti Principali --- */
+.btn {
     border: none;
-    font-size: 16px;
-    color: var(--text-secondary);
-    cursor: pointer;
-    padding: var(--spacing-sm);
-    border-radius: var(--radius-sm);
-    transition: background-color var(--transition-fast);
-}
-
-.header-btn:hover {
-    background-color: var(--surface-color);
-}
-
-/* Buttons */
-.btn-primary {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: var(--spacing-md) var(--spacing-lg);
+    padding: 14px 20px;
     border-radius: var(--radius-md);
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 17px;
+    font-weight: 600;
     cursor: pointer;
-    transition: all var(--transition-fast);
+    transition: all 0.2s ease;
+    display: block;
+    text-align: center;
+    width: 100%;
 }
-
-.btn-primary:hover {
-    background-color: var(--primary-dark);
-    transform: translateY(-1px);
-}
-
-.btn-secondary {
-    background-color: transparent;
-    color: var(--primary-color);
-    border: 2px solid var(--primary-color);
-    padding: var(--spacing-md) var(--spacing-lg);
-    border-radius: var(--radius-md);
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all var(--transition-fast);
-}
-
-.btn-secondary:hover {
-    background-color: var(--primary-color);
+.btn-filled {
+    background-color: var(--ios-blue);
     color: white;
 }
+.btn-filled:hover {
+    filter: brightness(1.1);
+}
+.btn-gray {
+    background-color: var(--fill-gray-1-light);
+    color: var(--ios-blue);
+}
+[data-theme="dark"] .btn-gray {
+    background-color: var(--fill-gray-1-dark);
+}
+.btn-gray:hover {
+    filter: brightness(0.95);
+}
 
-/* Toggle Switch */
+/* --- Toggle Switch (Interruttore) --- */
 .toggle-switch {
     position: relative;
     display: inline-block;
     width: 51px;
     height: 31px;
 }
-
-.toggle-switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
 .toggle-switch label {
     position: absolute;
     cursor: pointer;
@@ -177,11 +166,10 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #e5e5ea;
-    border-radius: 16px;
-    transition: var(--transition-fast);
+    background-color: var(--fill-gray-2-light);
+    border-radius: var(--radius-full);
+    transition: 0.2s;
 }
-
 .toggle-switch label:before {
     position: absolute;
     content: "";
@@ -191,230 +179,124 @@ body {
     bottom: 2px;
     background-color: white;
     border-radius: 50%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transition: var(--transition-fast);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
+[data-theme="dark"] .toggle-switch label {
+    background-color: var(--fill-gray-2-dark);
+}
 .toggle-switch input:checked + label {
-    background-color: var(--primary-color);
+    background-color: var(--ios-green);
 }
-
 .toggle-switch input:checked + label:before {
     transform: translateX(20px);
 }
 
-/* Tabs */
-.tabs {
-    display: flex;
-    background-color: var(--card-color);
-    border-bottom: 1px solid var(--divider-color);
-}
-
-.tab {
-    flex: 1;
-    padding: var(--spacing-md);
-    text-align: center;
-    cursor: pointer;
-    font-weight: 500;
-    color: var(--text-secondary);
-    border-bottom: 2px solid transparent;
-    transition: all var(--transition-fast);
-}
-
-.tab.active {
-    color: var(--primary-color);
-    border-bottom-color: var(--primary-color);
-}
-
-.tab:hover {
-    background-color: var(--surface-color);
-}
-
-.tab-content {
-    flex: 1;
-}
-
-.tab-panel {
-    display: none;
-}
-
-.tab-panel.active {
-    display: block;
-}
-
-/* Modal */
-.modal {
+/* --- Modal (Stile Bottom Sheet) --- */
+.modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.4);
     display: flex;
-    align-items: center;
+    align-items: flex-end; /* Allinea al fondo */
     justify-content: center;
     z-index: 2000;
     opacity: 0;
     visibility: hidden;
-    backdrop-filter: blur(10px);
-    transition: all var(--transition-normal);
+    transition: opacity 0.3s ease;
 }
-
-.modal.active {
+.modal-overlay.active {
     opacity: 1;
     visibility: visible;
 }
-
 .modal-content {
-    background-color: var(--card-color);
-    border-radius: var(--radius-lg);
-    max-width: 90%;
-    max-height: 90%;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-    transform: scale(0.9);
-    transition: transform var(--transition-normal);
-}
-
-.modal.active .modal-content {
-    transform: scale(1);
-}
-
-.modal-header {
+    background-color: var(--bg-secondary-light);
+    border-radius: 20px 20px 0 0; /* Angoli arrotondati solo in alto */
+    width: 100%;
+    max-width: 600px; /* Limite per schermi grandi */
+    max-height: 90vh;
+    box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.2);
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: var(--spacing-lg);
-    border-bottom: 1px solid var(--divider-color);
+    flex-direction: column;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
-.modal-header h3 {
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+.modal-header {
+    padding: 16px;
+    text-align: center;
     font-size: 18px;
     font-weight: 600;
+    position: relative;
+    border-bottom: 1px solid var(--separator-light);
 }
-
-.close-btn {
-    background: none;
-    border: none;
-    font-size: 20px;
-    color: var(--text-secondary);
-    cursor: pointer;
-    padding: var(--spacing-sm);
-    border-radius: var(--radius-sm);
-    transition: background-color var(--transition-fast);
+/* "Maniglia" per trascinare */
+.modal-header::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36px;
+    height: 5px;
+    background: var(--separator-opaque-light);
+    border-radius: 2.5px;
 }
-
-.close-btn:hover {
-    background-color: var(--surface-color);
-}
-
 .modal-body {
-    padding: var(--spacing-lg);
+    padding: 16px;
+    overflow-y: auto;
+}
+[data-theme="dark"] .modal-content {
+    background-color: var(--bg-secondary-dark);
+}
+[data-theme="dark"] .modal-header {
+    border-bottom-color: var(--separator-dark);
+}
+[data-theme="dark"] .modal-header::before {
+    background: var(--separator-opaque-dark);
 }
 
-.modal-footer {
+/* --- Form Stile iOS Raggruppato --- */
+.form-group {
+    background-color: var(--bg-grouped-light);
+    border-radius: var(--radius-md);
+    margin: 16px;
+    overflow: hidden;
+    border: 1px solid var(--separator-light);
+}
+[data-theme="dark"] .form-group {
+    background-color: var(--bg-grouped-dark);
+    border-color: var(--separator-dark);
+}
+.form-row {
     display: flex;
-    justify-content: flex-end;
-    gap: var(--spacing-md);
-    padding: var(--spacing-lg);
-    border-top: 1px solid var(--divider-color);
+    align-items: center;
+    padding-left: 16px;
+    border-bottom: 1px solid var(--separator-light);
 }
-
-/* Form Elements */
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="number"],
-input[type="date"],
-input[type="time"],
-select,
-textarea {
-    width: 100%;
-    padding: var(--spacing-md);
-    border: 1px solid var(--divider-color);
-    border-radius: var(--radius-sm);
-    font-size: 16px;
-    background-color: var(--card-color);
-    color: var(--text-primary);
-    transition: border-color var(--transition-fast);
+[data-theme="dark"] .form-row {
+    border-bottom-color: var(--separator-dark);
 }
-
-input:focus,
-select:focus,
-textarea:focus {
+.form-group .form-row:last-child {
+    border-bottom: none;
+}
+.form-row input[type="text"],
+.form-row input[type="password"] {
+    flex: 1;
+    padding: 12px 16px 12px 0;
+    border: none;
+    background: none;
+    font-size: 17px;
+    color: var(--text-primary-light);
+}
+.form-row input:focus {
     outline: none;
-    border-color: var(--primary-color);
 }
-
-/* Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideInUp {
-    from {
-        transform: translateY(100%);
-    }
-    to {
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideInRight {
-    from {
-        transform: translateX(100%);
-    }
-    to {
-        transform: translateX(0);
-    }
-}
-
-/* Utility Classes */
-.fade-in {
-    animation: fadeIn var(--transition-normal);
-}
-
-.slide-in-up {
-    animation: slideInUp var(--transition-normal);
-}
-
-.slide-in-right {
-    animation: slideInRight var(--transition-normal);
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-    width: 4px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--surface-color);
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--text-secondary);
-    border-radius: 2px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--text-primary);
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .app-header {
-        padding: var(--spacing-sm) var(--spacing-md);
-    }
-    
-    .modal-content {
-        max-width: 95%;
-        margin: var(--spacing-md);
-    }
+[data-theme="dark"] .form-row input {
+    color: var(--text-primary-dark);
 }
