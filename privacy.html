@@ -7,11 +7,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/settings.css">
+    <link rel="stylesheet" href="styles/back-button.css">
 </head>
 <body>
     <div class="app-container">
         <div class="app-header">
-            <button class="back-btn" onclick="history.back()"><i class="fas fa-chevron-left"></i> Impostazioni</button>
+            <button class="back-btn" onclick="history.back()">
+                <i class="fas fa-chevron-left"></i>
+                Impostazioni
+            </button>
             <h1>Privacy e Sicurezza</h1>
         </div>
         <div class="settings-content">
@@ -30,6 +34,32 @@
             </div>
         </div>
     </div>
+
+    <!-- Contextual Navigation -->
+    <div class="contextual-nav">
+        <div class="contextual-nav-content">
+            <a href="settings.html" class="contextual-nav-btn">
+                <i class="fas fa-gear"></i>
+                <span>Generali</span>
+            </a>
+            <a href="connectivity.html" class="contextual-nav-btn">
+                <i class="fas fa-wifi"></i>
+                <span>Connettività</span>
+            </a>
+            <a href="privacy.html" class="contextual-nav-btn active">
+                <i class="fas fa-shield"></i>
+                <span>Privacy</span>
+            </a>
+            <a href="sounds.html" class="contextual-nav-btn">
+                <i class="fas fa-volume-high"></i>
+                <span>Suoni</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Gesture Bar -->
+    <div class="gesture-bar"></div>
+
     <script src="scripts/global.js"></script>
 </body>
 </html>

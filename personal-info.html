@@ -7,11 +7,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/settings.css">
+    <link rel="stylesheet" href="styles/back-button.css">
 </head>
 <body>
     <div class="app-container">
         <div class="app-header">
-            <button class="back-btn" onclick="history.back()"><i class="fas fa-chevron-left"></i> Account</button>
+            <button class="back-btn" onclick="history.back()">
+                <i class="fas fa-chevron-left"></i>
+                Account
+            </button>
             <h1>Informazioni Personali</h1>
         </div>
         <div class="settings-content">
@@ -37,6 +41,32 @@
             </div>
         </div>
     </div>
+
+    <!-- Contextual Navigation -->
+    <div class="contextual-nav">
+        <div class="contextual-nav-content">
+            <a href="account.html" class="contextual-nav-btn">
+                <i class="fas fa-user"></i>
+                <span>Account</span>
+            </a>
+            <a href="password-security.html" class="contextual-nav-btn">
+                <i class="fas fa-lock"></i>
+                <span>Sicurezza</span>
+            </a>
+            <a href="personal-info.html" class="contextual-nav-btn active">
+                <i class="fas fa-id-card"></i>
+                <span>Info</span>
+            </a>
+            <button class="contextual-nav-btn" onclick="showToast('Privacy')">
+                <i class="fas fa-shield"></i>
+                <span>Privacy</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Gesture Bar -->
+    <div class="gesture-bar"></div>
+
     <script src="scripts/global.js"></script>
     <script src="scripts/settings.js"></script>
     <script>

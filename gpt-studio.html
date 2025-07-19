@@ -7,10 +7,15 @@
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/cronoglass.css">
     <link rel="stylesheet" href="styles/gpt-studio.css">
+    <link rel="stylesheet" href="styles/back-button.css">
 </head>
 <body>
     <div class="app-container">
         <div class="app-header">
+            <button class="back-btn" onclick="history.back()">
+                <i class="fas fa-chevron-left"></i>
+                CronoGPT
+            </button>
             <h1>GPT Studio</h1>
         </div><div class="gpt-studio-content">
         <div class="input-area">
@@ -25,33 +30,32 @@
         </div>
     </div>
 
-    <!-- Global Navigation -->
-    <div class="global-navbar glass-nav">
-        <a href="home.html" class="navbar-btn" data-page="home">
-            <i class="fas fa-home"></i>
-            <span>Home</span>
-        </a>
-        <a href="playstore.html" class="navbar-btn" data-page="apps">
-            <i class="fas fa-th"></i>
-            <span>App</span>
-        </a>
-        <a href="settings.html" class="navbar-btn" data-page="settings">
-            <i class="fas fa-gear"></i>
-            <span>Impostazioni</span>
-        </a>
-        <a href="system.html" class="navbar-btn" data-page="info">
-            <i class="fas fa-info-circle"></i>
-            <span>Info</span>
-        </a>
-        <a href="playstore.html" class="navbar-btn" data-page="store">
-            <i class="fas fa-store"></i>
-            <span>Store</span>
-        </a>
+    <!-- Contextual Navigation -->
+    <div class="contextual-nav">
+        <div class="contextual-nav-content">
+            <a href="gpt-assistant.html" class="contextual-nav-btn">
+                <i class="fas fa-brain"></i>
+                <span>Assistant</span>
+            </a>
+            <a href="gpt-studio.html" class="contextual-nav-btn active">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Studio</span>
+            </a>
+            <button class="contextual-nav-btn" onclick="showToast('Traduci')">
+                <i class="fas fa-language"></i>
+                <span>Traduci</span>
+            </button>
+            <button class="contextual-nav-btn" onclick="showToast('Design')">
+                <i class="fas fa-palette"></i>
+                <span>Design</span>
+            </button>
+        </div>
     </div>
-</div>
 
+    <!-- Gesture Bar -->
+    <div class="gesture-bar"></div>
+</div>
 <script src="scripts/gpt-studio.js"></script>
-<script src="scripts/global-enhanced.js"></script>
 <script src="scripts/global.js"></script>
 
 </body>

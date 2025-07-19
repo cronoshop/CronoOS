@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/chrome.css">
+    <link rel="stylesheet" href="styles/back-button.css">
 </head>
 <body>
     <div class="app-container">
@@ -21,6 +22,10 @@
         </div>
 
         <div class="chrome-header">
+            <button class="back-btn" onclick="goHome()">
+                <i class="fas fa-chevron-left"></i>
+                Home
+            </button>
             <button class="nav-btn" id="backBtn" disabled><i class="fas fa-chevron-left"></i></button>
             <button class="nav-btn" id="forwardBtn" disabled><i class="fas fa-chevron-right"></i></button>
             <div class="address-bar">
@@ -39,16 +44,32 @@
             </div>
         </div>
 
-        <div class="bottom-nav">
-            <button class="bottom-nav-btn" onclick="goHome()"><i class="fas fa-home"></i></button>
-            <button class="bottom-nav-btn" id="newTabBtn"><i class="fas fa-plus-square"></i></button>
-            <button class="bottom-nav-btn" id="tabsBtn">
-                <div class="tab-counter">1</div>
+    </div>
+
+    <!-- Contextual Navigation -->
+    <div class="contextual-nav">
+        <div class="contextual-nav-content">
+            <a href="home.html" class="contextual-nav-btn">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <button class="contextual-nav-btn" id="newTabBtn">
+                <i class="fas fa-plus"></i>
+                <span>Nuovo Tab</span>
             </button>
-            <button class="bottom-nav-btn" onclick="showToast('Funzionalità non implementata')"><i class="fas fa-history"></i></button>
-            <button class="bottom-nav-btn" onclick="showToast('Funzionalità non implementata')"><i class="fas fa-ellipsis-h"></i></button>
+            <button class="contextual-nav-btn" id="tabsBtn">
+                <i class="fas fa-layer-group"></i>
+                <span>Tab (1)</span>
+            </button>
+            <button class="contextual-nav-btn" onclick="showToast('Cronologia')">
+                <i class="fas fa-history"></i>
+                <span>Cronologia</span>
+            </button>
         </div>
     </div>
+
+    <!-- Gesture Bar -->
+    <div class="gesture-bar"></div>
 
     <script src="scripts/global.js"></script>
     <script src="scripts/chrome.js"></script>

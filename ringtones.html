@@ -7,11 +7,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/settings.css">
+    <link rel="stylesheet" href="styles/back-button.css">
 </head>
 <body>
     <div class="app-container">
         <div class="app-header">
-            <button class="back-btn" onclick="history.back()"><i class="fas fa-chevron-left"></i> Suoni</button>
+            <button class="back-btn" onclick="history.back()">
+                <i class="fas fa-chevron-left"></i>
+                Suoni
+            </button>
             <h1>Suoneria</h1>
         </div>
         <div class="settings-content">
@@ -19,6 +23,32 @@
                 </div>
         </div>
     </div>
+
+    <!-- Contextual Navigation -->
+    <div class="contextual-nav">
+        <div class="contextual-nav-content">
+            <a href="sounds.html" class="contextual-nav-btn">
+                <i class="fas fa-volume-high"></i>
+                <span>Suoni</span>
+            </a>
+            <a href="ringtones.html" class="contextual-nav-btn active">
+                <i class="fas fa-music"></i>
+                <span>Suonerie</span>
+            </a>
+            <button class="contextual-nav-btn" onclick="showToast('Vibrazione')">
+                <i class="fas fa-mobile"></i>
+                <span>Vibrazione</span>
+            </button>
+            <button class="contextual-nav-btn" onclick="showToast('Notifiche')">
+                <i class="fas fa-bell"></i>
+                <span>Notifiche</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Gesture Bar -->
+    <div class="gesture-bar"></div>
+
     <script src="scripts/global.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {

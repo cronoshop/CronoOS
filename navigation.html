@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/cronoglass.css">
     <link rel="stylesheet" href="styles/navigation.css">
+    <link rel="stylesheet" href="styles/back-button.css">
 </head>
 <body>
     <div class="app-container">
@@ -20,6 +21,15 @@
                 <span class="wifi"><i class="fas fa-wifi"></i></span>
                 <span class="battery">100% <i class="fas fa-battery-full"></i></span>
             </div>
+        </div>
+
+        <!-- App Header -->
+        <div class="app-header">
+            <button class="back-btn" onclick="goHome()">
+                <i class="fas fa-chevron-left"></i>
+                Home
+            </button>
+            <h1>Navigation Demo</h1>
         </div>
 
         <!-- Navigation Demo Content -->
@@ -38,19 +48,6 @@
                     <i class="fas fa-layer-group"></i> Multitasking
                 </button>
             </div>
-        </div>
-
-        <!-- System Navigation Bar -->
-        <div class="system-nav-bar nav-glass">
-            <button class="nav-system-btn" onclick="goBack()" title="Indietro">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <button class="nav-system-btn nav-home" onclick="goHome()" title="Home">
-                <i class="fas fa-circle"></i>
-            </button>
-            <button class="nav-system-btn" onclick="showMultitasking()" title="Multitasking">
-                <i class="fas fa-layer-group"></i>
-            </button>
         </div>
 
         <!-- Multitasking Overlay -->
@@ -95,6 +92,31 @@
             </div>
         </div>
     </div>
+
+    <!-- Contextual Navigation -->
+    <div class="contextual-nav">
+        <div class="contextual-nav-content">
+            <a href="home.html" class="contextual-nav-btn">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="navigation.html" class="contextual-nav-btn active">
+                <i class="fas fa-compass"></i>
+                <span>Navigation</span>
+            </a>
+            <button class="contextual-nav-btn" onclick="showMultitasking()">
+                <i class="fas fa-layer-group"></i>
+                <span>Multitasking</span>
+            </button>
+            <button class="contextual-nav-btn" onclick="showToast('Impostazioni')">
+                <i class="fas fa-gear"></i>
+                <span>Impostazioni</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Gesture Bar -->
+    <div class="gesture-bar"></div>
 
     <script src="scripts/global.js"></script>
     <script src="scripts/navigation.js"></script>

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/instagram.css">
+    <link rel="stylesheet" href="styles/back-button.css">
 </head>
 <body>
     <div class="app-container">
@@ -23,6 +24,10 @@
 
         <!-- Instagram Header -->
         <div class="instagram-header">
+            <button class="back-btn" onclick="goHome()">
+                <i class="fas fa-chevron-left"></i>
+                Home
+            </button>
             <div class="logo">
                 <i class="fab fa-instagram"></i>
                 <span>Instagram</span>
@@ -186,25 +191,32 @@
             </div>
         </div>
 
-        <!-- Bottom Navigation -->
-        <div class="bottom-nav">
-            <button class="nav-btn active">
+    </div>
+
+    <!-- Contextual Navigation -->
+    <div class="contextual-nav">
+        <div class="contextual-nav-content">
+            <a href="instagram.html" class="contextual-nav-btn active">
                 <i class="fas fa-home"></i>
-            </button>
-            <button class="nav-btn">
+                <span>Home</span>
+            </a>
+            <button class="contextual-nav-btn" onclick="showToast('Cerca')">
                 <i class="fas fa-search"></i>
+                <span>Cerca</span>
             </button>
-            <button class="nav-btn">
+            <button class="contextual-nav-btn" onclick="showToast('Crea')">
                 <i class="fas fa-plus-square"></i>
+                <span>Crea</span>
             </button>
-            <button class="nav-btn">
-                <i class="fas fa-heart"></i>
-            </button>
-            <button class="nav-btn" onclick="goHome()">
+            <button class="contextual-nav-btn" onclick="showToast('Profilo')">
                 <i class="fas fa-user"></i>
+                <span>Profilo</span>
             </button>
         </div>
     </div>
+
+    <!-- Gesture Bar -->
+    <div class="gesture-bar"></div>
 
     <script src="scripts/global.js"></script>
     <script src="scripts/instagram.js"></script>

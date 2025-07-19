@@ -7,11 +7,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/settings.css">
+    <link rel="stylesheet" href="styles/back-button.css">
 </head>
 <body>
     <div class="app-container">
         <div class="app-header">
-            <button class="back-btn" onclick="history.back()"><i class="fas fa-chevron-left"></i> Generali</button>
+            <button class="back-btn" onclick="history.back()">
+                <i class="fas fa-chevron-left"></i>
+                Generali
+            </button>
             <h1>Inizializza</h1>
         </div>
         <div class="settings-content">
@@ -28,6 +32,32 @@
             </div>
         </div>
     </div>
+
+    <!-- Contextual Navigation -->
+    <div class="contextual-nav">
+        <div class="contextual-nav-content">
+            <a href="system.html" class="contextual-nav-btn">
+                <i class="fas fa-gear"></i>
+                <span>Generali</span>
+            </a>
+            <a href="reset.html" class="contextual-nav-btn active">
+                <i class="fas fa-refresh"></i>
+                <span>Reset</span>
+            </a>
+            <a href="last-updates.html" class="contextual-nav-btn">
+                <i class="fas fa-download"></i>
+                <span>Aggiornamenti</span>
+            </a>
+            <button class="contextual-nav-btn" onclick="showToast('Backup')">
+                <i class="fas fa-cloud"></i>
+                <span>Backup</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Gesture Bar -->
+    <div class="gesture-bar"></div>
+
     <script src="scripts/global.js"></script>
     <script>
         function resetSettings() {

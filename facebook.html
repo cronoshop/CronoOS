@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/facebook.css">
     <link rel="stylesheet" href="styles/cronoglass.css">
+    <link rel="stylesheet" href="styles/back-button.css">
 </head>
 <body>
     <div class="app-container">
@@ -24,6 +25,10 @@
 
         <!-- Facebook Header -->
         <div class="facebook-header">
+            <button class="back-btn" onclick="goHome()">
+                <i class="fas fa-chevron-left"></i>
+                Home
+            </button>
             <div class="logo">
                 <i class="fab fa-facebook"></i>
                 <span>facebook</span>
@@ -213,41 +218,32 @@
             </div>
         </div>
 
-        <!-- Bottom Navigation -->
-        <div class="bottom-nav">
-            <button class="nav-btn active">
+    </div>
+
+    <!-- Contextual Navigation -->
+    <div class="contextual-nav">
+        <div class="contextual-nav-content">
+            <a href="facebook.html" class="contextual-nav-btn active">
                 <i class="fas fa-home"></i>
-            </button>
-            <button class="nav-btn">
+                <span>Home</span>
+            </a>
+            <button class="contextual-nav-btn" onclick="showToast('Amici')">
                 <i class="fas fa-users"></i>
+                <span>Amici</span>
             </button>
-            <button class="nav-btn">
+            <button class="contextual-nav-btn" onclick="showToast('Video')">
                 <i class="fas fa-tv"></i>
+                <span>Video</span>
             </button>
-            <button class="nav-btn">
+            <button class="contextual-nav-btn" onclick="showToast('Marketplace')">
                 <i class="fas fa-store"></i>
-            </button>
-            <button class="nav-btn">
-                <i class="fas fa-bell"></i>
-            </button>
-            <button class="nav-btn" onclick="goHome()">
-                <i class="fas fa-bars"></i>
+                <span>Store</span>
             </button>
         </div>
     </div>
-    <!-- System Navigation -->
-        <div class="system-nav-bar nav-glass">
-            <button class="nav-system-btn" onclick="goBack()">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <button class="nav-system-btn nav-home" onclick="goHome()">
-                <i class="fas fa-circle"></i>
-            </button>
-            <button class="nav-system-btn" onclick="showMultitasking()">
-                <i class="fas fa-layer-group"></i>
-            </button>
-        </div>
-</div>
+
+    <!-- Gesture Bar -->
+    <div class="gesture-bar"></div>
 
     <script src="scripts/global.js"></script>
     <script src="scripts/facebook.js"></script>
