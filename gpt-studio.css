@@ -1,0 +1,256 @@
+/* GPT Studio Styles - CronoOS UI 3.0 */
+
+.app-container {
+    background: var(--bg-secondary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding-top: var(--status-bar-height);
+    padding-bottom: var(--tab-bar-height);
+}
+
+.app-header {
+    background: var(--bg-primary);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-bottom: 0.5px solid var(--separator-non-opaque);
+    position: sticky;
+    top: var(--status-bar-height);
+    z-index: 100;
+}
+
+.app-header h1 {
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-family: var(--font-family-display);
+}
+
+.gpt-studio-content {
+    flex: 1;
+    padding: var(--spacing-lg);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.input-area {
+    background: var(--bg-primary);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.input-area label {
+    display: block;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.input-area textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: var(--spacing-md);
+    border: 1px solid var(--separator-opaque);
+    border-radius: var(--radius-lg);
+    background: var(--bg-secondary);
+    font-family: var(--font-family);
+    font-size: 17px;
+    color: var(--text-primary);
+    resize: vertical;
+    outline: none;
+    transition: all var(--transition-fast);
+}
+
+.input-area textarea:focus {
+    border-color: var(--ios-blue);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+}
+
+.input-area textarea::placeholder {
+    color: var(--text-tertiary);
+}
+
+.input-area button {
+    background: var(--ios-blue);
+    color: #FFFFFF;
+    border: none;
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-md) var(--spacing-xl);
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    margin-top: var(--spacing-md);
+    width: 100%;
+}
+
+.input-area button:hover {
+    background: var(--ios-blue-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.input-area button:active {
+    transform: translateY(0);
+}
+
+.output-area {
+    background: var(--bg-primary);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-sm);
+    flex: 1;
+}
+
+.output-area label {
+    display: block;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+#responseOutput {
+    min-height: 200px;
+    padding: var(--spacing-md);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    font-size: 17px;
+    color: var(--text-primary);
+    line-height: 1.6;
+    white-space: pre-wrap;
+    border: 1px solid var(--separator-opaque);
+}
+
+/* Quick Actions */
+.quick-actions {
+    background: var(--bg-primary);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.quick-actions h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+}
+
+.quick-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+}
+
+.quick-action {
+    background: var(--fill-tertiary);
+    border: none;
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-md);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.quick-action:hover {
+    background: var(--fill-secondary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.quick-action i {
+    font-size: 20px;
+    color: var(--ios-blue);
+}
+
+/* Loading State */
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.loading::after {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--fill-tertiary);
+    border-top-color: var(--ios-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .app-header h1 {
+        font-size: 28px;
+    }
+    
+    .gpt-studio-content {
+        padding: var(--spacing-md);
+    }
+    
+    .quick-actions-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-sm);
+    }
+    
+    .quick-action {
+        padding: var(--spacing-sm);
+        font-size: 14px;
+    }
+    
+    .quick-action i {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .input-area,
+    .output-area,
+    .quick-actions {
+        padding: var(--spacing-md);
+    }
+    
+    .input-area textarea {
+        min-height: 100px;
+        font-size: 16px;
+    }
+    
+    #responseOutput {
+        min-height: 150px;
+        font-size: 16px;
+    }
+    
+    .quick-actions-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--spacing-xs);
+    }
+    
+    .quick-action {
+        padding: var(--spacing-sm) var(--spacing-xs);
+        font-size: 12px;
+    }
+    
+    .quick-action i {
+        font-size: 16px;
+    }
+}

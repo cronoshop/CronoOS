@@ -1,0 +1,178 @@
+/* Chrome App Styles - CronoOS UI 3.0 */
+
+.app-container {
+    background: var(--bg-secondary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding-top: var(--status-bar-height);
+    padding-bottom: var(--tab-bar-height);
+}
+
+.chrome-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: 12px var(--spacing-lg);
+    background: var(--bg-primary);
+    border-bottom: 0.5px solid var(--separator-non-opaque);
+}
+
+.chrome-header .nav-btn {
+    background: none;
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 16px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chrome-header .nav-btn:hover {
+    background: var(--fill-quaternary);
+}
+
+.chrome-header .nav-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.address-bar {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    background: var(--fill-tertiary);
+    border-radius: var(--radius-xl);
+    padding: 0 var(--spacing-md);
+    height: 44px;
+}
+
+.address-bar input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 17px;
+    color: var(--text-primary);
+    outline: none;
+}
+
+.address-bar input::placeholder {
+    color: var(--text-tertiary);
+}
+
+.address-bar i {
+    color: var(--text-tertiary);
+    font-size: 16px;
+}
+
+.web-content {
+    flex: 1;
+    background: var(--bg-primary);
+    overflow-y: auto;
+}
+
+.welcome-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    color: var(--text-secondary);
+    padding: var(--spacing-2xl);
+}
+
+.welcome-screen .fab.fa-chrome {
+    font-size: 80px;
+    color: #4285F4;
+    margin-bottom: var(--spacing-xl);
+}
+
+.welcome-screen h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.welcome-screen p {
+    font-size: 17px;
+    color: var(--text-secondary);
+}
+
+.iframe-content {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: var(--spacing-sm) 0;
+    background: var(--bg-primary);
+    border-top: 0.5px solid var(--separator-non-opaque);
+}
+
+.bottom-nav-btn {
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: var(--spacing-sm);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+}
+
+.bottom-nav-btn:hover {
+    background: var(--fill-quaternary);
+}
+
+.tab-counter {
+    border: 1px solid var(--text-secondary);
+    border-radius: var(--radius-xs);
+    padding: 2px 6px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .chrome-header {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    
+    .address-bar {
+        height: 40px;
+        padding: 0 var(--spacing-sm);
+    }
+    
+    .address-bar input {
+        font-size: 16px;
+    }
+    
+    .welcome-screen .fab.fa-chrome {
+        font-size: 64px;
+    }
+    
+    .welcome-screen h2 {
+        font-size: 20px;
+    }
+    
+    .welcome-screen p {
+        font-size: 15px;
+    }
+}

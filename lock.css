@@ -1,0 +1,239 @@
+/* Lock Screen Styles - CronoOS UI 3.0 */
+
+.lockscreen {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #000000;
+}
+
+.wallpaper-lock {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #007AFF 0%, #5AC8FA 100%);
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+
+.lock-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 120px var(--spacing-lg) 120px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.lock-time {
+    margin-bottom: auto;
+}
+
+.lock-time .time-display {
+    font-size: 76px;
+    font-weight: 200;
+    font-family: var(--font-family-display);
+    letter-spacing: -2px;
+    margin-bottom: var(--spacing-sm);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.lock-time .date-display {
+    font-size: 19px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Lock Screen Shortcuts */
+.lock-shortcuts {
+    position: absolute;
+    bottom: 160px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 var(--spacing-2xl);
+    z-index: 10;
+}
+
+.lock-shortcut {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.lock-shortcut:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.lock-shortcut:active {
+    transform: scale(0.95);
+}
+
+.unlock-prompt {
+    cursor: pointer;
+    padding: var(--spacing-lg);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: var(--radius-2xl);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 0 var(--spacing-xl);
+    transition: all var(--transition-normal);
+    animation: pulse 3s infinite;
+}
+
+.unlock-prompt:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.unlock-prompt i {
+    font-size: 20px;
+    margin-bottom: var(--spacing-sm);
+    display: block;
+}
+
+.unlock-prompt p {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+/* Font Styles */
+.font-default {
+    font-family: var(--font-family-display);
+    font-weight: 200;
+}
+
+.font-thin {
+    font-family: var(--font-family-display);
+    font-weight: 100;
+}
+
+.font-serif {
+    font-family: "Times New Roman", Times, serif;
+    font-weight: 300;
+}
+
+.font-mono {
+    font-family: "SF Mono", Monaco, monospace;
+    font-weight: 400;
+}
+
+.font-rounded {
+    font-family: var(--font-family-rounded);
+    font-weight: 300;
+}
+
+/* Always On Display */
+.aod-mode {
+    filter: brightness(0.3);
+}
+
+.aod-mode .lock-time .time-display {
+    font-size: 48px;
+}
+
+.aod-mode .lock-shortcuts,
+.aod-mode .unlock-prompt {
+    opacity: 0.5;
+}
+
+/* Unlock Animation */
+.lockscreen.unlocking {
+    animation: unlockFade 0.5s ease-out forwards;
+}
+
+@keyframes unlockFade {
+    from {
+        opacity: 1;
+        filter: brightness(1);
+    }
+    to {
+        opacity: 0;
+        filter: brightness(1.5);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: translateY(0);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translateY(-4px);
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .lock-time .time-display {
+        font-size: 64px;
+    }
+    
+    .lock-shortcuts {
+        padding: 0 var(--spacing-xl);
+        bottom: 140px;
+    }
+    
+    .lock-shortcut {
+        width: 44px;
+        height: 44px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .lock-content {
+        padding: 100px var(--spacing-md) 100px;
+    }
+    
+    .lock-time .time-display {
+        font-size: 56px;
+    }
+    
+    .lock-time .date-display {
+        font-size: 17px;
+    }
+    
+    .lock-shortcuts {
+        padding: 0 var(--spacing-lg);
+        bottom: 120px;
+    }
+    
+    .lock-shortcut {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+    
+    .unlock-prompt {
+        margin: 0 var(--spacing-lg);
+        padding: var(--spacing-md);
+    }
+    
+    .unlock-prompt p {
+        font-size: 15px;
+    }
+}

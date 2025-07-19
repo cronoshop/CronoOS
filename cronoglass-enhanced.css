@@ -1,0 +1,299 @@
+/* Enhanced CronoGlass Design System - CronoOS UI 3.0 */
+
+:root {
+    /* Enhanced Glass Variables */
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-bg-dark: rgba(0, 0, 0, 0.2);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-border-dark: rgba(255, 255, 255, 0.1);
+    --glass-blur: 25px;
+    --glass-saturate: 180%;
+    
+    /* Enhanced Shadows */
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    --glass-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.15);
+    --glass-shadow-active: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Base Glass Element */
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--glass-shadow);
+    transition: all var(--transition-normal);
+}
+
+.glass:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--glass-shadow-hover);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Enhanced Glass Panel */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(30px) saturate(200%);
+    -webkit-backdrop-filter: blur(30px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: var(--radius-2xl);
+    box-shadow: 
+        var(--glass-shadow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all var(--transition-normal);
+}
+
+.glass-panel:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: var(--glass-shadow-hover);
+    background: rgba(255, 255, 255, 0.18);
+}
+
+/* Glass Button */
+.glass-btn {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-md) var(--spacing-lg);
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 17px;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    text-decoration: none;
+    box-shadow: var(--glass-shadow);
+}
+
+.glass-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--glass-shadow-hover);
+    background: rgba(255, 255, 255, 0.2);
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.glass-btn:active {
+    transform: translateY(0);
+    box-shadow: var(--glass-shadow-active);
+    transition: transform 0.1s ease;
+}
+
+/* Glass Card */
+.glass-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-lg);
+    box-shadow: var(--glass-shadow);
+    transition: all var(--transition-normal);
+}
+
+.glass-card:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: var(--glass-shadow-hover);
+}
+
+/* Glass Input */
+.glass-input {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-md) var(--spacing-lg);
+    color: #FFFFFF;
+    font-size: 17px;
+    outline: none;
+    transition: all var(--transition-normal);
+    width: 100%;
+}
+
+.glass-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.glass-input:focus {
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+/* Glass Modal */
+.glass-modal {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-2xl);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Glass Navigation */
+.glass-nav {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-top: 0.5px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+/* Glass Toggle */
+.glass-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-full);
+    transition: all var(--transition-normal);
+}
+
+.glass-toggle.active {
+    background: rgba(0, 122, 255, 0.3);
+    border-color: rgba(0, 122, 255, 0.5);
+    box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+}
+
+/* Enhanced Animations */
+@keyframes glassShimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+@keyframes glassFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+@keyframes glassPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+.glass-shimmer {
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    background-size: 200% 100%;
+    animation: glassShimmer 2s infinite;
+}
+
+.glass-float {
+    animation: glassFloat 3s ease-in-out infinite;
+}
+
+.glass-pulse {
+    animation: glassPulse 2s ease-in-out infinite;
+}
+
+/* Spring Animation */
+@keyframes springBounce {
+    0% { transform: scale(1) translateY(0); }
+    50% { transform: scale(1.05) translateY(-4px); }
+    100% { transform: scale(1) translateY(0); }
+}
+
+.spring-animation {
+    animation: springBounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* iOS-style Glass Effects */
+.ios-glass {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 0.5px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-xl);
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.ios-glass-dark {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 0.5px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-xl);
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive Glass */
+@media (max-width: 768px) {
+    .glass-panel {
+        border-radius: var(--radius-xl);
+    }
+    
+    .glass-btn {
+        padding: 12px var(--spacing-lg);
+        font-size: 16px;
+    }
+    
+    .glass-input {
+        padding: 12px var(--spacing-md);
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .glass {
+        border-radius: var(--radius-lg);
+    }
+    
+    .glass-panel {
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-md);
+    }
+    
+    .glass-btn {
+        padding: 10px var(--spacing-md);
+        font-size: 15px;
+    }
+}
+
+/* Dark Mode Adaptations */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --glass-bg: rgba(0, 0, 0, 0.2);
+        --glass-bg-dark: rgba(0, 0, 0, 0.3);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --glass-border-dark: rgba(255, 255, 255, 0.05);
+    }
+}
+
+[data-theme="dark"] {
+    --glass-bg: rgba(0, 0, 0, 0.2);
+    --glass-bg-dark: rgba(0, 0, 0, 0.3);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-border-dark: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .glass-nav {
+    background: rgba(0, 0, 0, 0.8);
+    border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .ios-glass {
+    background: rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}

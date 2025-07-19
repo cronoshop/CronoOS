@@ -1,0 +1,145 @@
+/* Phone Mockup Styles - CronoOS UI 3.0 */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-lg);
+    overflow: hidden;
+}
+
+.phone-mockup {
+    position: relative;
+    width: 385px;
+    height: 820px;
+    margin: 0 auto;
+    filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.4));
+    transition: transform var(--transition-normal);
+}
+
+.phone-frame {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(145deg, #e2e2e2, #c8c8c8);
+    border-radius: 48px;
+    padding: 8px;
+    box-shadow: 
+        inset 0 1px 1px rgba(255, 255, 255, 0.6),
+        inset 0 -1px 1px rgba(0, 0, 0, 0.2),
+        0 0 0 1px #b0b0b0;
+    overflow: hidden;
+}
+
+.phone-screen {
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    border-radius: 40px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#osFrame {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 40px;
+    background: #000000;
+}
+
+.phone-button {
+    position: absolute;
+    background: linear-gradient(145deg, #d3d3d3, #b4b4b4);
+    border-radius: var(--radius-xs);
+    cursor: pointer;
+    transition: all 0.1s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.phone-button:hover {
+    background: linear-gradient(145deg, #e0e0e0, #c0c0c0);
+}
+
+.phone-button:active {
+    transform: translateX(0.5px);
+}
+
+.power {
+    right: -4px;
+    top: 130px;
+    width: 4px;
+    height: 65px;
+}
+
+.volume-up {
+    left: -4px;
+    top: 150px;
+    width: 4px;
+    height: 50px;
+}
+
+.volume-down {
+    left: -4px;
+    top: 210px;
+    width: 4px;
+    height: 50px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .phone-mockup {
+        transform: scale(0.9);
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 0;
+    }
+    
+    .phone-mockup {
+        transform: scale(0.8);
+        height: 100vh;
+        width: 100vw;
+        border-radius: 0;
+    }
+    
+    .phone-frame {
+        border-radius: 0;
+        padding: 0;
+    }
+    
+    .phone-screen {
+        border-radius: 0;
+    }
+    
+    #osFrame {
+        border-radius: 0;
+    }
+    
+    .phone-button {
+        display: none;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .phone-mockup {
+        transition: none;
+    }
+    
+    .phone-button {
+        transition: none;
+    }
+}
