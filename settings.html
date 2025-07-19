@@ -56,35 +56,34 @@
             </div>
         </div>
 
-        <!-- Global Navigation -->
-        <div class="global-navbar glass-nav">
-            <a href="home.html" class="navbar-btn" data-page="home">
-                <i class="fas fa-home"></i>
-                <span>Home</span>
-            </a>
-            <a href="playstore.html" class="navbar-btn" data-page="apps">
-                <i class="fas fa-th"></i>
-                <span>App</span>
-            </a>
-            <a href="settings.html" class="navbar-btn active" data-page="settings">
-                <i class="fas fa-gear"></i>
-                <span>Impostazioni</span>
-            </a>
-            <a href="system.html" class="navbar-btn" data-page="info">
-                <i class="fas fa-info-circle"></i>
-                <span>Info</span>
-            </a>
-            <a href="playstore.html" class="navbar-btn" data-page="store">
-                <i class="fas fa-store"></i>
-                <span>Store</span>
-            </a>
+        <!-- Contextual Navigation -->
+        <div class="contextual-nav">
+            <div class="contextual-nav-content">
+                <a href="settings.html" class="contextual-nav-btn active">
+                    <i class="fas fa-gear"></i>
+                    <span>Generali</span>
+                </a>
+                <a href="display.html" class="contextual-nav-btn">
+                    <i class="fas fa-sun"></i>
+                    <span>Display</span>
+                </a>
+                <a href="battery.html" class="contextual-nav-btn">
+                    <i class="fas fa-battery-full"></i>
+                    <span>Batteria</span>
+                </a>
+                <a href="account.html" class="contextual-nav-btn">
+                    <i class="fas fa-user"></i>
+                    <span>Account</span>
+                </a>
+            </div>
         </div>
     </div>
     
-    <link rel="stylesheet" href="styles/navbar.css">
-    <link rel="stylesheet" href="styles/cronoglass-enhanced.css">
+    <!-- Gesture Bar -->
+    <div class="gesture-bar"></div>
+
+    <link rel="stylesheet" href="styles/back-button.css">
     <script src="scripts/settings.js"></script>
-    <script src="scripts/global-enhanced.js"></script>
     <script src="scripts/global.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {

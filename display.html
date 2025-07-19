@@ -13,7 +13,10 @@
 
     <div class="app-container">
         <div class="app-header">
-            <button class="back-btn" onclick="history.back()"><i class="fas fa-chevron-left"></i> Impostazioni</button>
+            <button class="back-btn" onclick="history.back()">
+                <i class="fas fa-chevron-left"></i>
+                Impostazioni
+            </button>
             <h1>Schermo e Luminosità</h1>
         </div>
         <div class="settings-content">
@@ -31,6 +34,33 @@
             </div>
         </div>
     </div>
+
+    <!-- Contextual Navigation -->
+    <div class="contextual-nav">
+        <div class="contextual-nav-content">
+            <a href="settings.html" class="contextual-nav-btn">
+                <i class="fas fa-gear"></i>
+                <span>Generali</span>
+            </a>
+            <a href="display.html" class="contextual-nav-btn active">
+                <i class="fas fa-sun"></i>
+                <span>Display</span>
+            </a>
+            <a href="battery.html" class="contextual-nav-btn">
+                <i class="fas fa-battery-full"></i>
+                <span>Batteria</span>
+            </a>
+            <a href="account.html" class="contextual-nav-btn">
+                <i class="fas fa-user"></i>
+                <span>Account</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Gesture Bar -->
+    <div class="gesture-bar"></div>
+
+    <link rel="stylesheet" href="styles/back-button.css">
     <script src="scripts/global.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -48,8 +78,13 @@
             // Gestione Modalità Scura
             darkModeToggle.addEventListener('change', function() {
                 const theme = this.checked ? 'dark' : 'light';
-                document.documentElement.setAttribute('data-theme', theme);
+                if (theme === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                }
                 localStorage.setItem('crono_theme', theme);
+                showToast(this.checked ? 'Modalità scura attivata' : 'Modalità chiara attivata');
             });
 
             // Gestione Filtro Luce Blu

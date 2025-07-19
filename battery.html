@@ -3,102 +3,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account - Impostazioni</title>
+    <title>Batteria - Impostazioni</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/settings.css">
+    <link rel="stylesheet" href="styles/back-button.css">
     <style>
-        .profile-header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 24px;
-            gap: 16px;
-        }
-        .profile-avatar-large {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            background: #e5e5ea;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            color: var(--text-secondary-light);
-            position: relative;
-            cursor: pointer;
-        }
-        .profile-avatar-large img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-        .profile-avatar-large:hover::after {
-            content: 'Cambia';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0,0,0,0.5);
-            color: white;
-            font-size: 12px;
-            padding: 4px;
-            border-bottom-left-radius: 45px;
-            border-bottom-right-radius: 45px;
+        .battery-status {
+            background: var(--bg-primary);
+            border-radius: var(--radius-xl);
+            margin: 0 var(--spacing-md) var(--spacing-lg);
+            padding: var(--spacing-xl);
             text-align: center;
+            box-shadow: var(--shadow-sm);
         }
-        .form-row input {
+        
+        .battery-icon {
+            width: 80px;
+            height: 40px;
+            border: 2px solid var(--ios-green);
+            border-radius: 6px;
+            position: relative;
+            margin: 0 auto var(--spacing-md);
+            background: var(--bg-secondary);
+        }
+        
+        .battery-icon::after {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 16px;
+            background: var(--ios-green);
+            border-radius: 0 2px 2px 0;
+        }
+        
+        .battery-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--ios-green), #4CAF50);
+            border-radius: 4px;
             width: 100%;
-            text-align: right;
+            transition: width 0.3s ease;
+        }
+        
+        .battery-percentage {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+            font-family: var(--font-family-display);
+        }
+        
+        .battery-status-text {
+            font-size: 17px;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .battery-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .battery-detail {
+            text-align: center;
+            padding: var(--spacing-md);
+            background: var(--fill-tertiary);
+            border-radius: var(--radius-lg);
+        }
+        
+        .battery-detail-value {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        
+        .battery-detail-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        
+        .battery-chart {
+            background: var(--bg-primary);
+            border-radius: var(--radius-xl);
+            margin: 0 var(--spacing-md) var(--spacing-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .chart-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .usage-bar {
+            height: 8px;
+            background: var(--fill-tertiary);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .usage-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--ios-blue), var(--ios-purple));
+            border-radius: var(--radius-full);
+            width: 65%;
+            transition: width 0.3s ease;
+        }
+        
+        .usage-time {
+            display: flex;
+            justify-content: space-between;
+            font-size: 15px;
+            color: var(--text-secondary);
         }
     </style>
 </head>
 <body>
     <div class="app-container">
         <div class="app-header">
-            <button class="back-btn" onclick="history.back()"><i class="fas fa-chevron-left"></i> Impostazioni</button>
-            <h1>Account</h1>
+            <button class="back-btn" onclick="history.back()">
+                <i class="fas fa-chevron-left"></i>
+                Impostazioni
+            </button>
+            <h1>Batteria</h1>
         </div>
+        
         <div class="settings-content">
-            <input type="file" id="avatarInput" accept="image/*" style="display:none;">
-
-            <div class="profile-header">
-                <div class="profile-avatar-large" id="profileAvatarLarge" onclick="document.getElementById('avatarInput').click()">
-                    <img id="profileImage" src="" style="display:none;" />
-                    <i id="profileIcon" class="fas fa-user"></i>
+            <!-- Battery Status -->
+            <div class="battery-status">
+                <div class="battery-icon">
+                    <div class="battery-fill"></div>
+                </div>
+                <div class="battery-percentage">100%</div>
+                <div class="battery-status-text">Completamente carica</div>
+                
+                <div class="battery-details">
+                    <div class="battery-detail">
+                        <div class="battery-detail-value">8h 32m</div>
+                        <div class="battery-detail-label">Tempo rimanente</div>
+                    </div>
+                    <div class="battery-detail">
+                        <div class="battery-detail-value">2h 15m</div>
+                        <div class="battery-detail-label">Ultima carica</div>
+                    </div>
                 </div>
             </div>
 
+            <!-- Battery Settings -->
             <div class="settings-group">
-                <div class="form-row">
-                    <label>Nome</label>
-                    <input type="text" id="profileNameInput" placeholder="Il tuo nome">
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-title">Modalità Risparmio Energetico</div>
+                        <div class="setting-description">Riduce le prestazioni per prolungare la durata della batteria.</div>
+                    </div>
+                    <div class="setting-accessory">
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="powerSavingToggle">
+                            <label for="powerSavingToggle"></label>
+                        </div>
+                    </div>
                 </div>
-                 <div class="form-row">
-                    <label>Email</label>
-                    <input type="email" id="profileEmailInput" placeholder="La tua email">
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-title">Carica Ottimizzata</div>
+                        <div class="setting-description">Riduce l'invecchiamento della batteria.</div>
+                    </div>
+                    <div class="setting-accessory">
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="optimizedChargingToggle" checked>
+                            <label for="optimizedChargingToggle"></label>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="settings-group">
-                 <div class="setting-item" onclick="showToast('Funzione non ancora disponibile')">
-                    <div class="setting-info"><div class="setting-title">Collega Account Google</div></div>
-                    <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
+            <!-- Battery Usage Chart -->
+            <div class="battery-chart">
+                <div class="chart-title">Utilizzo Batteria</div>
+                <div class="usage-bar">
+                    <div class="usage-fill"></div>
+                </div>
+                <div class="usage-time">
+                    <span>Ultime 24 ore</span>
+                    <span>6h 45m di utilizzo</span>
                 </div>
             </div>
 
+            <!-- Battery Health -->
             <div class="settings-group">
-                <div class="setting-item" onclick="saveProfile()">
-                    <div class="setting-info" style="color: var(--ios-blue); text-align: center; width: 100%;">Salva Modifiche</div>
+                <div class="setting-item" onclick="showToast('Stato batteria: Ottimale (100% capacità massima)')">
+                    <div class="setting-info">
+                        <div class="setting-title">Stato Batteria</div>
+                        <div class="setting-description">Capacità massima: 100%</div>
+                    </div>
+                    <div class="setting-accessory">
+                        <span class="accessory-text">Ottimale</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Contextual Navigation -->
+    <div class="contextual-nav">
+        <div class="contextual-nav-content">
+            <a href="settings.html" class="contextual-nav-btn">
+                <i class="fas fa-gear"></i>
+                <span>Generali</span>
+            </a>
+            <a href="display.html" class="contextual-nav-btn">
+                <i class="fas fa-sun"></i>
+                <span>Display</span>
+            </a>
+            <a href="battery.html" class="contextual-nav-btn active">
+                <i class="fas fa-battery-full"></i>
+                <span>Batteria</span>
+            </a>
+            <a href="account.html" class="contextual-nav-btn">
+                <i class="fas fa-user"></i>
+                <span>Account</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Gesture Bar -->
+    <div class="gesture-bar"></div>
+
     <script src="scripts/global.js"></script>
-    <script src="scripts/settings.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', loadProfile);
+        document.addEventListener('DOMContentLoaded', () => {
+            const powerSavingToggle = document.getElementById('powerSavingToggle');
+            const optimizedChargingToggle = document.getElementById('optimizedChargingToggle');
+
+            // Load saved settings
+            powerSavingToggle.checked = localStorage.getItem('crono_power_saving') === 'true';
+            optimizedChargingToggle.checked = localStorage.getItem('crono_optimized_charging') !== 'false';
+
+            powerSavingToggle.addEventListener('change', function() {
+                localStorage.setItem('crono_power_saving', this.checked);
+                showToast(this.checked ? 'Risparmio energetico attivato' : 'Risparmio energetico disattivato');
+            });
+
+            optimizedChargingToggle.addEventListener('change', function() {
+                localStorage.setItem('crono_optimized_charging', this.checked);
+                showToast(this.checked ? 'Carica ottimizzata attivata' : 'Carica ottimizzata disattivata');
+            });
+        });
     </script>
 </body>
 </html>

@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CronoOS 2.1</title>
+    <title>CronoOS 3.3</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/home.css">
-    <link rel="stylesheet" href="styles/navigation.css">
-    <link rel="stylesheet" href="styles/global-enhanced.css">
+    <link rel="stylesheet" href="styles/back-button.css">
 </head>
 <body>
     <div class="home-screen-container">
@@ -67,51 +66,16 @@
                 </div>
         </div>
 
-        <div class="dock-container">
-            <!-- System Navigation Bar -->
-            <div class="system-nav-bar">
-                <button class="nav-system-btn" onclick="goBack()" title="Indietro">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="nav-system-btn nav-home" onclick="goHome()" title="Home">
-                    <i class="fas fa-circle"></i>
-                </button>
-                <button class="nav-system-btn" onclick="showMultitasking()" title="Multitasking">
-                    <i class="fas fa-layer-group"></i>
-                </button>
-            </div>
-            
-            <div class="dock" id="dock">
-                <!-- Dock apps will be dynamically loaded here -->
-                 </div>
-        </div>
-
-        <!-- Global Navigation -->
-        <div class="global-navbar glass-nav">
-            <a href="home.html" class="navbar-btn home active" data-page="home">
-                <i class="fas fa-home"></i>
-                <span>Home</span>
-            </a>
-            <a href="playstore.html" class="navbar-btn" data-page="apps">
-                <i class="fas fa-th"></i>
-                <span>App</span>
-            </a>
-            <a href="settings.html" class="navbar-btn" data-page="settings">
-                <i class="fas fa-gear"></i>
-                <span>Impostazioni</span>
-            </a>
-            <a href="system.html" class="navbar-btn" data-page="info">
-                <i class="fas fa-info-circle"></i>
-                <span>Info</span>
-            </a>
-            <a href="playstore.html" class="navbar-btn" data-page="store">
-                <i class="fas fa-store"></i>
-                <span>Store</span>
-            </a>
+        <!-- Floating Dock -->
+        <div class="floating-dock" id="dock">
+            <!-- Dock apps will be dynamically loaded here -->
         </div>
     </div>
+
+    <!-- Gesture Bar -->
+    <div class="gesture-bar" onclick="showMultitasking()"></div>
     
-    <script src="scripts/global-enhanced.js"></script>
+    <script src="scripts/global.js"></script>
     <script src="scripts/home.js"></script>
 </body>
 </html>

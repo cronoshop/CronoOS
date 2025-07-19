@@ -36,11 +36,27 @@
 <body>
     <div class="app-container">
         <div class="app-header">
-            <button class="back-btn" onclick="history.back()"><i class="fas fa-chevron-left"></i> Generali</button>
+            <button class="back-btn" onclick="history.back()">
+                <i class="fas fa-chevron-left"></i>
+                Generali
+            </button>
             <h1>Aggiornamenti</h1>
         </div>
         <div class="settings-content update-log">
 
+            <div class="release-notes">
+                <h2>CronoOS 3.3 (Navigation & UI Fix Update)</h2>
+                <ul>
+                    <li>Rimossa navigazione universale e sostituita con navigazioni contestuali per ogni app.</li>
+                    <li>Redesign completo dei pulsanti "Indietro" con stile CronoUI 3.0 unificato.</li>
+                    <li>Correzione bug nella sezione Batteria - ora funziona correttamente con stato batteria e modalità risparmio energetico.</li>
+                    <li>Dark Mode universale completamente funzionante con supporto per preferenze di sistema e toggle manuale.</li>
+                    <li>Redesign della Home Screen con dock galleggiante, widget glassmorphism e animazioni fluide.</li>
+                    <li>Aggiunta Gesture Bar iOS-style per navigazione touch e multitasking.</li>
+                    <li>Miglioramenti alle transizioni e animazioni per un'esperienza più fluida.</li>
+                    <li>Ottimizzazione responsive per tutti i dispositivi e risoluzioni.</li>
+                </ul>
+            </div>
             <div class="release-notes">
                 <h2>CronoOS 3.1.2 (App Suite & Performance Boost)</h2>
                 <ul>
@@ -180,6 +196,8 @@
             </div>
         </div>
     </div>
+
+    <link rel="stylesheet" href="styles/back-button.css">
     <script src="scripts/global.js"></script>
 </body>
 </html>

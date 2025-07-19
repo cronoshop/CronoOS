@@ -2,6 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     initializeSystem();
+    initializeDarkMode();
     updateTime();
     setInterval(updateTime, 1000); // Aggiorna l'ora ogni secondo
 });
@@ -9,7 +10,32 @@ document.addEventListener('DOMContentLoaded', function() {
 function initializeSystem() {
     loadSettings();
     loadCustomWallpaper();
-    console.log('CronoOS 2.4 Initialized');
+    console.log('CronoOS 3.3 Initialized');
+}
+
+/**
+ * Inizializza il dark mode dal localStorage o dalle preferenze di sistema
+ */
+function initializeDarkMode() {
+    const savedTheme = localStorage.getItem('crono_theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+        document.documentElement.removeAttribute('data-theme');
+    }
+    
+    // Ascolta i cambiamenti delle preferenze di sistema
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        if (!localStorage.getItem('crono_theme')) {
+            if (e.matches) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+            }
+        }
+    });
 }
 
 /**
@@ -97,65 +123,71 @@ function loadSettings() {
     } else {
         document.documentElement.removeAttribute('data-theme');
     }
-}
-
-// Gestione degli errori generici
-window.addEventListener('error', function(e) {
-    console.error('CronoOS Error:', e.error);
-    showToast('Si è verificato un errore di sistema');
-});
-// Global JavaScript Functions - CronoOS Phoenix Pro
-
-document.addEventListener('DOMContentLoaded', function() {
-    loadAndApplySettings();
-    updateTime();
-    setInterval(updateTime, 1000);
-});
-
-function loadAndApplySettings() {
-    // Applica tema (dark/light)
-    const theme = localStorage.getItem('crono_theme') || 'light';
-    document.documentElement.setAttribute('data-theme', theme);
-
-    // Applica filtro luce blu
-    const blueLight = localStorage.getItem('crono_bluelight') === 'on';
-    const overlay = document.getElementById('blue-light-filter-overlay');
-    if(overlay) overlay.classList.toggle('active', blueLight);
-
-    // Applica sfondo
-    const wallpaper = localStorage.getItem('crono_wallpaper');
-    if (wallpaper) {
-        document.documentElement.style.setProperty('--custom-wallpaper', `url(${wallpaper})`);
-    }
-
+    
     // Applica impostazioni accessibilità
     const largeText = localStorage.getItem('crono_large_text') === 'true';
     const boldText = localStorage.getItem('crono_bold_text') === 'true';
     document.body.classList.toggle('large-text', largeText);
     document.body.classList.toggle('bold-text', boldText);
+    
+    // Applica filtro luce blu
+    const blueLight = localStorage.getItem('crono_bluelight') === 'on';
+    const overlay = document.getElementById('blue-light-filter-overlay');
+    if (overlay) overlay.classList.toggle('active', blueLight);
 }
+
+/**
+ * Gestisce il multitasking
+ */
+function showMultitasking() {
+    const overlay = document.getElementById('multitaskingOverlay');
+    if (overlay) {
+        overlay.classList.add('active');
+        showToast('Multitasking aperto');
+    } else {
+        showToast('Multitasking - Funzione in sviluppo');
+    }
+}
+
+function hideMultitasking() {
+    const overlay = document.getElementById('multitaskingOverlay');
+    if (overlay) {
+        overlay.classList.remove('active');
+    }
+}
+
+// Gestione degli errori generici
+window.addEventListener('error', function(e) {
+    console.error('CronoOS 3.3 Error:', e.error);
+    showToast('Si è verificato un errore di sistema');
+});
+
 
 function navigateTo(page) {
     window.location.href = page;
 }
 
-function updateTime() {
-    const now = new Date();
-    const timeString = now.toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit', hour12: false });
-    document.querySelectorAll('.time, #statusTime').forEach(el => el.textContent = timeString);
-}
-
-function showToast(message) {
-    const existingToast = document.querySelector('.toast-notification');
-    if (existingToast) existingToast.remove();
-
-    const toast = document.createElement('div');
-    toast.className = 'toast-notification';
-    toast.textContent = message;
-    document.body.appendChild(toast);
-
-    setTimeout(() => {
-        toast.style.opacity = '0';
-        setTimeout(() => toast.remove(), 500);
-    }, 2500);
-}
+// Gesture bar interaction
+document.addEventListener('DOMContentLoaded', function() {
+    const gestureBar = document.querySelector('.gesture-bar');
+    if (gestureBar) {
+        let startY = 0;
+        let startTime = 0;
+        
+        gestureBar.addEventListener('touchstart', function(e) {
+            startY = e.touches[0].clientY;
+            startTime = Date.now();
+        });
+        
+        gestureBar.addEventListener('touchend', function(e) {
+            const endY = e.changedTouches[0].clientY;
+            const deltaY = startY - endY;
+            const deltaTime = Date.now() - startTime;
+            
+            // Swipe up gesture
+            if (deltaY > 30 && deltaTime < 300) {
+                showMultitasking();
+            }
+        });
+    }
+});
