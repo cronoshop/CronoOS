@@ -24,10 +24,16 @@ class FileManagerApp {
         });
 
         // View toggle
-        document.getElementById('viewBtn').addEventListener('click', () => this.toggleView());
+        const viewBtn = document.getElementById('viewBtn');
+        if (viewBtn) {
+            viewBtn.addEventListener('click', () => this.toggleView());
+        }
 
         // Search
-        document.getElementById('searchBtn').addEventListener('click', () => this.openSearch());
+        const searchBtn = document.getElementById('searchBtn');
+        if (searchBtn) {
+            searchBtn.addEventListener('click', () => this.openSearch());
+        }
 
         // Context menu
         document.addEventListener('click', (e) => {
@@ -132,6 +138,8 @@ class FileManagerApp {
 
     renderFileList() {
         const fileList = document.getElementById('fileList');
+        if (!fileList) return;
+        
         const sortedFiles = this.getSortedFiles();
 
         fileList.innerHTML = '';
@@ -149,7 +157,7 @@ class FileManagerApp {
 
         const sizeText = file.type === 'folder' ? 
             'Cartella' : 
-            cronos.formatFileSize(file.size);
+            this.formatFileSize(file.size);
 
         const dateText = file.modified.toLocaleDateString('it-IT', {
             day: '2-digit',
@@ -213,8 +221,13 @@ class FileManagerApp {
         });
 
         this.renderFileList();
-        cronos.showToast(`Ordinamento per ${this.getSortLabel(sortBy)}`, 'info');
-        cronos.playSound('click');
+        
+        if (window.cronos) {
+            cronos.showToast(`Ordinamento per ${this.getSortLabel(sortBy)}`, 'info');
+            cronos.playSound('click');
+        } else {
+            showToast(`Ordinamento per ${this.getSortLabel(sortBy)}`);
+        }
     }
 
     getSortLabel(sortBy) {
@@ -230,46 +243,70 @@ class FileManagerApp {
         this.viewMode = this.viewMode === 'list' ? 'grid' : 'list';
         
         const viewBtn = document.getElementById('viewBtn');
-        const icon = viewBtn.querySelector('i');
-        
-        if (this.viewMode === 'grid') {
-            icon.className = 'fas fa-list';
-            document.getElementById('fileList').classList.add('grid-view');
-        } else {
-            icon.className = 'fas fa-th';
-            document.getElementById('fileList').classList.remove('grid-view');
+        if (viewBtn) {
+            const icon = viewBtn.querySelector('i');
+            
+            if (this.viewMode === 'grid') {
+                icon.className = 'fas fa-list';
+                document.getElementById('fileList').classList.add('grid-view');
+            } else {
+                icon.className = 'fas fa-th';
+                document.getElementById('fileList').classList.remove('grid-view');
+            }
         }
 
-        cronos.showToast(`Vista ${this.viewMode === 'list' ? 'lista' : 'griglia'}`, 'info');
-        cronos.playSound('click');
+        if (window.cronos) {
+            cronos.showToast(`Vista ${this.viewMode === 'list' ? 'lista' : 'griglia'}`, 'info');
+            cronos.playSound('click');
+        } else {
+            showToast(`Vista ${this.viewMode === 'list' ? 'lista' : 'griglia'}`);
+        }
     }
 
     openFile(file) {
         if (file.type === 'folder') {
             this.openFolder(file.name.toLowerCase());
         } else {
-            cronos.showToast(`Apertura ${file.name}...`, 'info');
-            cronos.playSound('click');
+            if (window.cronos) {
+                cronos.showToast(`Apertura ${file.name}...`, 'info');
+                cronos.playSound('click');
+            } else {
+                showToast(`Apertura ${file.name}...`);
+            }
             
             // Simulate file opening
             setTimeout(() => {
-                cronos.showToast('File aperto!', 'success');
+                if (window.cronos) {
+                    cronos.showToast('File aperto!', 'success');
+                } else {
+                    showToast('File aperto!');
+                }
             }, 1000);
         }
     }
 
     openFolder(folderName) {
-        cronos.showToast(`Apertura cartella ${folderName}...`, 'info');
-        cronos.playSound('click');
+        if (window.cronos) {
+            cronos.showToast(`Apertura cartella ${folderName}...`, 'info');
+            cronos.playSound('click');
+        } else {
+            showToast(`Apertura cartella ${folderName}...`);
+        }
         
         // Simulate folder navigation
         setTimeout(() => {
-            cronos.showToast('Cartella aperta!', 'success');
+            if (window.cronos) {
+                cronos.showToast('Cartella aperta!', 'success');
+            } else {
+                showToast('Cartella aperta!');
+            }
         }, 500);
     }
 
     showContextMenu(event, fileElement) {
         const contextMenu = document.getElementById('contextMenu');
+        if (!contextMenu) return;
+        
         const fileId = fileElement.dataset.fileId;
         this.selectedFile = this.files.find(f => f.id === fileId);
 
@@ -280,13 +317,26 @@ class FileManagerApp {
 
     hideContextMenu() {
         const contextMenu = document.getElementById('contextMenu');
-        contextMenu.classList.remove('active');
+        if (contextMenu) {
+            contextMenu.classList.remove('active');
+        }
         this.selectedFile = null;
     }
 
     openSearch() {
-        cronos.showToast('Ricerca file - Funzione in sviluppo', 'info');
-        cronos.playSound('click');
+        if (window.cronos) {
+            cronos.showToast('Ricerca file - Funzione in sviluppo', 'info');
+            cronos.playSound('click');
+        } else {
+            showToast('Ricerca file - Funzione in sviluppo');
+        }
+    }
+
+    formatFileSize(bytes) {
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        if (bytes === 0) return '0 Bytes';
+        const i = Math.floor(Math.log(bytes) / Math.log(1024));
+        return Math.round(bytes / Math.pow(1024, i) * 100) / 100 + ' ' + sizes[i];
     }
 }
 
@@ -300,7 +350,11 @@ function openFile() {
 
 function shareFile() {
     if (window.fileManager && window.fileManager.selectedFile) {
-        cronos.showToast(`Condivisione ${window.fileManager.selectedFile.name}...`, 'info');
+        if (window.cronos) {
+            cronos.showToast(`Condivisione ${window.fileManager.selectedFile.name}...`, 'info');
+        } else {
+            showToast(`Condivisione ${window.fileManager.selectedFile.name}...`);
+        }
         window.fileManager.hideContextMenu();
     }
 }
@@ -311,7 +365,11 @@ function renameFile() {
         if (newName && newName.trim()) {
             window.fileManager.selectedFile.name = newName.trim();
             window.fileManager.renderFileList();
-            cronos.showToast('File rinominato!', 'success');
+            if (window.cronos) {
+                cronos.showToast('File rinominato!', 'success');
+            } else {
+                showToast('File rinominato!');
+            }
         }
         window.fileManager.hideContextMenu();
     }
@@ -324,7 +382,11 @@ function deleteFile() {
             if (index > -1) {
                 window.fileManager.files.splice(index, 1);
                 window.fileManager.renderFileList();
-                cronos.showToast('File eliminato!', 'success');
+                if (window.cronos) {
+                    cronos.showToast('File eliminato!', 'success');
+                } else {
+                    showToast('File eliminato!');
+                }
             }
         }
         window.fileManager.hideContextMenu();

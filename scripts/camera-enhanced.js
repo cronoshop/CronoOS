@@ -70,8 +70,10 @@ class CameraApp {
             }, 1000);
             
             // Play focus sound
-            cronos.playSound('click');
-            cronos.showToast('Messa a fuoco', 'info');
+            if (window.cronos) {
+                cronos.playSound('click');
+                cronos.showToast('Messa a fuoco', 'info');
+            }
         });
     }
 
@@ -79,7 +81,10 @@ class CameraApp {
         const accessMessage = document.getElementById('cameraAccessMessage');
         
         try {
-            this.stream = await cronos.requestCameraAccess();
+            this.stream = await navigator.mediaDevices.getUserMedia({ 
+                video: { facingMode: 'environment' },
+                audio: false 
+            });
             
             if (this.stream) {
                 const video = document.getElementById('cameraFeed');
@@ -88,13 +93,21 @@ class CameraApp {
                 // Hide access message
                 accessMessage.style.display = 'none';
                 
-                cronos.showToast('Fotocamera attivata', 'success');
-                cronos.playSound('success');
+                if (window.cronos) {
+                    cronos.showToast('Fotocamera attivata', 'success');
+                    cronos.playSound('success');
+                } else {
+                    showToast('Fotocamera attivata');
+                }
             }
         } catch (error) {
             console.error('Camera permission error:', error);
-            cronos.showToast('Errore accesso fotocamera', 'error');
-            cronos.playSound('error');
+            if (window.cronos) {
+                cronos.showToast('Errore accesso fotocamera', 'error');
+                cronos.playSound('error');
+            } else {
+                showToast('Errore accesso fotocamera');
+            }
         }
     }
 
@@ -116,8 +129,12 @@ class CameraApp {
             captureInner.style.background = 'white';
         }
         
-        cronos.showToast(`Modalità ${mode.toUpperCase()} attivata`, 'info');
-        cronos.playSound('click');
+        if (window.cronos) {
+            cronos.showToast(`Modalità ${mode.toUpperCase()} attivata`, 'info');
+            cronos.playSound('click');
+        } else {
+            showToast(`Modalità ${mode.toUpperCase()} attivata`);
+        }
     }
 
     toggleFlash() {
@@ -142,8 +159,12 @@ class CameraApp {
                 break;
         }
         
-        cronos.showToast(`Flash: ${this.flashMode.toUpperCase()}`, 'info');
-        cronos.playSound('click');
+        if (window.cronos) {
+            cronos.showToast(`Flash: ${this.flashMode.toUpperCase()}`, 'info');
+            cronos.playSound('click');
+        } else {
+            showToast(`Flash: ${this.flashMode.toUpperCase()}`);
+        }
     }
 
     toggleTimer() {
@@ -154,8 +175,12 @@ class CameraApp {
         const timerBtn = document.getElementById('timerBtn');
         timerBtn.classList.toggle('active', this.timerMode !== 'off');
         
-        cronos.showToast(this.timerMode === 'off' ? 'Timer disattivato' : `Timer: ${this.timerMode}`, 'info');
-        cronos.playSound('click');
+        if (window.cronos) {
+            cronos.showToast(this.timerMode === 'off' ? 'Timer disattivato' : `Timer: ${this.timerMode}`, 'info');
+            cronos.playSound('click');
+        } else {
+            showToast(this.timerMode === 'off' ? 'Timer disattivato' : `Timer: ${this.timerMode}`);
+        }
     }
 
     toggleGrid() {
@@ -167,8 +192,12 @@ class CameraApp {
         gridBtn.classList.toggle('active', this.gridEnabled);
         gridLines.classList.toggle('active', this.gridEnabled);
         
-        cronos.showToast(this.gridEnabled ? 'Griglia attivata' : 'Griglia disattivata', 'info');
-        cronos.playSound('click');
+        if (window.cronos) {
+            cronos.showToast(this.gridEnabled ? 'Griglia attivata' : 'Griglia disattivata', 'info');
+            cronos.playSound('click');
+        } else {
+            showToast(this.gridEnabled ? 'Griglia attivata' : 'Griglia disattivata');
+        }
     }
 
     flipCamera() {
@@ -180,8 +209,12 @@ class CameraApp {
             viewfinder.style.transform = 'scaleX(1)';
         }, 300);
         
-        cronos.showToast('Fotocamera ruotata', 'info');
-        cronos.playSound('click');
+        if (window.cronos) {
+            cronos.showToast('Fotocamera ruotata', 'info');
+            cronos.playSound('click');
+        } else {
+            showToast('Fotocamera ruotata');
+        }
     }
 
     async switchCamera() {
@@ -201,11 +234,19 @@ class CameraApp {
                 const video = document.getElementById('cameraFeed');
                 video.srcObject = this.stream;
                 
-                cronos.showToast(this.frontCamera ? 'Fotocamera frontale' : 'Fotocamera posteriore', 'info');
-                cronos.playSound('click');
+                if (window.cronos) {
+                    cronos.showToast(this.frontCamera ? 'Fotocamera frontale' : 'Fotocamera posteriore', 'info');
+                    cronos.playSound('click');
+                } else {
+                    showToast(this.frontCamera ? 'Fotocamera frontale' : 'Fotocamera posteriore');
+                }
             } catch (error) {
                 console.error('Camera switch error:', error);
-                cronos.showToast('Errore cambio fotocamera', 'error');
+                if (window.cronos) {
+                    cronos.showToast('Errore cambio fotocamera', 'error');
+                } else {
+                    showToast('Errore cambio fotocamera');
+                }
             }
         }
     }
@@ -220,7 +261,11 @@ class CameraApp {
 
     capturePhoto() {
         if (!this.stream) {
-            cronos.showToast('Fotocamera non disponibile', 'error');
+            if (window.cronos) {
+                cronos.showToast('Fotocamera non disponibile', 'error');
+            } else {
+                showToast('Fotocamera non disponibile');
+            }
             return;
         }
 
@@ -289,8 +334,12 @@ class CameraApp {
         // Save to photos array
         this.savePhotoToGallery(photoDataUrl);
         
-        cronos.showToast('Foto catturata!', 'success');
-        cronos.playSound('success');
+        if (window.cronos) {
+            cronos.showToast('Foto catturata!', 'success');
+            cronos.playSound('success');
+        } else {
+            showToast('Foto catturata!');
+        }
     }
 
     showFlashEffect() {
@@ -317,28 +366,44 @@ class CameraApp {
     }
 
     savePhoto() {
-        cronos.showToast('Foto salvata in Galleria', 'success');
-        cronos.playSound('success');
+        if (window.cronos) {
+            cronos.showToast('Foto salvata in Galleria', 'success');
+            cronos.playSound('success');
+        } else {
+            showToast('Foto salvata in Galleria');
+        }
         this.closePreview();
     }
 
     sharePhoto() {
-        cronos.showToast('Condivisione foto...', 'info');
+        if (window.cronos) {
+            cronos.showToast('Condivisione foto...', 'info');
+        } else {
+            showToast('Condivisione foto...');
+        }
         setTimeout(() => {
-            cronos.showToast('Foto condivisa!', 'success');
+            if (window.cronos) {
+                cronos.showToast('Foto condivisa!', 'success');
+            } else {
+                showToast('Foto condivisa!');
+            }
         }, 1500);
     }
 
     deletePhoto() {
         if (confirm('Eliminare questa foto?')) {
-            cronos.showToast('Foto eliminata', 'info');
+            if (window.cronos) {
+                cronos.showToast('Foto eliminata', 'info');
+            } else {
+                showToast('Foto eliminata');
+            }
             this.closePreview();
         }
     }
 
     savePhotoToGallery(photoDataUrl) {
         const newPhoto = {
-            id: cronos.generateId(),
+            id: Date.now().toString(36) + Math.random().toString(36).substr(2),
             dataUrl: photoDataUrl,
             timestamp: new Date().toISOString(),
             type: 'photo'
@@ -371,11 +436,19 @@ class CameraApp {
         captureBtn.classList.toggle('recording', this.isRecording);
         
         if (this.isRecording) {
-            cronos.showToast('Registrazione avviata', 'info');
-            cronos.playSound('notification');
+            if (window.cronos) {
+                cronos.showToast('Registrazione avviata', 'info');
+                cronos.playSound('notification');
+            } else {
+                showToast('Registrazione avviata');
+            }
         } else {
-            cronos.showToast('Registrazione terminata', 'info');
-            cronos.playSound('click');
+            if (window.cronos) {
+                cronos.showToast('Registrazione terminata', 'info');
+                cronos.playSound('click');
+            } else {
+                showToast('Registrazione terminata');
+            }
         }
     }
 }

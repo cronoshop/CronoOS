@@ -11,14 +11,14 @@ const AVAILABLE_APPS = {
     'gallery': { name: 'Galleria', icon: 'fas fa-images', color: '#AF52DE', isCore: true, page: 'gallery.html' },
     'calendar': { name: 'Calendario', icon: 'fas fa-calendar-days', color: '#FF453A', isCore: true, page: 'calendar.html' },
     'playstore': { name: 'App Store', icon: 'fas fa-store', color: '#0A84FF', isCore: true, page: 'playstore.html' },
-    'chrome': { name: 'Chrome', icon: 'fab fa-chrome', color: '#4285F4', isCore: true, page: 'chrome.html' }, // Added Chrome
+    'chrome': { name: 'Chrome', icon: 'fab fa-chrome', color: '#4285F4', isCore: true, page: 'chrome.html' },
 
     // Installable Apps
     'whatsapp': { name: 'WhatsApp', icon: 'fab fa-whatsapp', color: '#25D366', description: 'Messaggistica semplice e sicura.', page: 'whatsapp.html' },
     'instagram': { name: 'Instagram', icon: 'fab fa-instagram', color: 'linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%)', description: 'Condividi momenti con il mondo.', page: 'instagram.html' },
     'youtube': { name: 'YouTube', icon: 'fab fa-youtube', color: '#FF0000', description: 'Guarda, carica e condividi video.', page: 'youtube.html' },
     'facebook': { name: 'Facebook', icon: 'fab fa-facebook', color: '#1877F2', description: 'Connettiti con i tuoi amici.', page: 'facebook.html' },
-    'gmail': { name: 'Gmail', icon: 'fas fa-envelope', color: '#EA4335', description: 'Email sicura e intelligente by Google.', page: 'gmail.html' }, // Added Gmail
+    'gmail': { name: 'Gmail', icon: 'fas fa-envelope', color: '#EA4335', description: 'Email sicura e intelligente by Google.', page: 'gmail.html' },
     'twitter': { name: 'X (Twitter)', icon: 'fab fa-twitter', color: '#14171A', description: 'L\'app per tutto.' },
     'telegram': { name: 'Telegram', icon: 'fab fa-telegram', color: '#0088CC', description: 'Messaggistica veloce e sicura.' },
     'spotify': { name: 'Spotify', icon: 'fab fa-spotify', color: '#1DB954', description: 'Musica per tutti.' },
@@ -35,3 +35,6 @@ const AVAILABLE_APPS = {
     'linkedin': { name: 'LinkedIn', icon: 'fab fa-linkedin', color: '#0A66C2', description: 'Il più grande network professionale.' },
     'podcast-player': { name: 'Podcast Player', icon: 'fas fa-podcast', color: '#9B59B6', description: 'Ascolta i tuoi podcast preferiti.' },
 };
+
+// Make available globally
+window.AVAILABLE_APPS = AVAILABLE_APPS;

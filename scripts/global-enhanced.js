@@ -261,7 +261,12 @@ class CronoOS {
     playSound(soundType) {
         // Create audio context for system sounds
         if (!this.audioContext) {
-            this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            try {
+                this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            } catch (error) {
+                console.warn('Audio context not supported');
+                return;
+            }
         }
         
         // Generate simple system sounds
@@ -275,18 +280,22 @@ class CronoOS {
         const sound = sounds[soundType];
         if (!sound) return;
         
-        const oscillator = this.audioContext.createOscillator();
-        const gainNode = this.audioContext.createGain();
-        
-        oscillator.connect(gainNode);
-        gainNode.connect(this.audioContext.destination);
-        
-        oscillator.frequency.setValueAtTime(sound.frequency, this.audioContext.currentTime);
-        gainNode.gain.setValueAtTime(0.1, this.audioContext.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + sound.duration);
-        
-        oscillator.start(this.audioContext.currentTime);
-        oscillator.stop(this.audioContext.currentTime + sound.duration);
+        try {
+            const oscillator = this.audioContext.createOscillator();
+            const gainNode = this.audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(this.audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(sound.frequency, this.audioContext.currentTime);
+            gainNode.gain.setValueAtTime(0.1, this.audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + sound.duration);
+            
+            oscillator.start(this.audioContext.currentTime);
+            oscillator.stop(this.audioContext.currentTime + sound.duration);
+        } catch (error) {
+            console.warn('Failed to play sound:', error);
+        }
     }
 
     // Camera API
@@ -341,6 +350,14 @@ function goHome() {
     cronos.navigateTo('home.html');
 }
 
+function goBack() {
+    if (window.history.length > 1) {
+        window.history.back();
+    } else {
+        goHome();
+    }
+}
+
 function showToast(message, type = 'info') {
     cronos.showToast(message, type);
 }
@@ -349,5 +366,21 @@ function updateTime() {
     cronos.updateTime();
 }
 
+function showMultitasking() {
+    const overlay = document.getElementById('multitaskingOverlay');
+    if (overlay) {
+        overlay.classList.add('active');
+        cronos.showToast('Multitasking aperto');
+    }
+}
+
+function hideMultitasking() {
+    const overlay = document.getElementById('multitaskingOverlay');
+    if (overlay) {
+        overlay.classList.remove('active');
+    }
+}
+
 // Export for modules
 window.CronoOS = cronos;
+window.cronos = cronos;
