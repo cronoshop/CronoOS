@@ -24,11 +24,13 @@
     height: 100%;
     background: inherit;
     z-index: -1;
+    animation: fadeIn 1s ease-out;
 }
 
 /* Widgets Section */
 .widgets-section {
     padding: var(--spacing-xl) var(--spacing-lg) var(--spacing-lg);
+    animation: fadeInUp 0.8s ease-out;
 }
 
 .widgets-grid {
@@ -49,16 +51,20 @@
     cursor: pointer;
     transition: all var(--transition-normal);
     color: #FFFFFF;
+    animation: scaleIn 0.6s var(--transition-spring);
+    animation-delay: calc(var(--widget-index, 0) * 0.1s);
 }
 
 .widget:hover {
     transform: translateY(-6px) scale(1.03);
     background: rgba(255, 255, 255, 0.2);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    animation: float 2s ease-in-out infinite;
 }
 
 .widget:active {
     transform: translateY(-2px) scale(0.98);
+    transition: transform 0.1s ease;
 }
 
 .widget-large {
@@ -76,12 +82,15 @@
     display: block;
     margin-bottom: 4px;
     font-family: var(--font-family-display);
+    transition: all var(--transition-fast);
+    animation: pulse 3s ease-in-out infinite;
 }
 
 .widget-time .date {
     font-size: 15px;
     color: rgba(255, 255, 255, 0.8);
     font-weight: 500;
+    transition: all var(--transition-fast);
 }
 
 .widget-weather {
@@ -100,19 +109,26 @@
     color: #FFFFFF;
     margin-bottom: 4px;
     font-family: var(--font-family-display);
+    transition: all var(--transition-fast);
 }
 
 .weather-desc {
     font-size: 13px;
     color: rgba(255, 255, 255, 0.8);
     font-weight: 500;
+    transition: all var(--transition-fast);
 }
 
 .weather-icon {
     font-size: 32px;
     color: rgba(255, 255, 255, 0.9);
+    transition: all var(--transition-fast);
+    animation: float 3s ease-in-out infinite;
 }
 
+.widget-weather:hover .weather-icon {
+    transform: scale(1.1) rotate(10deg);
+}
 .widget-calendar {
     text-align: center;
 }
@@ -123,6 +139,7 @@
     color: #FFFFFF;
     margin-bottom: 4px;
     font-family: var(--font-family-display);
+    transition: all var(--transition-fast);
 }
 
 .calendar-month {
@@ -131,14 +148,31 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    transition: all var(--transition-fast);
 }
 
 .widget-gpt {
     background: linear-gradient(135deg, rgba(0, 122, 255, 0.3) 0%, rgba(175, 82, 222, 0.3) 100%);
     border: 1px solid rgba(255, 255, 255, 0.4);
     color: #FFFFFF;
+    position: relative;
+    overflow: hidden;
 }
 
+.widget-gpt::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.8s ease;
+}
+
+.widget-gpt:hover::before {
+    left: 100%;
+}
 .gpt-title {
     font-size: 17px;
     font-weight: 600;
@@ -146,6 +180,7 @@
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
+    transition: all var(--transition-fast);
 }
 
 .gpt-shortcuts {
@@ -169,8 +204,13 @@
 .gpt-shortcut:hover {
     background: rgba(255, 255, 255, 0.3);
     transform: scale(1.05);
+    animation: springBounce 0.6s var(--transition-spring);
 }
 
+.gpt-shortcut:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+}
 /* App Grid */
 .home-screen-content {
     flex: 1;
@@ -183,6 +223,7 @@
     gap: var(--spacing-xl);
     padding: var(--spacing-xl) var(--spacing-lg);
     align-content: start;
+    animation: fadeInUp 1s ease-out;
 }
 
 .app-icon {
@@ -194,15 +235,19 @@
     transition: all var(--transition-fast);
     padding: var(--spacing-md);
     border-radius: var(--radius-lg);
+    animation: scaleIn 0.5s var(--transition-spring);
+    animation-delay: calc(var(--app-index, 0) * 0.05s);
 }
 
 .app-icon:hover {
     background: rgba(255, 255, 255, 0.15);
     transform: scale(1.08);
+    animation: float 2s ease-in-out infinite;
 }
 
 .app-icon:active {
     transform: scale(0.95);
+    transition: transform 0.1s ease;
 }
 
 .app-icon-container {
@@ -217,6 +262,7 @@
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
     position: relative;
     overflow: hidden;
+    transition: all var(--transition-fast);
 }
 
 .app-icon-container::before {
@@ -228,13 +274,21 @@
     bottom: 0;
     background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%);
     border-radius: inherit;
+    transition: all var(--transition-fast);
 }
 
+.app-icon:hover .app-icon-container::before {
+    background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 100%);
+}
 .app-icon-container i {
     position: relative;
     z-index: 1;
+    transition: all var(--transition-fast);
 }
 
+.app-icon:hover .app-icon-container i {
+    transform: scale(1.1) rotate(5deg);
+}
 .app-icon span {
     font-size: 12px;
     font-weight: 500;
@@ -245,8 +299,13 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    transition: all var(--transition-fast);
 }
 
+.app-icon:hover span {
+    transform: scale(1.05);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
 /* Floating Dock */
 .floating-dock {
     position: fixed;
@@ -265,19 +324,26 @@
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
     z-index: 100;
     transition: all 0.3s ease;
+    animation: slideInUp 0.8s var(--transition-spring);
 }
 
 .floating-dock:hover {
     transform: translateX(-50%) translateY(-4px);
     box-shadow: 0 16px 50px rgba(0, 0, 0, 0.25);
+    animation: float 2s ease-in-out infinite;
 }
 
 .floating-dock .app-icon-container {
     width: 60px;
     height: 60px;
     font-size: 28px;
+    transition: all var(--transition-fast);
 }
 
+.floating-dock .app-icon:hover .app-icon-container {
+    transform: scale(1.2) translateY(-8px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
 /* Multitasking */
 .multitasking-overlay {
     position: fixed;
@@ -300,6 +366,7 @@
 .multitasking-overlay.active {
     opacity: 1;
     visibility: visible;
+    animation: fadeIn 0.4s ease-out;
 }
 
 .multitasking-header {
@@ -308,12 +375,14 @@
     justify-content: space-between;
     padding: var(--spacing-lg) 0;
     color: #FFFFFF;
+    animation: fadeInDown 0.6s ease-out;
 }
 
 .multitasking-header h2 {
     font-size: 22px;
     font-weight: 700;
     color: #FFFFFF;
+    transition: all var(--transition-fast);
 }
 
 .close-multitasking {
@@ -330,6 +399,8 @@
 
 .close-multitasking:hover {
     background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1) rotate(90deg);
+    animation: springBounce 0.6s var(--transition-spring);
 }
 
 .app-cards-container {
@@ -350,13 +421,30 @@
     position: relative;
     overflow: hidden;
     box-shadow: var(--shadow-md);
+    animation: slideInUp 0.6s var(--transition-spring);
+    animation-delay: calc(var(--card-index, 0) * 0.1s);
 }
 
 .app-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-xl);
+    animation: float 2s ease-in-out infinite;
 }
 
+.app-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 122, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.app-card:hover::before {
+    left: 100%;
+}
 .app-preview {
     display: flex;
     flex-direction: column;
@@ -370,13 +458,22 @@
 .app-preview i {
     font-size: 32px;
     color: var(--ios-blue);
+    transition: all var(--transition-fast);
 }
 
+.app-card:hover .app-preview i {
+    transform: scale(1.2) rotate(10deg);
+    animation: glow 1s ease-in-out;
+}
 .app-preview span {
     font-size: 15px;
     font-weight: 500;
+    transition: all var(--transition-fast);
 }
 
+.app-card:hover .app-preview span {
+    transform: scale(1.05);
+}
 .close-app-card {
     position: absolute;
     top: var(--spacing-sm);
@@ -395,13 +492,26 @@
 
 .app-card:hover .close-app-card {
     opacity: 1;
+    transform: scale(1);
+    animation: scaleIn 0.3s var(--transition-spring);
 }
 
 .close-app-card:hover {
     background: var(--fill-secondary);
     transform: scale(1.1);
+    animation: springBounce 0.6s var(--transition-spring);
 }
 
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 /* Responsive Design */
 @media (min-width: 768px) {
     .app-cards-container {

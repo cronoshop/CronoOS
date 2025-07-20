@@ -7,6 +7,7 @@
     flex-direction: column;
     overflow: hidden;
     position: relative;
+    animation: fadeIn 0.6s ease-out;
 }
 
 /* Camera Header */
@@ -22,6 +23,7 @@
     padding: 0 var(--spacing-lg);
     background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, transparent 100%);
     z-index: 100;
+    animation: fadeInDown 0.7s ease-out;
 }
 
 .camera-modes {
@@ -47,11 +49,14 @@
     color: #FFFFFF;
     background: rgba(255, 255, 255, 0.2);
     border-color: rgba(255, 255, 255, 0.3);
+    animation: springBounce 0.6s var(--transition-spring);
 }
 
 .mode-btn:hover {
     color: #FFFFFF;
     background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
 }
 
 .settings-btn {
@@ -74,6 +79,8 @@
 
 .settings-btn:hover {
     background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1) rotate(90deg);
+    animation: glow 1s ease-in-out;
 }
 
 /* Camera Viewfinder */
@@ -82,6 +89,7 @@
     position: relative;
     background: #000000;
     overflow: hidden;
+    animation: scaleIn 0.8s var(--transition-spring);
 }
 
 .camera-feed {
@@ -91,22 +99,27 @@
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    animation: fadeIn 1s ease-out;
 }
 
 .camera-placeholder {
     text-align: center;
     color: rgba(255, 255, 255, 0.5);
+    animation: pulse 2s ease-in-out infinite;
 }
 
 .camera-placeholder i {
     font-size: 64px;
     margin-bottom: var(--spacing-md);
     display: block;
+    transition: all var(--transition-fast);
+    animation: float 3s ease-in-out infinite;
 }
 
 .camera-placeholder p {
     font-size: 17px;
     font-weight: 500;
+    transition: all var(--transition-fast);
 }
 
 .viewfinder-overlay {
@@ -132,13 +145,18 @@
 
 .grid-lines.active {
     opacity: 0.5;
+    animation: fadeIn 0.3s ease-out;
 }
 
 .grid-line {
     position: absolute;
     background: rgba(255, 255, 255, 0.3);
+    transition: all var(--transition-fast);
 }
 
+.grid-lines.active .grid-line {
+    animation: pulse 2s ease-in-out infinite;
+}
 .grid-line.vertical {
     width: 1px;
     height: 100%;
@@ -183,6 +201,7 @@
 .focus-ring.active {
     opacity: 1;
     transform: scale(1);
+    animation: springBounce 0.6s var(--transition-spring);
 }
 
 /* Timer Display */
@@ -215,6 +234,7 @@
     background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 100%);
     padding: var(--spacing-lg);
     z-index: 100;
+    animation: fadeInUp 0.8s ease-out;
 }
 
 .top-controls {
@@ -244,11 +264,14 @@
 .control-btn:hover {
     background: rgba(255, 255, 255, 0.2);
     transform: scale(1.1);
+    animation: glow 1s ease-in-out;
 }
 
 .control-btn.active {
     background: rgba(255, 255, 255, 0.3);
     color: #FFD700;
+    animation: springBounce 0.6s var(--transition-spring);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
 }
 
 .main-controls {
@@ -276,13 +299,18 @@
 .gallery-btn:hover {
     transform: scale(1.05);
     background: rgba(255, 255, 255, 0.2);
+    animation: float 2s ease-in-out infinite;
 }
 
 .gallery-preview {
     color: #FFFFFF;
     font-size: 20px;
+    transition: all var(--transition-fast);
 }
 
+.gallery-btn:hover .gallery-preview {
+    transform: scale(1.1) rotate(5deg);
+}
 .capture-btn {
     width: 80px;
     height: 80px;
@@ -299,10 +327,13 @@
 
 .capture-btn:hover {
     transform: scale(1.05);
+    animation: glow 1s ease-in-out;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
 }
 
 .capture-btn:active {
     transform: scale(0.95);
+    animation: springBounce 0.3s var(--transition-spring);
 }
 
 .capture-inner {
@@ -318,6 +349,7 @@
     background: var(--ios-red);
     width: 30px;
     height: 30px;
+    animation: pulse 1s ease-in-out infinite;
 }
 
 .switch-camera-btn {
@@ -340,8 +372,13 @@
 .switch-camera-btn:hover {
     background: rgba(255, 255, 255, 0.2);
     transform: scale(1.05);
+    animation: float 2s ease-in-out infinite;
 }
 
+.switch-camera-btn:active {
+    transform: scale(0.95) rotate(180deg);
+    transition: transform 0.3s ease;
+}
 /* Photo Preview Modal */
 .photo-preview-modal {
     position: fixed;
@@ -361,6 +398,7 @@
 .photo-preview-modal.active {
     opacity: 1;
     visibility: visible;
+    animation: fadeIn 0.4s ease-out;
 }
 
 .preview-header {
@@ -375,6 +413,7 @@
     padding: 0 var(--spacing-lg);
     background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, transparent 100%);
     z-index: 10;
+    animation: fadeInDown 0.6s ease-out;
 }
 
 .preview-close-btn {
@@ -397,6 +436,7 @@
 
 .preview-close-btn:hover {
     background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1) rotate(90deg);
 }
 
 .preview-actions {
@@ -424,6 +464,8 @@
 
 .preview-action-btn:hover {
     background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+    animation: springBounce 0.6s var(--transition-spring);
 }
 
 .preview-content {
@@ -432,6 +474,7 @@
     align-items: center;
     justify-content: center;
     padding: 80px var(--spacing-lg) 100px;
+    animation: scaleIn 0.6s var(--transition-spring);
 }
 
 .preview-content img {
@@ -439,13 +482,19 @@
     max-height: 100%;
     border-radius: var(--radius-lg);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    transition: all var(--transition-fast);
+    animation: scaleIn 0.7s var(--transition-spring);
 }
 
+.preview-content img:hover {
+    transform: scale(1.02);
+}
 .preview-footer {
     position: absolute;
     bottom: var(--spacing-lg);
     left: 50%;
     transform: translateX(-50%);
+    animation: fadeInUp 0.8s ease-out;
 }
 
 /* Flash Effect */
@@ -518,6 +567,27 @@
     }
 }
 
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .camera-container,
+    .camera-header,
+    .camera-viewfinder,
+    .camera-controls,
+    .preview-content {
+        animation: none !important;
+    }
+    
+    .control-btn:hover,
+    .capture-btn:hover,
+    .mode-btn:hover {
+        transform: none !important;
+        animation: none !important;
+    }
+    
+    .camera-placeholder i {
+        animation: none !important;
+    }
+}
 @media (max-width: 480px) {
     .preview-content {
         padding: 60px var(--spacing-md) 80px;
