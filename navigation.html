@@ -6,7 +6,6 @@
     <title>Navigation - CronoOS 3.0</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="styles/global.css">
-    <link rel="stylesheet" href="styles/cronoglass.css">
     <link rel="stylesheet" href="styles/navigation.css">
     <link rel="stylesheet" href="styles/back-button.css">
 </head>
@@ -29,25 +28,72 @@
                 <i class="fas fa-chevron-left"></i>
                 Home
             </button>
-            <h1>Navigation Demo</h1>
+            <h1><i class="fas fa-compass"></i> Navigation Demo</h1>
         </div>
 
         <!-- Navigation Demo Content -->
         <div class="nav-demo-content">
-            <h1>Navigation System</h1>
-            <p>Questa è una demo del nuovo sistema di navigazione CronoOS 3.0</p>
+            <h1>Sistema di Navigazione CronoOS 3.0</h1>
+            <p>Esplora la nuova interfaccia di navigazione fluida e moderna con animazioni avanzate</p>
             
             <div class="demo-buttons">
-                <button class="btn-glass" onclick="showToast('Navigazione Home')">
+                <button class="btn-glass" onclick="showToastWithAnimation('Navigazione Home')">
                     <i class="fas fa-home"></i> Home
                 </button>
-                <button class="btn-glass" onclick="showToast('Navigazione Indietro')">
+                <button class="btn-glass" onclick="animatePageTransition(() => showToastWithAnimation('Navigazione Indietro'))">
                     <i class="fas fa-arrow-left"></i> Indietro
                 </button>
                 <button class="btn-glass" onclick="showMultitasking()">
                     <i class="fas fa-layer-group"></i> Multitasking
                 </button>
             </div>
+        </div>
+
+        <!-- Cool Navigation Menu -->
+        <div class="navigation">
+            <ul>
+                <li class="list active">
+                    <a href="#">
+                        <span class="icon">
+                            <i class="fas fa-home"></i>
+                        </span>
+                        <span class="text">Home</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="#">
+                        <span class="icon">
+                            <i class="fas fa-user"></i>
+                        </span>
+                        <span class="text">Profile</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="#">
+                        <span class="icon">
+                            <i class="fas fa-comment-dots"></i>
+                        </span>
+                        <span class="text">Messages</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="#">
+                        <span class="icon">
+                            <i class="fas fa-camera"></i>
+                        </span>
+                        <span class="text">Photos</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="#">
+                        <span class="icon">
+                            <i class="fas fa-gear"></i>
+                        </span>
+                        <span class="text">Settings</span>
+                    </a>
+                </li>
+                <div class="indicator"></div>
+            </ul>
         </div>
 
         <!-- Multitasking Overlay -->
@@ -60,7 +106,7 @@
             </div>
             
             <div class="app-cards-container">
-                <div class="app-card glass-panel" onclick="openApp('home.html')">
+                <div class="app-card" onclick="openApp('home.html')">
                     <div class="app-preview">
                         <i class="fas fa-home"></i>
                         <span>Home</span>
@@ -70,7 +116,7 @@
                     </button>
                 </div>
                 
-                <div class="app-card glass-panel" onclick="openApp('settings.html')">
+                <div class="app-card" onclick="openApp('settings.html')">
                     <div class="app-preview">
                         <i class="fas fa-gear"></i>
                         <span>Impostazioni</span>
@@ -80,7 +126,7 @@
                     </button>
                 </div>
                 
-                <div class="app-card glass-panel" onclick="openApp('messages.html')">
+                <div class="app-card" onclick="openApp('messages.html')">
                     <div class="app-preview">
                         <i class="fas fa-comment-dots"></i>
                         <span>Messaggi</span>
@@ -93,30 +139,8 @@
         </div>
     </div>
 
-    <!-- Contextual Navigation -->
-    <div class="contextual-nav">
-        <div class="contextual-nav-content">
-            <a href="home.html" class="contextual-nav-btn">
-                <i class="fas fa-home"></i>
-                <span>Home</span>
-            </a>
-            <a href="navigation.html" class="contextual-nav-btn active">
-                <i class="fas fa-compass"></i>
-                <span>Navigation</span>
-            </a>
-            <button class="contextual-nav-btn" onclick="showMultitasking()">
-                <i class="fas fa-layer-group"></i>
-                <span>Multitasking</span>
-            </button>
-            <button class="contextual-nav-btn" onclick="showToast('Impostazioni')">
-                <i class="fas fa-gear"></i>
-                <span>Impostazioni</span>
-            </button>
-        </div>
-    </div>
-
     <!-- Gesture Bar -->
-    <div class="gesture-bar"></div>
+    <div class="gesture-bar" onclick="showMultitasking()"></div>
 
     <script src="scripts/global.js"></script>
     <script src="scripts/navigation.js"></script>
