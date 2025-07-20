@@ -326,25 +326,3 @@ window.showMultitasking = showMultitasking;
 window.hideMultitasking = hideMultitasking;
 window.goBack = goBack;
 window.openGPTModule = openGPTModule;
-
-//Status Bar Timing
-<script>
-  function updateTime() {
-    const now = new Date();
-    let hours = now.getHours();
-    let minutes = now.getMinutes();
-
-    // Formatta con zero davanti se serve
-    hours = hours < 10 ? '0' + hours : hours;
-    minutes = minutes < 10 ? '0' + minutes : minutes;
-
-    // Aggiorna l’elemento HTML
-    document.getElementById('statusTime').textContent = `${hours}:${minutes}`;
-  }
-
-  // Aggiorna subito all'avvio
-  updateTime();
-
-  // Poi ogni 60 secondi
-  setInterval(updateTime, 60000);
-</script>
