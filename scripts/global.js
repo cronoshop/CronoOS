@@ -42,12 +42,33 @@ function initializeDarkMode() {
  * Carica lo sfondo personalizzato se presente nel localStorage.
  */
 function loadCustomWallpaper() {
-    const customWallpaper = localStorage.getItem('crono_wallpaper');
-    if (customWallpaper) {
-        // Applica lo sfondo a elementi specifici per evitare problemi
-        const wallpaperElement = document.querySelector('.wallpaper, .wallpaper-lock');
-        if (wallpaperElement) {
-            wallpaperElement.style.backgroundImage = `url(${customWallpaper})`;
+    // Load different wallpapers for different screens
+    const currentPage = window.location.pathname.split('/').pop();
+    
+    if (currentPage === 'lock.html') {
+        const lockWallpaper = localStorage.getItem('crono_lock_wallpaper');
+        if (lockWallpaper) {
+            const wallpaperElement = document.querySelector('.wallpaper-lock');
+            if (wallpaperElement) {
+                wallpaperElement.style.backgroundImage = `url(${lockWallpaper})`;
+            }
+        }
+    } else if (currentPage === 'home.html') {
+        const homeWallpaper = localStorage.getItem('crono_home_wallpaper');
+        if (homeWallpaper) {
+            const wallpaperElement = document.querySelector('.wallpaper');
+            if (wallpaperElement) {
+                wallpaperElement.style.backgroundImage = `url(${homeWallpaper})`;
+            }
+        }
+    } else {
+        // Fallback to general wallpaper
+        const customWallpaper = localStorage.getItem('crono_wallpaper');
+        if (customWallpaper) {
+            const wallpaperElement = document.querySelector('.wallpaper, .wallpaper-lock');
+            if (wallpaperElement) {
+                wallpaperElement.style.backgroundImage = `url(${customWallpaper})`;
+            }
         }
     }
 }

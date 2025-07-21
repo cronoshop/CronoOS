@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Always-On Display - Impostazioni</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/settings.css">
+    <link rel="stylesheet" href="styles/aod.css">
+    <link rel="stylesheet" href="styles/back-button.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="app-header">
+            <button class="back-btn" onclick="history.back()">
+                <i class="fas fa-chevron-left"></i>
+                Impostazioni
+            </button>
+            <h1>Always-On Display</h1>
+        </div>
+        
+        <div class="settings-content">
+            <!-- AOD Preview -->
+            <div class="aod-preview-container">
+                <div class="aod-preview" id="aodPreview">
+                    <div class="aod-time" id="aodTimePreview">00:52</div>
+                    <div class="aod-date" id="aodDatePreview">Tue 26 November</div>
+                    <div class="aod-weather" id="aodWeatherPreview">
+                        <i class="fas fa-cloud"></i>
+                        <span>9°</span>
+                    </div>
+                    <div class="aod-notifications" id="aodNotificationsPreview">
+                        <div class="notification-dot"></div>
+                        <div class="notification-dot"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- AOD Settings -->
+            <div class="settings-group">
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-title">Always-On Display</div>
+                        <div class="setting-description">Mostra informazioni quando lo schermo è spento.</div>
+                    </div>
+                    <div class="setting-accessory">
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="aodToggle">
+                            <label for="aodToggle"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- What to Show -->
+            <div class="settings-group">
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-title">Mostra Ora</div>
+                    </div>
+                    <div class="setting-accessory">
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="showTimeToggle" checked>
+                            <label for="showTimeToggle"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-title">Mostra Data</div>
+                    </div>
+                    <div class="setting-accessory">
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="showDateToggle" checked>
+                            <label for="showDateToggle"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-title">Mostra Meteo</div>
+                    </div>
+                    <div class="setting-accessory">
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="showWeatherToggle" checked>
+                            <label for="showWeatherToggle"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-title">Mostra Notifiche</div>
+                    </div>
+                    <div class="setting-accessory">
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="showNotificationsToggle" checked>
+                            <label for="showNotificationsToggle"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Display Options -->
+            <div class="settings-group">
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-title">Sfondo Nero Puro</div>
+                        <div class="setting-description">Usa sfondo completamente nero per risparmiare batteria.</div>
+                    </div>
+                    <div class="setting-accessory">
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="pureBlackToggle">
+                            <label for="pureBlackToggle"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-title">Attenua Sfondo</div>
+                        <div class="setting-description">Riduce la luminosità dello sfondo personalizzato.</div>
+                    </div>
+                    <div class="setting-accessory">
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="dimBackgroundToggle" checked>
+                            <label for="dimBackgroundToggle"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Font Settings -->
+            <div class="settings-group">
+                <div class="setting-item" onclick="openFontSelector()">
+                    <div class="setting-info">
+                        <div class="setting-title">Font Personalizzato</div>
+                        <div class="setting-description">Cambia il font dell'orologio AOD.</div>
+                    </div>
+                    <div class="setting-accessory">
+                        <span class="accessory-text" id="currentFontName">Default</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+                <div class="setting-item" onclick="document.getElementById('fontFileInput').click()">
+                    <div class="setting-info">
+                        <div class="setting-title">Carica Font Personalizzato</div>
+                        <div class="setting-description">Carica file .ttf o .otf</div>
+                    </div>
+                    <div class="setting-accessory">
+                        <i class="fas fa-upload"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden File Input -->
+    <input type="file" id="fontFileInput" accept=".ttf,.otf" style="display: none;">
+
+    <!-- Font Selector Modal -->
+    <div class="modal-overlay" id="fontSelectorModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Seleziona Font</h2>
+                <button class="modal-close-btn" onclick="closeFontSelector()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="font-options" id="fontOptions">
+                    <div class="font-option active" data-font="default">
+                        <div class="font-preview" style="font-family: var(--font-family-display);">00:52</div>
+                        <div class="font-name">Default</div>
+                    </div>
+                    <div class="font-option" data-font="thin">
+                        <div class="font-preview" style="font-family: var(--font-family-display); font-weight: 100;">00:52</div>
+                        <div class="font-name">Thin</div>
+                    </div>
+                    <div class="font-option" data-font="light">
+                        <div class="font-preview" style="font-family: var(--font-family-display); font-weight: 300;">00:52</div>
+                        <div class="font-name">Light</div>
+                    </div>
+                    <div class="font-option" data-font="bold">
+                        <div class="font-preview" style="font-family: var(--font-family-display); font-weight: 700;">00:52</div>
+                        <div class="font-name">Bold</div>
+                    </div>
+                    <div class="font-option" data-font="mono">
+                        <div class="font-preview" style="font-family: 'SF Mono', Monaco, monospace;">00:52</div>
+                        <div class="font-name">Monospace</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeFontSelector()">Annulla</button>
+                <button class="btn btn-primary" onclick="applySelectedFont()">Applica</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contextual Navigation -->
+    <div class="contextual-nav">
+        <div class="contextual-nav-content">
+            <a href="settings.html" class="contextual-nav-btn">
+                <i class="fas fa-gear"></i>
+                <span>Generali</span>
+            </a>
+            <a href="display.html" class="contextual-nav-btn">
+                <i class="fas fa-sun"></i>
+                <span>Display</span>
+            </a>
+            <a href="alwaysondisplay.html" class="contextual-nav-btn active">
+                <i class="fas fa-moon"></i>
+                <span>AOD</span>
+            </a>
+            <a href="wallpaper.html" class="contextual-nav-btn">
+                <i class="fas fa-image"></i>
+                <span>Sfondo</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Gesture Bar -->
+    <div class="gesture-bar"></div>
+
+    <script src="scripts/global.js"></script>
+    <script src="scripts/aod.js"></script>
+</body>
+</html>

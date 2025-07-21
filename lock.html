@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lock Screen - CronoOS 2.1</title>
+    <title>Lock Screen - CronoOS 3.3.1 AetherFix</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/lock.css">
@@ -13,24 +13,71 @@
         <div class="wallpaper-lock" id="lockWallpaper"></div>
 
         <div class="lock-content">
+            <!-- Lock Icon -->
+            <div class="lock-icon">
+                <i class="fas fa-lock"></i>
+            </div>
+            
+            <!-- Time Display -->
             <div class="lock-time">
                 <div class="time-display" id="lockTime">9:41</div>
                 <div class="date-display" id="lockDate">Venerdì 18 Luglio</div>
             </div>
 
-            <!-- Lock Screen Shortcuts -->
-            <div class="lock-shortcuts">
-                <button class="lock-shortcut" id="lockFlashlight" onclick="toggleLockFlashlight()">
-                    <i class="fas fa-flashlight"></i>
-                </button>
-                <button class="lock-shortcut" id="lockCamera" onclick="openApp('camera.html')">
-                    <i class="fas fa-camera"></i>
-                </button>
+            <!-- Weather Widget -->
+            <div class="lock-weather-widget">
+                <div class="weather-icon-lock">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <div class="weather-temp-lock">9°</div>
+                <div class="weather-location-lock">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+            </div>
+            
+            <!-- Battery and Network Info -->
+            <div class="lock-info-widgets">
+                <div class="info-widget">
+                    <div class="info-icon">
+                        <i class="fas fa-headphones"></i>
+                    </div>
+                    <div class="info-value">70</div>
+                </div>
+                <div class="info-widget">
+                    <div class="info-icon">
+                        <i class="fas fa-battery-full"></i>
+                    </div>
+                    <div class="info-value">100</div>
+                </div>
             </div>
 
-            <div class="unlock-prompt" id="unlockPrompt">
-                <i class="fas fa-chevron-up"></i>
-                <p>Scorri verso l'alto per sbloccare</p>
+            <!-- Unlock Prompt -->
+            <div class="unlock-section">
+                <div class="unlock-text">Swipe to unlock</div>
+                
+                <!-- Bottom Action Bar -->
+                <div class="lock-action-bar">
+                    <button class="lock-action-btn" onclick="openApp('phone.html')">
+                        <i class="fas fa-phone"></i>
+                    </button>
+                    
+                    <div class="now-playing" onclick="openApp('spotify.html')">
+                        <div class="now-playing-icon">
+                            <img src="https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" alt="Album">
+                        </div>
+                        <div class="now-playing-info">
+                            <div class="song-title">Hotel Ugly</div>
+                            <div class="artist-name">Sped up</div>
+                        </div>
+                        <button class="play-pause-btn">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                    
+                    <button class="lock-action-btn" onclick="openApp('camera.html')">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </div>

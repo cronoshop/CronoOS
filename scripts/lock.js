@@ -187,11 +187,82 @@ function applyLockScreenSettings() {
 
 function setupUnlockGesture() {
     const lockscreen = document.querySelector('.lockscreen');
-    lockscreen.addEventListener('click', performUnlock); // Semplificato per compatibilità
+    const unlockSection = document.querySelector('.unlock-section');
+    
+    if (!lockscreen || !unlockSection) return;
+    
+    let startY = 0;
+    let currentY = 0;
+    let isDragging = false;
+    
+    // Touch events
+    unlockSection.addEventListener('touchstart', handleStart, { passive: false });
+    unlockSection.addEventListener('touchmove', handleMove, { passive: false });
+    unlockSection.addEventListener('touchend', handleEnd, { passive: false });
+    
+    // Mouse events for desktop
+    unlockSection.addEventListener('mousedown', handleStart);
+    unlockSection.addEventListener('mousemove', handleMove);
+    unlockSection.addEventListener('mouseup', handleEnd);
+    
+    // Click event as fallback
+    unlockSection.addEventListener('click', performUnlock);
+    
+    function handleStart(e) {
+        if (isUnlocking) return;
+        
+        isDragging = true;
+        startY = e.touches ? e.touches[0].clientY : e.clientY;
+        unlockSection.style.transition = 'none';
+        e.preventDefault();
+    }
+    
+    function handleMove(e) {
+        if (!isDragging || isUnlocking) return;
+        
+        currentY = e.touches ? e.touches[0].clientY : e.clientY;
+        const deltaY = startY - currentY;
+        
+        if (deltaY > 0) {
+            const progress = Math.min(deltaY / 200, 1);
+            const opacity = Math.max(0.3, 1 - progress);
+            const translateY = Math.min(0, -deltaY / 2);
+            const blur = progress * 10;
+            
+            unlockSection.style.opacity = opacity;
+            unlockSection.style.transform = `translateY(${translateY}px)`;
+            lockscreen.style.filter = `blur(${blur}px)`;
+        }
+        
+        e.preventDefault();
+    }
+    
+    function handleEnd(e) {
+        if (!isDragging || isUnlocking) return;
+        
+        isDragging = false;
+        const deltaY = startY - currentY;
+        
+        unlockSection.style.transition = 'all 0.3s ease';
+        lockscreen.style.transition = 'filter 0.3s ease';
+        
+        if (deltaY > 100) {
+            // Sufficient swipe up - unlock
+            performUnlock();
+        } else {
+            // Reset position
+            unlockSection.style.opacity = '1';
+            unlockSection.style.transform = 'translateY(0)';
+            lockscreen.style.filter = 'blur(1px)';
+        }
+        
+        e.preventDefault();
+    }
 }
 
 function performUnlock() {
     const lockscreen = document.querySelector('.lockscreen');
+    const unlockSection = document.querySelector('.unlock-section');
     lockscreen.classList.add('unlocking');
     setTimeout(() => {
         window.location.href = 'home.html';
@@ -202,11 +273,18 @@ function updateLockScreenTime() {
     const timeDisplay = document.getElementById('lockTime');
     const dateDisplay = document.getElementById('lockDate');
     
-    function update() {
+    // Enhanced unlock animation
         const now = new Date();
         timeDisplay.textContent = now.toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit', hour12: false });
         dateDisplay.textContent = now.toLocaleDateString('it-IT', { weekday: 'long', day: 'numeric', month: 'long' });
+        lockscreen.style.filter = 'blur(20px)';
+        lockscreen.style.opacity = '0';
+    }
+    
+    if (unlockSection) {
+        unlockSection.style.transform = 'translateY(-100px)';
+        unlockSection.style.opacity = '0';
     }
     update();
-    setInterval(update, 1000);
+    }, 600);
 }

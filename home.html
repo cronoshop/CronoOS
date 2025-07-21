@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CronoOS 3.3</title>
+    <title>CronoOS 3.3.1 AetherFix</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/home.css">
@@ -25,45 +25,73 @@
         <div class="home-screen-content">
             <!-- Widgets Section -->
             <div class="widgets-section">
-                <div class="widgets-grid">
-                    <div class="widget widget-time" onclick="openApp('clock.html')">
-                        <span class="time" id="widgetTime">9:41</span>
-                        <span class="date" id="widgetDate">Lunedì 15 Luglio</span>
-                    </div>
-                    
-                    <div class="widget widget-weather" onclick="openApp('weather.html')">
-                        <div class="weather-info">
-                            <div class="weather-temp">22°</div>
-                            <div class="weather-desc">Soleggiato</div>
-                        </div>
+                <!-- One UI 7 Style Widgets -->
+                <div class="oneui-widgets-container">
+                    <!-- Weather Widget -->
+                    <div class="oneui-widget weather-widget" onclick="openApp('weather.html')">
                         <div class="weather-icon">
                             <i class="fas fa-sun"></i>
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <div class="weather-temp">2°</div>
+                        <div class="weather-info">
+                            <div class="weather-time">Západ slunce v 17:29</div>
+                            <div class="weather-location">Milano</div>
                         </div>
                     </div>
                     
-                    <div class="widget widget-calendar" onclick="openApp('calendar.html')">
-                        <div class="calendar-day" id="widgetDay">15</div>
-                        <div class="calendar-month" id="widgetMonth">Luglio</div>
+                    <!-- Time Widget -->
+                    <div class="oneui-widget time-widget" onclick="openApp('clock.html')">
+                        <div class="widget-time" id="widgetTime">17:26</div>
+                        <div class="widget-greeting">Dobrý den</div>
                     </div>
                     
-                    <div class="widget widget-gpt widget-large" onclick="openApp('gpt-assistant.html')">
-                        <div class="gpt-title">
+                    <!-- Quick Action Widget -->
+                    <div class="oneui-widget action-widget" onclick="openApp('gpt-assistant.html')">
+                        <div class="action-icon">
                             <i class="fas fa-brain"></i>
-                            CronoGPT Assistant
                         </div>
-                        <div class="gpt-shortcuts">
-                            <button class="gpt-shortcut" onclick="event.stopPropagation(); openGPTModule('studio')">Studio</button>
-                            <button class="gpt-shortcut" onclick="event.stopPropagation(); openGPTModule('assist')">Assist</button>
-                            <button class="gpt-shortcut" onclick="event.stopPropagation(); openGPTModule('translate')">Traduci</button>
-                            <button class="gpt-shortcut" onclick="event.stopPropagation(); openGPTModule('design')">Design</button>
+                        <div class="action-text">Začít</div>
+                    </div>
+                </div>
+                
+                <!-- Google Search Bar -->
+                <div class="google-search-bar" onclick="openApp('chrome.html')">
+                    <div class="search-content">
+                        <div class="google-logo">
+                            <span class="g-blue">G</span>
+                            <span class="g-red">o</span>
+                            <span class="g-yellow">o</span>
+                            <span class="g-blue">g</span>
+                            <span class="g-green">l</span>
+                            <span class="g-red">e</span>
+                        </div>
+                        <div class="search-actions">
+                            <i class="fas fa-microphone"></i>
+                            <i class="fas fa-camera"></i>
                         </div>
                     </div>
                 </div>
             </div>
             
+            <!-- Main App Grid -->
             <div class="app-grid" id="appGrid">
                 <!-- Apps will be dynamically loaded here -->
+            </div>
+            
+            <!-- Dock -->
+            <div class="dock-container">
+                <div class="dock" id="dock">
+                    <!-- Dock apps will be loaded here -->
                 </div>
+            </div>
+            
+            <!-- Page Indicators -->
+            <div class="page-indicators">
+                <div class="indicator"></div>
+                <div class="indicator active"></div>
+                <div class="indicator"></div>
+            </div>
         </div>
 
     <!-- Multitasking Overlay -->
@@ -108,7 +136,9 @@
         </div>
     </div>
     <!-- Gesture Bar -->
-    <div class="gesture-bar" onclick="showMultitasking()"></div>
+    <div class="gesture-bar">
+        <div class="gesture-handle"></div>
+    </div>
     
     <script src="scripts/global.js"></script>
     <script src="scripts/home.js"></script>

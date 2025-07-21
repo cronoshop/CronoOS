@@ -1,0 +1,180 @@
+/* Always-On Display Styles - CronoOS 3.3.1 AetherFix */
+
+.aod-preview-container {
+    margin: var(--spacing-lg) var(--spacing-md) var(--spacing-xl);
+    display: flex;
+    justify-content: center;
+}
+
+.aod-preview {
+    width: 200px;
+    height: 400px;
+    background: #000000;
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all var(--transition-normal);
+}
+
+.aod-preview.dim-background {
+    background: linear-gradient(135deg, rgba(31, 41, 55, 0.3) 0%, rgba(55, 65, 81, 0.3) 100%);
+}
+
+.aod-time {
+    font-size: 48px;
+    font-weight: 200;
+    color: #FFFFFF;
+    font-family: var(--font-family-display);
+    letter-spacing: -2px;
+    line-height: 1;
+    text-align: center;
+    transition: all var(--transition-fast);
+}
+
+.aod-date {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+    text-align: center;
+    margin-top: -10px;
+    transition: all var(--transition-fast);
+}
+
+.aod-weather {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 8px 12px;
+    font-size: 16px;
+    color: #FFFFFF;
+    transition: all var(--transition-fast);
+}
+
+.aod-notifications {
+    display: flex;
+    gap: 6px;
+    margin-top: 20px;
+    transition: all var(--transition-fast);
+}
+
+.notification-dot {
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.notification-dot:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+/* Font Options Modal */
+.font-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+    padding: var(--spacing-md) 0;
+}
+
+.font-option {
+    background: var(--fill-tertiary);
+    border: 2px solid transparent;
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-align: center;
+}
+
+.font-option:hover {
+    background: var(--fill-secondary);
+    transform: scale(1.02);
+}
+
+.font-option.active {
+    border-color: var(--ios-blue);
+    background: rgba(0, 122, 255, 0.1);
+}
+
+.font-preview {
+    font-size: 32px;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1;
+}
+
+.font-name {
+    font-size: 15px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Custom Font Styles */
+.font-default { font-family: var(--font-family-display); font-weight: 200; }
+.font-thin { font-family: var(--font-family-display); font-weight: 100; }
+.font-light { font-family: var(--font-family-display); font-weight: 300; }
+.font-bold { font-family: var(--font-family-display); font-weight: 700; }
+.font-mono { font-family: 'SF Mono', Monaco, monospace; font-weight: 400; }
+
+/* AOD States */
+.aod-preview.hide-time .aod-time { display: none; }
+.aod-preview.hide-date .aod-date { display: none; }
+.aod-preview.hide-weather .aod-weather { display: none; }
+.aod-preview.hide-notifications .aod-notifications { display: none; }
+
+/* Dark Mode Support */
+[data-theme="dark"] .aod-preview {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .font-option {
+    background: var(--fill-secondary);
+}
+
+[data-theme="dark"] .font-option:hover {
+    background: var(--fill-tertiary);
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .aod-preview {
+        width: 180px;
+        height: 360px;
+        padding: 30px 16px;
+    }
+    
+    .aod-time {
+        font-size: 40px;
+    }
+    
+    .font-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .font-preview {
+        font-size: 28px;
+    }
+}
+
+/* Animation for preview updates */
+@keyframes aodUpdate {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.aod-updating {
+    animation: aodUpdate 0.3s ease-in-out;
+}

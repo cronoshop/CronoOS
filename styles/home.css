@@ -2,13 +2,29 @@
 
 .home-screen-container {
     min-height: 100vh;
-    background: linear-gradient(135deg, #007AFF 0%, #5AC8FA 50%, #AF52DE 100%);
+    background: linear-gradient(135deg, #8B7CF6 0%, #A78BFA 30%, #C084FC 60%, #DDD6FE 100%);
     background-size: 400% 400%;
     animation: gradientShift 12s ease-in-out infinite;
     display: flex;
     flex-direction: column;
     padding-top: var(--status-bar-height);
-    padding-bottom: 120px;
+    padding-bottom: 140px;
+    position: relative;
+    overflow: hidden;
+}
+
+.home-screen-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(139, 124, 246, 0.2) 0%, transparent 50%);
+    pointer-events: none;
 }
 
 @keyframes gradientShift {
@@ -29,192 +45,499 @@
 
 /* Widgets Section */
 .widgets-section {
-    padding: var(--spacing-xl) var(--spacing-lg) var(--spacing-lg);
+    padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-md);
     animation: fadeInUp 0.8s ease-out;
 }
 
-.widgets-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+/* One UI 7 Style Widgets */
+.oneui-widgets-container {
+    display: flex;
+    flex-direction: column;
     gap: var(--spacing-md);
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
 }
 
-.widget {
+.oneui-widget {
     background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: var(--radius-2xl);
-    padding: var(--spacing-lg);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border-radius: 24px;
+    padding: 20px;
     cursor: pointer;
     transition: all var(--transition-normal);
-    color: #FFFFFF;
-    animation: scaleIn 0.6s var(--transition-spring);
-    animation-delay: calc(var(--widget-index, 0) * 0.1s);
-}
-
-.widget:hover {
-    transform: translateY(-6px) scale(1.03);
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-    animation: float 2s ease-in-out infinite;
-}
-
-.widget:active {
-    transform: translateY(-2px) scale(0.98);
-    transition: transform 0.1s ease;
-}
-
-.widget-large {
-    grid-column: 1 / -1;
-}
-
-.widget-time {
-    text-align: center;
-}
-
-.widget-time .time {
-    font-size: 32px;
-    font-weight: 300;
-    color: #FFFFFF;
-    display: block;
-    margin-bottom: 4px;
-    font-family: var(--font-family-display);
-    transition: all var(--transition-fast);
-    animation: pulse 3s ease-in-out infinite;
-}
-
-.widget-time .date {
-    font-size: 15px;
-    color: rgba(255, 255, 255, 0.8);
-    font-weight: 500;
-    transition: all var(--transition-fast);
-}
-
-.widget-weather {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.weather-info {
-    flex: 1;
-}
-
-.weather-temp {
-    font-size: 28px;
-    font-weight: 300;
-    color: #FFFFFF;
-    margin-bottom: 4px;
-    font-family: var(--font-family-display);
-    transition: all var(--transition-fast);
-}
-
-.weather-desc {
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.8);
-    font-weight: 500;
-    transition: all var(--transition-fast);
-}
-
-.weather-icon {
-    font-size: 32px;
-    color: rgba(255, 255, 255, 0.9);
-    transition: all var(--transition-fast);
-    animation: float 3s ease-in-out infinite;
-}
-
-.widget-weather:hover .weather-icon {
-    transform: scale(1.1) rotate(10deg);
-}
-.widget-calendar {
-    text-align: center;
-}
-
-.calendar-day {
-    font-size: 32px;
-    font-weight: 700;
-    color: #FFFFFF;
-    margin-bottom: 4px;
-    font-family: var(--font-family-display);
-    transition: all var(--transition-fast);
-}
-
-.calendar-month {
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.8);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: all var(--transition-fast);
-}
-
-.widget-gpt {
-    background: linear-gradient(135deg, rgba(0, 122, 255, 0.3) 0%, rgba(175, 82, 222, 0.3) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.4);
     color: #FFFFFF;
     position: relative;
     overflow: hidden;
 }
 
-.widget-gpt::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-    transition: left 0.8s ease;
+.oneui-widget:hover {
+    transform: translateY(-4px) scale(1.02);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
 }
 
-.widget-gpt:hover::before {
-    left: 100%;
-}
-.gpt-title {
-    font-size: 17px;
-    font-weight: 600;
-    margin-bottom: var(--spacing-md);
+/* Weather Widget */
+.weather-widget {
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
+    gap: 16px;
+    min-height: 80px;
+}
+
+.weather-icon {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.weather-icon .fa-sun {
+    font-size: 32px;
+    color: #FFA726;
+    position: absolute;
+}
+
+.weather-icon .fa-cloud {
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.8);
+    position: absolute;
+    top: 8px;
+    left: 16px;
+}
+
+.weather-temp {
+    font-size: 48px;
+    font-weight: 200;
+    color: #FFFFFF;
+    font-family: var(--font-family-display);
+    line-height: 1;
+}
+
+.weather-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.weather-time {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 4px;
+}
+
+.weather-location {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Time Widget */
+.time-widget {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    min-height: 80px;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+}
+
+.widget-time {
+    font-size: 36px;
+    font-weight: 200;
+    color: #FFFFFF;
+    font-family: var(--font-family-display);
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.widget-greeting {
+    font-size: 18px;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+
+/* Action Widget */
+.action-widget {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-height: 60px;
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+}
+
+.action-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #FFFFFF;
+}
+
+.action-text {
+    font-size: 20px;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+
+/* Google Search Bar */
+.google-search-bar {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 28px;
+    padding: 16px 24px;
+    margin: 0 var(--spacing-lg) var(--spacing-xl);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.google-search-bar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.search-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.google-logo {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.g-blue { color: #4285F4; }
+.g-red { color: #EA4335; }
+.g-yellow { color: #FBBC05; }
+.g-green { color: #34A853; }
+
+.search-actions {
+    display: flex;
+    gap: 16px;
+}
+
+.search-actions i {
+    font-size: 20px;
+    color: #5F6368;
     transition: all var(--transition-fast);
 }
 
-.gpt-shortcuts {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-sm);
+.search-actions i:hover {
+    color: #4285F4;
+    transform: scale(1.1);
 }
 
-.gpt-shortcut {
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-sm) var(--spacing-md);
-    color: #FFFFFF;
-    font-size: 13px;
-    font-weight: 600;
+/* App Grid - One UI 7 Style */
+.app-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    padding: 0 var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    align-content: start;
+}
+
+.app-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
     cursor: pointer;
     transition: all var(--transition-fast);
+    padding: 12px;
+    border-radius: 20px;
 }
 
-.gpt-shortcut:hover {
-    background: rgba(255, 255, 255, 0.3);
+.app-icon:hover {
+    background: rgba(255, 255, 255, 0.1);
     transform: scale(1.05);
-    animation: springBounce 0.6s var(--transition-spring);
 }
 
-.gpt-shortcut:active {
+.app-icon:active {
     transform: scale(0.95);
     transition: transform 0.1s ease;
 }
-/* App Grid */
-.home-screen-content {
-    flex: 1;
-    overflow-y: auto;
+
+.app-icon-container {
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    color: #FFFFFF;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    transition: all var(--transition-fast);
+}
+
+.app-icon-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%);
+    border-radius: inherit;
+}
+
+.app-icon:hover .app-icon-container {
+    transform: scale(1.1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.app-icon span {
+    font-size: 12px;
+    font-weight: 500;
+    color: #FFFFFF;
+    text-align: center;
+    max-width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Dock Container */
+.dock-container {
+    position: fixed;
+    bottom: 80px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 100;
+}
+
+.dock {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 28px;
+    padding: 12px 20px;
+    display: flex;
+    gap: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    transition: all var(--transition-normal);
+}
+
+.dock:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+.dock .app-icon {
+    padding: 8px;
+}
+
+.dock .app-icon-container {
+    width: 56px;
+    height: 56px;
+    font-size: 28px;
+}
+
+.dock .app-icon:hover .app-icon-container {
+    transform: scale(1.2) translateY(-8px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Page Indicators */
+.page-indicators {
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 100;
+}
+
+.indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    transition: all var(--transition-fast);
+}
+
+.indicator.active {
+    background: rgba(255, 255, 255, 0.8);
+    transform: scale(1.2);
+}
+
+/* Gesture Bar - Enhanced */
+.gesture-bar {
+    position: fixed;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 134px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    z-index: 2000;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gesture-handle {
+    width: 40px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.gesture-bar:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateX(-50%) translateY(-2px);
+}
+
+.gesture-bar:hover .gesture-handle {
+    background: rgba(255, 255, 255, 0.8);
+    width: 60px;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .oneui-widgets-container {
+        gap: var(--spacing-sm);
+    }
+    
+    .oneui-widget {
+        padding: 16px;
+    }
+    
+    .weather-temp {
+        font-size: 40px;
+    }
+    
+    .widget-time {
+        font-size: 32px;
+    }
+    
+    .app-grid {
+        gap: 20px;
+        padding: 0 var(--spacing-md);
+    }
+    
+    .app-icon-container {
+        width: 56px;
+        height: 56px;
+        font-size: 26px;
+    }
+    
+    .dock {
+        padding: 10px 16px;
+        gap: 16px;
+    }
+    
+    .dock .app-icon-container {
+        width: 52px;
+        height: 52px;
+        font-size: 24px;
+    }
+}
+
+/* Unlock Transition Effects */
+.unlock-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.unlock-transition.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Enhanced Animations */
+@keyframes slideUpUnlock {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+        filter: blur(10px);
+    }
+    50% {
+        opacity: 0.5;
+        filter: blur(5px);
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+.slide-up-unlock {
+    animation: slideUpUnlock 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes cardSlideIn {
+    0% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.card-slide-in {
+    animation: cardSlideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Dark Mode Adaptations */
+[data-theme="dark"] .oneui-widget {
+    background: rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .google-search-bar {
+    background: rgba(0, 0, 0, 0.6);
+    color: #FFFFFF;
+}
+
+[data-theme="dark"] .dock {
+    background: rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .gesture-bar {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="dark"] .gesture-handle {
+    background: rgba(255, 255, 255, 0.4);
 }
 
 .app-grid {

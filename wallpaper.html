@@ -25,6 +25,14 @@
                     <div class="setting-info"><div class="setting-title">Scegli un nuovo sfondo</div></div>
                     <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
                 </div>
+                <div class="setting-item" onclick="document.getElementById('lockWallpaperInput').click();">
+                    <div class="setting-info"><div class="setting-title">Sfondo Lockscreen</div></div>
+                    <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
+                </div>
+                <div class="setting-item" onclick="document.getElementById('homeWallpaperInput').click();">
+                    <div class="setting-info"><div class="setting-title">Sfondo Home Screen</div></div>
+                    <div class="setting-accessory"><i class="fas fa-chevron-right"></i></div>
+                </div>
                  <div class="setting-item" onclick="removeWallpaper()">
                     <div class="setting-info"><div class="setting-title" style="color:var(--ios-red);">Rimuovi sfondo</div></div>
                 </div>
@@ -38,11 +46,18 @@
             </div>
         </div>
     </div>
+    
+    <!-- Additional Hidden Inputs -->
+    <input type="file" id="lockWallpaperInput" accept="image/*" style="display:none;">
+    <input type="file" id="homeWallpaperInput" accept="image/*" style="display:none;">
+    
     <script src="scripts/global.js"></script>
     <script>
-        // ... (il javascript di questo file rimane uguale a prima)
         document.addEventListener('DOMContentLoaded', () => {
             const wallpaperInput = document.getElementById('wallpaperInput');
+            const lockWallpaperInput = document.getElementById('lockWallpaperInput');
+            const homeWallpaperInput = document.getElementById('homeWallpaperInput');
+            
             wallpaperInput.addEventListener('change', function(event) {
                 const file = event.target.files[0];
                 if (!file) return;
@@ -50,8 +65,34 @@
                 reader.onload = function(e) {
                     const wallpaperDataUrl = e.target.result;
                     localStorage.setItem('crono_wallpaper', wallpaperDataUrl);
+                    localStorage.setItem('crono_lock_wallpaper', wallpaperDataUrl);
+                    localStorage.setItem('crono_home_wallpaper', wallpaperDataUrl);
                     applyWallpaperToAll();
                     showToast('Sfondo aggiornato!');
+                };
+                reader.readAsDataURL(file);
+            });
+            
+            lockWallpaperInput.addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const wallpaperDataUrl = e.target.result;
+                    localStorage.setItem('crono_lock_wallpaper', wallpaperDataUrl);
+                    showToast('Sfondo Lockscreen aggiornato!');
+                };
+                reader.readAsDataURL(file);
+            });
+            
+            homeWallpaperInput.addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const wallpaperDataUrl = e.target.result;
+                    localStorage.setItem('crono_home_wallpaper', wallpaperDataUrl);
+                    showToast('Sfondo Home Screen aggiornato!');
                 };
                 reader.readAsDataURL(file);
             });
@@ -67,6 +108,8 @@
         function removeWallpaper() {
             if (confirm('Rimuovere lo sfondo personalizzato?')) {
                 localStorage.removeItem('crono_wallpaper');
+                localStorage.removeItem('crono_lock_wallpaper');
+                localStorage.removeItem('crono_home_wallpaper');
                 document.documentElement.style.setProperty('--custom-wallpaper', 'none');
                 showToast('Sfondo predefinito ripristinato.');
             }
