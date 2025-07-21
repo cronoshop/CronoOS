@@ -1,4 +1,4 @@
-// CronoOS Home Screen - Phoenix Edition v3 (FINAL & STABLE)
+// CronoOS Home Screen - Phoenix Edition v3 (FINAL & STABLE) CronoOS 3.3.1
 // Questo script è stato riscritto per essere 100% autonomo e stabile.
 // Ora contiene direttamente i dati di default per evitare qualsiasi errore di caricamento.
 
@@ -35,10 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const appGrid = document.getElementById('appGrid');
     const dock = document.getElementById('dock');
     
-    if (!appGrid || !dock) {
-        console.error("ERRORE CRITICO: Impossibile trovare #appGrid o #dock nell'HTML.");
-        return;
-    }
+
 
     // --- Funzione Principale di Avvio ---
     function initializeHomeScreen() {
