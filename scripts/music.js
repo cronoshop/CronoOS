@@ -1,46 +1,47 @@
+// CronoOS 4.0.0 Music System
 // === Danh sách nhạc mặc định ===
 const musicList_music = [
   {
     title: "Aura Power",
     author: "Phonk",
-    img: "originos_data/Music/aura_power.png",
-    src: "originos_data/Music/phonk/Aura Power - phonk.mp3",
+    img: "https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",
+    src: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav",
   },
   {
     title: "HEADPHONK",
     author: "Phonk",
-    img: "originos_data/Music/headphonk.png",
-    src: "originos_data/Music/phonk/HEADPHONK - phonk.mp3",
+    img: "https://images.pexels.com/photos/164938/pexels-photo-164938.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",
+    src: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav",
   },
   {
     title: "Dark Heart",
     author: "Ambient",
-    img: "originos_data/Music/dark_heart.png",
-    src: "originos_data/Music/ambient/Dark Heart - ambient.mp3",
+    img: "https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",
+    src: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav",
   },
   {
     title: "Atmospheric Guitar",
     author: "Electric",
-    img: "originos_data/Music/atmospheric_guitar.png",
-    src: "originos_data/Music/eletric/Atmospheric Guitar - electric.mp3",
+    img: "https://images.pexels.com/photos/1407322/pexels-photo-1407322.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",
+    src: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav",
   },
   {
     title: "Machine",
     author: "Electric",
-    img: "originos_data/Music/machine.png",
-    src: "originos_data/Music/eletric/Machine -electric.mp3",
+    img: "https://images.pexels.com/photos/1751731/pexels-photo-1751731.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",
+    src: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav",
   },
   {
     title: "Happy",
     author: "Pop",
-    img: "originos_data/Music/happy.png",
-    src: "originos_data/Music/pop/Happy - pop.mp3",
+    img: "https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",
+    src: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav",
   },
 ];
 
 let customTracks_music = []; // danh sách bài người dùng chọn
 let isPlaying_music = false;
-updateActionsMap();
+if (typeof updateActionsMap === 'function') updateActionsMap();
 let currentIndex_music = 0;
 
 const playlist_music = document.getElementById("playlist_music");
@@ -101,7 +102,7 @@ function playTrack_music(index) {
   showPopup_open_close(playerPopup_music);
   playlist_music.style.height = "28vh";
   isPlaying_music = true;
-  updateActionsMap();
+  if (typeof updateActionsMap === 'function') updateActionsMap();
 
   audioPlayer_music.onended = () => nextTrack_music();
 }
@@ -125,7 +126,7 @@ function togglePlay_music() {
   <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#fff"><path d="M320-200v-560l440 280-440 280Z"/></svg>`;
     isPlaying_music = false;
   }
-  updateActionsMap();
+  if (typeof updateActionsMap === 'function') updateActionsMap();
 }
 
 function nextTrack_music() {
@@ -164,7 +165,7 @@ function closePlayer_music() {
   playPauseIcon_music.innerHTML = `
   <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="gray"><path d="M320-200v-560l440 280-440 280Z"/></svg>`;
   isPlaying_music = false;
-  updateActionsMap();
+  if (typeof updateActionsMap === 'function') updateActionsMap();
 }
 
 function openFilePicker_music() {
@@ -190,7 +191,7 @@ document
         if (tags.picture) {
           const { data, format } = tags.picture;
           const byteArray = new Uint8Array(data);
-          const blob = new Blob([byteArray], { type: format });
+          const blob = new Blob([byteArray], { type: format || 'image/jpeg' });
           imgUrl = URL.createObjectURL(blob);
         }
 
@@ -207,7 +208,7 @@ document
       onError: function () {
         const fallbackTrack = {
           title: file.name.replace(/\.[^/.]+$/, ""),
-          author: "Local",
+          author: "CronoOS 4.0.0 Local",
           img: "https://i.imgur.com/svQHjVl.jpg",
           src: url,
         };
@@ -225,7 +226,7 @@ document
 // Khởi tạo giao diện ban đầu
 updatePlaylist_music();
 
-function playmusic(url, volume = 1.0) {
+function playmusic(url = "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav", volume = 1.0) {
   if (volume == 0) return; // không phát nếu âm lượng bằng 0
 
   const container = document.createElement("div");
@@ -249,5 +250,8 @@ function playmusic(url, volume = 1.0) {
 }
 
 window.addEventListener("click", () => {
-  playmusic("originos_data/ui/Effect_Tick.ogg", volume_click_volume);
+  const volume_click_volume = parseFloat(localStorage.getItem("volume_click_volume")) || 0.5;
+  playmusic("https://www.soundjay.com/misc/sounds/button-09.wav", volume_click_volume);
 });
+
+// CronoOS 4.0.0 Music System Complete

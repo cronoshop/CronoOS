@@ -1,14 +1,14 @@
 {
-  "name": "cronos-mobile-os",
-  "version": "3.0.0",
-  "description": "CronoOS 3.0 - GPT Edition Mobile Operating System",
+  "name": "cronos-mobile-os-4",
+  "version": "4.0.0",
+  "description": "CronoOS 4.0.0 - Phoenix Edition Mobile Operating System",
   "main": "index.html",
   "scripts": {
     "dev": "python3 -m http.server 3000",
     "start": "python3 -m http.server 3000",
     "preview": "python3 -m http.server 4173"
   },
-  "keywords": ["mobile", "os", "cronos", "gpt", "ai"],
-  "author": "CronoOS Team",
+  "keywords": ["mobile", "os", "cronos", "phoenix", "4.0"],
+  "author": "CronoOS 4.0.0 Team",
   "license": "MIT"
 }

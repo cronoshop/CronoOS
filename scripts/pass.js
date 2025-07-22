@@ -1,3 +1,4 @@
+// CronoOS 4.0.0 Password System
 let pass_password = "";
 let input_password = "";
 const saved_pass_local = localStorage.getItem("pass_saved");
@@ -52,7 +53,7 @@ if (pass_password === "") {
   finger_icon_btn.style.fill = "#000000";
   status_pass1.textContent = box_pass1.classList.contains("off") ? "OFF" : "ON";
   status_pass2.textContent = box_pass2.classList.contains("off") ? "OFF" : "ON";
-  finger_biometrics = box_pass2.classList.contains("off") ? 0 : 1;
+  const finger_biometrics = box_pass2.classList.contains("off") ? 0 : 1;
 
   localStorage.removeItem("pass_saved");
   localStorage.setItem("finger_saved", finger_biometrics.toString());
@@ -176,7 +177,7 @@ function addNumber_password(num) {
         setTimeout(() => {
           input_password = "";
           updateDots_password();
-          unlock(); // mở khóa
+          if (typeof unlock === 'function') unlock(); // mở khóa
         }, 100);
       }
     } else {
@@ -203,8 +204,8 @@ function onThreeFails() {
   fogot_pass_btn.style.display = "block";
   fogot_pass_btn.addEventListener("click", () => {
     pass_password = "";
-    unlock();
-    tb_system("Password removed successfully");
+    if (typeof unlock === 'function') unlock();
+    if (typeof tb_system === 'function') tb_system("CronoOS 4.0.0 Password removed successfully");
     remove_pass_btn.style.display = "none";
     pass_password = "";
     stage_crea_pass = 0;
@@ -222,7 +223,7 @@ function onThreeFails() {
     status_pass1.textContent = box_pass1.classList.contains("off")
       ? "OFF"
       : "ON";
-    status_pass2.textContent = box_pass2.classList.contains("off")
+    document.getElementById("status_pass2").textContent = box_pass2.classList.contains("off")
       ? "OFF"
       : "ON";
     finger_biometrics = box_pass2.classList.contains("off") ? 0 : 1;
@@ -351,7 +352,7 @@ addSwipeEvents();
 // Animation hiển thị các nút
 function animateKeys_password() {
   if (!pass_password) {
-    unlock();
+    if (typeof unlock === 'function') unlock();
     return;
   }
   container_password.style.display = "flex";
@@ -372,7 +373,7 @@ function animateKeys_password() {
   keypad_password.style.animation = `show_pass 0.4s ease-out`;
 }
 
-if (!pass_password) {
+if (!pass_password && typeof fingerprint !== 'undefined') {
   fingerprint.style.display = "none";
 } else remove_pass_btn.style.display = "none";
 
@@ -450,7 +451,7 @@ function handleFullInput_crea_pass() {
       document.getElementById("title_crea_pass").textContent = t("enter_old");
       status_pass1.textContent = box_pass1.classList.contains("off")
         ? "OFF"
-        : "ON";
+        : "ON"; 
     } else {
       errorEl.textContent = t("not_match");
       stage_crea_pass = 1;
@@ -479,10 +480,12 @@ remove_pass_btn.addEventListener("click", () => {
   finger_icon_btn.style.fill = "#000000";
   status_pass1.textContent = box_pass1.classList.contains("off") ? "OFF" : "ON";
   status_pass2.textContent = box_pass2.classList.contains("off") ? "OFF" : "ON";
-  finger_biometrics = box_pass2.classList.contains("off") ? 0 : 1;
+  const finger_biometrics = box_pass2.classList.contains("off") ? 0 : 1;
 
   localStorage.removeItem("pass_saved");
   localStorage.setItem("finger_saved", finger_biometrics.toString());
 });
 
 if (!pass_password || !finger_biometrics) fingerprint.style.display = "none";
+
+// CronoOS 4.0.0 Password System Complete
