@@ -1,0 +1,2423 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="color-scheme" content="light" />
+    <title>OriginOS</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Anton&family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Chakra+Petch&family=Comfortaa&family=Indie+Flower&family=Merriweather&family=Orbitron&family=Pacifico&family=Paytone+One&family=Righteous&family=Roboto&family=Silkscreen&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Keania+One&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=backspace"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Monoton&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="loading-screen">
+      <div class="spinner"></div>
+      <p>Loading OriginOS V1.4.00</p>
+      <p>by: Quandz24</p>
+      <p id="lolhaha">tiktok: @sungsamtech - @._naq.</p>
+    </div>
+    <div class="control_panel_hws_phone">
+      <div class="slider_group_hws_phone">
+        <label for="widthSlider_hws_phone"
+          >Width: <span id="widthValue_hws_phone">330</span>px</label
+        >
+        <input
+          type="range"
+          id="widthSlider_hws_phone"
+          min="200"
+          max="500"
+          value="330"
+        />
+      </div>
+
+      <div class="slider_group_hws_phone">
+        <label for="heightSlider_hws_phone"
+          >Height: <span id="heightValue_hws_phone">700</span>px</label
+        >
+        <input
+          type="range"
+          id="heightSlider_hws_phone"
+          min="400"
+          max="900"
+          value="700"
+        />
+      </div>
+
+      <div class="slider_group_hws_phone">
+        <label for="radiusSlider_hws_phone"
+          >Border Radius: <span id="radiusValue_hws_phone">50</span>px</label
+        >
+        <input
+          type="range"
+          id="radiusSlider_hws_phone"
+          min="0"
+          max="100"
+          value="50"
+        />
+      </div>
+
+      <div class="slider_group_hws_phone">
+        <label for="scaleSlider_hws_phone"
+          >Scale: <span id="scaleValue_hws_phone">1.00</span>x</label
+        >
+        <input
+          type="range"
+          id="scaleSlider_hws_phone"
+          min="0.3"
+          max="2"
+          step="0.01"
+          value="1"
+        />
+      </div>
+    </div>
+
+    <div class="area-thanh">
+      <div class="camera"></div>
+      <div class="island_circle" id="island_circle">
+        <div class="island_circle_img"></div>
+      </div>
+      <div class="island2" id="island2">
+        <div class="image_island_right2"></div>
+        <div class="popup-title_music2" id="popupTitle_music2"></div>
+        <div class="popup-author_music2" id="popupAuthor_music2"></div>
+
+        <div class="controls_music2">
+          <div onclick="prevTrack_music()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="30px"
+              viewBox="0 -960 960 960"
+              width="30px"
+              fill="#fff"
+            >
+              <path
+                d="M184.39-204.39v-551.22h106v551.22h-106Zm591.22 0L361.91-480l413.7-275.61v551.22Z"
+              />
+            </svg>
+          </div>
+          <div onclick="togglePlay_music()" id="playPauseIcon_music2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="30px"
+              viewBox="0 -960 960 960"
+              width="30px"
+              fill="#fff"
+            >
+              <path d="M300.78-165.52v-628.96L795.61-480 300.78-165.52Z" />
+            </svg>
+          </div>
+          <div onclick="nextTrack_music()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="30px"
+              viewBox="0 -960 960 960"
+              width="30px"
+              fill="#fff"
+            >
+              <path
+                d="M669.61-204.39v-551.22h106v551.22h-106Zm-485.22 0v-551.22L598.09-480l-413.7 275.61Z"
+              />
+            </svg>
+          </div>
+        </div>
+        <input
+          type="range"
+          id="progressBar_music2"
+          value="0"
+          min="0"
+          max="100"
+          step="0.1"
+        />
+      </div>
+      <div class="island" id="island">
+        <div class="time_island" id="display_island">00:00</div>
+
+        <div class="buttons_island">
+          <div
+            class="material-icons"
+            id="toggleBtn"
+            onclick="stop_start_clock()"
+            style="color: orange"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="40px"
+              viewBox="0 -960 960 960"
+              width="40px"
+              fill="#434343"
+            >
+              <path d="M320-202v-560l440 280-440 280Z" />
+            </svg>
+          </div>
+          <div
+            class="material-icons"
+            id="resetBtn"
+            style="background: gray"
+            onclick="reset_clock()"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="#fff"
+            >
+              <path
+                d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
+              />
+            </svg>
+          </div>
+        </div>
+        <div class="image_island_right"></div>
+      </div>
+
+      <div class="thanh" id="thanh"></div>
+      <div class="click-area" id="khaysetting1" style="display: none"></div>
+      <div
+        class="click-area"
+        id="khaysetting2"
+        style="display: none; top: 285px"
+      ></div>
+      <div class="thanh-status" id="thanh-status"></div>
+    </div>
+    <div class="phone">
+      <div class="setup_screen_setup open" id="setup_screenid_setup">
+        <div id="originos_logo_setup"></div>
+        <div id="box1_setup"></div>
+        <div id="box0_setup">
+          <div id="box2_setup"></div>
+        </div>
+        <div id="click_setup">
+          <span class="text">Get started with OriginWEB</span>
+          <svg
+            class="icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 -15 65 30"
+            width="40"
+            height="40"
+            fill="rgba(0, 0, 255, 0.65)"
+          >
+            <path d="M 61 0 C 65 3 65 8 60 8 L 0 8 L 0 0 L 43 0 L 43 -15 Z" />
+          </svg>
+        </div>
+
+        <div
+          class="setup_screen_setup"
+          id="screen_notes_setup"
+          style="opacity: 0; touch-action: none; background: none"
+        >
+          <div id="top_text_setup">Notes</div>
+          <div
+            id="top_text_setup"
+            style="font-size: 15px; top: calc(33% + 50px); width: 80%"
+          >
+            This interface is a simulation of OriginOS. It is not a real
+            operating system and is not officially released by vivo.
+          </div>
+          <div id="originos_buttons_setup">
+            <button id="btn_disagree_setup">Disagree</button>
+            <button
+              id="btn_goto_setup"
+              onclick="
+            removeEventListener_setup();
+            removeWithFade('setup_screenid_setup');
+            document.getElementById('allApp').style.display = 'flex';
+            powerbtn.addEventListener('click', powerbtnEvent);"
+            >
+              Go to OriginWEB
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="systemToast" class="system-toast"></div>
+      <div class="lp2" id="lp2"></div>
+      <div class="left-text-tb" id="left-text-tb">notification center</div>
+      <div class="thanh-status2" id="thanh-status2"></div>
+      <div class="status-battery">
+        <div class="battery-small"></div>
+        <div class="battery-small2"></div>
+        <div class="battery-num" id="batery-num">100</div>
+      </div>
+      <div class="status-time" id="lockclock2">
+        <div class="date-display2" id="dateText2"></div>
+      </div>
+      <div class="allApp" id="allApp" style="display: none">
+        <div class="lp" id="lp"></div>
+        <div class="khayapp" id="khayapp"></div>
+        <div class="box1" id="box1">
+          <div class="nav" style="background: #1f1f1f"></div>
+          <div class="app1" id="app1">
+            <div class="display_calc" id="display_calc">0</div>
+            <div class="buttons_calc">
+              <button class="btn_calc gray_calc" onclick="clearDisplay_calc()">
+                AC
+              </button>
+              <button class="btn_calc gray_calc" onclick="backspace_calc()">
+                ⌫
+              </button>
+              <button class="btn_calc gray_calc" onclick="append_calc('+/-')">
+                ±
+              </button>
+              <button class="btn_calc orange_calc" onclick="append_calc(':')">
+                ÷
+              </button>
+              <button class="btn_calc" onclick="append_calc('7')">7</button>
+              <button class="btn_calc" onclick="append_calc('8')">8</button>
+              <button class="btn_calc" onclick="append_calc('9')">9</button>
+              <button class="btn_calc orange_calc" onclick="append_calc('×')">
+                ×
+              </button>
+              <button class="btn_calc" onclick="append_calc('4')">4</button>
+              <button class="btn_calc" onclick="append_calc('5')">5</button>
+              <button class="btn_calc" onclick="append_calc('6')">6</button>
+              <button class="btn_calc orange_calc" onclick="append_calc('-')">
+                −
+              </button>
+              <button class="btn_calc" onclick="append_calc('1')">1</button>
+              <button class="btn_calc" onclick="append_calc('2')">2</button>
+              <button class="btn_calc" onclick="append_calc('3')">3</button>
+              <button class="btn_calc orange_calc" onclick="append_calc('+')">
+                +
+              </button>
+              <button class="btn_calc" onclick="append_calc('%')">%</button>
+              <button class="btn_calc" onclick="append_calc('0')">0</button>
+              <button class="btn_calc" onclick="append_calc('.')">.</button>
+              <button class="btn_calc equal_calc" onclick="calculate_calc()">
+                =
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="box2" id="box2">
+          <div class="nav" style="background: #1f1f1f"></div>
+          <div class="app2" id="app2">none</div>
+        </div>
+        <div class="box3" id="box3">
+          <div class="nav" style="background: #1f1f1f"></div>
+          <div class="app3" id="app3">
+            <div
+              id="music_container"
+              style="position: absolute; top: 60px; left: 5%; width: 100%"
+            >
+              <div
+                class="material-icons plus-icon_music"
+                onclick="openFilePicker_music()"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#fff"
+                >
+                  <path
+                    d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"
+                  />
+                </svg>
+              </div>
+
+              <input
+                type="file"
+                id="fileInput_music"
+                accept="audio/*"
+                style="display: none"
+              />
+
+              <div class="playlist_music" id="playlist_music"></div>
+
+              <div class="player-popup_music" id="playerPopup_music">
+                <div
+                  onclick="closePlayer_music()"
+                  style="background: none; position: absolute; right: 10px"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="40px"
+                    viewBox="0 -960 960 960"
+                    width="40px"
+                    fill="#434343"
+                  >
+                    <path
+                      d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"
+                    />
+                  </svg>
+                </div>
+                <img id="popupImage_music" src="" alt="Album Art" />
+                <div class="popup-title_music" id="popupTitle_music"></div>
+                <div class="popup-author_music" id="popupAuthor_music"></div>
+                <div class="controls_music">
+                  <div onclick="prevTrack_music()">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="30px"
+                      viewBox="0 -960 960 960"
+                      width="30px"
+                      fill="gray"
+                    >
+                      <path
+                        d="M220-240v-480h66.67v480H220Zm520 0L389.33-480 740-720v480Z"
+                      />
+                    </svg>
+                  </div>
+                  <div onclick="togglePlay_music()" id="playPauseIcon_music">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="30px"
+                      viewBox="0 -960 960 960"
+                      width="30px"
+                      fill="gray"
+                    >
+                      <path d="M320-202v-560l440 280-440 280Z" />
+                    </svg>
+                  </div>
+                  <div onclick="nextTrack_music()">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="30px"
+                      viewBox="0 -960 960 960"
+                      width="30px"
+                      fill="gray"
+                    >
+                      <path
+                        d="M673.33-240v-480H740v480h-66.67ZM220-240v-480l350.67 240L220-240Z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <audio
+                  id="audioPlayer_music"
+                  controls
+                  style="display: none"
+                ></audio>
+                <input
+                  type="range"
+                  id="progressBar_music"
+                  value="0"
+                  min="0"
+                  max="100"
+                  step="0.1"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="box4" id="box4">
+          <div class="nav" style="background: #1f1f1f"></div>
+          <div class="app4main" id="app4main">
+            <div class="footer-text">Made by Quandz24</div>
+            <div
+              class="left-text"
+              id="name_setting"
+              style="left: 7%; top: 120px; font-size: 30px"
+            >
+              Setting
+            </div>
+            <div class="khaysetting1" id="about_setting">
+              <div class="circle">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="21px"
+                  viewBox="0 -960 960 960"
+                  width="21px"
+                  fill="white"
+                >
+                  <path
+                    d="M479.79-665.22q-35.44 0-60.12-24.88Q395-714.99 395-750.43t24.89-60.11q24.88-24.68 60.32-24.68t60.12 24.89Q565-785.45 565-750.01t-24.89 60.12q-24.88 24.67-60.32 24.67ZM407-124.78v-444.44h146v444.44H407Z"
+                  />
+                </svg>
+              </div>
+              <div class="left-text" id="about_name_setting" style="left: 60px">
+                About
+              </div>
+              <div
+                class="left-text-small"
+                id="about_name_small_setting"
+                style="left: 60px"
+              >
+                OS &middot; information
+              </div>
+            </div>
+            <div class="khaysetting3" id="animation_setting">
+              <div
+                class="circle"
+                style="
+                  background: url('originos_data/icon_animation.png') no-repeat
+                    center center fixed;
+                  background-size: 100%;
+                "
+              ></div>
+              <div
+                class="left-text"
+                id="animation_name_setting"
+                style="left: 60px"
+              >
+                Animation
+              </div>
+              <div
+                class="left-text-small"
+                id="animation_name_small_setting"
+                style="left: 60px"
+              >
+                speed animation
+              </div>
+            </div>
+            <div class="khaysetting4" id="theme_setting">
+              <div
+                class="circle"
+                style="
+                  background: url('originos_data/theme_icon.png') no-repeat
+                    center center fixed;
+                  background-size: 100%;
+                "
+              ></div>
+              <div class="left-text" id="theme_name_setting" style="left: 60px">
+                Theme
+              </div>
+              <div
+                class="left-text-small"
+                id="theme_name_small_setting"
+                style="left: 60px"
+              >
+                Wallpaper &middot; finger print
+              </div>
+            </div>
+            <div class="khaysetting5" id="audio_setting">
+              <div
+                class="circle"
+                style="
+                  background: url('originos_data/language.png') no-repeat center
+                    center fixed;
+                  background-size: 130%;
+                "
+              ></div>
+              <div
+                class="left-text"
+                id="language_name_setting"
+                style="left: 60px"
+              >
+                Sound
+              </div>
+              <div
+                class="left-text-small"
+                id="animation_name_small_setting"
+                style="left: 60px"
+              >
+                Sound system
+              </div>
+            </div>
+
+            <div class="khaysetting1" id="lock_style" style="top: 390px">
+              <div class="circle">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="21px"
+                  viewBox="0 -960 960 960"
+                  width="21px"
+                  fill="white"
+                >
+                  <path
+                    d="M246.78-62.48q-43.72 0-74.86-31.14-31.14-31.13-31.14-74.86v-386.43q0-43.73 31.14-74.87 31.14-31.13 74.86-31.13h24.74v-63.61q0-87.52 60.76-148.85T480-934.7q86.96 0 147.72 61.33 60.76 61.33 60.76 148.85v63.61h24.74q43.72 0 74.86 31.13 31.14 31.14 31.14 74.87v386.43q0 43.73-31.14 74.86-31.14 31.14-74.86 31.14H246.78ZM480-281.7q33 0 56.5-23.5t23.5-56.5q0-33-23.5-56.5T480-441.7q-33 0-56.5 23.5T400-361.7q0 33 23.5 56.5t56.5 23.5ZM377.52-660.91h204.96v-63.61q0-43.41-29.63-73.79Q523.22-828.7 480-828.7t-72.85 30.39q-29.63 30.38-29.63 73.79v63.61Z"
+                  />
+                </svg>
+              </div>
+              <div class="left-text" id="lock_name_style" style="left: 60px">
+                Lock style
+              </div>
+              <div
+                class="left-text-small"
+                id="about_name_small_setting"
+                style="left: 60px"
+              >
+                Biometrics
+              </div>
+            </div>
+
+            <div class="app4" id="app4" style="z-index: 5020">
+              <div class="back-button" id="back_to_setting">About</div>
+              <div class="khaysetting1-1">
+                <div class="left-text" id="Vesion">Vesion</div>
+                <div class="left-text-small">V1.4.00</div>
+
+                <div class="icon_element_cheos">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="24px"
+                  >
+                    <path
+                      d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <div class="khaysetting1-2" id="khaysetting1-2">
+                <div class="left-text" id="Develop">Develop</div>
+                <div class="left-text-small" id="name_dev">
+                  TikTok: @sungsamtech - galaxyA15
+                </div>
+
+                <div class="icon_element_cheos">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="24px"
+                  >
+                    <path
+                      d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <div
+                class="app4vesion"
+                id="app4vesion"
+                style="z-index: 10021323; display: none"
+              >
+                <div class="back-button" id="back_to_setting10">Version</div>
+                <div class="vesion_text">
+                  <div class="content-box-vesion" style="height: 225px">
+                    <h2>What's New — V1.4.00</h2>
+                    <p>
+                      • Lock screen customization added<br />
+                      • Fingerprint style customization<br />
+                      • Home screen wallpapers supported<br />
+                      • Lag reduction improvements<br />
+                      • Bug fixes and stability updates<br />
+                      • Smoother animations introduced<br />
+                      • Setup screen added<br />
+                      • Redesigned Settings app — and more!
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="app4credits"
+                id="app4credits"
+                style="z-index: 1002133; display: none"
+              >
+                <div class="back-button" id="back_to_setting7">Credits</div>
+                <div
+                  class="setting-item3"
+                  style="
+                    background: #ffffff00;
+                    color: #000000;
+                    font-size: 17px;
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0);
+                  "
+                >
+                  @vivo_x200_pro_mini_zeiss
+                </div>
+                <div
+                  class="setting-item3"
+                  style="
+                    background: #ffffff00;
+                    color: #000000;
+                    font-size: 17px;
+                    top: 130px;
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0);
+                  "
+                >
+                  @toi.daylabo2015
+                </div>
+              </div>
+              <div class="originos" id="clickBox_beta"></div>
+            </div>
+            <div
+              class="app4animation"
+              id="app4animation"
+              style="z-index: 123213123"
+            >
+              <div class="back-button" id="back_to_setting2">Animation</div>
+              <div class="box-wrapper">
+                <div class="scaling-box" id="scaling-box"></div>
+              </div>
+              <div class="speed-container">
+                <div class="speed-box" data-speed="0.6">0.8x</div>
+                <div class="speed-box active" data-speed="0.7">1x</div>
+                <div class="speed-box" data-speed="1">1.5x</div>
+                <div class="speed-box" data-speed="3">4x</div>
+                <div class="speed-box" data-speed="6">8x</div>
+                <div class="speed-box" data-speed="8">10x</div>
+              </div>
+              <div class="setting-item" style="top: none; margin-top: 440px">
+                <div class="setting-title"></div>
+                <div class="left-text" id="Blur">Blur</div>
+                <div class="left-text-small" id="Lag_on_some_phone">
+                  Lag on some phone
+                </div>
+                <div
+                  class="toggle-switch"
+                  id="blurApp"
+                  data-key="blurApp"
+                ></div>
+              </div>
+              <div
+                class="setting-item"
+                id="animation_more_btn"
+                style="
+                  top: none;
+                  margin-top: 500px;
+                  left: 50%;
+                  transform: translateX(-50%);
+                  display: none;
+                "
+              >
+                <div class="setting-title">More</div>
+                <div class="toggle-switch" id="none2" style="opacity: 0"></div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                >
+                  <path
+                    d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div class="app4theme" id="app4theme" style="z-index: 123213123">
+              <div class="back-button" id="back_to_setting3">Theme</div>
+              <div class="wallpaper-btn" id="wallpaper-btn">
+                <div
+                  style="font-size: 15px; transform: translateY(70%)"
+                  id="wallpaper_name"
+                >
+                  wallpaper
+                </div>
+                <div class="wallpaper-preview"></div>
+              </div>
+              <div
+                class="setting-item"
+                id="aod-btn"
+                style="top: 450px; left: 50%; transform: translateX(-50%)"
+              >
+                <div class="setting-title" id="aod_title">
+                  Always On Display
+                </div>
+                <div class="toggle-switch" id="none" style="opacity: 0"></div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                >
+                  <path
+                    d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"
+                  />
+                </svg>
+              </div>
+              <div class="lock-btn" id="lock-btn">
+                <div
+                  style="font-size: 15px; transform: translateY(70%)"
+                  id="lock_screen_name"
+                >
+                  Lock screen
+                </div>
+                <div
+                  class="wallpaper-preview2"
+                  style="
+                    color: #ffffff;
+                    font-size: 35px;
+                    font-weight: bold;
+                    font-family: 'Abril Fatface', serif;
+                  "
+                  id="lock-screen-preview"
+                >
+                  13:00
+                </div>
+              </div>
+              <div class="finger-btn" id="finger-btn">
+                <div
+                  class="circle"
+                  style="
+                    width: 40px;
+                    height: 40px;
+                    transform: translateY(17.5px) translateX(20%);
+                  "
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="24px"
+                    fill="#bebaab"
+                  >
+                    <path
+                      d="M481-781q106 0 200 45.5T838-604q7 9 4.5 16t-8.5 12q-6 5-14 4.5t-14-8.5q-55-78-141.5-119.5T481-741q-97 0-182 41.5T158-580q-6 9-14 10t-14-4q-7-5-8.5-12.5T126-602q62-85 155.5-132T481-781Zm0 94q135 0 232 90t97 223q0 50-35.5 83.5T688-257q-51 0-87.5-33.5T564-374q0-33-24.5-55.5T481-452q-34 0-58.5 22.5T398-374q0 97 57.5 162T604-121q9 3 12 10t1 15q-2 7-8 12t-15 3q-104-26-170-103.5T358-374q0-50 36-84t87-34q51 0 87 34t36 84q0 33 25 55.5t59 22.5q34 0 58-22.5t24-55.5q0-116-85-195t-203-79q-118 0-203 79t-85 194q0 24 4.5 60t21.5 84q3 9-.5 16T208-205q-8 3-15.5-.5T182-217q-15-39-21.5-77.5T154-374q0-133 96.5-223T481-687Zm0-192q64 0 125 15.5T724-819q9 5 10.5 12t-1.5 14q-3 7-10 11t-17-1q-53-27-109.5-41.5T481-839q-58 0-114 13.5T260-783q-8 5-16 2.5T232-791q-4-8-2-14.5t10-11.5q56-30 117-46t124-16Zm0 289q93 0 160 62.5T708-374q0 9-5.5 14.5T688-354q-8 0-14-5.5t-6-14.5q0-75-55.5-125.5T481-550q-76 0-130.5 50.5T296-374q0 81 28 137.5T406-123q6 6 6 14t-6 14q-6 6-14 6t-14-6q-59-62-90.5-126.5T256-374q0-91 66-153.5T481-590Zm-1 196q9 0 14.5 6t5.5 14q0 75 54 123t126 48q6 0 17-1t23-3q9-2 15.5 2.5T744-191q2 8-3 14t-13 8q-18 5-31.5 5.5t-16.5.5q-89 0-154.5-60T460-374q0-8 5.5-14t14.5-6Z"
+                    />
+                  </svg>
+                </div>
+                <div
+                  class="setting-title"
+                  id="finger_print_name"
+                  style="
+                    position: absolute;
+                    top: 16px;
+                    left: 55px;
+                    font-size: 15px;
+                    text-align: left;
+                    align-items: center;
+                    width: 70px;
+                  "
+                >
+                  &nbsp; &nbsp;Finger<br />print
+                </div>
+              </div>
+              <div class="finger-btn" id="home-btn" style="top: 355px">
+                <div
+                  class="circle"
+                  style="
+                    width: 40px;
+                    height: 40px;
+                    transform: translateY(17.5px) translateX(20%);
+                  "
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="24px"
+                    fill="#bebaab"
+                  >
+                    <path
+                      d="M160-120v-480l320-240 320 240v480H560v-280H400v280H160Z"
+                    />
+                  </svg>
+                </div>
+                <div
+                  class="setting-title"
+                  id="home_screen_name"
+                  style="
+                    position: absolute;
+                    top: 16px;
+                    left: 55px;
+                    font-size: 15px;
+                    text-align: left;
+                    align-items: center;
+                    width: 70px;
+                  "
+                >
+                  Home<br />&nbsp;screen
+                </div>
+              </div>
+              <div
+                class="app4wallpaper"
+                id="app4wallpaper"
+                style="z-index: 100213923; display: none"
+              >
+                <div class="back-button" id="back_to_setting4">WallPaper</div>
+                <div class="button-row" id="button-row">
+                  <div
+                    class="img-button active"
+                    data-img="originos_data/462489103_1400206661384168_7007140902614083639_n.jpg"
+                  >
+                    <img
+                      src="originos_data/462489103_1400206661384168_7007140902614083639_n.jpg"
+                      alt="1"
+                    />
+                  </div>
+                  <div
+                    class="img-button"
+                    data-img="originos_data/wallpaper_2.png"
+                  >
+                    <img src="originos_data/wallpaper_2.png" alt="2" />
+                  </div>
+                  <div
+                    class="img-button"
+                    data-img="originos_data/wallpaper_3.png"
+                  >
+                    <img src="originos_data/wallpaper_3.png" alt="3" />
+                  </div>
+                  <div
+                    class="img-button"
+                    data-img="originos_data/wallpaper_4.png"
+                  >
+                    <img src="originos_data/wallpaper_4.png" alt="4" />
+                  </div>
+                  <div
+                    class="img-button"
+                    data-img="originos_data/wallpaper_5.png"
+                  >
+                    <img src="originos_data/wallpaper_5.png" alt="5" />
+                  </div>
+                  <div
+                    class="img-button"
+                    data-img="originos_data/wallpaper_7.png"
+                  >
+                    <img src="originos_data/wallpaper_7.png" alt="6" />
+                  </div>
+                  <div
+                    class="img-button"
+                    data-img="originos_data/wallpaper_6.png"
+                  >
+                    <img src="originos_data/wallpaper_6.png" alt="7" />
+                  </div>
+                </div>
+                <div class="img-button add-button" id="addBtn">+</div>
+                <input type="file" accept="image/*" id="fileInput" />
+                <div
+                  id="popup_overlay_wallpaper"
+                  class="popup-overlay_wallpaper"
+                  style="display: none"
+                >
+                  <div class="popup_wallpaper" id="popup_wallpaperid">
+                    <h3>Select scope of application</h3>
+                    <div
+                      class="popup_wallpaper_button"
+                      id="btn_set_home_wallpaper"
+                      style="
+                        border-bottom-left-radius: 0px;
+                        border-bottom-right-radius: 0px;
+                      "
+                    >
+                      Set as Home screen
+                    </div>
+                    <div
+                      class="popup_wallpaper_button"
+                      id="btn_set_lock_wallpaper"
+                      style="border-radius: 0px"
+                    >
+                      Set as Lock screen
+                    </div>
+                    <div
+                      class="popup_wallpaper_button"
+                      id="btn_set_both_wallpaper"
+                      style="
+                        border-top-left-radius: 0px;
+                        border-top-right-radius: 0px;
+                      "
+                    >
+                      Set both
+                    </div>
+                    <div
+                      class="popup_wallpaper_button"
+                      id="btn_cancel_wallpaper"
+                      class="cancel-btn_wallpaper"
+                      style="margin: 6px 0"
+                    >
+                      Cancel
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="app4aod"
+                id="app4aod"
+                style="z-index: 1002133; display: none"
+              >
+                <div class="back-button" id="back_to_setting5">
+                  Always on display
+                </div>
+                <div class="setting-item" id="setting-item-aod">
+                  <div class="setting-title" id="setting_title_AOD">
+                    Always on display
+                  </div>
+                  <div
+                    class="toggle-switch active"
+                    id="Alway-on-displays"
+                    data-key="Alway-on-displays"
+                  ></div>
+                </div>
+                <div
+                  class="setting-item"
+                  id="setting-item-hide-wall"
+                  style="top: 160px"
+                >
+                  <div class="setting-title" id="setting_title_hide_wallpaper">
+                    Hide wallPaper
+                  </div>
+                  <div
+                    class="toggle-switch"
+                    id="Hide-wallPaper"
+                    data-key="Hide-wallPaper"
+                  ></div>
+                </div>
+                <div id="wallpaper_select_option">
+                  <div
+                    class="aod_preview_screen"
+                    current_wallpaper_lock="1"
+                    display_wallpaper_aod2="none"
+                    opacity="flex"
+                  >
+                    <div class="wallpaper_aod_preview_screen"></div>
+                    <div class="clock_aod_preview_screen">10:00</div>
+                  </div>
+
+                  <div
+                    class="aod_preview_screen full"
+                    id="full_lock"
+                    current_wallpaper_lock="0"
+                    display_wallpaper_aod2="none"
+                    opacity="flex"
+                  >
+                    <div class="wallpaper_aod_preview_screen full"></div>
+                    <div class="clock_aod_preview_screen full">10:00</div>
+                  </div>
+                  <div
+                    class="aod_preview_screen"
+                    id="soon"
+                    current_wallpaper_lock="1"
+                    display_wallpaper_aod2="flex"
+                    opacity="none"
+                  >
+                    <div class="wallpaper_aod_preview_screen add">+</div>
+                    <div class="clock_aod_preview_screen">10:00</div>
+                    <input
+                      type="file"
+                      id="upload_aod_wallpaper"
+                      accept="image/*"
+                      style="display: none"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="app4lock"
+                id="app4lock"
+                style="z-index: 1002133; display: none"
+              >
+                <button id="back_to_setting6" style="color: #ffffff">
+                  Back
+                </button>
+                <div id="lock_edit">
+                  <!--lock edit-->
+                  <div class="lock_preview">
+                    <div class="clock-display" id="clock_preview">13:00</div>
+                    <div
+                      class="date-display"
+                      id="dateTextPreview"
+                      style="color: #ffffff; transition: all 0.2s"
+                    ></div>
+                    <div class="wallpaper2" id="wallpaper2">
+                      <div class="text_lock_2">OriginWEB</div>
+                      <div class="text_lock_2" id="text_lock_cus_2"></div>
+                      <div class="img_lock_2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 -960 960 960"
+                          class="img_lock_svg"
+                        >
+                          <path
+                            d="M480-260q75 0 127.5-52.5T660-440q0-75-52.5-127.5T480-620q-75 0-127.5 52.5T300-440q0 75 52.5 127.5T480-260Zm0-80q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29ZM160-120q-33 0-56.5-23.5T80-200v-480q0-33 23.5-56.5T160-760h126l74-80h240l74 80h126q33 0 56.5 23.5T880-680v480q0 33-23.5 56.5T800-120H160Z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="controls" id="controls_locktext">
+                    <span class="material-icons" id="close_controls_locktext"
+                      >close</span
+                    >
+
+                    <div class="top-buttons">
+                      <button
+                        id="btn1"
+                        style="
+                          border: 2px solid aqua;
+                          box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+                        "
+                      ></button>
+                      <button id="btn2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="48px"
+                          viewBox="0 -960 960 960"
+                          width="48px"
+                          fill="#000000"
+                        >
+                          <path
+                            d="M480-62.8q-85.88 0-162.46-32.52-76.58-32.52-133.14-89.2-56.56-56.68-89.08-133.26-32.52-76.58-32.52-162.7 0-85.4 32.64-162.1 32.64-76.7 89.08-133.26 56.44-56.55 133.14-89.07 76.7-32.52 162.34-32.52t162.34 32.52q76.7 32.52 133.14 89.07 56.44 56.56 89.2 133.26 32.75 76.7 32.75 162.1 0 86.12-32.63 162.7-32.64 76.58-89.2 133.26-56.56 56.68-133.14 89.2Q565.88-62.8 480-62.8Zm0-77.31q59.06 0 113.59-18.78 54.54-18.78 98.82-56.31L214.72-692.41q-36.05 45.04-55.33 99.25-19.28 54.22-19.28 112.68 0 142.42 98.85 241.4 98.86 98.97 241.04 98.97ZM744.52-268.3q33.57-44.29 54.47-98.7 20.9-54.42 20.9-113.48 0-141.7-98.85-240.56-98.86-98.85-241.04-98.85-58.71 0-112.68 19.16-53.97 19.16-99.25 55.97L744.52-268.3Z"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+
+                    <div class="controls" id="controls_colorful_photos">
+                      <span
+                        class="material-icons"
+                        id="close_controls_colorful_photos"
+                        onclick="handleclose_controls_locktextClick()"
+                        >close</span
+                      >
+                      <button
+                        style="
+                          margin-left: 50%;
+                          transform: translateX(-50%) scale(0.7);
+                        "
+                        onclick="document.getElementById('controls_colorful_photos').classList.remove('open');"
+                      >
+                        <label style="font-size: 18px; margin-top: 4px"
+                          >Colorful photos</label
+                        >
+
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          style="
+                            width: 20px;
+                            height: 20px;
+                            background: rgba(128, 128, 128, 0.5);
+                            padding: 3px;
+                            border-radius: 50px;
+                          "
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class="icon icon-tabler icons-tabler-outline icon-tabler-arrows-exchange-2"
+                        >
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                          <path d="M17 10h-14l4 -4" />
+                          <path d="M7 14h14l-4 4" />
+                        </svg>
+                      </button>
+
+                      <div class="top-tab">
+                        <a
+                          class="active"
+                          onclick="
+                            document.getElementById('tab_color_less_is_more').classList.remove('open');
+                            document.getElementById('tab_text_less_is_more').classList.remove('open');
+  
+                            Array.from(this.parentNode.querySelectorAll('a')).forEach(el => el.classList.remove('active'));
+                            this.classList.add('active');
+  
+                            document.getElementById('tab_style_less_is_more').classList.add('open');
+                          "
+                          >Style</a
+                        >
+
+                        <a
+                          onclick="
+                            document.getElementById('tab_color_less_is_more').classList.remove('open');
+                            document.getElementById('tab_style_less_is_more').classList.remove('open');
+  
+                            Array.from(this.parentNode.querySelectorAll('a')).forEach(el => el.classList.remove('active'));
+                            this.classList.add('active');
+  
+                            document.getElementById('tab_text_less_is_more').classList.add('open');
+                          "
+                          >Text</a
+                        >
+
+                        <a
+                          onclick="
+                            document.getElementById('tab_style_less_is_more').classList.remove('open');
+                            document.getElementById('tab_text_less_is_more').classList.remove('open');
+  
+                            Array.from(this.parentNode.querySelectorAll('a')).forEach(el => el.classList.remove('active'));
+                            this.classList.add('active');
+  
+                            document.getElementById('tab_color_less_is_more').classList.add('open');
+                          "
+                          >Color</a
+                        >
+                      </div>
+
+                      <div id="tab_text_less_is_more">
+                        <div class="input-group_text_less_is_more">
+                          <input
+                            type="text"
+                            id="less_more_input"
+                            value="Less is more"
+                            disabled
+                          />
+                          <span class="material-icons" id="less_more_edit"
+                            >edit</span
+                          >
+                        </div>
+                      </div>
+                      <div id="tab_style_less_is_more" class="open">
+                        <div id="button_style_colotful_photos">
+                          <button
+                            id="s1_colotful_photos"
+                            class="active"
+                            data-border-size="10"
+                          ></button>
+                          <button
+                            id="s2_colotful_photos"
+                            data-border-size="0"
+                          ></button>
+                        </div>
+                      </div>
+
+                      <div id="tab_color_less_is_more">
+                        <div class="color-bar" style="margin-top: 35px">
+                          <div
+                            class="color-circle2"
+                            style="
+                              background: repeating-linear-gradient(
+                                45deg,
+                                red 0 6px,
+                                orange 6px 12px,
+                                rgb(255, 230, 0) 12px 18px,
+                                green 18px 24px,
+                                purple 24px 30px
+                              );
+                            "
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              style="height: 30px; width: 30px; fill: white"
+                              viewBox="0 -960 960 960"
+                            >
+                              <path
+                                d="M479.79-144Q360-144 276-227.85 192-311.7 192-432q0-53.8 19-102.9 19-49.1 55-89.1l214-240 214 240q36 40 55 89.1 19 49.1 19 102.9 0 120.3-84.21 204.15-84.21 83.85-204 83.85Z"
+                              />
+                            </svg>
+                          </div>
+
+                          <div
+                            class="color-circle2"
+                            style="background: #ff77c1"
+                            data-color="#ff77c1"
+                          ></div>
+                          <div
+                            class="color-circle2"
+                            style="background: #ff77ff"
+                            data-color="#ff77ff"
+                          ></div>
+                          <div
+                            class="color-circle2"
+                            style="background: #c97cff"
+                            data-color="#c97cff"
+                          ></div>
+                          <div
+                            class="color-circle2"
+                            style="background: #807fff"
+                            data-color="#807fff"
+                          ></div>
+                          <div
+                            class="color-circle2"
+                            style="background: #ac82eb"
+                            data-color="#ac82eb"
+                          ></div>
+                          <div
+                            class="color-circle2"
+                            style="background: #ff5e9f"
+                            data-color="#ff5e9f"
+                          ></div>
+                          <div
+                            class="color-circle2"
+                            style="background: #b3192d"
+                            data-color="#b3192d"
+                          ></div>
+                          <div
+                            class="color-circle2"
+                            style="background: #594535"
+                            data-color="#594535"
+                          ></div>
+                          <div
+                            class="color-circle2"
+                            style="background: #004e1c"
+                            data-color="#004e1c"
+                          ></div>
+                          <div
+                            class="color-circle2"
+                            style="background: #0c534b"
+                            data-color="#0c534b"
+                          ></div>
+                          <div
+                            class="color-circle2"
+                            style="background: #1a538f"
+                            data-color="#1a538f"
+                          ></div>
+                          <div
+                            class="color-circle2"
+                            style="background: #132e6b"
+                            data-color="#132e6b"
+                          ></div>
+                          <div
+                            class="color-circle2"
+                            style="background: #45469b"
+                            data-color="#45469b"
+                          ></div>
+
+                          <div
+                            class="color-circle2"
+                            style="background: #6c004e"
+                            data-color="#6c004e"
+                          ></div>
+                          <div
+                            class="color-circle2"
+                            style="
+                              background: #ffffff;
+                              border: 1px solid #000000;
+                            "
+                            data-color="#ffffff"
+                          ></div>
+                          <div
+                            class="color-circle2"
+                            style="
+                              background: #000000;
+                              border: 1px solid #ffffff;
+                            "
+                            data-color="#000000"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="controls" id="controls_date">
+                    <span class="material-icons" id="close_controls_date"
+                      >close</span
+                    >
+                    <div class="option" id="optNone">None</div>
+                    <div class="option active" id="optText">
+                      <input id="textInput" value="Text" disabled />
+                      <span class="material-icons" id="editBtn">edit</span>
+                    </div>
+                  </div>
+
+                  <div class="controls" id="controls_main">
+                    <div
+                      class="top-buttons"
+                      style="position: relative; top: 0px"
+                    >
+                      <button id="btn_main">Thin</button>
+                      <button id="btn_font">Bold</button>
+                    </div>
+                    <span class="material-icons" id="close_controls_main"
+                      >close</span
+                    >
+
+                    <div class="control-group">
+                      <div class="font-bar">
+                        <div
+                          class="font-button"
+                          style="font-family: 'Abril Fatface'"
+                          data-font="'Abril Fatface'"
+                          data-min="75"
+                          data-max="110"
+                        >
+                          12
+                        </div>
+                        <div
+                          class="font-button"
+                          style="font-family: 'Keania One'"
+                          data-font="'Keania One'"
+                          data-min="70"
+                          data-max="115"
+                        >
+                          12
+                        </div>
+                        <div
+                          class="font-button"
+                          style="font-family: 'Fredoka'"
+                          data-font="'Fredoka'"
+                          data-min="75"
+                          data-max="110"
+                        >
+                          12
+                        </div>
+                        <div
+                          class="font-button"
+                          style="font-family: 'Monoton', sans-serif"
+                          data-font="'Monoton', sans-serif"
+                          data-min="70"
+                          data-max="90"
+                        >
+                          12
+                        </div>
+                        <div
+                          class="font-button"
+                          style="font-family: 'Silkscreen'"
+                          data-font="'Silkscreen'"
+                          data-min="75"
+                          data-max="90"
+                        >
+                          12
+                        </div>
+
+                        <!-- Các font đậm mới thêm -->
+                        <div
+                          class="font-button"
+                          style="font-family: 'Anton'"
+                          data-font="'Anton'"
+                          data-min="70"
+                          data-max="90"
+                        >
+                          12
+                        </div>
+                        <div
+                          class="font-button"
+                          style="font-family: 'Paytone One'"
+                          data-font="'Paytone One'"
+                          data-min="70"
+                          data-max="115"
+                        >
+                          12
+                        </div>
+                        <div
+                          class="font-button"
+                          style="font-family: 'Archivo Black'"
+                          data-font="'Archivo Black'"
+                          data-min="70"
+                          data-max="90"
+                        >
+                          12
+                        </div>
+                        <div
+                          class="font-button"
+                          style="font-family: 'Righteous'"
+                          data-font="'Righteous'"
+                          data-min="60"
+                          data-max="110"
+                        >
+                          12
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="control-group">
+                      <div class="color-bar">
+                        <div
+                          class="color-circle"
+                          style="
+                            background: linear-gradient(
+                              to right,
+                              black 50%,
+                              white 50%
+                            );
+                            border: 1px solid gray;
+                          "
+                          onclick="
+  
+                            if(!document.querySelector('.wallpaper2')?.classList.contains('hidden_overlay'))
+                            {
+                              clock_preview.style.color = contrastColor;
+                              lockclock.style.color = contrastColor;
+                              dateText.style.color = contrastColor;
+                              date_preview.style.color = contrastColor;
+                              localStorage.setItem('color_lock_saved', contrastColor);
+                              color_contrastColor = true;
+                              localStorage.setItem('color_contrastColor_saved', 'true');
+                            }
+                            else {
+                              clock_preview.style.color = contrastColor2;
+                              lockclock.style.color = contrastColor2;
+                              dateText.style.color = contrastColor2;
+                              date_preview.style.color = contrastColor2;
+                              localStorage.setItem('color_lock_saved', contrastColor2);
+                              color_contrastColor = true;
+                              localStorage.setItem('color_contrastColor_saved', 'true');
+                            }
+                          "
+                        ></div>
+                        <div
+                          class="color-circle"
+                          style="background: #ff777d"
+                          data-color="#ff777d"
+                        ></div>
+                        <div
+                          class="color-circle"
+                          style="background: #ff77c1"
+                          data-color="#ff77c1"
+                        ></div>
+                        <div
+                          class="color-circle"
+                          style="background: #ff77ff"
+                          data-color="#ff77ff"
+                        ></div>
+                        <div
+                          class="color-circle"
+                          style="background: #c97cff"
+                          data-color="#c97cff"
+                        ></div>
+                        <div
+                          class="color-circle"
+                          style="background: #807fff"
+                          data-color="#807fff"
+                        ></div>
+                        <div
+                          class="color-circle"
+                          style="background: #ac82eb"
+                          data-color="#ac82eb"
+                        ></div>
+                        <div
+                          class="color-circle"
+                          style="background: #ff5e9f"
+                          data-color="#ff5e9f"
+                        ></div>
+                        <div
+                          class="color-circle"
+                          style="background: #b3192d"
+                          data-color="#b3192d"
+                        ></div>
+                        <div
+                          class="color-circle"
+                          style="background: #594535"
+                          data-color="#594535"
+                        ></div>
+                        <div
+                          class="color-circle"
+                          style="background: #004e1c"
+                          data-color="#004e1c"
+                        ></div>
+                        <div
+                          class="color-circle"
+                          style="background: #0c534b"
+                          data-color="#0c534b"
+                        ></div>
+                        <div
+                          class="color-circle"
+                          style="background: #1a538f"
+                          data-color="#1a538f"
+                        ></div>
+                        <div
+                          class="color-circle"
+                          style="background: #132e6b"
+                          data-color="#132e6b"
+                        ></div>
+                        <div
+                          class="color-circle"
+                          style="background: #45469b"
+                          data-color="#45469b"
+                        ></div>
+
+                        <div
+                          class="color-circle"
+                          style="background: #6c004e"
+                          data-color="#6c004e"
+                        ></div>
+                        <div
+                          class="color-circle"
+                          style="background: #ffffff; border: 1px solid #000000"
+                          data-color="#ffffff"
+                        ></div>
+                        <div
+                          class="color-circle"
+                          style="background: #131313; border: 1px solid #ffffff"
+                          data-color="#131313"
+                        ></div>
+                        <div class="color-circle add-color" id="customColor">
+                          +
+                        </div>
+                        <input type="color" id="colorPicker" />
+                      </div>
+                    </div>
+                    <!-- Kéo chỉnh kích cỡ -->
+                    <div class="control-group">
+                      <label id="Font_size">Font size</label>
+                      <input
+                        type="range"
+                        id="sizeSlider"
+                        min="80"
+                        max="110"
+                        value="100"
+                      />
+                    </div>
+                  </div>
+                  <div class="bottom-buttons">
+                    <button class="wallpaper-btn-2" id="wallpaper_btn_2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="25px"
+                        viewBox="0 -960 960 960"
+                        width="25px"
+                        id="decor_wallaper_2"
+                      >
+                        <path
+                          d="M180.11-102.8q-30.75 0-54.03-23.28t-23.28-54.03v-267.26h77.31v267.26h267.26v77.31H180.11Zm332.52 0v-77.31h267.26v-267.26h77.54v267.26q0 30.75-23.34 54.03-23.35 23.28-54.2 23.28H512.63ZM227.52-260.87l126.72-164.87L448-297.98 580.76-470.5l155.72 209.63H227.52ZM102.8-512.63v-267.26q0-30.85 23.28-54.2 23.28-23.34 54.03-23.34h267.26v77.54H180.11v267.26H102.8Zm677.09 0v-267.26H512.63v-77.54h267.26q30.85 0 54.2 23.34 23.34 23.35 23.34 54.2v267.26h-77.54Zm-152.85-56.61q-26.01 0-41.91-15.66-15.89-15.66-15.89-41.67t15.66-41.91q15.66-15.89 41.67-15.89t41.91 15.66q15.89 15.66 15.89 41.67t-15.66 41.91q-15.66 15.89-41.67 15.89Z"
+                        />
+                      </svg>
+                    </button>
+
+                    <button id="button_decor">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="25px"
+                        viewBox="0 -960 960 960"
+                        width="25px"
+                        id="decor"
+                      >
+                        <path
+                          d="m156.91-103.8-54.11-54.11 326.81-326.57-189.57-46.76 203.72-127.24-17-238.95 183.72 153.47L833.2-833.2l-90.24 221.96 154.47 184.48-239.95-18-126.24 203.72-46.52-189.09L156.91-103.8Zm24.76-553.9-78.87-79.87 80.11-80.1 79.63 79.1-80.87 80.87Zm556.9 554.9-79.11-79.87 79.11-78.87 78.86 79.87-78.86 78.87Z"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <!--lock edit-->
+                <div id="home_edit"></div>
+              </div>
+
+              <div
+                class="app4home"
+                id="app4home"
+                style="z-index: 1002133; display: none"
+              >
+                <div class="back-button" id="back_to_setting8">Home screen</div>
+                <div class="settings-box">
+                  <div class="box-title" id="size_icon_title">Size icon:</div>
+                  <div class="button-container">
+                    <button
+                      class="scale-button"
+                      id="scale-button80"
+                      data-scale="80"
+                    >
+                      Small
+                    </button>
+                    <button
+                      class="scale-button"
+                      id="scale-button90"
+                      data-scale="90"
+                    >
+                      medium
+                    </button>
+                    <button
+                      class="scale-button active"
+                      id="scale-button100"
+                      data-scale="100"
+                    >
+                      Large
+                    </button>
+                  </div>
+                </div>
+                <div
+                  class="setting-item"
+                  style="top: 35%"
+                  id="setting-item-aod"
+                >
+                  <div class="setting-title" id="dock_bar_title">Dock bar</div>
+                  <div
+                    class="toggle-switch active"
+                    id="dock-bar"
+                    data-key="dock-bar"
+                  ></div>
+                </div>
+
+                <div
+                  class="setting-item"
+                  style="top: calc(35% + 60px)"
+                  id="setting-item-aod"
+                >
+                  <div class="setting-title" id="dark_mode_title">
+                    Dark mode
+                  </div>
+                  <div
+                    class="toggle-switch"
+                    id="dark-mode"
+                    data-key="dark-mode"
+                  ></div>
+                  <div
+                    class="setting-item"
+                    id="icon_btn"
+                    style="top: calc(35% + 43px); left: 0%"
+                  >
+                    <div class="setting-title" id="icon_packs_title">
+                      Icon packs
+                    </div>
+                    <div
+                      class="toggle-switch"
+                      id="none"
+                      style="opacity: 0"
+                    ></div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="24px"
+                      viewBox="0 -960 960 960"
+                      width="24px"
+                    >
+                      <path
+                        d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div class="app4icon" id="app4icon">
+                  <div class="back-button" id="back_to_setting12">
+                    Icon packs
+                  </div>
+                  <div class="container_icon">
+                    <div class="icon_item" onclick="icon_originos()">
+                      <div class="box_icon" id="originos_icon">
+                        <div
+                          class="mini_icon"
+                          style="
+                            --bg--mini-icon: url('originos_data/system_settings.png');
+                          "
+                        ></div>
+                        <div
+                          class="mini_icon"
+                          style="
+                            --bg--mini-icon: url('originos_data/system_music.png');
+                          "
+                        ></div>
+                        <div
+                          class="mini_icon"
+                          style="
+                            --bg--mini-icon: url('originos_data/system_filemanager.png');
+                          "
+                        ></div>
+                        <div
+                          class="mini_icon"
+                          style="
+                            --bg--mini-icon: url('originos_data/system_calculator.png');
+                          "
+                        ></div>
+                      </div>
+                      <div class="icon_label">Default - OriginOS</div>
+                    </div>
+
+                    <div class="icon_item" onclick="icon_hyperos()">
+                      <div class="box_icon" id="hyperos_icon">
+                        <div
+                          class="mini_icon"
+                          style="
+                            --bg--mini-icon: url('originos_data/hype_icon/system_settings.png');
+                          "
+                        ></div>
+                        <div
+                          class="mini_icon"
+                          style="
+                            --bg--mini-icon: url('originos_data/hype_icon/system_music.png');
+                          "
+                        ></div>
+                        <div
+                          class="mini_icon"
+                          style="
+                            --bg--mini-icon: url('originos_data/hype_icon/system_filemanager.png');
+                          "
+                        ></div>
+                        <div
+                          class="mini_icon"
+                          style="
+                            --bg--mini-icon: url('originos_data/hype_icon/system_calculator.png');
+                          "
+                        ></div>
+                      </div>
+                      <div class="icon_label">HyperOS</div>
+                    </div>
+
+                    <div class="icon_item" onclick="icon_ios()">
+                      <div class="box_icon" id="ios_icon">
+                        <div
+                          class="mini_icon"
+                          style="
+                            --bg--mini-icon: url('originos_data/i_icon/settings.png');
+                          "
+                        ></div>
+                        <div
+                          class="mini_icon"
+                          style="
+                            --bg--mini-icon: url('originos_data/i_icon/music.png');
+                          "
+                        ></div>
+                        <div
+                          class="mini_icon"
+                          style="
+                            --bg--mini-icon: url('originos_data/i_icon/files.png');
+                          "
+                        ></div>
+                        <div
+                          class="mini_icon"
+                          style="
+                            --bg--mini-icon: url('originos_data/i_icon/calculator.png');
+                          "
+                        ></div>
+                      </div>
+                      <div class="icon_label">IOS</div>
+                    </div>
+
+                    <div class="icon_item" onclick="icon_coloros()">
+                      <div class="box_icon" id="coloros_icon">
+                        <div
+                          class="mini_icon"
+                          style="
+                            --bg--mini-icon: url('originos_data/o_icon/settings.png');
+                          "
+                        ></div>
+                        <div
+                          class="mini_icon"
+                          style="
+                            --bg--mini-icon: url('originos_data/o_icon/music.png');
+                          "
+                        ></div>
+                        <div
+                          class="mini_icon"
+                          style="
+                            --bg--mini-icon: url('originos_data/o_icon/files.png');
+                          "
+                        ></div>
+                        <div
+                          class="mini_icon"
+                          style="
+                            --bg--mini-icon: url('originos_data/o_icon/calculator.png');
+                          "
+                        ></div>
+                      </div>
+                      <div class="icon_label">ColorOS</div>
+                    </div>
+
+                    <div class="icon_item" onclick="icon_oneui()">
+                      <div class="box_icon" id="oneui_icon">
+                        <div
+                          class="mini_icon"
+                          style="
+                            --bg--mini-icon: url('originos_data/oui_icon/settings.png');
+                          "
+                        ></div>
+                        <div
+                          class="mini_icon"
+                          style="
+                            --bg--mini-icon: url('originos_data/oui_icon/music.png');
+                          "
+                        ></div>
+                        <div
+                          class="mini_icon"
+                          style="
+                            --bg--mini-icon: url('originos_data/oui_icon/files.png');
+                          "
+                        ></div>
+                        <div
+                          class="mini_icon"
+                          style="
+                            --bg--mini-icon: url('originos_data/oui_icon/calculator.png');
+                          "
+                        ></div>
+                      </div>
+                      <div class="icon_label">One UI</div>
+                    </div>
+
+                    <!--more-->
+                  </div>
+                  <div class="icon_item icon_setting_row">
+                    <div
+                      class="preview_icon"
+                      id="preview_icon"
+                      style="
+                        --bg--mini-icon: url('originos_data/system_settings.png');
+                      "
+                    ></div>
+                    <input
+                      type="range"
+                      id="radius_slider"
+                      min="20"
+                      max="40"
+                      value="20"
+                    />
+                  </div>
+                </div>
+                <div class="footer-text" id="note_dark_mode">
+                  Note: Don't use dark mode of your browser
+                </div>
+              </div>
+
+              <div class="app4finger" id="app4finger">
+                <div class="back-button" id="back_to_setting9">
+                  Finger print
+                </div>
+                <div class="half-border-box">
+                  <img
+                    src="originos_data/finger_print.png"
+                    class="fingerprint_preview"
+                    id="fingerprint_preview"
+                    alt="Vân tay"
+                  />
+                </div>
+                <div class="button-group-finger">
+                  <button class="button-finger" id="btn-white">White</button>
+                  <button class="button-finger" id="btn-blue">Blue</button>
+                </div>
+
+                <div id="lottiePreviewContainer">
+                  <div
+                    class="lottie-box"
+                    data-path="originos_data/Artboard_1.json"
+                    data-speed="0.4"
+                  >
+                    <lottie-player
+                      src="originos_data/Artboard_1.json"
+                      background="transparent"
+                      loop
+                    ></lottie-player>
+                  </div>
+                  <div
+                    class="lottie-box"
+                    data-path="originos_data/1m8zg1YIac.json"
+                    data-speed="1.2"
+                  >
+                    <lottie-player
+                      src="originos_data/1m8zg1YIac.json"
+                      background="transparent"
+                      loop
+                    ></lottie-player>
+                  </div>
+                  <div
+                    class="lottie-box"
+                    data-path="originos_data/WgSwJXqUAN.json"
+                    data-speed="1.7"
+                  >
+                    <lottie-player
+                      src="originos_data/WgSwJXqUAN.json"
+                      background="transparent"
+                      loop
+                    ></lottie-player>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="app4audio" id="app4audio" style="z-index: 123213123">
+              <div class="back-button" id="back_to_setting11">Sound</div>
+              <div class="volume-setting_volume">
+                <div class="setting-title_volume">Master Volume</div>
+                <input
+                  type="range"
+                  id="volume_all_slider"
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  value="1"
+                />
+              </div>
+
+              <!-- Toggle Items -->
+              <div
+                class="setting-item_volume"
+                style="
+                  border-bottom-left-radius: 0px;
+                  border-bottom-right-radius: 0px;
+                "
+              >
+                <div class="setting-title_volume">Click Sound</div>
+                <div
+                  class="toggle-switch_volume"
+                  id="toggle_click_volume"
+                ></div>
+              </div>
+
+              <div class="setting-item_volume" style="border-radius: 0">
+                <div class="setting-title_volume">Unlock Sound</div>
+                <div
+                  class="toggle-switch_volume"
+                  id="toggle_unlock_volume"
+                ></div>
+              </div>
+
+              <div
+                class="setting-item_volume"
+                style="
+                  border-top-left-radius: 0px;
+                  border-top-right-radius: 0px;
+                "
+              >
+                <div class="setting-title_volume">Charging Sound</div>
+                <div
+                  class="toggle-switch_volume"
+                  id="toggle_charge_volume"
+                ></div>
+              </div>
+            </div>
+            <div
+              class="app4lockstyle"
+              id="app4lockstyle"
+              style="z-index: 123213123"
+            >
+              <div class="back-button" id="back_to_setting13">Lock style</div>
+              <div class="box_pass" id="box_pass1">
+                <div class="setting-title" style="margin: 15px">Password</div>
+                <div class="left-text-small2" id="status_pass1">ON</div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 -960 960 960"
+                  id="icon_pass1"
+                >
+                  <path
+                    d="M218-58q-30.75 0-51.87-21.13Q145-100.25 145-131v-438q0-30.75 21.13-51.88Q187.25-642 218-642h58v-96q0-85.63 59.66-145.31Q395.32-943 479.97-943t144.34 59.69Q684-823.63 684-738v96h58q30.75 0 51.88 21.12Q815-599.75 815-569v438q0 30.75-21.12 51.87Q772.75-58 742-58H218Zm262.25-207q34.75 0 59.25-24.11t24.5-57.97q0-32.92-24.75-59.42t-59.5-26.5q-34.75 0-59.25 26.58t-24.5 60Q396-313 420.75-289t59.5 24ZM349-642h262v-96q0-55.17-38.21-93.58Q534.58-870 480-870q-54.58 0-92.79 38.42Q349-793.17 349-738v96Z"
+                  />
+                </svg>
+              </div>
+              <div class="box_pass" id="box_pass2">
+                <div
+                  class="setting-title"
+                  style="margin: 13px; margin-top: 16px; font-size: 15px"
+                >
+                  FingerPrint
+                </div>
+                <div class="left-text-small2" id="status_pass2">ON</div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 -960 960 960"
+                  id="icon_pass2"
+                >
+                  <path
+                    d="M481-780q107 0 201.5 48T838-596q8 11 5 20t-11 14q-8 5-16.5 4.5T800-568q-54-78-138.5-121T481-732q-94 0-177.5 43T166-568q-7 11-16.5 11.5T132-561q-8-5-10.5-14t4.5-19q62-87 155.5-136.5T481-780Zm0 96q131 0 222 91t91 221q0 51-34.5 87.5T674-248q-51 0-85.5-36.5T554-372q0-30-21.5-51T481-444q-29 0-50 21t-21 51q0 98 51.5 167T608-112q11 3 15.5 11.5T626-83q-2 9-10 15.5T596-64Q483-89 422.5-172.5T362-372q0-50 34.5-85t84.5-35q51 0 86 35t35 85q0 31 20.5 53.5T674-296q31 0 51.5-22.5T746-372q0-110-77.5-187T481-636q-109 0-186 77t-77 187q0 41 4.5 79.5T236-226q4 11 .5 20T224-194q-12 5-21.5-1T190-210q-13-41-16.5-80.5T170-372q0-130 90.5-221T481-684Zm0-192q66 0 128.5 16.5T730-812q9 5 11 13.5t-3 16.5q-5 8-14 11.5t-21-2.5q-51-28-107.5-41.5T481-828q-59 0-115 15t-108 43q-9 5-19 3t-15-13q-5-9-2-18t12-14q57-33 119-48.5T481-876Zm0 288q91 0 154 63t63 153q0 11-6.5 17.5T674-348q-11 0-17.5-6.5T650-372q0-70-49.5-119T481-540q-69 0-118 49t-49 119q0 66 19.5 131T410-118q7 7 7.5 16T412-84q-6 9-18.5 8T374-84q-63-63-85.5-137T266-372q0-90 62.5-153T481-588Zm0 192q11 0 18 6.5t7 17.5q0 81 50 126.5T684-200q15 0 24.5-2t21.5-2q12 0 18 6.5t6 15.5q0 9-5.5 15t-14.5 9q-11 3-23.5 4.5T684-152q-98 0-162-59.5T458-372q0-11 6-17.5t17-6.5Z"
+                  />
+                </svg>
+              </div>
+
+              <div
+                class="setting-item"
+                id="fast_finger_item"
+                style="top: 230px"
+              >
+                <div class="setting-title" id="fast_finger_title">
+                  Fast fingerprint
+                </div>
+                <div
+                  class="toggle-switch"
+                  id="fast_finger"
+                  data-key="fast_finger"
+                ></div>
+              </div>
+
+              <div
+                class="setting-item"
+                id="transparent_password_item"
+                style="top: 290px"
+              >
+                <div
+                  class="setting-title"
+                  id="transparent_password_title"
+                  style="text-align: left"
+                >
+                  Transparent password button
+                </div>
+                <div
+                  class="toggle-switch"
+                  id="transparent_password"
+                  data-key="transparent_password"
+                ></div>
+              </div>
+
+              <div class="container_crea_pass">
+                <div
+                  class="back-button"
+                  id="back_to_setting14"
+                  style="color: #ffffff !important"
+                >
+                  Back
+                </div>
+                <div
+                  class="footer-text"
+                  id="remove_password"
+                  style="
+                    bottom: 60px;
+                    font-size: 15px;
+                    text-decoration: underline;
+                    display: block;
+                    z-index: 123212;
+                    pointer-events: auto;
+                  "
+                >
+                  Remove password
+                </div>
+                <div
+                  class="title_crea_pass"
+                  id="title_crea_pass"
+                  style="color: white"
+                ></div>
+                <div class="error_crea_pass" id="error_crea_pass"></div>
+                <div class="dots_crea_pass" id="dots_crea_pass">
+                  <div class="dot_crea_pass"></div>
+                  <div class="dot_crea_pass"></div>
+                  <div class="dot_crea_pass"></div>
+                  <div class="dot_crea_pass"></div>
+                  <div class="dot_crea_pass"></div>
+                  <div class="dot_crea_pass"></div>
+                </div>
+                <div class="keypad_crea_pass">
+                  <div class="key_crea_pass" onclick="pressKey_crea_pass('1')">
+                    1
+                  </div>
+                  <div class="key_crea_pass" onclick="pressKey_crea_pass('2')">
+                    2
+                  </div>
+                  <div class="key_crea_pass" onclick="pressKey_crea_pass('3')">
+                    3
+                  </div>
+                  <div class="key_crea_pass" onclick="pressKey_crea_pass('4')">
+                    4
+                  </div>
+                  <div class="key_crea_pass" onclick="pressKey_crea_pass('5')">
+                    5
+                  </div>
+                  <div class="key_crea_pass" onclick="pressKey_crea_pass('6')">
+                    6
+                  </div>
+                  <div class="key_crea_pass" onclick="pressKey_crea_pass('7')">
+                    7
+                  </div>
+                  <div class="key_crea_pass" onclick="pressKey_crea_pass('8')">
+                    8
+                  </div>
+                  <div class="key_crea_pass" onclick="pressKey_crea_pass('9')">
+                    9
+                  </div>
+                  <div class="key_zero_container_crea_pass">
+                    <div
+                      class="key_crea_pass"
+                      onclick="pressKey_crea_pass('0')"
+                    >
+                      0
+                    </div>
+                    <div class="key_crea_pass" onclick="deleteKey_crea_pass()">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="25px"
+                        viewBox="50 -960 960 960"
+                        width="25px"
+                        fill="#ffffff"
+                      >
+                        <path
+                          d="m459-326 103-103 103 103 52-52-104-102 102-102-52-52-101 103-103-103-52 52 104 102-104 102 52 52ZM351-144q-18 0-33.5-8T292-174L64-480l227-307q10-13 25.5-21t33.5-8h474q31 0 52 21t21 52v526q0 31-21 52t-52 21H351Z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="box5" id="box5">
+          <div class="nav" style="background: #1f1f1f"></div>
+          <div class="app5" id="app5">none</div>
+        </div>
+        <div class="box6" id="box6">
+          <div class="nav" style="background: #1f1f1f"></div>
+          <div class="app6" id="app6">none</div>
+        </div>
+        <div class="box7" id="box7">
+          <div class="nav" style="background: #1f1f1f"></div>
+          <div class="app7" id="app7">none</div>
+        </div>
+        <div class="box8" id="box8">
+          <div class="nav" style="background: #1f1f1f"></div>
+          <div class="app8" id="app8">
+            <div class="container_phone">
+              <div class="display_phone" id="display_phone"></div>
+              <div class="keypad_phone">
+                <button class="btn_phone" onclick="append_phone('1')">
+                  1 <span>&nbsp;</span>
+                </button>
+                <button class="btn_phone" onclick="append_phone('2')">
+                  2 <span>ABC</span>
+                </button>
+                <button class="btn_phone" onclick="append_phone('3')">
+                  3 <span>DEF</span>
+                </button>
+                <button class="btn_phone" onclick="append_phone('4')">
+                  4 <span>GHI</span>
+                </button>
+                <button class="btn_phone" onclick="append_phone('5')">
+                  5 <span>JKL</span>
+                </button>
+                <button class="btn_phone" onclick="append_phone('6')">
+                  6 <span>MNO</span>
+                </button>
+                <button class="btn_phone" onclick="append_phone('7')">
+                  7 <span>PQRS</span>
+                </button>
+                <button class="btn_phone" onclick="append_phone('8')">
+                  8 <span>TUV</span>
+                </button>
+                <button class="btn_phone" onclick="append_phone('9')">
+                  9 <span>WXYZ</span>
+                </button>
+                <button class="btn_phone" onclick="append_phone('*')">*</button>
+                <button class="btn_phone" onclick="append_phone('0')">
+                  0 <span>+</span>
+                </button>
+                <button class="btn_phone" onclick="append_phone('#')">#</button>
+              </div>
+              <div style="display: flex; gap: 20px">
+                <button class="btn_phone delbtn_phone"></button>
+                <button class="btn_phone callbtn_phone" onclick="call_phone()">
+                  <div
+                    class="navicon_phone"
+                    style="
+                      background: url('originos_data/phone.jpg') no-repeat
+                        center;
+                      background-size: contain;
+                      filter: invert(1);
+                      margin-left: 23%;
+                      margin-top: 10%;
+                      width: 30px;
+                      height: 30px;
+                    "
+                  ></div>
+                </button>
+                <button
+                  class="btn_phone delbtn_phone"
+                  onclick="backspace_phone()"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="24px"
+                    fill="#bebaab"
+                  >
+                    <path
+                      d="m456-320 104-104 104 104 56-56-104-104 104-104-56-56-104 104-104-104-56 56 104 104-104 104 56 56Zm-96 160q-19 0-36-8.5T296-192L80-480l216-288q11-15 28-23.5t36-8.5h440q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H360Z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="navbar_phone">
+              <div class="navitem_phone active" id="Dialer">
+                <div
+                  class="navicon_phone"
+                  style="
+                    background: url('originos_data/phone.jpg') no-repeat center;
+                    background-size: contain;
+                    filter: invert(0.3);
+                  "
+                ></div>
+                Dialer
+              </div>
+              <div class="navitem_phone" id="Contacts">
+                <div
+                  class="navicon_phone"
+                  style="
+                    background: url('originos_data/contact.png') no-repeat
+                      center;
+                    background-size: contain;
+                    filter: invert(0.3);
+                  "
+                ></div>
+                Contacts
+              </div>
+              <div class="navitem_phone" id="Favorites">
+                <div
+                  class="navicon_phone"
+                  style="
+                    background: url('originos_data/star.png') no-repeat center;
+                    background-size: contain;
+                    filter: brightness(0.4);
+                  "
+                ></div>
+                Favorites
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="box9" id="box9">
+          <div class="nav" style="background: #1f1f1f"></div>
+          <div class="app9" id="app9">
+            <div class="stopwatch-app_clock" id="app_clock">
+              <div class="stopwatch-display_clock" id="display_clock">
+                00:00.00
+              </div>
+
+              <!-- Nút cam ở giữa -->
+              <button class="btn-main_clock" id="mainBtn_clock">Start</button>
+
+              <!-- Hai nút sau khi nhân đôi -->
+              <button class="btn-start_clock" id="startStopBtn_clock">
+                Stop
+              </button>
+              <button class="btn-reset_clock" id="resetBtn_clock">Reset</button>
+            </div>
+          </div>
+        </div>
+        <div class="box10" id="box10">
+          <div class="nav" style="background: #1f1f1f"></div>
+          <div class="app10" id="app10">none</div>
+        </div>
+        <div class="box11" id="box11">
+          <div class="status-time-widget" id="lockclock3">
+            <div class="date-display" id="dateText3"></div>
+          </div>
+          <div class="nav" style="background: #1f1f1f"></div>
+          <div class="app11" id="app11"></div>
+        </div>
+
+        <!--more app -->
+      </div>
+      <div class="wallpaper">
+        <div class="text_lock">OriginWEB</div>
+        <div class="text_lock" id="text_lock_cus"></div>
+        <div class="img_lock">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 -960 960 960"
+            class="img_lock_svg"
+          >
+            <path
+              d="M480-260q75 0 127.5-52.5T660-440q0-75-52.5-127.5T480-620q-75 0-127.5 52.5T300-440q0 75 52.5 127.5T480-260Zm0-80q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29ZM160-120q-33 0-56.5-23.5T80-200v-480q0-33 23.5-56.5T160-760h126l74-80h240l74 80h126q33 0 56.5 23.5T880-680v480q0 33-23.5 56.5T800-120H160Z"
+            />
+          </svg>
+        </div>
+      </div>
+      <div class="clicke1" id="clickableBox1"></div>
+      <div class="clicke2" id="clickableBox2"></div>
+      <div class="clicke3" id="clickableBox3"></div>
+      <div class="clicke4" id="clickableBox4"></div>
+      <div class="clicke5" id="clickableBox5"></div>
+      <div class="clicke6" id="clickableBox6"></div>
+      <div class="clicke7" id="clickableBox7"></div>
+      <div class="clicke8" id="clickableBox8"></div>
+      <div class="clicke9" id="clickableBox9"></div>
+      <div class="clicke10" id="clickableBox10"></div>
+      <div class="clicke11" id="clickableBox11"></div>
+
+      <!-- Màn hình khóa -->
+      <div
+        id="lottie"
+        style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 270px;
+          height: 270px;
+          transform: translateX(14%) translateY(170%);
+          pointer-events: none;
+          scale: 0.9;
+          z-index: 1123;
+        "
+      ></div>
+      <div class="lockscreen" id="lockscreen">
+        <div
+          class="hidden"
+          id="wallpaper_aod2"
+          style="
+            display: none;
+            background-size: cover;
+            background-position: center;
+          "
+        ></div>
+
+        <div class="footer-text2" id="longer_finger">Keep holding...</div>
+        <div class="lock-content" id="lock_content">
+          <div class="date-display" id="dateText" style="z-index: -2"></div>
+          <div class="lock-clock" id="lockclock"></div>
+        </div>
+
+        <div class="container_password">
+          <div
+            class="footer-text"
+            id="fogot_password"
+            style="
+              bottom: 30px;
+              font-size: 15px;
+              text-decoration: underline;
+              display: block;
+              z-index: 123212;
+              pointer-events: auto;
+              font-weight: bold;
+              font-family: 'noto sans', sans-serif;
+              color: white;
+              display: none;
+            "
+          >
+            Forgot password?
+          </div>
+          <div class="message_password" id="message_password"></div>
+
+          <div class="dots_password" id="dots_password">
+            <div class="dot_password"></div>
+            <div class="dot_password"></div>
+            <div class="dot_password"></div>
+            <div class="dot_password"></div>
+            <div class="dot_password"></div>
+            <div class="dot_password"></div>
+          </div>
+
+          <div class="keypad_password" id="keypad_password">
+            <!-- Các nút sẽ được tạo bằng JavaScript -->
+          </div>
+        </div>
+
+        <div id="swipe_handle"></div>
+
+        <div class="lock-fingerprint" id="unlock-btn" style="z-index: 1">
+          <div
+            class="lock-fingerprint"
+            id="unlock-btn2"
+            style="
+              position: absolute;
+              bottom: -145px;
+              width: 360px;
+              height: 360px;
+              pointer-events: none;
+            "
+          ></div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="footer-text"
+      style="
+        bottom: -0px;
+        color: white;
+        font-size: 18px;
+        font-family: 'Noto sans', sans;
+        font-weight: bold;
+        z-index: 101000;
+      "
+    >
+      V1.4.00
+    </div>
+    <div class="power-button" title="power-button"></div>
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.2/lottie.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsmediatags@3.9.7/dist/jsmediatags.min.js"></script>
+
+    <script src="data.js"></script>
+    <script src="all.js"></script>
+    <script src="calc.js"></script>
+    <script src="phone_sysToast.js"></script>
+    <script src="watchstop.js"></script>
+    <script src="pass.js"></script>
+    <script src="loading.js"></script>
+    <script src="language.js"></script>
+    <script src="music.js"></script>
+  </body>
+</html>
