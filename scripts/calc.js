@@ -1,3 +1,4 @@
+// CronoOS 4.0.0 Calculator System
 let display_calc = document.getElementById("display_calc");
 
 function append_calc(value) {
@@ -58,3 +59,5 @@ function calculate_calc() {
     display_calc.innerText = "Error";
   }
 }
+
+// CronoOS 4.0.0 Calculator System Complete

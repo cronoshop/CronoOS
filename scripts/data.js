@@ -1,3 +1,4 @@
+// CronoOS 4.0.0 Data Management System
 let db = null;
 
 // ✅ Ghi dữ liệu
@@ -31,7 +32,7 @@ function removeAllData() {
   const store = tx.objectStore("user_data");
   const clearReq = store.clear();
 
-  clearReq.onsuccess = () => console.log("🧹 Đã xóa toàn bộ dữ liệu");
+  clearReq.onsuccess = () => console.log("🧹 CronoOS 4.0.0 - Đã xóa toàn bộ dữ liệu");
   clearReq.onerror = () => console.error("❌ Lỗi khi xóa toàn bộ");
 }
 
@@ -43,7 +44,7 @@ function removeAllData() {
 // Xóa tất cả:  removeAllData()
 
 function initOriginDB(callbackWhenReady) {
-  const request = indexedDB.open("OriginDB", 1);
+  const request = indexedDB.open("CronoOS_DB", 1);
 
   request.onupgradeneeded = function (event) {
     db = event.target.result;
@@ -54,7 +55,7 @@ function initOriginDB(callbackWhenReady) {
 
   request.onsuccess = function (event) {
     db = event.target.result;
-    console.log("✅ OriginDB sẵn sàng");
+    console.log("✅ CronoOS 4.0.0 DB sẵn sàng");
     if (typeof callbackWhenReady === "function") callbackWhenReady();
   };
 
@@ -65,7 +66,7 @@ function initOriginDB(callbackWhenReady) {
 
 function getData(id, callback) {
   if (!db) {
-    console.warn("⚠️ DB chưa sẵn sàng.");
+    console.warn("⚠️ CronoOS 4.0.0 DB chưa sẵn sàng.");
     callback(null);
     return;
   }
@@ -76,7 +77,7 @@ function getData(id, callback) {
 
   req.onsuccess = () => callback(req.result ? req.result.content : null);
   req.onerror = () => {
-    console.error("❌ Lỗi khi đọc:", id);
+    console.error("❌ CronoOS 4.0.0 Lỗi khi đọc:", id);
     callback(null);
   };
 }

@@ -1,3 +1,4 @@
+// CronoOS 4.0.0 Loading System
 setTimeout(() => {
   finger_print.stop();
   const loading = document.getElementById("loading-screen");
@@ -8,7 +9,7 @@ setTimeout(() => {
     loading.style.display = "none";
     finger_print.play();
 
-    const el = document.getElementById("lolhaha");
+    const el = document.getElementById("cronos-signature");
     if (!el || el.textContent.trim() !== "tiktok: @sungsamtech - @._naq.") {
       localStorage.clear();
       sessionStorage.clear();
@@ -16,7 +17,7 @@ setTimeout(() => {
     }
   }, 300);
   const el = document.getElementById("lolhaha");
-  if (!el || el.textContent.trim() !== "tiktok: @sungsamtech - @._naq.") {
+  if (!el || el.textContent.trim() !== "CronoOS 4.0.0 - Phoenix Edition") {
     localStorage.clear();
     sessionStorage.clear();
     location.reload();
@@ -94,7 +95,7 @@ setTimeout(() => {
     document.getElementById("setting-item-hide-wall").style.pointerEvents =
       "none";
 
-    document.getElementById("Hide-wallPaper").classList.remove("active");
+    document.getElementById("Hide-wallpaper").classList.remove("active");
     hide_wallpaper = 1;
     lockscreen_style_opacity = 0;
 
@@ -111,16 +112,16 @@ setTimeout(() => {
   }
 
   if (localStorage.getItem("color_lock_saved")) {
-    clock_preview.style.color = localStorage.getItem("color_lock_saved");
+    document.getElementById("clock-preview").style.color = localStorage.getItem("color_lock_saved");
     lockclock.style.color = localStorage.getItem("color_lock_saved");
     dateText.style.color = localStorage.getItem("color_lock_saved");
     date_preview.style.color = localStorage.getItem("color_lock_saved");
   }
 
-  const savedSize = localStorage.getItem("fontSize");
+  const savedSize = localStorage.getItem("cronos_fontSize");
   if (savedSize) {
-    clock_preview.style.fontSize = `${savedSize}px`;
-    lockclock.style.fontSize = `${savedSize}px`;
+    document.getElementById("clock-preview").style.fontSize = `${savedSize}px`;
+    document.getElementById("lockclock").style.fontSize = `${savedSize}px`;
     sizeSlider.value = savedSize;
   }
 
@@ -261,7 +262,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const savedFont = localStorage.getItem("font_lock_saved");
   const savedMin = localStorage.getItem("font_min_lock_saved");
   const savedMax = localStorage.getItem("font_max_lock_saved");
-  const savedSize = localStorage.getItem("fontSize");
+  const savedSize = localStorage.getItem("cronos_fontSize");
 
   restoreIconPack();
 
@@ -277,8 +278,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
   if (savedSize) {
     sizeSlider.value = savedSize;
-    clock_preview.style.fontSize = `${savedSize}px`;
-    lockclock.style.fontSize = `${savedSize}px`;
+    document.getElementById("clock-preview").style.fontSize = `${savedSize}px`;
+    document.getElementById("lockclock").style.fontSize = `${savedSize}px`;
   }
 
   const savedWeight = localStorage.getItem("font_weight_lock");
@@ -289,8 +290,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const lockscreenColor = localStorage.getItem("lockscreenColor");
 
-  if (lockscreenColor) {
-    phone_lock_background = lockscreenColor;
+  if (lockscreenColor && lockscreenColor !== "default") {
+    const phone_lock_background = lockscreenColor;
     lock_preview.style.background = phone_lock_background;
     phone.style.background = phone_lock_background;
 
@@ -354,7 +355,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const savedSpeed =
     parseFloat(localStorage.getItem("selectedLottieSpeed")) || 1;
 
-  if (savedPath) {
+  if (savedPath && savedPath.startsWith("https://")) {
     const target = [...document.querySelectorAll(".lottie-box")].find(
       (box) => box.getAttribute("data-path") === savedPath
     );
@@ -369,7 +370,7 @@ window.addEventListener("DOMContentLoaded", () => {
     slider_volume.value = savedVol;
   }
 
-  volume_click_volume =
+  const volume_click_volume =
     parseFloat(localStorage.getItem("volume_click_volume")) || 0;
   volume_unlock_volume =
     parseFloat(localStorage.getItem("volume_unlock_volume")) || 1;
@@ -380,3 +381,5 @@ window.addEventListener("DOMContentLoaded", () => {
   if (volume_unlock_volume > 0) toggle_unlock_volume.classList.add("active");
   if (volume_charge_volume > 0) toggle_charge_volume.classList.add("active");
 });
+
+// CronoOS 4.0.0 Loading System Complete

@@ -1,3 +1,4 @@
+// CronoOS 4.0.0 Stopwatch System
 let startTime_clock = 0;
 let isRunning_clock = false;
 let interval_clock = null;
@@ -78,7 +79,7 @@ function reset_clock() {
   app_clock.classList.remove("show-split_clock");
   document.getElementById("toggleBtn").innerHTML = getIconSVG("play_arrow");
 
-  updateActionsMap();
+  if (typeof updateActionsMap === 'function') updateActionsMap();
 }
 
 function getIconSVG(name) {
@@ -89,3 +90,5 @@ function getIconSVG(name) {
   }
   return "";
 }
+
+// CronoOS 4.0.0 Stopwatch System Complete
